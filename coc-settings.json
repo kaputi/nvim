@@ -1,0 +1,5 @@
+{
+  "eslint.filetypes": ["javascript","javascriptreact"],
+  "eslint.autoFixOnSave": true ,
+  "git.enableGutters" : true
+}
