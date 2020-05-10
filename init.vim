@@ -1,3 +1,6 @@
+" space is leader
+let mapleader=" "
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> vim-plug
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -26,7 +29,7 @@ Plug 'jiangmiao/auto-pairs' " auto close {[.....
 Plug 'easymotion/vim-easymotion'
 "Plug 'lilydjwg/colorizer' " Show color when type hex or rgba....
 Plug 'alvan/vim-closetag' "auto close html/jsx tags
-Plug 'ctrlpvim/ctrlp.vim'  " file finder
+"Plug 'ctrlpvim/ctrlp.vim'  " file finder
 
 " Language Syntax Support
 Plug 'pangloss/vim-javascript' "JS highlighting
@@ -83,6 +86,9 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+
+let g:coc_snippet_next = '<tab>'
+
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
@@ -125,20 +131,10 @@ nmap <leader>rn <Plug>(coc-rename)
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
-
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap keys for applying codeAction to the current line.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Introduce function text object
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -166,30 +162,43 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-" Add (Neo)Vim's native statusline support.
-" NOTE: Please see `:h coc-status` for integrations with external plugins that
-" provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" Open file explorer
+nmap <leader>b :CocCommand explorer<CR>
 
-" Mappings using CoCList:
-" Show all diagnostics.
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+"needed for coc-highlight
+set termguicolors
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Remap for do codeAction of selected region
+function! s:cocActionsOpenFromSelected(type) abort
+  execute 'CocCommand actions.open ' . a:type
+endfunction
+xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+"<leader>a for the current selected range
+"<leader>aw for the current word
+"<leader>aas for the current sentence
+"<leader>aap for the current paragraph
+":h text-objects to see more detail
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Find File
+nmap <leader>p :CocList files<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Auto Close Tags
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " filenames like *.xml, *.html, *.xhtml, ...
@@ -236,14 +245,37 @@ let g:closetag_close_shortcut = '<leader>>'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> ctrlp
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set runtimepath^=~/.config/nvim/plugged/ctrlp.vim
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+"set runtimepath^=~/.config/nvim/plugged/ctrlp.vim
+"let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> status line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "lightline
-let g:lightline = { 'colorscheme' : 'onehalfdark', }
+"let g:lightline = { 'colorscheme' : 'onehalfdark', }
+" lightline
+let g:lightline = {
+      \ 'colorscheme' : 'onehalfdark',
+      \ 'active': {
+      \   'left': [
+      \     [ 'mode', 'paste' ],
+      \     [ 'ctrlpmark', 'git', 'diagnostic', 'cocstatus', 'filename', 'method' ]
+      \   ],
+      \   'right':[
+      \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
+      \     [ 'blame' ]
+      \   ],
+      \ },
+      \ 'component_function': {
+      \   'blame': 'LightlineGitBlame',
+      \ }
+      \ }
+
+function! LightlineGitBlame() abort
+  let blame = get(b:, 'coc_git_blame', '')
+  " return blame
+  return winwidth(0) > 120 ? blame : ''
+endfunction
 set laststatus=2
 set noshowmode
 
@@ -251,11 +283,25 @@ set noshowmode
 set showcmd
 "set cmdheight=2
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> multi cursor
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:multi_cursor_use_default_mapping=0
+
+" Default mapping
+let g:multi_cursor_start_word_key      = '<C-m>'
+"let g:multi_cursor_select_all_word_key = '<A-m>'
+"let g:multi_cursor_start_key           = 'g<C-m>'
+"let g:multi_cursor_select_all_key      = 'g<A-m>'
+let g:multi_cursor_next_key            = '<C-m>'
+let g:multi_cursor_prev_key            = '<C-i>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> VIM
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" space is leader
-let mapleader=" "
 set encoding=utf8
 
 "turn on syntax highlight

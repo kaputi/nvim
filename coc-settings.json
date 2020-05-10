@@ -1,5 +1,12 @@
 {
   "eslint.filetypes": ["javascript","javascriptreact"],
   "eslint.autoFixOnSave": true ,
-  "git.enableGutters" : true
+  "explorer.quitOnOpen": true,
+  "explorer.openAction.strategy": "tab",
+  "explorer.width":30,
+  "explorer.icon.enableNerdfont":true,
+  "coc.preferences.colorSupport":true,
+  "highlight.colors.enable": true,
+  "cSpellExt.enableDictionaries": ["spanish"],
+  "cSpell.language": "en,es"
 }
