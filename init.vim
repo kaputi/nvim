@@ -1,6 +1,86 @@
 " space is leader
 let mapleader=" "
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => VScode
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if exists('g:vscode')
+
+call plug#begin('~/.config/nvim/pluggedVscode')
+
+   Plug 'tpope/vim-surround'
+   Plug 'terryma/vim-multiple-cursors'
+   Plug 'asvetliakov/vim-easymotion'
+    
+call plug#end()
+
+"go to symbol
+map <leader>gs <cmd> call VSCodeNotify('workbench.action.gotoSymbol')<CR>
+
+"rename symbol
+map <leader>re <cmd> call VSCodeNotify('editor.action.rename')<CR>
+
+"toggle sidebar
+map <leader>b <cmd> call VSCodeNotify('workbench.action.toggleSidebarVisibility')<CR>
+
+"reveal in explorer
+map <leader>e <cmd> call VSCodeNotify('revealInExplorer')<CR>
+
+"rename file
+map <leader>rf <cmd> call VSCodeNotify('fileutils.renameFile')<CR>
+
+"focus terminal
+map <leader>t <cmd> call VSCodeNotify('workbench.action.terminal.toggleTerminal')<CR>
+
+"split editor down
+map <leader>wj <cmd> call VSCodeNotify('workbench.action.splitEditorDown')<CR>
+"split editor right
+map <leader>wl <cmd> call VSCodeNotify('workbench.action.splitEditorRight')<CR>
+"split editor up
+map <leader>wk <cmd> call VSCodeNotify('workbench.action.splitEditorUp')<CR>
+"split editor left
+map <leader>wh <cmd> call VSCodeNotify('workbench.action.splitEditorLeft')<CR>
+
+"comment selection
+"map <leader>/ <cmd> call VSCodeNotify('editor.action.commentLine')<CR>
+
+" move faster
+noremap J 5j
+noremap K 5k
+
+"no arrow key for training with hjkl
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
+" fix for backspace problems
+set backspace=indent,eol,start
+
+" remove highlight
+noremap <leader>h :nohl<cr>
+
+" get clipboard for register
+set clipboard=unnamedplus
+
+"""""""""""""""""""""
+"=> multi cursor
+"""""""""""""""""""""
+let g:multi_cursor_use_default_mapping=0
+
+" Default mapping
+let g:multi_cursor_start_word_key      = '<C-m>'
+"let g:multi_cursor_select_all_word_key = '<A-m>'
+"let g:multi_cursor_start_key           = 'g<C-m>'
+"let g:multi_cursor_select_all_key      = 'g<A-m>'
+let g:multi_cursor_next_key            = '<C-m>'
+let g:multi_cursor_prev_key            = '<C-i>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
+
+else
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> vim-plug
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -407,3 +487,5 @@ map tt :tabnew
 map ts :tab split<CR>
 " close tab
 map tc :tabc<CR>
+
+endif
