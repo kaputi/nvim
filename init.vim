@@ -93,8 +93,12 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'itchyny/lightline.vim' " Status bar
 Plug 'itchyny/vim-gitbranch' "git branch on status bar
 "Plug 'ryanoasis/vim-devicons' "icons for explorer tree
-Plug 'sonph/onehalf', {'rtp' : 'vim/'} "theme
-
+"Plug 'sonph/onehalf', {'rtp' : 'vim/'} "theme
+"Plug 'ajmwagar/vim-deus' "theme
+"Plug 'jdsimcoe/abstract.vim' "theme
+"Plug 'gilgigilgil/anderson.vim' "theme
+"Plug 'ayu-theme/ayu-vim' "theme
+Plug 'dracula/vim' "theme
 "tools
 Plug 'terryma/vim-multiple-cursors' " Multiple cursors
 "Plug 'preservim/nerdtree' " File explorer
@@ -138,11 +142,29 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Theme
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set t_Co=256
-set t_ut=
+" Code dark
+"set t_Co=256
+"set t_ut=
 "colorscheme codedark
-colorscheme onehalfdark
 
+"colorscheme onehalfdark
+
+" deus
+"set background=dark    " Setting dark mode
+"colorscheme deus
+"let g:deus_termcolors=256
+
+"abstract 
+"colorscheme abstract
+"
+"ayu colors
+"let ayucolor="dark"
+"let ayucolor="mirage"
+"let ayucolor="light"
+"colorscheme ayu
+
+" dracula
+colorscheme dracula
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Conquer of Completion 
@@ -351,7 +373,7 @@ let g:closetag_close_shortcut = '<leader>>'
 "let g:lightline = { 'colorscheme' : 'onehalfdark', }
 " lightline
 let g:lightline = {
-      \ 'colorscheme' : 'onehalfdark',
+      \ 'colorscheme' : 'dracula',
       \ 'active': {
       \   'left': [
       \     [ 'mode', 'paste' ],
