@@ -11,6 +11,7 @@ call plug#begin('~/.config/nvim/plugged')
 "Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
 Plug 'itchyny/lightline.vim' " Status bar
+Plug 'itchyny/vim-gitbranch' "git branch on status bar
 "Plug 'ryanoasis/vim-devicons' "icons for explorer tree
 Plug 'sonph/onehalf', {'rtp' : 'vim/'} "theme
 
@@ -259,7 +260,7 @@ let g:lightline = {
       \ 'active': {
       \   'left': [
       \     [ 'mode', 'paste' ],
-      \     [ 'ctrlpmark', 'git', 'diagnostic', 'cocstatus', 'filename', 'method' ]
+      \     [ 'ctrlpmark', 'gitbranch', 'diagnostic', 'cocstatus', 'filename', 'method' ]
       \   ],
       \   'right':[
       \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
@@ -268,6 +269,7 @@ let g:lightline = {
       \ },
       \ 'component_function': {
       \   'blame': 'LightlineGitBlame',
+      \   'gitbranch': 'gitbranch#name'
       \ }
       \ }
 
