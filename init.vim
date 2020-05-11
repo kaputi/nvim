@@ -20,6 +20,21 @@ Plug 'terryma/vim-multiple-cursors' " Multiple cursors
 "Plug 'preservim/nerdtree' " File explorer
 "Plug 'Xuyuanp/nerdtree-git-plugin' " File explorer git integration
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " VS-code like autocomplete
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'} "javascript, ts extension
+Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'} " html
+Plug 'neoclide/coc-css' , {'do': 'yarn install --frozen-lockfile'} " css
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'} " json
+"Plug 'iamcco/coc-actions', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-tabnine', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
+Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
+"Plug 'iamcco/coc-spell-checker', {'do': 'yarn install --frozen-lockfile'}
+"Plug 'iamcco/coc-cspell-dicts', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'tpope/vim-surround' 
 Plug 'jiangmiao/auto-pairs' " auto close {[.....
 "Plug 'tpope/vim-fugitive'     "git
