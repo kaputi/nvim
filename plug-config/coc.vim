@@ -15,6 +15,7 @@ let g:coc_global_extensions = [
   \ 'coc-spell-checker',
   \ 'coc-cspell-dicts',
   \ 'coc-tabnine',
+  \ 'https://github.com/xabikos/vscode-react'
   \ ]
 
   
