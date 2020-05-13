@@ -1,9 +1,3 @@
-:PlugInstall
+Just open vim and plugins will install automatically
 
-:CocInstall coc-actions
-
-:CocInstall coc-spell-checker
-
-:CocInstall coc-cspell-dicts
-
-:CocInstall https://github.com/xabikos/vscode-react
+vs code needs to run :PlugInstall  manually
