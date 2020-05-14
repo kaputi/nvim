@@ -4,12 +4,12 @@ function! StatusDiagnostic() abort
   :
   if empty(info) | return '' | endif
   let msgs = []
-  if get(info, 'error', 0)
-    call add(msgs, 'E'. info['error'] )
-  endif
-  if get(info, 'warning', 0)
-    call add(msgs, 'W'. info['warning'] )
-  endif
+  " if get(info, 'error', 0)
+    " call add(msgs, 'E '. info['error'] )
+  " endif
+  " if get(info, 'warning', 0)
+    " call add(msgs, '⚠ '. info['warning'] )
+  " endif
   if get(info, 'information', 0)
     call add(msgs, 'I'. info['information'] )
   endif
