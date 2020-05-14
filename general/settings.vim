@@ -28,6 +28,11 @@ if !exists('g:vscode')
   set cursorline                          " Enable highlighting of the current line
   "set background=dark                     " tell vim what the background color looks like
   "set showtabline=2                       " Always show tabs 
+  " create swap dir if not exist
+  if !isdirectory($HOME."/.config/nvim/swap")
+    silent call mkdir($HOME."/.config/nvim/swap", "p")
+  endif
+  set dir=~/.config/nvim/swap/           " tell vim where to put swap files
   set noshowmode                          " We don't need to see things like -- INSERT -- anymore
   set nobackup                            " This is recommended by coc
   set nowritebackup                       " This is recommended by coc
