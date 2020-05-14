@@ -8,5 +8,7 @@
   "coc.preferences.colorSupport":true,
   "highlight.colors.enable": true,
   "cSpellExt.enableDictionaries": ["spanish"],
-  "cSpell.language": "en,es"
+  "cSpell.language": "en,es",
+  "list.maxHeight": 30,
+  "list.autoResize": true
 }

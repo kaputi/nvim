@@ -54,7 +54,6 @@ if !exists('g:vscode')
   nnoremap <silent> <C-s> :w<CR>
   " Alternate way to quit
   nnoremap <silent> <C-Q> :wq!<CR>
-  " Use control-c instead of escape
 
   " Better window navigation
   nnoremap <C-h> <C-w>h
