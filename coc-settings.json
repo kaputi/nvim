@@ -12,5 +12,8 @@
   "list.maxHeight": 30,
   "list.autoResize": true,
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
-  "cSpell.diagnosticLevel": "Hint"
+  "cSpell.diagnosticLevel": "Hint",
+  "git.enableGutters": false,
+  "diagnostic.warningSign": "⚠",
+  "diagnostic.hintSign":"!"
 }
