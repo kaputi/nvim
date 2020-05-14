@@ -48,6 +48,8 @@ else
     " Plug 'justinmk/vim-sneak'
     " Plug 'unblevable/quick-scope' 
     Plug 'easymotion/vim-easymotion'
+    " sudo tree
+    Plug 'mbbill/undotree'
     " Syntax 
     Plug 'pangloss/vim-javascript' "JS highlighting
     Plug 'mxw/vim-jsx' "JSX syntax highlighting
