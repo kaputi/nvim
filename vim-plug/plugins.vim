@@ -17,6 +17,8 @@ if exists('g:vscode')
 else
 " Neovim
   call plug#begin('~/.config/nvim/autoload/plugged')
+    " ident guides
+    Plug 'thaerkh/vim-indentguides'
     " sessions
     Plug 'thaerkh/vim-workspace'
     " Surround

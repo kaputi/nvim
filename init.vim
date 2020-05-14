@@ -31,4 +31,5 @@ else
   source $HOME/.config/nvim/plug-config/undotree.vim
   source $HOME/.config/nvim/plug-config/suda.vim
   source $HOME/.config/nvim/plug-config/workspaces.vim
+  source $HOME/.config/nvim/plug-config/identguides.vim
 endif
