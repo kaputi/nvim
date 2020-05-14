@@ -13,7 +13,7 @@
   "list.autoResize": true,
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "cSpell.diagnosticLevel": "Hint",
-  "git.enableGutters": false,
+  "git.enableGutters": true,
   "diagnostic.warningSign": "⚠",
   "diagnostic.hintSign":"!"
 }
