@@ -23,12 +23,16 @@ function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction
 
+function! CocGit() abort
+  return get(g:,'coc_git_status', '')
+endfunction
+
 let g:lightline = {
       \ 'colorscheme' : 'onedark',
       \ 'active': {
       \   'left': [
       \     [ 'mode', 'paste' ],
-      \     [ 'gitbranch', 'diagnostic','cocstatus', 'filename', 'method' ]
+      \     [ 'cocgit', 'diagnostic','cocstatus', 'filename', 'method' ]
       \   ],
       \   'right':[
       \     [ 'filetype', 'fileencoding', 'lineinfo' ],
@@ -36,6 +40,7 @@ let g:lightline = {
       \ },
       \ 'component_function': {
       \   'gitbranch': 'gitbranch#name',
+      \   'cocgit': 'CocGit',
       \   'diagnostic': 'StatusDiagnostic',
       \   'cocstatus': 'coc#status',
       \   'method': 'CocCurrentFunction'
