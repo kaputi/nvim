@@ -10,5 +10,6 @@
   "cSpellExt.enableDictionaries": ["spanish"],
   "cSpell.language": "en,es",
   "list.maxHeight": 30,
-  "list.autoResize": true
+  "list.autoResize": true,
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true
 }
