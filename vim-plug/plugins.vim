@@ -61,6 +61,8 @@ else
     " Syntax 
     Plug 'pangloss/vim-javascript' "JS highlighting
     Plug 'mxw/vim-jsx' "JSX syntax highlighting
+    Plug 'leafgarland/typescript-vim' "typescript
+    Plug 'ianks/vim-tsx' "TSX
     Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
   call plug#end()
 
