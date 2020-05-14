@@ -33,7 +33,7 @@ else
     " Closetags
     Plug 'alvan/vim-closetag'
     " Themes
-    " Plug 'christianchiarulli/onedark.vim'
+     Plug 'christianchiarulli/onedark.vim'
     " Plug 'sonph/onehalf', {'rtp' : 'vim/'} 
     " Plug 'ajmwagar/vim-deus' 
     " Plug 'jdsimcoe/abstract.vim' 
