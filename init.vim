@@ -15,6 +15,7 @@ source $HOME/.config/nvim/general/settings.vim
 source $HOME/.config/nvim/general/functions.vim
 source $HOME/.config/nvim/keys/mappings.vim
 source $HOME/.config/nvim/plug-config/easymotion.vim
+source $HOME/.config/nvim/plug-config/multicursor.vim
 
 " Source VScode only
 if exists('g:vscode')
@@ -26,5 +27,5 @@ else
   source $HOME/.config/nvim/plug-config/coc.vim
   source $HOME/.config/nvim/plug-config/closetags.vim
   source $HOME/.config/nvim/plug-config/lightline.vim
-  "source $HOME/.config/nvim/plug-config/multicursor.vim
+  source $HOME/.config/nvim/plug-config/nerd-commenter.vim
 endif
