@@ -25,7 +25,7 @@ else
     Plug 'preservim/nerdcommenter'
     " Status line
     Plug 'itchyny/lightline.vim' " Status bar
-    Plug 'itchyny/vim-gitbranch' "git branch on status bar
+    "Plug 'itchyny/vim-gitbranch' "git branch on status bar
     " Icons
     "Plug 'ryanoasis/vim-devicons' 
     " Auto pairs for '(' '[' '{' 
