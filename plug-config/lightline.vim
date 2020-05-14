@@ -31,7 +31,7 @@ let g:lightline = {
       \ 'colorscheme' : 'onedark',
       \ 'active': {
       \   'left': [
-      \     [ 'mode', 'paste' ],
+      \     [],
       \     [ 'cocgit', 'diagnostic','cocstatus', 'filename', 'method' ]
       \   ],
       \   'right':[
