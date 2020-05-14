@@ -1,6 +1,6 @@
 "let g:lightline = { 'colorscheme' : 'onehalfdark', }
 let g:lightline = {
-      \ 'colorscheme' : 'dracula',
+      \ 'colorscheme' : 'onedark',
       \ 'active': {
       \   'left': [
       \     [ 'mode', 'paste' ],
@@ -10,4 +10,7 @@ let g:lightline = {
       \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
       \   ],
       \ },
+      \ 'component_function': {
+      \   'gitbranch': 'gitbranch#name'
+      \ }
       \ }
