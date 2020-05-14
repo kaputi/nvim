@@ -54,5 +54,5 @@ if !exists('g:vscode')
 
 
   " You can't stop me
-  cmap w!! w !sudo tee %
+"  cmap w!! w !sudo tee %
 endif

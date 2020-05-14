@@ -29,4 +29,5 @@ else
   source $HOME/.config/nvim/plug-config/lightline.vim
   source $HOME/.config/nvim/plug-config/nerd-commenter.vim
   source $HOME/.config/nvim/plug-config/undotree.vim
+  source $HOME/.config/nvim/plug-config/suda.vim
 endif
