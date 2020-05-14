@@ -17,6 +17,8 @@ if exists('g:vscode')
 else
 " Neovim
   call plug#begin('~/.config/nvim/autoload/plugged')
+    " sessions
+    Plug 'thaerkh/vim-workspace'
     " Surround
     Plug 'tpope/vim-surround'
     " Repeat Stuff
@@ -26,6 +28,8 @@ else
     " Status line
     Plug 'itchyny/lightline.vim' " Status bar
     "Plug 'itchyny/vim-gitbranch' "git branch on status bar
+    " Git
+    Plug 'tpope/vim-fugitive'
     " Icons
     "Plug 'ryanoasis/vim-devicons' 
     " Auto pairs for '(' '[' '{' 

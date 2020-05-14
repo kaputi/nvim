@@ -30,4 +30,5 @@ else
   source $HOME/.config/nvim/plug-config/nerd-commenter.vim
   source $HOME/.config/nvim/plug-config/undotree.vim
   source $HOME/.config/nvim/plug-config/suda.vim
+  source $HOME/.config/nvim/plug-config/workspaces.vim
 endif
