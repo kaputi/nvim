@@ -3,6 +3,8 @@ set iskeyword+=-                      	" treat dash separated words as a word te
 
 " Neovim
 if !exists('g:vscode')
+  set autoread                             " update file if changed 
+  au CursorHold * checktime               " check autoread every 4s
   syntax enable                           " Enables syntax highlighing
   " set hidden                              " Required to keep multiple buffers open multiple buffers
   set showtabline=2                         " always show tab bar
