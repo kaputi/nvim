@@ -26,6 +26,12 @@ vnoremap > >gv
 
 " Only neovim
 if !exists('g:vscode') 
+  " quit and save with capitals Q W (sometimes i dont release shift in time)
+  :command! -bar -bang Q quit<bang>
+  :command! -bar -bang W write<bang>
+  :command! -bar -bang Wq wq<bang>
+  :command! -bar -bang WQ wq<bang>
+  
   " Visualize tabs and newlines                                                 
   " set listchars=tab:▸\ ,eol:¬
   " Uncomment this to enable by default:                         
