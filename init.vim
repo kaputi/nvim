@@ -33,4 +33,5 @@ else
   source $HOME/.config/nvim/plug-config/workspaces.vim
   source $HOME/.config/nvim/plug-config/identguides.vim
   source $HOME/.config/nvim/plug-config/startify.vim
+  source $HOME/.config/nvim/plug-config/rainbow.vim
 endif

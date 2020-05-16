@@ -19,6 +19,8 @@ else
   call plug#begin('~/.config/nvim/autoload/plugged')
     " ident guides
     Plug 'thaerkh/vim-indentguides'
+    " color parenthesis
+    Plug 'junegunn/rainbow_parentheses.vim'
     " sessions
     " Plug 'thaerkh/vim-workspace'
     Plug 'mhinz/vim-startify'
