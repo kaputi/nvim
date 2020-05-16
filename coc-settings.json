@@ -1,5 +1,10 @@
 {
-  "eslint.filetypes": ["javascript","javascriptreact"],
+  "eslint.filetypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
   "eslint.autoFixOnSave": true ,
   "explorer.quitOnOpen": true,
   "explorer.openAction.strategy": "tab",
