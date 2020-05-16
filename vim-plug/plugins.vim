@@ -20,7 +20,8 @@ else
     " ident guides
     Plug 'thaerkh/vim-indentguides'
     " sessions
-    Plug 'thaerkh/vim-workspace'
+    " Plug 'thaerkh/vim-workspace'
+    Plug 'mhinz/vim-startify'
     " Surround
     Plug 'tpope/vim-surround'
     " Repeat Stuff
@@ -59,11 +60,12 @@ else
     " save witg sudo
     Plug 'lambdalisue/suda.vim'
     " Syntax 
-    Plug 'pangloss/vim-javascript' "JS highlighting
-    Plug 'mxw/vim-jsx' "JSX syntax highlighting
-    Plug 'leafgarland/typescript-vim' "typescript
-    Plug 'ianks/vim-tsx' "TSX
-    Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+    Plug 'sheerun/vim-polyglot' " includes everything
+    " Plug 'pangloss/vim-javascript' " JS highlighting
+    " Plug 'mxw/vim-jsx' "JSX syntax highlighting
+    " Plug 'leafgarland/typescript-vim' "typescript
+    " Plug 'ianks/vim-tsx' "TSX
+    " Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
   call plug#end()
 
   " Automatically install missing plugins on startup
