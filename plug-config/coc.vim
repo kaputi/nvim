@@ -51,7 +51,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use leader K to show documentation in preview window.
-nnoremap <silent> <leader><leader>k :call <SID>show_documentation()<CR>
+" nnoremap <silent> <leader><leader>k :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -65,15 +65,15 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
- nmap <leader>rn <Plug>(coc-rename)
+ " nmap <leader>rn <Plug>(coc-rename)
 
 " Remap for do codeAction of selected region
 function! s:cocActionsOpenFromSelected(type) abort
   execute 'CocCommand actions.open ' . a:type
 endfunction
 
-xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+" xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+" nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 "<leader>a for the current selected range
 "<leader>aw for the current word
 "<leader>aas for the current sentence
@@ -112,17 +112,17 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Mappings using CoCList:
 " Show all diagnostics of current window.
-nnoremap <silent> <leader>?  :<C-u>CocList --normal diagnostics <cr>
+" nnoremap <silent> <leader>?  :<C-u>CocList --normal diagnostics <cr>
 " Show all diagnostics of workspace
-nnoremap <silent> <leader><leader>? :<C-u>CocAction('coc-diagnostic-list')
+" nnoremap <silent> <leader><leader>? :<C-u>CocAction('coc-diagnostic-list')
 " " Manage extensions.
 " nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 " Show commands.
-nnoremap <silent> <leader><leader>p  :<C-u>CocList commands<cr>
+" nnoremap <silent> <leader><leader>p  :<C-u>CocList commands<cr>
 " Find symbol of current document.
-nnoremap <silent> <leader>gs  :<C-u>CocList outline<cr>
+" nnoremap <silent> <leader>gs  :<C-u>CocList outline<cr>
 " Search workspace symbols.
-nnoremap <silent> <leader><leader>s  :<C-u>CocList -I symbols<cr>
+" nnoremap <silent> <leader><leader>s  :<C-u>CocList -I symbols<cr>
 " " Do default action for next item.
 " nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " " Do default action for previous item.
@@ -131,7 +131,7 @@ nnoremap <silent> <leader><leader>s  :<C-u>CocList -I symbols<cr>
 " nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " Find File
-nmap <leader>p :CocList files<CR>
+" nmap <leader>p :CocList files<CR>
 
 " Open file explorer
-nmap <leader>e :CocCommand explorer<CR>
+" nmap <leader>e :CocCommand explorer<CR>

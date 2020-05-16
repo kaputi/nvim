@@ -17,6 +17,17 @@ if exists('g:vscode')
 else
 " Neovim
   call plug#begin('~/.config/nvim/autoload/plugged')
+  "zen mode
+    Plug 'junegunn/goyo.vim'
+    "vista
+    Plug 'liuchengxu/vista.vim'
+    "change to project root
+    Plug 'airblade/vim-rooter'
+    "fzf
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+    "key mappings 
+    Plug 'liuchengxu/vim-which-key'
     " ident guides
     Plug 'thaerkh/vim-indentguides'
     " color parenthesis

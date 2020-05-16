@@ -3,12 +3,12 @@ let mapleader=" "
 
 " insert new line witgout leaving normal mode (can me used with counts
 " 2<leader>o inserts 2 lines)
-nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
-nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
+" nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
+" nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
 
 
 " remove highlight
-noremap <leader>h :nohl<cr>
+" noremap <leader>h :nohl<cr>
 
 "no arrow key for training with hjkl
 map <up> <nop>
@@ -37,20 +37,20 @@ if !exists('g:vscode')
   " Uncomment this to enable by default:                         
   " set list " To enable by default                   
   " Or use your leader key + l to toggle on/off  
-  map <leader>l :set list!<CR> " Toggle tabs and EOL
+  " map <leader>l :set list!<CR> " Toggle tabs and EOL
 
   "next tab
-  map tn :tabn<CR> 
+  noremap tn :tabn<CR> 
   " previous tab
-  map tp :tabp<CR>
+  noremap tp :tabp<CR>
   " move tab (expects position number)
-  map tm :tabm
+  noremap tm :tabm
   " new tab
-  map tt :tabnew
+  noremap tt :tabnew
   " split tab
-  map ts :tab split<CR>
+  noremap ts :tab split<CR>
   " close tab
-  map tc :tabc<CR>
+  noremap tc :tabc<CR>
 
   " I hate escape more than anything else
   inoremap jk <Esc>

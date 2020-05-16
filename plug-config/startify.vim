@@ -7,20 +7,14 @@ let g:startify_lists = [
       \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
       \ { 'type': 'commands',  'header': ['   Commands']       },
       \ ]
-
+let g:startify_session_autoload = 1
+let g:startify_session_delete_buffers = 1
+let g:startify_change_to_vcs_root = 1
+let g:startify_fortune_use_unicode = 1
+let g:startify_session_persistence = 1
 let g:startify_bookmarks = []
 
 let g:startify_files_number = 10
-
-let g:startify_session_autoload = 1
-
-let g:startify_session_persistence = 1
-
-let g:startify_session_delete_buffers = 1
-
-let g:startify_enable_special = 0
-
-let g:startify_change_to_dir = 0
 
 let g:startify_change_to_vcs_root = 1
 
@@ -38,6 +32,6 @@ let g:startify_custom_header = [
       \]
 
 
-nnoremap <leader><leader>s :SSave!<CR>
-nnoremap <leader><leader>d :SDelete!<CR>
-nnoremap <leader><leader>S :Startify<CR>
+" nnoremap <leader><leader>s :SSave!<CR>
+" nnoremap <leader><leader>d :SDelete!<CR>
+" nnoremap <leader><leader>S :Startify<CR>
