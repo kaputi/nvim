@@ -173,10 +173,10 @@ let g:which_key_map.l = {
 
 let g:which_key_map.w = {
       \ 'name': 'workspaces',
-      \ 's'   : ['SSave!',                        'save session' ]
-      \ 'l'   : ['SLoad'                          , 'load  session']
-      \ 'd'   : ['SDlete!'                        , 'delete session']
-      \ 'S'   : ['Startify'                       , 'start screen']
+      \ 's'   : ['SSave!',                        'save session' ],
+      \ 'l'   : ['SLoad'                          , 'load  session'],
+      \ 'd'   : ['SDlete!'                        , 'delete session'],
+      \ 'S'   : ['Startify'                       , 'start screen'],
       \ }
 
 " Register which key map
