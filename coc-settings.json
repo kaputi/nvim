@@ -5,12 +5,12 @@
     "typescript",
     "typescriptreact"
   ],
-  "eslint.autoFixOnSave": true ,
+  "eslint.autoFixOnSave": true,
   "explorer.quitOnOpen": true,
   "explorer.openAction.strategy": "tab",
-  "explorer.width":30,
-  "explorer.icon.enableNerdfont":true,
-  "coc.preferences.colorSupport":true,
+  "explorer.width": 30,
+  "explorer.icon.enableNerdfont": true,
+  "coc.preferences.colorSupport": true,
   "highlight.colors.enable": true,
   "cSpellExt.enableDictionaries": ["spanish"],
   "cSpell.language": "en,es",
@@ -20,5 +20,15 @@
   "cSpell.diagnosticLevel": "Hint",
   "git.enableGutters": true,
   "diagnostic.warningSign": "⚠",
-  "diagnostic.hintSign":"!"
+  "diagnostic.hintSign": "!",
+  "prettier.eslintIntegration": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "html",
+    "css"
+  ]
 }

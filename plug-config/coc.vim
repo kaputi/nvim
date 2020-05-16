@@ -15,6 +15,7 @@ let g:coc_global_extensions = [
   \ 'coc-spell-checker',
   \ 'coc-cspell-dicts',
   \ 'coc-tabnine',
+  \ 'coc-prettier',
   \ 'https://github.com/xabikos/vscode-react'
   \ ]
 
@@ -135,3 +136,13 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Open file explorer
 " nmap <leader>e :CocCommand explorer<CR>
+"
+" git gutter colors
+highlight clear DiffAdd
+highlight DiffAdd ctermfg=235 guifg=#98C379
+highlight clear DiffChange 
+highlight DiffChange ctermfg=180 guifg=#E5C07B
+highlight clear DiffDelete 
+highlight DiffDelete ctermfg=204 guifg=#E06C75
+highlight clear DiffText
+highlight DiffText ctermfg=180 guibg=#E5C07B
