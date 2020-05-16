@@ -38,11 +38,11 @@ if !exists('g:vscode')
   set dir=~/.config/nvim/swap/           " tell vim where to put swap files
   set noshowmode                          " We don't need to see things like -- INSERT -- anymore
   set nobackup                            " This is recommended by coc
-  set nowritebackup                       " This is recommended by coc
+  set nowritebackup                       " This is recommended by coer
   set shortmess+=c                        " Don't pass messages to |ins-completion-menu|.
   set signcolumn=yes                      " Always show the signcolumn, otherwise it would shift the text each time
   set updatetime=300                      " Faster completion
-  set timeoutlen=1000                      " By default timeoutlen is 1000 ms
+  set timeoutlen=300                      " By default timeoutlen is 1000 ms
   set clipboard=unnamed                   " Copy paste between vim and everything else
   set incsearch
   "set guifont=Hack\ Nerd\ Font
