@@ -17,7 +17,13 @@ if exists('g:vscode')
 else
 " Neovim
   call plug#begin('~/.config/nvim/autoload/plugged')
-  "zen mode
+    " interactive code 
+    "Plug 'metakirby5/codi.vim'
+    "ranger file explorer
+    Plug 'kevinhwang91/rnvimr', {'do': 'make sync'} 
+    " Terminal
+    Plug 'voldikss/vim-floaterm'
+    "zen mode
     Plug 'junegunn/goyo.vim'
     "vista
     Plug 'liuchengxu/vista.vim'

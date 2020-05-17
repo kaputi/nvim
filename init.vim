@@ -38,4 +38,7 @@ else
   source $HOME/.config/nvim/plug-config/fzf.vim
   source $HOME/.config/nvim/plug-config/rooter.vim
   source $HOME/.config/nvim/plug-config/vista.vim
+  source $HOME/.config/nvim/plug-config/floatterm.vim
+  source $HOME/.config/nvim/plug-config/ranger.vim
+  " source $HOME/.config/nvim/plug-config/codi.vim
 endif
