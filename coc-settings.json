@@ -30,5 +30,7 @@
     "json",
     "html",
     "css"
-  ]
+  ],
+  "session.saveOnVimLeave": false,
+  "session.directory": "~/.config/nvim/sessions/"
 }

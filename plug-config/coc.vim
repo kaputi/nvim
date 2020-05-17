@@ -52,7 +52,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use leader K to show documentation in preview window.
-" nnoremap <silent> <leader><leader>k :call <SID>show_documentation()<CR>
+nnoremap <silent> <leader><leader>k :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)

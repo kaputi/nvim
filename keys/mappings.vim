@@ -31,14 +31,11 @@ if !exists('g:vscode')
   :command! -bar -bang W write<bang>
   :command! -bar -bang Wq wq<bang>
   :command! -bar -bang WQ wq<bang>
-  
-  " Visualize tabs and newlines                                                 
-  " set listchars=tab:▸\ ,eol:¬
-  " Uncomment this to enable by default:                         
-  " set list " To enable by default                   
-  " Or use your leader key + l to toggle on/off  
-  " map <leader>l :set list!<CR> " Toggle tabs and EOL
+  :command! -bar -bang QQQ wqa<bang>
 
+  " Select all
+  nnoremap <C-a> ggVG
+  
   "next tab
   noremap tn :tabn<CR> 
   " previous tab

@@ -129,11 +129,14 @@ let g:which_key_map.g = {
 
 " l is for language server protocol
 "
+function! Coc_show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 " nnoremap <silent> <leader><leader>k :call <SID>show_documentation()<CR>
-" xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-" nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
-" nnoremap <silent> <leader><leader>? :<C-u>CocAction('coc-diagnostic-list')
-" nnoremap <silent> <leader><leader>s  :<C-u>CocList -I symbols<cr>
 let g:which_key_map.l = {
       \ 'name' : '+lsp(coc)' ,
       \ '.' : [':CocConfig'                          , 'config'],
@@ -150,8 +153,9 @@ let g:which_key_map.l = {
       \ 'F' : ['<Plug>(coc-format)'                  , 'format'],
       \ 'h' : ['<Plug>(coc-float-hide)'              , 'hide'],
       \ 'i' : ['<Plug>(coc-implementation)'          , 'implementation'],
-      \ 'I' : [':CocList --normal diagnostics'                , 'diagnostics'],
+      \ 'I' : [':CocList --normal diagnostics'       , 'diagnostics'],
       \ 'j' : ['<Plug>(coc-float-jump)'              , 'float jump'],
+      \ 'k' : [':call Coc_show_documentation()'           , 'show domunentation'],
       \ 'l' : ['<Plug>(coc-codelens-action)'         , 'code lens'],
       \ 'n' : ['<Plug>(coc-diagnostic-next)'         , 'next diagnostic'],
       \ 'N' : ['<Plug>(coc-diagnostic-next-error)'   , 'next error'],
@@ -172,11 +176,12 @@ let g:which_key_map.l = {
       \ }
 
 let g:which_key_map.w = {
-      \ 'name': 'workspaces',
-      \ 's'   : ['SSave!',                        'save session' ],
-      \ 'l'   : ['SLoad'                          , 'load  session'],
-      \ 'd'   : ['SDlete!'                        , 'delete session'],
-      \ 'S'   : ['Startify'                       , 'start screen'],
+      \ 'name': '+workspaces',
+      \ 's'   : [':SSave!',                        'save session' ],
+      \ 'l'   : [':SLoad'                          , 'load  session'],
+      \ 'd'   : [':SDlete!'                        , 'delete session'],
+      \ 'S'   : [':Startify'                       , 'start screen'],
+      \ 'L'   : [':CocList sessions'               , 'session list'], 
       \ }
 
 " Register which key map
