@@ -23,6 +23,7 @@ autocmd! FileType which_key
 autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
+
 " Single mappings
 let g:which_key_map['/'] = [ '<Plug>NERDCommenterToggle'  , 'comment' ]
 let g:which_key_map['.'] = [ ':e $MYVIMRC'                , 'open init' ]
@@ -42,6 +43,18 @@ let g:which_key_map['w'] = [ 'w'                          , 'write' ]
 let g:which_key_map['z'] = [ 'Goyo'                       , 'zen' ]
 
 " Group mappings
+
+" a is for actions
+let g:which_key_map.a = {
+      \ 'name' : '+actions' ,
+      \ 'c' : [':ColorizerToggle'        , 'colorizer'],
+      \ 'e' : [':CocCommand explorer'    , 'explorer'],
+      \ 'n' : [':set nonumber!'          , 'line-numbers'],
+      \ 'r' : [':set norelativenumber!'  , 'relative line nums'],
+      \ 's' : [':let @/ = ""'            , 'remove search highlight'],
+      \ 't' : [':FloatermToggle'         , 'terminal'],
+      \ 'v' : [':Vista!!'                , 'tag viewer'],
+      \ }
 
 " b is for buffer
 let g:which_key_map.b = {
@@ -93,7 +106,7 @@ let g:which_key_map.g = {
       \ 'A' : [':Git add %'                        , 'add current'],
       \ 'b' : [':Git blame'                        , 'blame'],
       \ 'B' : [':GBrowse'                          , 'browse'],
-      \ 'c' : [':Git commit -m "autocommit"'       , 'commit'],
+      \ 'c' : [':Git commit'                       , 'commit'],
       \ 'd' : [':Git diff'                         , 'diff'],
       \ 'D' : [':Gdiffsplit'                       , 'diff split'],
       \ 'g' : [':GGrep'                            , 'git grep'],
@@ -151,20 +164,22 @@ let g:which_key_map.l = {
       \ 'Z' : [':CocEnable'                          , 'enable CoC'],
       \ }
 
-
-" t is for toggle
+" t is for terminal
 let g:which_key_map.t = {
-      \ 'name' : '+toggle' ,
-      \ 'c' : [':ColorizerToggle'        , 'colorizer'],
-      \ 'e' : [':CocCommand explorer'    , 'explorer'],
-      \ 'n' : [':set nonumber!'          , 'line-numbers'],
-      \ 'r' : [':set norelativenumber!'  , 'relative line nums'],
-      \ 's' : [':let @/ = ""'            , 'remove search highlight'],
-      \ 't' : [':FloatermToggle'         , 'terminal'],
-      \ 'v' : [':Vista!!'                , 'tag viewer'],
+      \ 'name' : '+terminal' ,
+      \ ';' : [':FloatermNew --wintype=popup --height=6'        , 'terminal'],
+      \ 'f' : [':FloatermNew fzf'                               , 'fzf'],
+      \ 'g' : [':FloatermNew lazygit'                           , 'git'],
+      \ 'd' : [':FloatermNew lazydocker'                        , 'docker'],
+      \ 'n' : [':FloatermNew node'                              , 'node'],
+      \ 'N' : [':FloatermNew nnn'                               , 'nnn'],
+      \ 'p' : [':FloatermNew python'                            , 'python'],
+      \ 'r' : [':FloatermNew ranger'                            , 'ranger'],
+      \ 't' : [':FloatermToggle'                                , 'toggle'],
+      \ 'y' : [':FloatermNew ytop'                              , 'ytop'],
+      \ 's' : [':FloatermNew ncdu'                              , 'ncdu'],
       \ }
+
 
 " Register which key map
 call which_key#register('<Space>', "g:which_key_map")
-
-

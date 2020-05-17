@@ -1,8 +1,4 @@
-https://github.com/ChristianChiarulli/nvim
-
-
 # Nvim Mach 2
-
 
 ![Nvim Mach 2 pic](./utils/images/nvim.png)
 
