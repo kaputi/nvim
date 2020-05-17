@@ -1,15 +1,6 @@
 " space is leader
 let mapleader=" "
 
-" insert new line witgout leaving normal mode (can me used with counts
-" 2<leader>o inserts 2 lines)
-" nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
-" nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
-
-
-" remove highlight
-" noremap <leader>h :nohl<cr>
-
 "no arrow key for training with hjkl
 map <up> <nop>
 map <down> <nop>
@@ -70,8 +61,22 @@ if !exists('g:vscode')
   nnoremap <silent> <M-h>    :vertical resize -2<CR>
   nnoremap <silent> <M-l>    :vertical resize +2<CR>
 
+  nmap f <Plug>(easymotion-fl)
+  nmap F <Plug>(easymotion-Fl)
+  nmap t <Plug>(easymotion-tl)
+  nmap T <Plug>(easymotion-Tl)
+  nmap s <Plug>(easymotion-bd-w)
+
 " VScode only
 else
+
+  " insert new line witgout leaving normal mode (can me used with counts
+  " 2<leader>o inserts 2 lines)
+  nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
+  nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
+  " remove highlight
+  noremap <leader>h :nohl<cr>
+
 
   "go to symbol
   map <leader>gs <cmd> call VSCodeNotify('workbench.action.gotoSymbol')<CR>
