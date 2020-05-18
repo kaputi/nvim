@@ -194,6 +194,7 @@ let g:which_key_map.t = {
       \ 'r' : [':FloatermNew ranger'                            , 'ranger'],
       \ 't' : [':FloatermToggle'                                , 'toggle'],
       \ 'y' : [':FloatermNew ytop'                              , 'ytop'],
+      \ 'l' : ['CocList floaterm'                               , 'list terminals']
       \ }
 
 " Register which key map

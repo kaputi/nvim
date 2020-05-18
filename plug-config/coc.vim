@@ -16,6 +16,7 @@ let g:coc_global_extensions = [
   \ 'coc-cspell-dicts',
   \ 'coc-tabnine',
   \ 'coc-prettier',
+  \ 'coc-floaterm',
   \ 'https://github.com/xabikos/vscode-react'
   \ ]
 

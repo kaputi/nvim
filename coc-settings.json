@@ -32,5 +32,8 @@
     "css"
   ],
   "session.saveOnVimLeave": false,
-  "session.directory": "~/.config/nvim/sessions/"
+  "session.directory": "~/.config/nvim/sessions/",
+  "cSpell.userWords": [
+    "Lonighi"
+  ]
 }
