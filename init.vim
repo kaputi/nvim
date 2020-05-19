@@ -26,7 +26,8 @@ else
   source $HOME/.config/nvim/themes/settings.vim
   source $HOME/.config/nvim/plug-config/coc.vim
   source $HOME/.config/nvim/plug-config/closetags.vim
-  source $HOME/.config/nvim/plug-config/lightline.vim
+  " source $HOME/.config/nvim/plug-config/lightline.vim
+  source $HOME/.config/nvim/plug-config/airline.vim
   source $HOME/.config/nvim/plug-config/nerd-commenter.vim
   source $HOME/.config/nvim/plug-config/undotree.vim
   source $HOME/.config/nvim/plug-config/suda.vim
