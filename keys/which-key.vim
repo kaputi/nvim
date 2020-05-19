@@ -179,7 +179,7 @@ let g:which_key_map.w = {
       \ 'name': '+workspaces',
       \ 's'   : [':SSave!',                        'save session' ],
       \ 'l'   : [':SLoad'                          , 'load  session'],
-      \ 'd'   : [':SDlete!'                        , 'delete session'],
+      \ 'd'   : [':SDelete!'                        , 'delete session'],
       \ 'S'   : [':Startify'                       , 'start screen'],
       \ 'L'   : [':CocList sessions'               , 'session list'], 
       \ }

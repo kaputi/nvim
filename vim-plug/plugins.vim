@@ -48,7 +48,8 @@ else
     " Better comments
     Plug 'preservim/nerdcommenter'
     " Status line
-    Plug 'itchyny/lightline.vim' " Status bar
+    Plug 'vim-airline/vim-airline'
+    " Plug 'itchyny/lightline.vim' " Status bar
     "Plug 'itchyny/vim-gitbranch' "git branch on status bar
     " Git
     Plug 'tpope/vim-fugitive'
