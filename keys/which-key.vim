@@ -133,6 +133,7 @@ let g:which_key_map['O'] = [ 'append(line(".")-1,   repeat([""], v:count1))', 'l
 let g:which_key_map['p'] = [ ':Files'                     , 'search files' ]
 let g:which_key_map['P'] = [ ':Commands'                  , 'commands' ]
 let g:which_key_map['q'] = [ 'q'                          , 'quit' ]
+let g:which_key_map['r'] = [ ':RnvimrToggle'              , 'ranger' ]
 " s is for search
 let g:which_key_map.s = {
       \ 'name' : '+search' ,
