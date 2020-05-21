@@ -56,6 +56,8 @@ let g:which_key_map.b = {
       \ 'p' : ['bprevious' , 'previous-buffer'] ,
       \ '?' : ['Buffers'   , 'fzf-buffer']      ,
       \ }
+nnoremap <silent> <leader>bt :bufdo tab split<CR>:tablast<CR>:tabclose<CR>:syntax on<CR>
+let g:which_key_map.b.t ='buffers to tabs'
 let g:which_key_map['B'] = [ 'Buffers'                    , 'buffer list']
 let g:which_key_map['d'] = [ ':bd'                        , 'delete buffer']
 let g:which_key_map['e'] = [ ':CocCommand explorer'       , 'explorer' ]

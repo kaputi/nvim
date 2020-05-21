@@ -7,7 +7,17 @@
   ],
   "eslint.autoFixOnSave": true,
   "explorer.quitOnOpen": true,
-  "explorer.openAction.strategy": "sourceWindow",
+  "explorer.openAction.strategy": "tab",
+  "explorer.sources": [
+    {
+      "name": "buffer",
+      "expand": false
+    },
+    {
+      "name": "file",
+      "expand": true
+    }
+  ],
   "explorer.width": 30,
   "explorer.icon.enableNerdfont": true,
   "coc.preferences.colorSupport": true,
