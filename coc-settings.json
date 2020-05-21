@@ -7,7 +7,7 @@
   ],
   "eslint.autoFixOnSave": true,
   "explorer.quitOnOpen": true,
-  "explorer.openAction.strategy": "tab",
+  "explorer.openAction.strategy": "sourceWindow",
   "explorer.width": 30,
   "explorer.icon.enableNerdfont": true,
   "coc.preferences.colorSupport": true,
@@ -33,7 +33,5 @@
   ],
   "session.saveOnVimLeave": false,
   "session.directory": "~/.config/nvim/sessions/",
-  "cSpell.userWords": [
-    "Lonighi"
-  ]
+  "cSpell.userWords": ["Lonighi"]
 }
