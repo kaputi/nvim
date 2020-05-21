@@ -35,3 +35,11 @@ let g:startify_custom_header = [
 " nnoremap <leader><leader>s :SSave!<CR>
 " nnoremap <leader><leader>d :SDelete!<CR>
 " nnoremap <leader><leader>S :Startify<CR>
+
+    " highlight StartifyBracket ctermfg=240
+    " highlight StartifyFooter  ctermfg=240
+    highlight StartifyHeader  ctermfg=114 guifg=#87d787
+    highlight StartifyNumber    ctermfg=14 guifg=#5CCFE6
+    " highlight StartifyPath    ctermfg=245
+    " highlight StartifySlash   ctermfg=240
+    " highlight StartifySpecial ctermfg=240
