@@ -70,6 +70,7 @@ else
     Plug 'morhetz/gruvbox'
     Plug 'dracula/vim' , { 'as': 'dracula' }
     Plug 'NLKNguyen/papercolor-theme'
+    Plug 'jacoborus/tender.vim'
     " Multiple cursors
     Plug 'terryma/vim-multiple-cursors' 
     " VSode like autocompletion and other stuff

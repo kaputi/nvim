@@ -6,4 +6,4 @@ source $HOME/.config/nvim/themes/ayu.vim
 " source $HOME/.config/nvim/themes/onedark.vim
 "source $HOME/.config/nvim/themes/onehalfdark.vim
 " source $HOME/.config/nvim/themes/gruvbox.vim
-let g:airline_theme = 'deus'
+" source $HOME/.config/nvim/themes/tender.vim
