@@ -62,12 +62,14 @@ else
     Plug 'alvan/vim-closetag'
     " Themes
      Plug 'christianchiarulli/onedark.vim'
-    " Plug 'sonph/onehalf', {'rtp' : 'vim/'} 
-    " Plug 'ajmwagar/vim-deus' 
-    " Plug 'jdsimcoe/abstract.vim' 
-    " Plug 'gilgigilgil/anderson.vim' 
-    " Plug 'ayu-theme/ayu-vim' 
-    Plug 'dracula/vim' 
+    Plug 'sonph/onehalf', {'rtp' : 'vim/'}
+    Plug 'ajmwagar/vim-deus'
+    Plug 'jdsimcoe/abstract.vim'
+    Plug 'gilgigilgil/anderson.vim'
+    Plug 'ayu-theme/ayu-vim'
+    Plug 'morhetz/gruvbox'
+    Plug 'dracula/vim' , { 'as': 'dracula' }
+    Plug 'NLKNguyen/papercolor-theme'
     " Multiple cursors
     Plug 'terryma/vim-multiple-cursors' 
     " VSode like autocompletion and other stuff
