@@ -2,7 +2,6 @@ let g:coc_global_extensions = [
   \ 'coc-snippets',
   \ 'coc-actions',
   \ 'coc-emmet',
-  \ 'coc-eslint',
   \ 'coc-git',
   \ 'coc-highlight',
   \ 'coc-tsserver',
@@ -20,6 +19,10 @@ let g:coc_global_extensions = [
   \ 'https://github.com/xabikos/vscode-react'
   \ ]
 
+" only load eslint if module is present
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
   
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
@@ -51,6 +54,20 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" show documentation on hover
+function! ShowDocIfNoDiagnostic(timer_id)
+if (coc#util#has_float() == 0)
+  silent call CocActionAsync('doHover')
+endif
+endfunction
+
+function! s:show_hover_doc()
+  call timer_start(500, 'ShowDocIfNoDiagnostic')
+endfunction
+
+autocmd CursorHoldI * :call <SID>show_hover_doc()
+autocmd CursorHold * :call <SID>show_hover_doc()
 
 " Use leader K to show documentation in preview window.
 nnoremap <silent> <leader><leader>k :call <SID>show_documentation()<CR>
