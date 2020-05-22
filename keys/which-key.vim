@@ -32,7 +32,7 @@ function! Coc_show_documentation()
 endfunction
 
 " MAPPINGS
-let g:which_key_map['/'] = [ 'NERDComment(0,"toggle")' , 'comment' ]
+let g:which_key_map['/'] = [ '<plug>NERDCommenterToggle' , 'comment' ]
 let g:which_key_map['='] = [ '<C-W>='                     , 'balance windows' ]
 " a is for actions
 let g:which_key_map.a = {
