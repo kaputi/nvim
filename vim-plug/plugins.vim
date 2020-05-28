@@ -18,7 +18,7 @@ else
 " Neovim
   call plug#begin('~/.config/nvim/autoload/plugged')
     " interactive code 
-    "Plug 'metakirby5/codi.vim'
+    Plug 'ChristianChiarulli/codi.vim'
     "ranger file explorer
     Plug 'kevinhwang91/rnvimr', {'do': 'make sync'} 
     " Terminal
