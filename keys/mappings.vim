@@ -66,6 +66,9 @@ if !exists('g:vscode')
   nmap t <Plug>(easymotion-tl)
   nmap T <Plug>(easymotion-Tl)
   nmap s <Plug>(easymotion-bd-w)
+  
+  vnoremap <C-j> :m '>+1<CR>gv=gv
+  vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " VScode only
 else
