@@ -16,6 +16,7 @@ let g:coc_global_extensions = [
   \ 'coc-tabnine',
   \ 'coc-prettier',
   \ 'coc-floaterm',
+  \ 'coc-marketplace',
   \ 'https://github.com/xabikos/vscode-react'
   \ ]
 
@@ -36,7 +37,7 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-let g:coc_snippet_next = '<tab>'
+" let g:coc_snippet_next = '<tab>'
  
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -52,7 +53,8 @@ endif
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
+" TODO: gi is used for go to the last pace you inserted
+" nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " show documentation on hover
@@ -66,8 +68,8 @@ function! s:show_hover_doc()
   call timer_start(500, 'ShowDocIfNoDiagnostic')
 endfunction
 
-autocmd CursorHoldI * :call <SID>show_hover_doc()
-autocmd CursorHold * :call <SID>show_hover_doc()
+" autocmd CursorHoldI * :call <SID>show_hover_doc()
+" autocmd CursorHold * :call <SID>show_hover_doc()
 
 " Use leader K to show documentation in preview window.
 nnoremap <silent> <leader><leader>k :call <SID>show_documentation()<CR>
