@@ -36,6 +36,8 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 
  let g:airline#extensions#tabline#tab_min_count = 0
   let g:airline#extensions#tabline#tab_min_count = 0
+
+let g:airline#extension#tabline#ignore_bufadd_pat = '!|coc-explorer'
 "================================
 " => status bar
 " ===============================
