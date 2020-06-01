@@ -2,11 +2,11 @@ let g:startify_session_dir = '~/.config/nvim/sessions'
 
 let g:startify_lists = [
       \ { 'type': 'sessions',  'header': ['   Sessions']       },
-      \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
       \ { 'type': 'files',     'header': ['   Recent Files']            },
       \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
       \ { 'type': 'commands',  'header': ['   Commands']       },
       \ ]
+      " \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
 let g:startify_session_autoload = 1
 let g:startify_session_delete_buffers = 1
 let g:startify_change_to_vcs_root = 1
@@ -20,16 +20,29 @@ let g:startify_change_to_vcs_root = 1
 
 let g:startify_session_sort = 1
 
-let g:startify_custom_header = [
-      \ '     ==========================================================================',
-      \ '       _____     ____                                          ____     _____  ',
-      \ '      /      \  |  o |   See the TURTLE of  Enormous Girth    | o  |  /      \ ',
-      \ '     |        |/ ___\|    On his shell he holds the Earth     |/___ \|        |',
-      \ '     |_________/        His thought is slow, but always kind        \_________|',
-      \ '     |_|_| |_|_|          He holds us all within his mind           |_|_| |_|_|',
-      \ '                                                                               ',
-      \ '     ==========================================================================',
-      \]
+let g:turtlePoem = [
+      \ '                                   ____',
+      \ '                                 /   () \',
+      \ '                          .--.  |   //   |  .--.',
+      \ '                         : (\ ". \ ____ / ." /) :',
+      \ '                          ".    `   ||     `  ."',
+      \ '                           /    _        _    \',
+      \ '                          /     0}      {0     \',
+      \ '                         |       /      \       |',
+      \ '                         |      /        \     |',
+      \ '                          \    |.  .==.  .|   /',
+      \ '                           "._ \.  \__/  ./ _."',
+      \ '                           /  ``"._-""-_."``  \',
+      \ '==========================================================================',
+      \ '  _____     ____                                          ____     _____  ',
+      \ ' /      \  |  o |   See the TURTLE of  Enormous Girth    | o  |  /      \ ',
+      \ '|        |/ ___\|    On his shell he holds the Earth     |/___ \|        |',
+      \ '|_________/        His thought is slow, but always kind        \_________|',
+      \ '|_|_| |_|_|          He holds us all within his mind           |_|_| |_|_|',
+      \ '                                                                          ',
+      \ '==========================================================================',
+      \ ]
+let g:startify_custom_header = 'startify#center(g:turtlePoem)'
 
 
 " nnoremap <leader><leader>s :SSave!<CR>
