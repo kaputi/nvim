@@ -6,11 +6,14 @@ if !exists('g:vscode')
   set autoread                             " update file if changed 
   au CursorHold * checktime               " check autoread every 4s
   syntax enable                           " Enables syntax highlighing
-  " set hidden                              " Required to keep multiple buffers open multiple buffers
+  set hidden                              " Required to keep multiple buffers open multiple buffers
+  set bufhidden=delete                      " removes bufferss not displayed in a window
   " set showtabline=2                         " always show tab bar
+  set wrap
   set nowrap                              " Display long lines as just one line
   set encoding=utf-8                      " The encoding displayed 
   set pumheight=10                        " Makes popup menu smaller
+  set pumblend=50                         " Popup menu transparency
   set fileencoding=utf-8                  " The encoding written to file
   set ruler              			            " Show the cursor position all the time
   set cmdheight=2                         " More space for displaying messages
@@ -28,7 +31,7 @@ if !exists('g:vscode')
   set laststatus=2                        " Always display the status line
   set number relativenumber               " relative numbers
   set nu rnu                              " current line number
-  set cursorline                          " Enable highlighting of the current line
+  " set cursorline                          " Enable highlighting of the current line
   "set background=dark                     " tell vim what the background color looks like
   "set showtabline=2                       " Always show tabs 
   " create swap dir if not exist
@@ -54,8 +57,8 @@ if !exists('g:vscode')
 
   " au! BufWritePost $MYVIMRC source %      " auto source when writing to init.vm alternatively you can run :source $MYVIMRC
   " autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-
+  
+  autocmd BufRead,BufNewFile .eslintrc,.babelrc,.prettierrc set filetype=json
   " You can't stop me
 "  cmap w!! w !sudo tee %
 endif
