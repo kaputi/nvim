@@ -67,7 +67,8 @@ else
     Plug 'jdsimcoe/abstract.vim'
     Plug 'gilgigilgil/anderson.vim'
     Plug 'ayu-theme/ayu-vim'
-    Plug 'morhetz/gruvbox'
+    " Plug 'morhetz/gruvbox'
+    Plug 'gruvbox-community/gruvbox'
     Plug 'dracula/vim' , { 'as': 'dracula' }
     Plug 'NLKNguyen/papercolor-theme'
     Plug 'jacoborus/tender.vim'
