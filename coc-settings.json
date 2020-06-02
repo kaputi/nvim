@@ -43,5 +43,8 @@
   ],
   "session.saveOnVimLeave": false,
   "session.directory": "~/.config/nvim/sessions/",
-  "cSpell.userWords": ["Lonighi"]
+  "cSpell.userWords": [
+    "Lonighi",
+    "devtool"
+  ]
 }
