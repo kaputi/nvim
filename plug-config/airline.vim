@@ -16,18 +16,18 @@ let g:airline#extensions#tabline#right_alt_sep = ''
 "show
 let g:airline#extensions#tabline#show_splits = 1
 let g:airline#extensions#tabline#show_close_button = 1
-let g:airline#extensions#tabline#show_tab_type = 1
-let g:airline#extensions#tabline#show_tab_nr = 1
+" let g:airline#extensions#tabline#show_tab_type = 1
+" let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline#extensions#tabline#show_tab_count = 2
-let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#show_buffers = 0
 " let g:airline#extensions#tabline#buffer_nr_show = 1
 " show only buffers
 " let g:airline#extensions#tabline#show_tabs=0
 
 "labels
-let g:airline#extensions#tabline#buffers_label = 'B'
+" let g:airline#extensions#tabline#buffers_label = 'B'
 let g:airline#extensions#tabline#tabs_label = 'T'
-" let g:airline#extensions#tabline#buffer_nr_format = 'b%s '
+let g:airline#extensions#tabline#buffer_nr_format = 'b%s '
 " format
 let g:airline#extensions#tabline#fnamecollapse = 1
 " Just show the file name
