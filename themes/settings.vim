@@ -9,5 +9,5 @@ source $HOME/.config/nvim/themes/gruvbox.vim
 " source $HOME/.config/nvim/themes/tender.vim
 "
 " transparent background
-hi Normal ctermbg=NONE guibg=NONE
-hi SignColumn ctermbg=NONE guibg=NONE
+" hi Normal ctermbg=NONE guibg=NONE
+" hi SignColumn ctermbg=NONE guibg=NONE

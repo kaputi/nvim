@@ -41,6 +41,8 @@ let g:which_key_map.a = {
       \ 'r' : [':set norelativenumber!'  , 'relative line nums'],
       \ 's' : [':let @/ = ""'            , 'remove search highlight'],
       \ 'v' : [':Vista!!'                , 'tag viewer'],
+      \ 'b' : [':syntax on'    , 'reset colors'],
+      \ 'B' : [':hi Normal ctermbg=NONE guibg=NONE<CR>', 'remove background'],
       \ }
       " \ 'c' : [':ColorizerToggle'        , 'colorizer'],
 " b is for buffer
@@ -172,7 +174,7 @@ let g:which_key_map.t = {
       \ 'r' : [':FloatermNew ranger'                            , 'ranger'],
       \ 't' : [':FloatermToggle'                                , 'toggle'],
       \ 'y' : [':FloatermNew ytop'                              , 'ytop'],
-      \ 'l' : ['CocList floaterm'                               , 'list terminals']
+      \ 'l' : [':CocList floaterm'                               , 'list terminals']
       \ }
 let g:which_key_map['u'] = [ 'UndotreeToggle'             , 'undo tree' ]
 let g:which_key_map['v'] = [ '<C-W>v'                     , 'split right']
