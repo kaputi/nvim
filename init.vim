@@ -42,4 +42,5 @@ else
   source $HOME/.config/nvim/plug-config/floatterm.vim
   source $HOME/.config/nvim/plug-config/ranger.vim
   source $HOME/.config/nvim/plug-config/codi.vim
+  source $HOME/.config/nvim/plug-config/vem-tabline.vim
 endif
