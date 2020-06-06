@@ -5,7 +5,7 @@
 set showtabline=2
 
 " enable tabline
-let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
 
 "separators
 let g:airline#extensions#tabline#left_sep = ''
