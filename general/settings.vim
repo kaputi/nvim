@@ -7,10 +7,12 @@ if !exists('g:vscode')
   au CursorHold * checktime               " check autoread every 4s
   syntax enable                           " Enables syntax highlighing
   set hidden                              " Required to keep multiple buffers open multiple buffers
-  set bufhidden=delete                      " removes bufferss not displayed in a window
+  " set bufhidden=delete                      " removes bufferss not displayed in a window
   " set showtabline=2                         " always show tab bar
   set wrap
-  set nowrap                              " Display long lines as just one line
+  set linebreak
+  set textwidth=0 wrapmargin=0
+  " set nowrap                              " Display long lines as just one line
   set encoding=utf-8                      " The encoding displayed 
   set pumheight=10                        " Makes popup menu smaller
   set pumblend=50                         " Popup menu transparency
@@ -61,4 +63,8 @@ if !exists('g:vscode')
   autocmd BufRead,BufNewFile .eslintrc,.babelrc,.prettierrc set filetype=json
   " You can't stop me
 "  cmap w!! w !sudo tee %
+
+  " open everything in tabs  
+  " autocmd VimEnter * tab all
+  " autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
 endif
