@@ -46,6 +46,15 @@ if !exists('g:vscode')
   " close tab
   noremap tc :tabc<CR>
 
+  "next buffer
+  noremap bn :bn<CR>
+  " previous buffer
+  noremap bp :bp<CR>
+  " delete buffer
+  noremap bd :bd<CR>
+  " list buffers
+  noremap bl :Buffer<CR>
+
   " I hate escape more than anything else
   inoremap jk <Esc>
   inoremap kj <Esc>
