@@ -11,4 +11,3 @@ hi link VemTablineNumberShown Visual
 " show  buffer number
 let g:vem_tabline_show_number='buffnr'
 
-let g:vem_tabline_number_symbol='-'

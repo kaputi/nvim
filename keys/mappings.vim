@@ -76,6 +76,12 @@ if !exists('g:vscode')
   nnoremap <silent> <M-h>    :vertical resize -2<CR>
   nnoremap <silent> <M-l>    :vertical resize +2<CR>
 
+  " move windows
+  nnoremap <C-H> <C-w>H
+  nnoremap <C-J> <C-w>J
+  nnoremap <C-K> <C-w>K
+  nnoremap <C-L> <C-w>L
+
   nmap f <Plug>(easymotion-fl)
   nmap F <Plug>(easymotion-Fl)
   nmap t <Plug>(easymotion-tl)
