@@ -43,6 +43,7 @@ let g:which_key_map.a = {
       \ 'v' : [':Vista!!'                , 'tag viewer'],
       \ 'b' : [':syntax on'    , 'reset colors'],
       \ 'B' : [':hi Normal ctermbg=NONE guibg=NONE<CR>', 'remove background'],
+      \ 'i' : ['IndentGuidesToggle'      , 'toggle indent guides']
       \ }
       " \ 'c' : [':ColorizerToggle'        , 'colorizer'],
 " b is for buffer

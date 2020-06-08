@@ -35,7 +35,8 @@ else
     "key mappings 
     Plug 'liuchengxu/vim-which-key'
     " ident guides
-    Plug 'thaerkh/vim-indentguides'
+    Plug 'nathanaelkane/vim-indent-guides'
+    " Plug 'thaerkh/vim-indentguides'
     " color parenthesis
     Plug 'junegunn/rainbow_parentheses.vim'
     " sessions
