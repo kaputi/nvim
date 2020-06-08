@@ -56,3 +56,8 @@ highlight StartifyNumber    ctermfg=14 guifg=#5CCFE6
 " highlight StartifyPath    ctermfg=245
 " highlight StartifySlash   ctermfg=240
 " highlight StartifySpecial ctermfg=240
+"
+let g:startify_session_before_save = [
+  \ 'echo "Cleaning up"',
+  \ 'silent! Vista!',
+  \ ]
