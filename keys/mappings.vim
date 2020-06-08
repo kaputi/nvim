@@ -76,12 +76,6 @@ if !exists('g:vscode')
   nnoremap <silent> <M-h>    :vertical resize -2<CR>
   nnoremap <silent> <M-l>    :vertical resize +2<CR>
 
-  " move windows
-  nnoremap <C-H> <C-w>H
-  nnoremap <C-J> <C-w>J
-  nnoremap <C-K> <C-w>K
-  nnoremap <C-L> <C-w>L
-
   nmap f <Plug>(easymotion-fl)
   nmap F <Plug>(easymotion-Fl)
   nmap t <Plug>(easymotion-tl)
@@ -92,9 +86,8 @@ if !exists('g:vscode')
   vnoremap <C-j> :m '>+1<CR>gv=gv
   vnoremap <C-k> :m '<-2<CR>gv=gv
 
-  " copy and paste with ctrl-c and ctrl-v
+  " copy with ctrl-c 
   vnoremap <C-c> :w !xsel -i -b <CR><CR>
-  nnoremap <C-v> :r !xsel -o -b <CR>
 
 " VScode only
 else

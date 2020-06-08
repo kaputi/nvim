@@ -131,6 +131,13 @@ let g:which_key_map.l = {
       \ 'Z' : [':CocEnable'                          , 'enable CoC'],
       \ 'v' : [':Vista!!'                            , 'tag viewer'],
       \ }
+let g:which_key_map.m = {
+      \ 'name' : 'move split',
+      \ 'h' : ['<C-W>H', 'move left'],
+      \ 'j' : ['<C-W>J', 'move down'],
+      \ 'k' : ['<C-W>K', 'move up'],
+      \ 'l' : ['<C-W>L', 'move right'],
+      \ }
 let g:which_key_map['o'] = [ 'append(line("."),   repeat([""], v:count1))', 'line below' ]
 let g:which_key_map['O'] = [ 'append(line(".")-1,   repeat([""], v:count1))', 'line above' ]
 let g:which_key_map['p'] = [ ':Files'                     , 'search files' ]
