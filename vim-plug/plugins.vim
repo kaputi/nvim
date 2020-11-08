@@ -38,7 +38,8 @@ else
     Plug 'nathanaelkane/vim-indent-guides'
     " Plug 'thaerkh/vim-indentguides'
     " color parenthesis
-    Plug 'junegunn/rainbow_parentheses.vim'
+    " Plug 'junegunn/rainbow_parentheses.vim'
+    Plug 'frazrepo/vim-rainbow'
     " sessions
     " Plug 'thaerkh/vim-workspace'
     Plug 'mhinz/vim-startify'
