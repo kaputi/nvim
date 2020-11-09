@@ -44,7 +44,9 @@ let g:which_key_map.a = {
       \ 'b' : [':syntax on'    , 'reset colors'],
       \ 'B' : [':hi Normal ctermbg=NONE guibg=NONE<CR>', 'remove background'],
       \ 'i' : ['IndentGuidesToggle'      , 'toggle indent guides'],
-      \ 'p' : [':RainbowToggle'       , 'Color Parenthesis']
+      \ 'p' : [':RainbowToggle'       , 'Color Parenthesis'],
+      \ 'd' : [':set background=dark' , 'Dark  Background'],
+      \ 'l' : [':set background=light', 'Light Background'],
       \ }
       " \ 'c' : [':ColorizerToggle'        , 'colorizer'],
 " b is for buffer
