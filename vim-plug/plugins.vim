@@ -20,7 +20,7 @@ else
     " interactive code 
     Plug 'ChristianChiarulli/codi.vim'
     "ranger file explorer
-    Plug 'kevinhwang91/rnvimr', {'do': 'make sync'} 
+    Plug 'kevinhwang91/rnvimr'
     " Terminal
     Plug 'voldikss/vim-floaterm'
     "zen mode
