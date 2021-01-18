@@ -18,7 +18,7 @@ else
 " Neovim
   call plug#begin('~/.config/nvim/autoload/plugged')
     " interactive code 
-    Plug 'ChristianChiarulli/codi.vim'
+    Plug 'metakirby5/codi.vim'
     "ranger file explorer
     Plug 'kevinhwang91/rnvimr'
     " Terminal
@@ -64,7 +64,7 @@ else
     " Closetags
     Plug 'alvan/vim-closetag'
     " Themes
-     Plug 'christianchiarulli/onedark.vim'
+    Plug 'joshdick/onedark.vim'
     Plug 'sonph/onehalf', {'rtp' : 'vim/'}
     Plug 'ajmwagar/vim-deus'
     Plug 'jdsimcoe/abstract.vim'
