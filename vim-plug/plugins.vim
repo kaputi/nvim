@@ -78,7 +78,8 @@ else
     " Multiple cursors
     Plug 'terryma/vim-multiple-cursors' 
     " VSode like autocompletion and other stuff
-    Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} 
+    " Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " Text navigation
     " Plug 'justinmk/vim-sneak'
     " Plug 'unblevable/quick-scope' 
