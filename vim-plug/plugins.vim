@@ -80,6 +80,8 @@ else
     " VSode like autocompletion and other stuff
     " Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    "snippets
+    Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
     " Text navigation
     " Plug 'justinmk/vim-sneak'
     " Plug 'unblevable/quick-scope' 
@@ -89,11 +91,11 @@ else
     " save witg sudo
     Plug 'lambdalisue/suda.vim'
     " Syntax 
-    " Plug 'sheerun/vim-polyglot' " includes everything
-    Plug 'pangloss/vim-javascript' " JS highlighting
-    Plug 'mxw/vim-jsx' "JSX syntax highlighting
-    Plug 'leafgarland/typescript-vim' "typescript
-    Plug 'ianks/vim-tsx' "TSX
+    Plug 'sheerun/vim-polyglot' " includes everything
+    " Plug 'pangloss/vim-javascript' " JS highlighting
+    " Plug 'mxw/vim-jsx' "JSX syntax highlighting
+    " Plug 'leafgarland/typescript-vim' "typescript
+    " Plug 'ianks/vim-tsx' "TSX
     " Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
   call plug#end()
 

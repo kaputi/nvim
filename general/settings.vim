@@ -61,6 +61,11 @@ if !exists('g:vscode')
   " autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
   
   autocmd BufRead,BufNewFile .eslintrc,.babelrc,.prettierrc set filetype=json
+  autocmd BufNewFile,BufRead *.js,*.ts
+      \ set filetype=typescript.tsx |
+      \ set syntax=typescriptreact
+
+
   " You can't stop me
 "  cmap w!! w !sudo tee %
 

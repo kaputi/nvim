@@ -1,1 +1,1 @@
-cmap w!! w suda://%
+cmap w!! SudaWrite

@@ -16,8 +16,7 @@ let g:coc_global_extensions = [
   \ 'coc-tabnine',
   \ 'coc-prettier',
   \ 'coc-floaterm',
-  \ 'coc-marketplace',
-  \ 'https://github.com/xabikos/vscode-react'
+  \ 'coc-marketplace'
   \ ]
 
 " only load eslint if module is present

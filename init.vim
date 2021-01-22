@@ -25,7 +25,6 @@ if exists('g:vscode')
 else
   source $HOME/.config/nvim/themes/settings.vim
   source $HOME/.config/nvim/plug-config/coc.vim
-  source $HOME/.config/nvim/plug-config/closetags.vim
   " source $HOME/.config/nvim/plug-config/lightline.vim
   source $HOME/.config/nvim/plug-config/airline.vim
   source $HOME/.config/nvim/plug-config/nerd-commenter.vim
@@ -43,4 +42,5 @@ else
   source $HOME/.config/nvim/plug-config/ranger.vim
   source $HOME/.config/nvim/plug-config/codi.vim
   source $HOME/.config/nvim/plug-config/vem-tabline.vim
+  source $HOME/.config/nvim/plug-config/closetags.vim
 endif
