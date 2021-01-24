@@ -82,6 +82,7 @@ else
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     "snippets
     Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
+  
     " Text navigation
     " Plug 'justinmk/vim-sneak'
     " Plug 'unblevable/quick-scope' 

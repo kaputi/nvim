@@ -23,10 +23,22 @@ let g:coc_global_extensions = [
 if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
 endif
-  
-" " Use tab for trigger completion with characters ahead and navigate.
+
+" use ctrl+j and ctro+k for navigate completion
+inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-h>"
+
+
+" " Use tab for scroll completions and navigate.
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+
+" Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
+      \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
@@ -39,7 +51,7 @@ endfunction
 let g:coc_snippet_next = '<tab>'
 
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+" inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
@@ -57,17 +69,17 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
 
 " show documentation on hover
-function! ShowDocIfNoDiagnostic(timer_id)
-if (coc#util#has_float() == 0)
-  silent call CocActionAsync('doHover')
-endif
-endfunction
-
-function! s:show_hover_doc()
-  call timer_start(500, 'ShowDocIfNoDiagnostic')
-endfunction
-
-" autocmd CursorHoldI * :call <SID>show_hover_doc()
+" function! ShowDocIfNoDiagnostic(timer_id)
+" if (coc#util#has_float() == 0)
+"   silent call CocActionAsync('doHover')
+" endif
+" endfunction
+"
+" function! s:show_hover_doc()
+"   call timer_start(500, 'ShowDocIfNoDiagnostic')
+" endfunction
+"
+" " autocmd CursorHoldI * :call <SID>show_hover_doc()
 " autocmd CursorHold * :call <SID>show_hover_doc()
 
 " Use leader K to show documentation in preview window.
