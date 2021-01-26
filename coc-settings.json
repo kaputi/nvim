@@ -1,11 +1,28 @@
 {
-  "eslint.filetypes": [
+  "eslint.validate": [
     "javascript",
     "javascriptreact",
     "typescript",
-    "typescriptreact"
+    "typescriptreact",
+    "html",
+    "vue",
+    "markdown",
+    "typescript.tsx",
+    "javascript.jsx"
   ],
-  "eslint.autoFixOnSave": true,
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue",
+    "markdown",
+    "typescript.tsx",
+    "javascript.jsx"
+  ],
+  "eslint.packageManager": "yarn",
+  "eslint.alwaysShowStatus" : true,
   "explorer.quitOnOpen": true,
   "explorer.openAction.strategy": "sourceWindow",
   "explorer.sources": [
@@ -24,8 +41,6 @@
   "highlight.colors.enable": true,
   "cSpellExt.enableDictionaries": ["spanish"],
   "cSpell.language": "en,es",
-  "list.maxHeight": 30,
-  "list.autoResize": true,
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "cSpell.diagnosticLevel": "Hint",
   "git.enableGutters": true,
@@ -37,6 +52,8 @@
     "javascriptreact",
     "typescript",
     "typescriptreact",
+    "javascript.js",
+    "typescript.ts",
     "json",
     "html",
     "css"
