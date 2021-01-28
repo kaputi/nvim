@@ -33,7 +33,8 @@ if !exists('g:vscode')
   set laststatus=2                        " Always display the status line
   set number relativenumber               " relative numbers
   set nu rnu                              " current line number
-  " set cursorline                          " Enable highlighting of the current line
+  set cursorline                          " Enable highlighting of the current line
+  set cursorcolumn
   "set background=dark                     " tell vim what the background color looks like
   "set showtabline=2                       " Always show tabs 
   " create swap dir if not exist
@@ -58,13 +59,13 @@ if !exists('g:vscode')
   " set foldcolumn=2                        " Folding abilities
 
   " au! BufWritePost $MYVIMRC source %      " auto source when writing to init.vm alternatively you can run :source $MYVIMRC
-  " autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+  autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
   
   autocmd BufRead,BufNewFile .eslintrc,.babelrc,.prettierrc set filetype=json
   " autocmd BufNewFile,BufRead *.js,*.ts
       " \ set filetype=typescript.tsx |
       " \ set syntax=typescriptreact
-  autocmd BufRead,BufNewFile *.js,*.jsx set filetype=javascriptreact
+  autocmd BufRead,BufNewFile *.js,*.jsx set filetype=typescriptreact
   autocmd BufRead,BufNewFile *.ts,*.tsx set filetype=typescriptreact
 
   " You can't stop me

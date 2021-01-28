@@ -61,5 +61,6 @@
   "session.saveOnVimLeave": false,
   "session.directory": "~/.config/nvim/sessions/",
   "cSpell.userWords": ["Lonighi", "devtool"],
-  "snippets.textmateSnippetsRoots":[ "~/.config/nvim/snippets" ]
+  "snippets.textmateSnippetsRoots":[ "~/.config/nvim/snippets" ],
+  "tsserver.npm": "/home/eduardo/.nvm/versions/node/v14.15.4"
 }
