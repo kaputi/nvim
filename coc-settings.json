@@ -22,7 +22,7 @@
     "javascript.jsx"
   ],
   "eslint.packageManager": "yarn",
-  "eslint.alwaysShowStatus" : true,
+  "eslint.alwaysShowStatus": true,
   "explorer.quitOnOpen": true,
   "explorer.openAction.strategy": "sourceWindow",
   "explorer.sources": [
@@ -44,8 +44,9 @@
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "cSpell.diagnosticLevel": "Hint",
   "git.enableGutters": true,
-  "diagnostic.warningSign": "⚠",
+  "diagnostic.warningSign": "!!",
   "diagnostic.hintSign": "!",
+  "diagnostic.errorSign": "⚠",
   "prettier.eslintIntegration": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
@@ -61,6 +62,6 @@
   "session.saveOnVimLeave": false,
   "session.directory": "~/.config/nvim/sessions/",
   "cSpell.userWords": ["Lonighi", "devtool"],
-  "snippets.textmateSnippetsRoots":[ "~/.config/nvim/snippets" ],
+  "snippets.textmateSnippetsRoots": ["~/.config/nvim/snippets"],
   "tsserver.npm": "/home/eduardo/.nvm/versions/node/v14.15.4"
 }
