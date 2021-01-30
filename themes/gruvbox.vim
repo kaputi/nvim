@@ -1,5 +1,5 @@
-" let g:gruvbox_bold = 1
-let g:gruvbox_italic =1
+let g:gruvbox_bold = 1
+" let g:gruvbox_italic =1
 " let g:gruvbox_underline=1
 " let g:gruvbox_undercurl=1
 " let g:gruvbox_termcolors=256
@@ -10,10 +10,10 @@ let g:gruvbox_contrast_dark='hard'
 " let g:gruvbox_sign_column='bg1'
 " let g:gruvbox_color_column='bg0'
 " let g:gruvbox_vert_split='bg0'
-" let g:gruvbox_italicize_comments=1
-" let g:gruvbox_invert_selection=1
+let g:gruvbox_italicize_comments=1
+let g:gruvbox_invert_selection=0
 " let g:gruvbox_invert_ident_guides=0
 let g:gruvbox_invert_tabline=1
-" let g:gruvbox_improved_strings=0
-let g:gruvbox_improved_warnings=1
+" let g:gruvbox_improved_strings=1
+" let g:gruvbox_improved_warnings=1
 colorscheme gruvbox
