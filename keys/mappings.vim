@@ -89,6 +89,12 @@ if !exists('g:vscode')
   " copy with ctrl-c 
   vnoremap <C-c> :w !xsel -i -b <CR><CR>
 
+  " close <tags></tags>
+  " inoremap ><Tab> ><Esc>F<lyt>o</<C-r>"><Esc>O<Space>
+  " inoremap ><Tab>  ><Esc>F<lyt>f>a</<C-r>"><Esc>F>a
+  " inoremap <C-t> <Esc>F<lywf>a</<C-r>"><Esc>F>a
+  inoremap <C-t> <Esc>?<<cr>lyw/><cr>a</<C-r>"><Esc>?><cr>:noh<Esc>a
+
 " VScode only
 else
 

@@ -58,11 +58,11 @@ else
     " Git
     Plug 'tpope/vim-fugitive'
     " Icons
-    "Plug 'ryanoasis/vim-devicons' 
+    Plug 'ryanoasis/vim-devicons'
     " Auto pairs for '(' '[' '{' 
     Plug 'jiangmiao/auto-pairs'
     " Closetags
-    Plug 'alvan/vim-closetag'
+    " Plug 'alvan/vim-closetag'
     " Themes
     Plug 'joshdick/onedark.vim'
     Plug 'sonph/onehalf', {'rtp' : 'vim/'}
