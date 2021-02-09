@@ -10,7 +10,7 @@ endif
 if exists('g:vscode')
   call plug#begin('~/.config/nvim/autoload/pluggedVScode')
     Plug 'tpope/vim-surround'
-    Plug 'terryma/vim-multiple-cursors'
+    " Plug 'terryma/vim-multiple-cursors'
     Plug 'asvetliakov/vim-easymotion'
   call plug#end()
   " VScode plugins needs to be installed manually with :PlugInstall
@@ -80,7 +80,7 @@ else
     Plug 'tomasr/molokai'
     Plug 'gosukiwi/vim-atom-dark'
     " Multiple cursors
-    Plug 'terryma/vim-multiple-cursors' 
+    " Plug 'terryma/vim-multiple-cursors'
     " VSode like autocompletion and other stuff
     " Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
     Plug 'neoclide/coc.nvim', {'branch': 'release'}

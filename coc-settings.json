@@ -98,5 +98,7 @@
 	},
   "diagnostic.checkCurrentLine": true,
   "diagnostic.virtualText": true,
-  "diagnostic.virtualTextCurrentLineOnly": false
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "coc.preferences.enableMessageDialog": true,
+  "codeLens.enable": true
 }

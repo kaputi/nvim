@@ -97,18 +97,18 @@ nmap <silent> gr <Plug>(coc-references)
 " autocmd CursorHold * :call <SID>show_hover_doc()
 
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
+" function! s:show_documentation()
+"   if (index(['vim','help'], &filetype) >= 0)
+"     execute 'h '.expand('<cword>')
+"   elseif (coc#rpc#ready())
+"     call CocActionAsync('doHover')
+"   else
+"     execute '!' . &keywordprg . " " . expand('<cword>')
+"   endif
+" endfunction
 
 " Use leader K to show documentation in preview window.
-nnoremap <silent> <leader><leader>k :call <SID>show_documentation()<CR>
+" nnoremap <silent> <leader><leader>k :call <SID>show_documentation()<CR>
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
