@@ -182,7 +182,18 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Open file explorer
 " nmap <leader>e :CocCommand explorer<CR>
-"
+
+"  multiple cursors
+  function! s:select_current_word()
+    if !get(b:, 'coc_cursors_activated', 0)
+      return "\<Plug>(coc-cursors-word)"
+    endif
+    return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
+  endfunc
+
+  nmap <C-LeftRelease>  <Plug>(coc-cursors-position)
+  " nmap <M-LeftRelease> <Plug>(coc-cursors-word)
+
 " git gutter colors
 highlight clear DiffAdd
 highlight DiffAdd ctermfg=235 guifg=#98C379
