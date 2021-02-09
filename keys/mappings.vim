@@ -93,7 +93,8 @@ if !exists('g:vscode')
   " inoremap ><Tab> ><Esc>F<lyt>o</<C-r>"><Esc>O<Space>
   " inoremap ><Tab>  ><Esc>F<lyt>f>a</<C-r>"><Esc>F>a
   " inoremap <C-t> <Esc>F<lywf>a</<C-r>"><Esc>F>a
-  inoremap <C-t> <Esc>?<<cr>lyw/><cr>a</<C-r>"><Esc>?><cr>:noh<Esc>a
+  " exit insert, search bck <,move right, yank w, search >, insert </ paste yank, insert >, exit inster, search back <, clear search highlight, enter insert
+  inoremap <C-t> <Esc>?<<cr>lyw/><cr>a</<C-r>"><Esc>?><cr>:noh<cr>a
 
 " VScode only
 else
