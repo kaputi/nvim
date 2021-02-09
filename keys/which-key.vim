@@ -47,6 +47,8 @@ let g:which_key_map.a = {
       \ 'p' : [':RainbowToggle'       , 'Color Parenthesis'],
       \ 'd' : [':set background=dark' , 'Dark  Background'],
       \ 'l' : [':set background=light', 'Light Background'],
+      \ 'L' : [':set cursorline!',         'Toggle cursor line'],
+      \ 'C' : [':set cursorcolumn!', 'Toggle cursor column']
       \ }
       " \ 'c' : [':ColorizerToggle'        , 'colorizer'],
 " b is for buffer
