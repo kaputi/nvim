@@ -64,7 +64,10 @@
   "cSpell.userWords": [
     "Lonighi",
     "devtool",
-    "stockable"
+    "stockable",
+    "typeof",
+    "upsert",
+    "upserts"
   ],
   "snippets.textmateSnippetsRoots": ["~/.config/nvim/snippets"],
   "tsserver.npm": "/home/eduardo/.nvm/versions/node/v14.15.4",
@@ -97,8 +100,13 @@
 		"default": "\uf29c"
 	},
   "diagnostic.checkCurrentLine": true,
-  "diagnostic.virtualText": true,
+  "diagnostic.virtualText":false,
   "diagnostic.virtualTextCurrentLineOnly": false,
   "coc.preferences.enableMessageDialog": true,
-  "codeLens.enable": true
+  "coc.preferences.enableFloatHighlight": true,
+  "codeLens.enable": false,
+  "tabnine.priority": 90,
+  "todolist.dateFormat": "DD-MM-YY HH:mm",
+  "todolist.monitor": true,
+  "coc.source.tag.enable": true,
 }

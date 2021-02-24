@@ -94,7 +94,8 @@ if !exists('g:vscode')
   " inoremap ><Tab>  ><Esc>F<lyt>f>a</<C-r>"><Esc>F>a
   " inoremap <C-t> <Esc>F<lywf>a</<C-r>"><Esc>F>a
   " exit insert, search bck <,move right, yank w, search >, insert </ paste yank, insert >, exit inster, search back <, clear search highlight, enter insert
-  inoremap <C-t> <Esc>?<<cr>lyw/><cr>a</<C-r>"><Esc>?><cr>:noh<cr>a
+  inoremap <C-t> <Esc>?<<cr>lyW/><cr>a</<C-r>"><Esc>?><cr>:noh<cr>a
+  " nmap <silent><leader>c %lyWh%a</<C-r>"<Bs>><Esc>%i
 
 " VScode only
 else

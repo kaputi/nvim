@@ -16,7 +16,12 @@ let g:coc_global_extensions = [
   \ 'coc-tabnine',
   \ 'coc-prettier',
   \ 'coc-floaterm',
-  \ 'coc-marketplace'
+  \ 'coc-marketplace',
+  \ 'coc-yank',
+  \ 'coc-todolist',
+  \ 'coc-react-refactor',
+  \ 'coc-docthis',
+  \ 'coc-tag'
   \ ]
 
 " only load eslint if module is present

@@ -67,6 +67,9 @@ let g:which_key_map.b = {
 nnoremap <silent> <leader>bt :bufdo tab split<CR>:tablast<CR>:tabclose<CR>:syntax on<CR>
 let g:which_key_map.b.t ='buffers to tabs'
 let g:which_key_map['B'] = [ 'Buffers'                    , 'buffer list']
+" c is for close tag
+  nmap <silent><leader>c %lyWh%a</<C-r>"<Bs>><Esc>%i
+let g:which_key_map.c = 'close html tag'
 let g:which_key_map['d'] = [ ':bd'                        , 'delete buffer']
 let g:which_key_map['e'] = [ ':CocCommand explorer'       , 'explorer' ]
 " g is for git
@@ -200,6 +203,8 @@ let g:which_key_map.w = {
       \ 'S'   : [':Startify'                       , 'start screen'],
       \ 'L'   : [':CocList sessions'               , 'session list'], 
       \ }
+"y is for yank
+let g:which_key_map['y'] = [':CocList -A --normal yank', 'yank list']
 let g:which_key_map['z'] = [ 'Goyo '                       , 'zen' ]
 
 " Register which key map
