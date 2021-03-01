@@ -1,5 +1,9 @@
 let g:startify_session_dir = '~/.config/nvim/sessions'
 
+  if !isdirectory("~/.config/nvim/sessions")
+    silent call mkdir("~/.config/nvim/sessions", "p")
+  endif
+
 let g:startify_lists = [
       \ { 'type': 'sessions',  'header': ['   Sessions']       },
       \ { 'type': 'files',     'header': ['   Recent Files']            },

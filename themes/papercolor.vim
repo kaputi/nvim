@@ -1,2 +1,4 @@
 colorscheme PaperColor
-set background=light
+" set background=light
+
+let g:airline_theme = 'deus'

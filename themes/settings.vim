@@ -5,8 +5,9 @@
 "source $HOME/.config/nvim/themes/deus.vim
 " source $HOME/.config/nvim/themes/onedark.vim
 "source $HOME/.config/nvim/themes/onehalfdark.vim
-source $HOME/.config/nvim/themes/gruvbox.vim
+" source $HOME/.config/nvim/themes/gruvbox.vim
 " source $HOME/.config/nvim/themes/tender.vim
+source $HOME/.config/nvim/themes/papercolor.vim
 "
 " transparent background
 " hi Normal ctermbg=NONE guibg=NONE

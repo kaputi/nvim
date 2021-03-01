@@ -22,7 +22,9 @@ if exists('g:vscode')
   source $HOME/.config/nvim/vscode/vscodeConfig.vim
 
 " Source for Neovim only
-else
+endif
+
+if !exists('g:vscode')
   source $HOME/.config/nvim/themes/settings.vim
   source $HOME/.config/nvim/plug-config/coc.vim
   " source $HOME/.config/nvim/plug-config/lightline.vim

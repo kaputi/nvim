@@ -14,8 +14,6 @@ noremap K 5k
 "begining and end of line
 nnoremap B ^
 nnoremap E $
-nnoremap ^ <nop>
-nnoremap $ <nop>
 
 " Better indenting
 vnoremap < <gv
