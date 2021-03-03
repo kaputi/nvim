@@ -1,3 +1,40 @@
+#+TITLE: init.vim
+* Table of content :toc:
+- [[#plugins][Plugins]]
+  - [[#install-vim-plug-plugin-manager][Install vim-plug plugin manager]]
+  - [[#ui][UI]]
+  - [[#syntax-and-lsp][Syntax and lsp]]
+  - [[#utils][Utils]]
+  - [[#vim-plug-finish][vim-plug finish]]
+- [[#general-theres-stuff-here-to-be-moved][General (theres stuff here to be moved)]]
+- [[#ui-1][UI]]
+  - [[#theme][Theme]]
+  - [[#tabline][Tabline]]
+  - [[#modeline][Modeline]]
+- [[#key-bindings][Key bindings]]
+  - [[#maps][maps]]
+  - [[#whichkey][whichkey]]
+- [[#editor][Editor]]
+  - [[#comments][Comments]]
+  - [[#text-navigation][Text navigation]]
+  - [[#indent-guides][Indent guides]]
+  - [[#close-html-tags][Close html tags]]
+  - [[#color-parenthesis][Color parenthesis]]
+  - [[#undotree][Undotree]]
+  - [[#project-management][Project management]]
+  - [[#ranger][ranger]]
+- [[#development][Development]]
+  - [[#lsp][LSP]]
+  - [[#tag-browser][Tag browser]]
+  - [[#interactive-code][Interactive code]]
+  - [[#terminal][Terminal]]
+  - [[#fzf][fzf]]
+  - [[#git][GIT]]
+
+* Plugins
+** Install vim-plug plugin manager
+#+BEGIN_SRC vimrc :tangle init.vim
+
 " auto-install vim-plug
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
     silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
@@ -7,6 +44,11 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/autoload/plugged')
+
+
+#+END_SRC
+** UI
+#+BEGIN_SRC vimrc :tangle init.vim
 
     " Status line
     Plug 'vim-airline/vim-airline'
@@ -37,7 +79,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'dikiaap/minimalist'
     Plug 'tomasr/molokai'
     Plug 'gosukiwi/vim-atom-dark'
-
+#+END_SRC
+** Syntax and lsp
+#+BEGIN_SRC vimrc :tangle init.vim
     " VSode like autocompletion and other stuff
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -49,7 +93,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Plug 'mxw/vim-jsx' "JSX syntax highlighting
     " Plug 'leafgarland/typescript-vim' "typescript
     " Plug 'ianks/vim-tsx' "TSX
-
+#+END_SRC
+** Utils
+#+BEGIN_SRC vimrc :tangle init.vim
     " Git
     Plug 'tpope/vim-fugitive'
 
@@ -122,14 +168,19 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
     "snippets
     Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
+#+END_SRC
+** vim-plug finish
 
+#+BEGIN_SRC vimrc :tangle init.vim
 call plug#end()
 " Automatically install missing plugins on startup
 autocmd VimEnter *
     \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
     \|   PlugInstall --sync | q
     \| endif
-
+#+END_SRC
+* General (theres stuff here to be moved)
+#+BEGIN_SRC vimrc :tangle init.vim
 set iskeyword+=-                      	" treat dash separated words as a word text object"
 "set formatoptions-=cro                  " Stop newline continution of comments
 
@@ -198,15 +249,29 @@ set iskeyword+=-                      	" treat dash separated words as a word te
   " autocmd VimEnter * tab all
   " autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
 
+#+END_SRC
+
+* UI
+** Theme
+Set the theme here and comment/uncomment individual configs below
+#+BEGIN_SRC vimrc :tangle init.vim
     colorscheme ayu
     " popup menu (coc autocomplete)
     hi Pmenu     guifg=#ffffff guibg=#393939
     hi PmenuSel  guifg=#ffffff guibg=#666666
 
+#+END_SRC
+*** ayu theme
+Great theme lots of contrast in every version
+#+BEGIN_SRC vimrc :tangle init.vim
  let ayucolor='dark'
 "let ayucolor='mirage'
 "let ayucolor='light'
 
+#+END_SRC
+*** gruvbox
+great theme suports all languages that ive tryed perfect
+#+BEGIN_SRC vimrc :tangle init.vim
 " let g:gruvbox_bold = 1
 " " let g:gruvbox_italic =1
 " " let g:gruvbox_underline=1
@@ -226,10 +291,17 @@ set iskeyword+=-                      	" treat dash separated words as a word te
 " " let g:gruvbox_improved_strings=1
 " " let g:gruvbox_improved_warnings=1
 
+#+END_SRC
+*** landscape
+dark Theme with a lot of contrast
+#+BEGIN_SRC vimrc :tangle init.vim
     " popup is too clear on this theme
     " hi Pmenu     guifg=#ffffff guibg=#393939
     " hi PmenuSel  guifg=#ffffff guibg=#666666
-
+#+END_SRC
+** Tabline
+Settings for vem tabline plugin
+#+BEGIN_SRC vimrc :tangle init.vim
 " always show
 let g:vem_tabline_show=2
 
@@ -258,6 +330,11 @@ let g:vem_tabline_multiwindow_mode=1
 " highlight VemTablineTabNormal        term=reverse cterm=none ctermfg=0   ctermbg=251 guifg=#242424 guibg=#4a4a4a gui=none
 " highlight VemTablineTabSelected      term=bold    cterm=bold ctermfg=0   ctermbg=255 guifg=#242424 guibg=#ffffff gui=bold
 
+#+END_SRC
+
+** Modeline
+Settings for airline plugin
+#+BEGIN_SRC vimrc :tangle init.vim
 " enable powerline fonts
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
@@ -295,6 +372,10 @@ let g:airline_mode_map = {
       \ ''     : 'V',
       \ }
 
+#+END_SRC
+* Key bindings
+** maps
+#+BEGIN_SRC vimrc :tangle init.vim
    " space is leader
 let mapleader=" "
 
@@ -390,6 +471,11 @@ vnoremap > >gv
   inoremap <C-t> <Esc>?<<cr>lyW/><cr>a</<C-r>"><Esc>?><cr>:noh<cr>a
   " nmap <silent><leader>c %lyWh%a</<C-r>"<Bs>><Esc>%i
 
+#+END_SRC
+
+#+END_SRC
+** whichkey
+#+BEGIN_SRC vimrc :tangle init.vim
 " Map leader to which_key
 nnoremap <silent> <leader> :silent WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
@@ -601,7 +687,11 @@ let g:which_key_map['z'] = [ 'Goyo '                       , 'zen' ]
 
 " Register which key map
 call which_key#register('<Space>', "g:which_key_map")
-
+#+END_SRC
+* Editor
+** Comments
+Settings for NerdCommenter plugin
+#+BEGIN_SRC vimrc :tangle init.vim
 let g:NERDCreateDefaultMappings = 0
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -626,17 +716,28 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
-
+#+END_SRC
+** Text navigation
+Settings for easymotion plugin
+#+BEGIN_SRC vimrc :tangle init.vim
 " Disable default mappings
 let g:EasyMotion_do_mapping = 0
 " Turn on case-insensitive feature
 let g:EasyMotion_smartcase = 1
 
+#+END_SRC
+** Indent guides
+settings for the indent guides plugin
+#+BEGIN_SRC  vimrc :tangle init.vim
  let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_enabled = 0
 let g:indentLine_setColors = 0
 
+#+END_SRC
+** Close html tags
+at the moment im testing my own implementation but this are the settings for the plugin
+#+BEGIN_SRC vimrc :tangle init.vim
 " " filenames like *.xml, *.html, *.xhtml, ...
 " " These are the file extensions where this plugin is enabled.
 " "
@@ -679,9 +780,15 @@ let g:indentLine_setColors = 0
 " " Shortcut for closing tags, default is '>'
 " "
 " let g:closetag_shortcut='>'
-
+#+END_SRC
+** Color parenthesis
+settings for the plugin
+#+BEGIN_SRC vimrc :tangle init.vim
 let g:rainbow_active = 1
-
+#+END_SRc
+** Undotree
+settings for the plugin
+#+BEGIN_SRC vimrc :tangle init.vim
 if has("persistent_undo")
   if !isdirectory($HOME."/.config/nvim/undodir")
     silent call mkdir($HOME."/.config/nvim/undodir", "p")
@@ -689,7 +796,10 @@ if has("persistent_undo")
   set undodir=~/.config/nvim/undodir
   set undofile
 endif
-
+#+END_SRC
+** Project management
+settings for the plugin
+#+BEGIN_SRC vimrc :tangle init.vim
     let g:rooter_silent_chdir = 1
 
     let g:startify_session_dir = '~/.config/nvim/sessions'
@@ -760,9 +870,16 @@ let g:startify_session_before_save = [
   \ 'silent! Vista!',
   \ ]
 
+#+END_SRC
+** ranger
+settings for the plugin
+#+BEGIN_SRC vimrc :tangle init.vim
 " Make Ranger replace netrw and be the file explorer
 let g:rnvimr_ex_enable = 1
-
+#+END_SRC
+* Development
+** LSP
+#+BEGIN_SRC vimrc :tangle init.vim
 let g:coc_global_extensions = [
   \ 'coc-snippets',
   \ 'coc-actions',
@@ -963,7 +1080,126 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
   nmap <C-LeftRelease>  <Plug>(coc-cursors-position)
   " nmap <M-LeftRelease> <Plug>(coc-cursors-word)
+#+END_SRC
+*** coc-settings
+#+BEGIN_SRC json :tangle coc-settings.json
+{
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue",
+    "markdown",
+    "typescript.tsx",
+    "javascript.jsx"
+  ],
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue",
+    "markdown",
+    "typescript.tsx",
+    "javascript.jsx"
+  ],
+  "eslint.packageManager": "yarn",
+  "eslint.alwaysShowStatus": true,
+  "explorer.quitOnOpen": true,
+  "explorer.previewAction.onHover": "content",
+  "explorer.openAction.strategy": "sourceWindow",
+  "explorer.sources": [
+    {
+      "name": "buffer",
+      "expand": false
+    },
+    {
+      "name": "file",
+      "expand": true
+    }
+  ],
+  "explorer.width": 30,
+  "explorer.icon.enableNerdfont": true,
+  "coc.preferences.colorSupport": true,
+  "highlight.colors.enable": true,
+  "cSpellExt.enableDictionaries": ["spanish"],
+  "cSpell.language": "en,es",
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+  "cSpell.diagnosticLevel": "Hint",
+  "git.enableGutters": true,
+  "diagnostic.warningSign": "!!",
+  "diagnostic.hintSign": "!",
+  "diagnostic.errorSign": "⚠",
+  "prettier.eslintIntegration": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "javascript.js",
+    "typescript.ts",
+    "json",
+    "html",
+    "css"
+  ],
+  "session.saveOnVimLeave": false,
+  "session.directory": "~/.config/nvim/sessions/",
+  "cSpell.userWords": [
+    "Lonighi",
+    "devtool",
+    "stockable",
+    "typeof",
+    "upsert",
+    "upserts"
+  ],
+  "snippets.textmateSnippetsRoots": ["~/.config/nvim/snippets"],
+  "tsserver.npm": "/home/eduardo/.nvm/versions/node/v14.15.4",
+  "suggest.completionItemKindLabels": {
+		"keyword": "\uf1de",
+		"variable": "\ue79b",
+		"value": "\uf89f",
+		"operator": "\u03a8",
+		"constructor": "\uf0ad",
+		"function": "\u0192",
+		"reference": "\ufa46",
+		"constant": "\uf8fe",
+		"method": "\uf09a",
+		"struct": "\ufb44",
+		"class": "\uf0e8",
+		"interface": "\uf417",
+		"text": "\ue612",
+		"enum": "\uf435",
+		"enumMember": "\uf02b",
+		"module": "\uf40d",
+		"color": "\ue22b",
+		"property": "\ue624",
+		"field": "\uf9be",
+		"unit": "\uf475",
+		"event": "\ufacd",
+		"file": "\uf723",
+		"folder": "\uf114",
+		"snippet": "\ue60b",
+		"typeParameter": "\uf728",
+		"default": "\uf29c"
+	},
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.virtualText":false,
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "coc.preferences.enableMessageDialog": true,
+  "coc.preferences.enableFloatHighlight": true,
+  "codeLens.enable": false,
+  "tabnine.priority": 90,
+  "todolist.dateFormat": "DD-MM-YY HH:mm",
+  "todolist.monitor": true,
+  "coc.source.tag.enable": true,
+}
 
+#+END_SRC
+** Tag browser
+#+BEGIN_SRC vimrc :tangle init.vim
 let g:vista_default_executive = 'coc'
 let g:vista_fzf_preview = ['right:50%']
 
@@ -976,6 +1212,9 @@ let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
  \   "variable": "\uf71b",
  \  }
 
+#+END_SRC
+** Interactive code
+#+BEGIN_SRC vimrc :tangle init.vim
 " Change the color
 highlight CodiVirtualText guifg=red
 
@@ -992,7 +1231,9 @@ let g:codi#aliases = {
                        \ 'bin': 'tsun',
                        \ },
                    \ }
-
+#+END_SRC
+** Terminal
+#+BEGIN_SRC vimrc :tangle init.vim
 " let g:floaterm_wintype='normal'
 " let g:floaterm_height=6
 
@@ -1009,6 +1250,9 @@ let g:floaterm_height=0.8
 let g:floaterm_wintitle=0
 let g:floaterm_autoclose=1
 
+#+END_SRC
+** fzf
+#+BEGIN_SRC vimrc :tangle init.vim
 " This is the default extra key bindings
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -1088,6 +1332,9 @@ command! -bang -nargs=* GGrep
   \   'git grep --line-number '.shellescape(<q-args>), 0,
   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 
+ #+END_SRC
+** GIT
+#+BEGIN_SRC vimrc :tangle init.vim
 " git gutter colors
 highlight clear DiffAdd
 highlight DiffAdd ctermfg=235 guifg=#98C379
@@ -1097,3 +1344,4 @@ highlight clear DiffDelete
 highlight DiffDelete ctermfg=204 guifg=#E06C75
 highlight clear DiffText
 highlight DiffText ctermfg=180 guibg=#E5C07B
+#+END_SRC

@@ -24,6 +24,7 @@
   "eslint.packageManager": "yarn",
   "eslint.alwaysShowStatus": true,
   "explorer.quitOnOpen": true,
+  "explorer.previewAction.onHover": "content",
   "explorer.openAction.strategy": "sourceWindow",
   "explorer.sources": [
     {
