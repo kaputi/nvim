@@ -53,8 +53,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Git
     Plug 'tpope/vim-fugitive'
 
-    " Closetags
-    " Plug 'alvan/vim-closetag'
+    " Closetags and pairs <></> ,{},"", etc
+       Plug 'tmsvg/pear-tree'
 
     " undo tree
     Plug 'mbbill/undotree'
@@ -66,9 +66,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'easymotion/vim-easymotion'
     " Plug 'justinmk/vim-sneak'
     " Plug 'unblevable/quick-scope'
-
-    " Auto pairs for '(' '[' '{'
-    Plug 'jiangmiao/auto-pairs'
 
     " Multiple cursors
     " Plug 'terryma/vim-multiple-cursors'
@@ -637,48 +634,54 @@ let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_enabled = 0
 let g:indentLine_setColors = 0
 
-" " filenames like *.xml, *.html, *.xhtml, ...
-" " These are the file extensions where this plugin is enabled.
-" "
-" let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.jsx,*.ts,*.tsx'
+    " Default rules for matching:
+let g:pear_tree_pairs = {
+            \ '(': {'closer': ')'},
+            \ '[': {'closer': ']'},
+            \ '{': {'closer': '}'},
+            \ "'": {'closer': "'"},
+            \ '"': {'closer': '"'},
+            \ '`': {'closer': '`'},
+            \ '<*>': {'closer' : '</*>',
+            \         'not_if': ['br', 'hr', 'img', 'input', 'link', 'meta',
+            \                    'area', 'base', 'col', 'command', 'embed',
+            \                    'keygen', 'param', 'source', 'track', 'wbr'],
+            \         'not_like': '/$',
+            \         'not_in': ['typescriptTypeReference', 'TypeReference','String']
+            \        }
+            \ }
+" See pear-tree/after/ftplugin/ for filetype-specific matching rules
 
-" " filenames like *.xml, *.xhtml, ...
-" " This will make the list of non-closing tags self-closing in the specified files.
-" "
-" let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.js,*.tsx,*.ts'
+" Pear Tree is enabled for all filetypes by default:
+let g:pear_tree_ft_disabled = []
 
-" " filetypes like xml, html, xhtml, ...
-" " These are the file types where this plugin is enabled.
-" "
-" " let g:closetag_filetypes = 'html,xhtml,phtml'
+" Pair expansion is dot-repeatable by default:
+let g:pear_tree_repeatable_expand = 1
 
-" " filetypes like xml, xhtml, ...
-" " This will make the list of non-closing tags self-closing in the specified files.
-" "
-" let g:closetag_filetypes = 'html,xhtml,phtml,javascript,javascriptreact,javascript.jsx,typescript,typescriptreact,typescript.tsx,javascript.js,typescript.jsx'
+" Smart pairs are disabled by default:
+let g:pear_tree_smart_openers = 0
+let g:pear_tree_smart_closers = 0
+let g:pear_tree_smart_backspace = 0
 
-" " integer value [0|1]
-" " This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
-" "
-" let g:closetag_emptyTags_caseSensitive = 0
+" If enabled, smart pair functions timeout after 60ms:
+let g:pear_tree_timeout = 60
 
-" " dictionary
-" " Disables auto-close if not in a "valid" region (based on filetype)
-" "
-" " let g:closetag_regions = {
-" "     \ 'typescript.tsx': 'jsxRegion,tsxRegion',
-" "     \ 'javascript.jsx': 'jsxRegion',
-" "     \ 'javascript': '',
-" "     \ 'javascriptreact': '',
-" "     \ }
+" Automatically map <BS>, <CR>, and <Esc>
+let g:pear_tree_map_special_keys = 1
 
-" " autocmd BufNewFile,BufRead *.js,*.ts
-" "       \ set filetype=typescript.tsx |
-" "       \ set syntax=typescriptreact
+" Default mappings:
+imap <BS> <Plug>(PearTreeBackspace)
+imap <CR> <Plug>(PearTreeExpand)
+imap <Esc> <Plug>(PearTreeFinishExpansion)
+" Pear Tree also makes <Plug> mappings for each opening and closing string.
+"     :help <Plug>(PearTreeOpener)
+"     :help <Plug>(PearTreeCloser)
 
-" " Shortcut for closing tags, default is '>'
-" "
-" let g:closetag_shortcut='>'
+" Not mapped by default:
+" <Plug>(PearTreeSpace)
+" <Plug>(PearTreeJump)
+" <Plug>(PearTreeExpandOne)
+" <Plug>(PearTreeJNR)
 
 let g:rainbow_active = 1
 
