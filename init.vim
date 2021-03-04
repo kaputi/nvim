@@ -50,11 +50,18 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Plug 'leafgarland/typescript-vim' "typescript
     " Plug 'ianks/vim-tsx' "TSX
 
+    "Search for unicode
+    Plug 'chrisbra/unicode.vim'
+
+    "Scratch buffer
+    Plug 'mtth/scratch.vim'
+
     " Git
     Plug 'tpope/vim-fugitive'
+    Plug 'junegunn/gv.vim'
 
     " Closetags and pairs <></> ,{},"", etc
-       Plug 'tmsvg/pear-tree'
+    Plug 'tmsvg/pear-tree'
 
     " undo tree
     Plug 'mbbill/undotree'
@@ -127,73 +134,74 @@ autocmd VimEnter *
     \|   PlugInstall --sync | q
     \| endif
 
+"wrapping  and tabs ============================="
+set wrap
+" set nowrap                              " Display long lines as just one line
+set linebreak
+set textwidth=0 wrapmargin=0
+set tabstop=2                           " Insert 2 spaces for a tab
+set shiftwidth=2                        " Change the number of space characters inserted for indentation
+set smarttab                            " Makes tabbing smarter will realize you have 2 vs 4
+set expandtab                           " Converts tabs to spaces
+set smartindent                         " Makes indenting smart
+set autoindent                          " Good auto indent
+"popup  menu ============================"
+set pumheight=10                        " Makes popup menu smaller
+set pumblend=35                         " Popup menu transparency
+"UI ============================"
+" set showtabline=2                         " always show tab bar
+set ruler              			            " Show the cursor position all the time
+set cmdheight=2                         " More space for displaying messages
+set t_Co=256                            " Support 256 colors
+set number relativenumber               " relative numbers
+set nu rnu                              " current line number
+set cursorline                          " Enable highlighting of the current line
+set cursorcolumn
+set laststatus=2                        " Always display the status line
+set noshowmode                          " We don't need to see things like -- INSERT -- anymore
+set signcolumn=yes                      " Always show the signcolumn, otherwise it would shift the text each time
+"set guifont=Hack\ Nerd\ Font
+set termguicolors
+" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+" set mmp=1300
+"Behaviour==========================
 set iskeyword+=-                      	" treat dash separated words as a word text object"
 "set formatoptions-=cro                  " Stop newline continution of comments
-
-  set autoread                             " update file if changed
-  au CursorHold * checktime               " check autoread every 4s
-  syntax enable                           " Enables syntax highlighing
-  set hidden                              " Required to keep multiple buffers open multiple buffers
-  " set bufhidden=delete                      " removes bufferss not displayed in a window
-  " set showtabline=2                         " always show tab bar
-  set wrap
-  set linebreak
-  set textwidth=0 wrapmargin=0
-  " set nowrap                              " Display long lines as just one line
-  set encoding=utf-8                      " The encoding displayed
-  set pumheight=10                        " Makes popup menu smaller
-  set pumblend=35                         " Popup menu transparency
-  set fileencoding=utf-8                  " The encoding written to file
-  set ruler              			            " Show the cursor position all the time
-  set cmdheight=2                         " More space for displaying messages
-  set mouse=a                             " Enable your mouse
-  set splitbelow                          " Horizontal splits will automatically be below
-  set splitright                          " Vertical splits will automatically be to the right
-  set t_Co=256                            " Support 256 colors
-  set conceallevel=0                      " So that I can see `` in markdown files
-  set tabstop=2                           " Insert 2 spaces for a tab
-  set shiftwidth=2                        " Change the number of space characters inserted for indentation
-  set smarttab                            " Makes tabbing smarter will realize you have 2 vs 4
-  set expandtab                           " Converts tabs to spaces
-  set smartindent                         " Makes indenting smart
-  set autoindent                          " Good auto indent
-  set laststatus=2                        " Always display the status line
-  set number relativenumber               " relative numbers
-  set nu rnu                              " current line number
-  set cursorline                          " Enable highlighting of the current line
-  set cursorcolumn
-  " create swap dir if not exist
-  if !isdirectory($HOME."/.config/nvim/swap")
-    silent call mkdir($HOME."/.config/nvim/swap", "p")
-  endif
-  set dir=~/.config/nvim/swap/           " tell vim where to put swap files
-  set noshowmode                          " We don't need to see things like -- INSERT -- anymore
-  set nobackup                            " This is recommended by coc
-  set nowritebackup                       " This is recommended by coer
-  set shortmess+=c                        " Don't pass messages to |ins-completion-menu|.
-  set signcolumn=yes                      " Always show the signcolumn, otherwise it would shift the text each time
-  set updatetime=300                      " Faster completion
-  set timeoutlen=300                      " By default timeoutlen is 1000 ms
-  set clipboard=unnamed                   " Copy paste between vim and everything else
-  set incsearch
-  "set guifont=Hack\ Nerd\ Font
-  set termguicolors
-  " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  " set mmp=1300
-  " set autochdir                           " Your working directory will always be the same as your working directory
-  " set foldcolumn=2                        " Folding abilities
-
-  " au! BufWritePost $MYVIMRC source %      " auto source when writing to init.vm alternatively you can run :source $MYVIMRC
-  autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-  "file types
-  autocmd BufRead,BufNewFile .eslintrc,.babelrc,.prettierrc set filetype=json
-  autocmd BufRead,BufNewFile *.js,*.jsx set filetype=typescriptreact
-  autocmd BufRead,BufNewFile *.ts,*.tsx set filetype=typescriptreact
-
-  " open everything in tabs
-  " autocmd VimEnter * tab all
-  " autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
+set autoread                             " update file if changed
+au CursorHold * checktime               " check autoread every 4s
+syntax enable                           " Enables syntax highlighing
+set hidden                              " Required to keep multiple buffers open multiple buffers
+" set bufhidden=delete                      " removes bufferss not displayed in a window
+set encoding=utf-8                      " The encoding displayed
+set fileencoding=utf-8                  " The encoding written to file
+set mouse=a                             " Enable your mouse
+set splitbelow                          " Horizontal splits will automatically be below
+set splitright                          " Vertical splits will automatically be to the right
+set conceallevel=0                      " So that I can see `` in markdown files
+set incsearch
+set clipboard=unnamed                   " Copy paste between vim and everything else
+set shortmess+=c                        " Don't pass messages to |ins-completion-menu|.
+set updatetime=300                      " Faster completion
+set timeoutlen=300                      " By default timeoutlen is 1000 ms
+" set autochdir                           " Your working directory will always be the same as your working directory
+" set foldcolumn=2                        " Folding abilities
+" au! BufWritePost $MYVIMRC source %      " auto source when writing to init.vm alternatively you can run :source $MYVIMRC
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+"file types
+autocmd BufRead,BufNewFile .eslintrc,.babelrc,.prettierrc set filetype=json
+autocmd BufRead,BufNewFile *.js,*.jsx set filetype=typescriptreact
+autocmd BufRead,BufNewFile *.ts,*.tsx set filetype=typescriptreact
+" open everything in tabs
+" autocmd VimEnter * tab all
+" autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
+" Backups and swap ============================
+" create swap dir if not exist
+if !isdirectory($HOME."/.config/nvim/swap")
+silent call mkdir($HOME."/.config/nvim/swap", "p")
+endif
+set dir=~/.config/nvim/swap/           " tell vim where to put swap files
+set nobackup                            " This is recommended by coc
+set nowritebackup                       " This is recommended by coer
 
     colorscheme ayu
     " popup menu (coc autocomplete)
@@ -420,181 +428,259 @@ function! Coc_show_documentation()
   endif
 endfunction
 
-" MAPPINGS
-let g:which_key_map['/'] = [ '<plug>NERDCommenterToggle' , 'comment' ]
-let g:which_key_map['='] = [ '<C-W>='                     , 'balance windows' ]
-" a is for actions
-let g:which_key_map.a = {
-      \ 'name' : '+actions' ,
-      \ 'n' : [':set nonumber!'          , 'line-numbers'],
-      \ 'r' : [':set norelativenumber!'  , 'relative line nums'],
-      \ 's' : [':let @/ = ""'            , 'remove search highlight'],
-      \ 'v' : [':Vista!!'                , 'tag viewer'],
-      \ 'b' : [':syntax on'    , 'reset colors'],
-      \ 'B' : [':hi Normal ctermbg=NONE guibg=NONE<CR>', 'remove background'],
-      \ 'i' : [':IndentLinesToggle'      , 'toggle indent guides'],
-      \ 'p' : [':RainbowToggle'       , 'Color Parenthesis'],
-      \ 'd' : [':set background=dark' , 'Dark  Background'],
-      \ 'l' : [':set background=light', 'Light Background'],
-      \ 'L' : [':set cursorline!',         'Toggle cursor line'],
-      \ 'C' : [':set cursorcolumn!', 'Toggle cursor column']
-      \ }
-      " \ 'c' : [':ColorizerToggle'        , 'colorizer'],
-" b is for buffer
-let g:which_key_map.b = {
-      \ 'name' : '+buffer' ,
-      \ '1' : ['b1'        , 'buffer 1']        ,
-      \ '2' : ['b2'        , 'buffer 2']        ,
-      \ 'd' : ['bd'        , 'delete-buffer']   ,
-      \ 'f' : ['bfirst'    , 'first-buffer']    ,
-      \ 'h' : ['Startify'  , 'home-buffer']     ,
-      \ 'l' : ['blast'     , 'last-buffer']     ,
-      \ 'n' : ['bnext'     , 'next-buffer']     ,
-      \ 'p' : ['bprevious' , 'previous-buffer'] ,
-      \ '?' : ['Buffers'   , 'fzf-buffer']      ,
-      \ }
-nnoremap <silent> <leader>bt :bufdo tab split<CR>:tablast<CR>:tabclose<CR>:syntax on<CR>
-let g:which_key_map.b.t ='buffers to tabs'
-let g:which_key_map['B'] = [ 'Buffers'                    , 'buffer list']
-" c is for close tag
-  nmap <silent><leader>c %lyWh%a</<C-r>"<Bs>><Esc>%i
-let g:which_key_map.c = 'close html tag'
-let g:which_key_map['d'] = [ ':bd'                        , 'delete buffer']
-let g:which_key_map['e'] = [ ':CocCommand explorer'       , 'explorer' ]
-" g is for git
-let g:which_key_map.g = {
-      \ 'name' : '+git' ,
-      \ 'a' : [':Git add .'                        , 'add all'],
-      \ 'A' : [':Git add %'                        , 'add current'],
-      \ 'b' : [':Git blame'                        , 'blame'],
-      \ 'B' : [':GBrowse'                          , 'browse'],
-      \ 'c' : [':Git commit'                       , 'commit'],
-      \ 'd' : [':Git diff'                         , 'diff'],
-      \ 'D' : [':Gdiffsplit'                       , 'diff split'],
-      \ 'g' : [':GGrep'                            , 'git grep'],
-      \ 'G' : [':Gstatus'                          , 'status'],
-      \ 'l' : [':Git log'                          , 'log'],
-      \ 'p' : [':Git push'                         , 'push'],
-      \ 'P' : [':Git pull'                         , 'pull'],
-      \ 'r' : [':GRemove'                          , 'remove'],
-      \ 'v' : [':GV'                               , 'view commits'],
-      \ 'V' : [':GV!'                              , 'view buffer commits'],
-      \ }
-      " \ 'h' : [':GitGutterLineHighlightsToggle'    , 'highlight hunks'],
-      " \ 'H' : ['<Plug>(GitGutterPreviewHunk)'      , 'preview hunk'],
-      " \ 'j' : ['<Plug>(GitGutterNextHunk)'         , 'next hunk'],
-      " \ 'k' : ['<Plug>(GitGutterPrevHunk)'         , 'prev hunk'],
-      " \ 's' : ['<Plug>(GitGutterStageHunk)'        , 'stage hunk'],
-      " \ 't' : [':GitGutterSignsToggle'             , 'toggle signs'],
-      " \ 'u' : ['<Plug>(GitGutterUndoHunk)'         , 'undo hunk'],
-let g:which_key_map['h'] = [ '<C-W>s'                     , 'split below']
-let g:which_key_map['j'] = [ '<Plug>(easymotion-bd-w)'    , 'jump to word' ]
-let g:which_key_map['J'] = ['<Plug>(easymotion-s2)'       , 'jump with 2 chars' ]
-" l is for language server protocol
-let g:which_key_map.l = {
-      \ 'name' : '+lsp(coc)' ,
-      \ '.' : [':CocConfig'                          , 'config'],
-      \ ';' : ['<Plug>(coc-refactor)'                , 'refactor'],
-      \ 'a' : ['<Plug>(coc-codeaction)'              , 'line action'],
-      \ 'A' : ['<Plug>(coc-codeaction-selected)'     , 'selected action'],
-      \ 'b' : [':CocNext'                            , 'next action'],
-      \ 'B' : [':CocPrev'                            , 'prev action'],
-      \ 'c' : [':CocList commands'                   , 'commands'],
-      \ 'd' : ['<Plug>(coc-definition)'              , 'definition'],
-      \ 'D' : ['<Plug>(coc-declaration)'             , 'declaration'],
-      \ 'e' : [':CocList extensions'                 , 'extensions'],
-      \ 'f' : ['<Plug>(coc-format-selected)'         , 'format selected'],
-      \ 'F' : ['<Plug>(coc-format)'                  , 'format'],
-      \ 'h' : ['<Plug>(coc-float-hide)'              , 'hide'],
-      \ 'i' : ['<Plug>(coc-implementation)'          , 'implementation'],
-      \ 'I' : [':CocList --normal diagnostics'       , 'diagnostics'],
-      \ 'j' : ['<Plug>(coc-float-jump)'              , 'float jump'],
-      \ 'k' : [':call Coc_show_documentation()'           , 'show domunentation'],
-      \ 'l' : ['<Plug>(coc-codelens-action)'         , 'code lens'],
-      \ 'n' : ['<Plug>(coc-diagnostic-next)'         , 'next diagnostic'],
-      \ 'N' : ['<Plug>(coc-diagnostic-next-error)'   , 'next error'],
-      \ 'o' : ['<Plug>(coc-openlink)'                , 'open link'],
-      \ 'O' : [':CocList outline'                    , 'outline'],
-      \ 'p' : ['<Plug>(coc-diagnostic-prev)'         , 'prev diagnostic'],
-      \ 'P' : ['<Plug>(coc-diagnostic-prev-error)'   , 'prev error'],
-      \ 'q' : ['<Plug>(coc-fix-current)'             , 'quickfix'],
-      \ 'r' : ['<Plug>(coc-rename)'                  , 'rename'],
-      \ 'R' : ['<Plug>(coc-references)'              , 'references'],
-      \ 's' : [':CocList -I symbols'                 , 'references'],
-      \ 't' : ['<Plug>(coc-type-definition)'         , 'type definition'],
-      \ 'u' : [':CocListResume'                      , 'resume list'],
-      \ 'U' : [':CocUpdate'                          , 'update CoC'],
-      \ 'z' : [':CocDisable'                         , 'disable CoC'],
-      \ 'Z' : [':CocEnable'                          , 'enable CoC'],
-      \ 'v' : [':Vista!!'                            , 'tag viewer'],
-      \ }
-let g:which_key_map.m = {
-      \ 'name' : 'move split',
-      \ 'h' : ['<C-W>H', 'move left'],
-      \ 'j' : ['<C-W>J', 'move down'],
-      \ 'k' : ['<C-W>K', 'move up'],
-      \ 'l' : ['<C-W>L', 'move right'],
-      \ }
-let g:which_key_map['o'] = [ 'append(line("."),   repeat([""], v:count1))', 'line below' ]
-let g:which_key_map['O'] = [ 'append(line(".")-1,   repeat([""], v:count1))', 'line above' ]
-let g:which_key_map['p'] = [ ':Files'                     , 'search files' ]
-let g:which_key_map['P'] = [ ':Commands'                  , 'commands' ]
-let g:which_key_map['q'] = [ 'q'                          , 'quit' ]
-let g:which_key_map['r'] = [ ':RnvimrToggle'              , 'ranger' ]
-" s is for search
-let g:which_key_map.s = {
-      \ 'name' : '+search' ,
-      \ '/' : [':History/'     , 'history'],
-      \ ';' : [':Commands'     , 'commands'],
-      \ 'a' : [':Ag'           , 'text Ag'],
-      \ 'b' : [':BLines'       , 'current buffer'],
-      \ 'B' : [':Buffers'      , 'open buffers'],
-      \ 'c' : [':Commits'      , 'commits'],
-      \ 'C' : [':BCommits'     , 'buffer commits'],
-      \ 'f' : [':Files'        , 'files'],
-      \ 'g' : [':GFiles'       , 'git files'],
-      \ 'G' : [':GFiles?'      , 'modified git files'],
-      \ 'h' : [':History'      , 'file history'],
-      \ 'H' : [':History:'     , 'command history'],
-      \ 'l' : [':Lines'        , 'lines'] ,
-      \ 'm' : [':Marks'        , 'marks'] ,
-      \ 'M' : [':Maps'         , 'normal maps'] ,
-      \ 'p' : [':Helptags'     , 'help tags'] ,
-      \ 'P' : [':Tags'         , 'project tags'],
-      \ 's' : [':Snippets'     , 'snippets'],
-      \ 'S' : [':Colors'       , 'color schemes'],
-      \ 't' : [':Rg'           , 'text Rg'],
-      \ 'T' : [':BTags'        , 'buffer tags'],
-      \ 'w' : [':Windows'      , 'search windows'],
-      \ 'y' : [':Filetypes'    , 'file types'],
-      \ 'z' : [':FZF'          , 'FZF'],
-      \ }
-" t is for terminal
-let g:which_key_map.t = {
-      \ 'name' : '+terminal' ,
-      \ ';' : [':FloatermNew --wintype=popup --height=6'        , 'terminal'],
-      \ 'g' : [':FloatermNew lazygit'                           , 'git'],
-      \ 'd' : [':FloatermNew lazydocker'                        , 'docker'],
-      \ 'n' : [':FloatermNew node'                              , 'node'],
-      \ 'r' : [':FloatermNew ranger'                            , 'ranger'],
-      \ 't' : [':FloatermToggle'                                , 'toggle'],
-      \ 'y' : [':FloatermNew ytop'                              , 'ytop'],
-      \ 'l' : [':CocList floaterm'                               , 'list terminals']
-      \ }
-let g:which_key_map['u'] = [ 'UndotreeToggle'             , 'undo tree' ]
-let g:which_key_map['v'] = [ '<C-W>v'                     , 'split right']
-" w is for workspaces
-let g:which_key_map.w = {
-      \ 'name': '+workspaces',
-      \ 's'   : [':SSave!',                        'save session' ],
-      \ 'l'   : [':SLoad'                          , 'load  session'],
-      \ 'd'   : [':SDelete!'                        , 'delete session'],
-      \ 'S'   : [':Startify'                       , 'start screen'],
-      \ 'L'   : [':CocList sessions'               , 'session list'],
-      \ }
-"y is for yank
-let g:which_key_map['y'] = [':CocList -A --normal yank', 'yank list']
-let g:which_key_map['z'] = [ 'Goyo '                       , 'zen' ]
+" Top Layer
+let g:which_key_map['/'] = ['<plug>NERDCommenterToggle'                     ,'Comment' ]
+let g:which_key_map['='] = ['<C-W>='                                        ,'Balance Windows' ]
+let g:which_key_map[','] = ['Buffers'                                       ,'Buffer List']
+let g:which_key_map[' '] = ['Files'                                         ,'Find File Local']
+"TODO: let g:which_key_map['.'] = ['XXXXXX'                         ,'Find File Global']
+let g:which_key_map['d'] = ['bd'                                            ,'Delete Buffer']
+let g:which_key_map['e'] = [':CocCommand explorer'                           ,'File Explorer' ]
+let g:which_key_map['h'] = ['<C-W>s'                                        ,'Split Below']
+let g:which_key_map['j'] = ['<Plug>(easymotion-bd-w)'                       ,'Jump to Word' ]
+let g:which_key_map['J'] = ['<Plug>(easymotion-s2)'                         ,'Jump With 2 Chars' ]
+"TODO let g:which_key_map['m'] = ['XXXXXXX'                         ,'Maximize' ]
+let g:which_key_map['o'] = ['append(line("."),   repeat([""], v:count1))'   ,'Line Below' ]
+let g:which_key_map['O'] = ['append(line(".")-1,   repeat([""], v:count1))' ,'Line Above' ]
+let g:which_key_map['p'] = ['Files'                                         ,'Search File Local' ]
+let g:which_key_map['P'] = ['Commands'                                      ,'Commands' ]
+let g:which_key_map['q'] = ['q'                                             ,'Quit' ]
+let g:which_key_map['r'] = ['RnvimrToggle'                                  ,'Ranger' ]
+let g:which_key_map['u'] = ['UndotreeToggle'                                ,'Undo Tree' ]
+let g:which_key_map['v'] = ['<C-W>v'                                        ,'Split Right']
+let g:which_key_map['y'] = [':CocList -A --normal yank'                     ,'Yank List']
+
+" Workspaces submenu
+let g:which_key_map['<Tab>'] = {
+  \ 'name': '+Workspaces',
+  \ '<Tab>' : [':Startify'             ,'Dashboard'],
+  \ 'd'     : [':SDelete!'             ,'Delete Session'],
+  \ 'l'     : [':SLoad'                ,'Load Session'],
+  \ 'L'     : [':CocList sessions'    ,'Session List'],
+  \ 's'     : [':SSave!'               ,'Save Session' ]
+  \ }
+
+" Actions submenu
+let g:which_key_map['a'] = {
+  \ 'name' : '+Actions' ,
+  \ 'e' : [':CocList --normal extensions'     ,'Manage Coc Extensions'],
+  \ 'c' : [':PlugClean'                       ,'Clean Old Plugin'],
+  \ 'i' : [':PlugInstall'                     ,'Install Plugins'],
+  \ 'I' : [':CocList --normal marketplace'    ,'Install Coc Extensions'],
+  \ 's' : [':let @/ = ""'                     ,'Remove Search Hl'],
+  \ 'S' : [':source $MYVIMRC'                 ,'Source $MYVIMRC'],
+  \ 'u' : [':PlugUpdate'                      ,'Update Plugins'],
+  \ 'U' : [':CocUpdateSync'                   ,'Update Coc']
+  \ }
+
+" Buffers submenu
+let g:which_key_map['b'] = {
+  \ 'name' : '+Buffer' ,
+  \ '/' : ['Buffers'   ,'Find Buffer'],
+  \ 'd' : ['bd'        ,'Delete Buffer'],
+  \ 'D' : [':%bd'      ,'Delete All Buffers'],
+  \ 'f' : ['bfirst'    ,'First Buffer'],
+  \ 'k' : [':%bd|e#'   ,'Delete Other Buffers'],
+  \ 'l' : ['blast'     ,'Last Buffer'],
+  \ 'n' : ['bnext'     ,'Next Buffer'],
+  \ 'N' : ['enew'      ,'New Empty Buffer'],
+  \ 'p' : ['bprevious' ,'Previous Buffer']
+  \ }
+
+let g:which_key_map['c'] = {
+  \ 'name' : '+Code(lsp)' ,
+  \ '.' : [':CocConfig'                          , 'CocConfig'],
+  \ ';' : ['<Plug>(coc-refactor)'                , 'Refactor'],
+  \ 'a' : ['<Plug>(coc-codeaction)'              , 'Line Action'],
+  \ 'A' : ['<Plug>(coc-codeaction-selected)'     , 'Selected Action'],
+  \ 'c' : [':CocList commands'                   , 'Coc Commands'],
+  \ 'd' : ['<Plug>(coc-definition)'              , 'Definitions'],
+  \ 'D' : ['<Plug>(coc-declaration)'             , 'Declarations'],
+  \ 'f' : ['<Plug>(coc-format-selected)'         , 'Format Selected'],
+  \ 'F' : ['<Plug>(coc-format)'                  , 'Format'],
+  \ 'h' : ['<Plug>(coc-float-hide)'              , 'Hide Floating Windows'],
+  \ 'i' : ['<Plug>(coc-implementation)'          , 'Implementation'],
+  \ 'I' : [':CocList --normal diagnostics'       , 'Diagnostics'],
+  \ 'j' : ['<Plug>(coc-float-jump)'              , 'Jump Into Float Window'],
+  \ 'k' : [':call Coc_show_documentation()'      , 'Show Documentation'],
+  \ 'l' : ['<Plug>(coc-codelens-action)'         , 'Codelens Action'],
+  \ 'o' : ['<Plug>(coc-openlink)'                , 'Open Link'],
+  \ 'O' : [':CocList outline'                    , 'Outline'],
+  \ 'q' : ['<Plug>(coc-fix-current)'             , 'QuickFix'],
+  \ 'r' : ['<Plug>(coc-rename)'                  , 'Rename'],
+  \ 'R' : ['<Plug>(coc-references)'              , 'References'],
+  \ 's' : [':CocList -I symbols'                 , 'References List'],
+  \ 't' : ['<Plug>(coc-type-definition)'         , 'Type Deffinition'],
+  \ 'u' : [':CocListResume'                      , 'Resume List']
+  \ }
+
+" Code + Next submenu
+let g:which_key_map.c['n'] = {
+  \ 'name' : '+Next' ,
+  \ 'a' : [':CocNext'                            , 'Next Action'],
+  \ 'd' : ['<Plug>(coc-diagnostic-next)'         , 'Next Diagnostic'],
+  \ 'e' : ['<Plug>(coc-diagnostic-next-error)'   , 'Next Errorj']
+  \ }
+" Code + Previous submenu
+let g:which_key_map.c['p'] = {
+  \ 'name' : '+Previous' ,
+  \ 'a' : [':CocPrev'                            , 'Previous Action'],
+  \ 'd' : ['<Plug>(coc-diagnostic-prev)'         , 'Previous Diagnostic'],
+  \ 'e' : ['<Plug>(coc-diagnostic-prev-error)'   , 'Previous Error']
+  \ }
+
+" Debug submenu
+let g:which_key_map['D'] = {
+  \ 'name': '+Debug'
+  \ }
+
+" File Submenu
+  "TODO: \ 'c' : [':let @+=expand("%:p")'                      , 'Copy Path'],
+  " \ 'f' : ['','Find File Globaly']
+  " \ 'm' : [''                                    , 'Move File'],
+  " \ 'y' : [':let @*=expand("%:p")'                       , 'Yank Path']
+let g:which_key_map['f'] = {
+  \ 'name': '+File',
+  \ 'r' : [':History'                                    , 'Recent Files'],
+  \ 'R' : [':CocCommand workspace.renameCurrentFile'     , 'Rename File'],
+  \ }
+
+" Git submenu
+let g:which_key_map['g'] = {
+  \ 'name' : '+Git' ,
+  \ 'A' : [':Git add .'                        , 'Add Current'],
+  \ 'a' : [':Git add %'                        , 'Add ALl'],
+  \ 'b' : [':Git blame'                        , 'Blame'],
+  \ 'B' : [':GBrowse'                          , 'Browse'],
+  \ 'c' : [':Git commit'                       , 'Commit'],
+  \ 'd' : [':Git diff'                         , 'Diff'],
+  \ 'D' : [':Gdiffsplit'                       , 'Diff Split'],
+  \ 'g' : [':FloatermNew lazygit'              , 'Lazy Git'],
+  \ 'G' : [':GGrep'                            , 'Git Grep'],
+  \ 'l' : [':Git log'                          , 'Log'],
+  \ 'P' : [':Git push'                         , 'Push'],
+  \ 'p' : [':Git pull'                         , 'Pull'],
+  \ 'r' : [':GRemove'                          , 'Remove'],
+  \ 's' : [':Gstatus'                          , 'Status'],
+  \ 'v' : [':GV'                               , 'View Commits'],
+  \ 'V' : [':GV!'                              , 'View Buffer Commits'],
+  \ }
+  " TODO: Check
+  " \ 'h' : [':GitGutterLineHighlightsToggle'    , 'highlight hunks'],
+  " \ 'H' : ['<Plug>(GitGutterPreviewHunk)'      , 'preview hunk'],
+  " \ 'j' : ['<Plug>(GitGutterNextHunk)'         , 'next hunk'],
+  " \ 'k' : ['<Plug>(GitGutterPrevHunk)'         , 'prev hunk'],
+  " \ 's' : ['<Plug>(GitGutterStageHunk)'        , 'stage hunk'],
+  " \ 't' : [':GitGutterSignsToggle'             , 'toggle signs'],
+  " \ 'u' : ['<Plug>(GitGutterUndoHunk)'         , 'undo hunk'],
+
+" Insert Submenu
+let g:which_key_map['i'] = {
+  \ 'name': '+Insert',
+  \ 'n': [':put %'              ,'Current File Name'],
+  \ 'p': [':put=expand("%:p")'  ,'Current File Path'],
+  \ 'u': [':UnicodeTable'       ,'Unicode']
+  \ }
+
+" Lists Submenu
+let g:which_key_map['l'] = {
+  \ 'name': '+Lists',
+  \ 'a' : [':CocList --normal todolist'    ,'Todos'],
+  \ 'b' : [':CocList --normal buffers'     ,'Buffers'],
+  \ 'c' : [':CocList --normal commands'    ,'Coc Commands'],
+  \ 'd' : [':CocList --normal snippets'    ,'Snippets'],
+  \ 'e' : [':CocList --normal extensions'  ,'Coc Extensions'],
+  \ 'i' : [':CocList --normal issues'      ,'Github Issues'],
+  \ 'l' : [':CocList --normal links'       ,'Current Buffer Links'],
+  \ 'm' : [':CocList --normal maps'        ,'Maps'],
+  \ 'M' : [':CocList --normal marks'       ,'Marks'],
+  \ 'q' : [':CocList --normal quickfix'    ,'Quickfix'],
+  \ 'r' : [':CocList --normal services'    ,'Coc Services'],
+  \ 's' : [':CocList --normal -I symbols'  ,'Workplace Symbols'],
+  \ 'S' : [':CocList --normal sources'     ,'Completion Sources'],
+  \ 't' : [':CocList --normal floaterm'    ,'Terminals'],
+  \ 'T' : [':CocList --normal tags'        ,'Tags'],
+  \ 'v' : [':CocList --normal vimcommands' ,'Vim Commands'],
+  \ 'x' : [':CocList --normal marketplace' ,'Marketplace']
+  \ }
+
+" Search Submenu
+let g:which_key_map['s'] = {
+  \ 'name' : '+Search' ,
+  \ '/' : [':History/'          , 'Search History'],
+  \ ';' : [':Commands'          , 'Commands'],
+  \ 'a' : [':Ag'                , 'Text Ag'],
+  \ 'b' : [':BLines'            , 'Current Buffer'],
+  \ 'B' : [':Lines'             , 'Txt in Opened Buffers'] ,
+  \ 'c' : [':Commits'           , 'Commits'],
+  \ 'C' : [':BCommits'          , 'Buffer Commits'],
+  \ 'f' : [':Files'             , 'Local Files'],
+  \ 'g' : [':GFiles'            , 'Git Files'],
+  \ 'G' : [':GFiles?'           , 'Modified Git Files'],
+  \ 'h' : [':History'           , 'Files History'],
+  \ 'H' : [':History:'          , 'Command History'],
+  \ 'm' : [':Marks'             , 'Marks'] ,
+  \ 'M' : [':Maps'              , 'Normal Maps'] ,
+  \ 'p' : [':Helptags'          , 'Help Tags'] ,
+  \ 'P' : [':Tags'              , 'Project Tags'],
+  \ 's' : [':CocList snippets'  , 'Snippets'],
+  \ 'S' : [':Colors'            , 'Color Schemes'],
+  \ 't' : [':Rg'                , 'Text Rg'],
+  \ 'T' : [':BTags'             , 'Buffer Tags'],
+  \ 'w' : [':Windows'           , 'Windows'],
+  \ 'y' : [':Filetypes'         , 'File Types'],
+  \ 'z' : [':FZF'               , 'FZF'],
+  \ }
+
+" Terminal Submenu
+let g:which_key_map['t'] = {
+  \ 'name' : '+Terminal' ,
+  \ ';' : [':FloatermNew --wintype=popup --height=6'        , 'New Terminal'],
+  \ 'b' : [':FloatermNew btm'                               , 'Bottom Monitor'],
+  \ 'd' : [':FloatermNew lazydocker'                        , 'Lazydocker'],
+  \ 'h' : [':FloatermNew htop'                              , 'Htop Monitor'],
+  \ 'l' : [':CocList floaterm'                              , 'List Terminals'],
+  \ 'n' : [':FloatermNew node'                              , 'Node'],
+  \ 't' : [':FloatermToggle'                                , 'Toggle Terminal'],
+  \ 'y' : [':FloatermNew ytop'                              , 'Ytop Monitor']
+  \ }
+
+" Toggle submenu
+let g:which_key_map['T'] ={
+  \ 'name' : '+Toggle',
+  \ 'c' : [':set cursorcolumn!'                     , 'Cursor Column'],
+  \ 'd' : [':set background=dark'                   , 'Dark  Background'],
+  \ 'i' : [':IndentLinesToggle'                     , 'Indent Lines'],
+  \ 'l' : [':set background=light'                  , 'Light Background'],
+  \ 'L' : [':set cursorline!'                       , 'Cursor Line'],
+  \ 'n' : [':set nonumber!'                         , 'Line Numbers'],
+  \ 'r' : [':set norelativenumber!'                 , 'Relative Numbers'],
+  \ 'R' : [':syntax on'                             , 'Reset Colors (syntax on)'],
+  \ 't' : [':Vista!!'                               , 'Tag Viewer'],
+  \ 'T' : [':hi Normal ctermbg=NONE guibg=NONE<CR>' , 'Transparent Background'],
+  \ 'p' : [':RainbowToggle'                         , 'Color Parenthesis'],
+  \ 'w' : [':set wrap!'                             , 'Wrap'],
+  \ 'z' : [':Goyo'                                  , 'Zen Mode']
+  \ }
+
+" Window submenu
+let g:which_key_map['w'] = {
+  \ 'name' : '+Window',
+  \ 'h' : ['<C-W>H', 'Move Left'],
+  \ 'j' : ['<C-W>J', 'Move Down'],
+  \ 'k' : ['<C-W>K', 'Move Up'],
+  \ 'l' : ['<C-W>L', 'Move Right'],
+  \ }
+
+" Scratch Buffer submenu
+let g:which_key_map['x'] ={
+  \ 'name': '+Scratch',
+  \ 'c' : [':ScratchSelection'    , 'Copy To Scratch Buffer'],
+  \ 'C' : [':ScratchSelection!'   , 'Copy To Clean Scratch Buffer'],
+  \ 'v' : [':ScratchPreview'      , 'View Scratch Buffer'],
+  \ 'x' : [':Scratch'             , 'Open Scrach Buffer'],
+  \ 'X' : [':Scratch!'            , 'Open Clean Scrach Buffer']
+  \ }
 
 " Register which key map
 call which_key#register('<Space>', "g:which_key_map")
@@ -765,6 +851,13 @@ let g:startify_session_before_save = [
 
 " Make Ranger replace netrw and be the file explorer
 let g:rnvimr_ex_enable = 1
+
+    " :h Scratch for info
+   let  g:scratch_height = 20
+   let g:scratch_top = 0
+   let g:scratch_horizontal = 1
+   " let g:scratch_persistence_file '.scratch.vim' "Project based scratch
+   let g:scratch_persistence_file = '~/.config/nvim/scratch.vim' " Global Scratch
 
 let g:coc_global_extensions = [
   \ 'coc-snippets',
@@ -966,137 +1059,3 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
   nmap <C-LeftRelease>  <Plug>(coc-cursors-position)
   " nmap <M-LeftRelease> <Plug>(coc-cursors-word)
-
-let g:vista_default_executive = 'coc'
-let g:vista_fzf_preview = ['right:50%']
-
-let g:vista#renderer#enable_icon = 1
-
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-
- let g:vista#renderer#icons = {
- \   "function": "\uf794",
- \   "variable": "\uf71b",
- \  }
-
-" Change the color
-highlight CodiVirtualText guifg=red
-
-let g:codi#virtual_text_prefix = "❯ "
-
-
-let g:codi#aliases = {
-   \ 'javascript.jsx': 'javascript',
-   \ 'typescript.tsx': 'typescript',
-   \ }
-
-  let g:codi#interpreters = {
-                   \ 'typescript': {
-                       \ 'bin': 'tsun',
-                       \ },
-                   \ }
-
-" let g:floaterm_wintype='normal'
-" let g:floaterm_height=6
-
-let g:floaterm_keymap_toggle = '<F1>'
-let g:floaterm_keymap_next   = '<F2>'
-let g:floaterm_keymap_prev   = '<F3>'
-let g:floaterm_keymap_new    = '<F4>'
-
-" Floaterm
-let g:floaterm_gitcommit='floaterm'
-let g:floaterm_autoinsert=1
-let g:floaterm_width=0.8
-let g:floaterm_height=0.8
-let g:floaterm_wintitle=0
-let g:floaterm_autoclose=1
-
-" This is the default extra key bindings
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
-
-" Enable per-command history.
-" CTRL-N and CTRL-P will be automatically bound to next-history and
-" previous-history instead of down and up. If you don't like the change,
-" explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
-let g:fzf_history_dir = '~/.local/share/fzf-history'
-let g:fzf_buffers_jump = 1
-
-" map <C-f> :Files<CR>
-" map <leader>b :Buffers<CR>
-" nnoremap <leader>g :Rg<CR>
-" nnoremap <leader>t :Tags<CR>
-" nnoremap <leader>m :Marks<CR>
-
-
-let g:fzf_tags_command = 'ctags -R'
-" Border color
-let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
-
-let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
-let $FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git/**'"
-"-g '!{node_modules,.git}'
-
-" Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-"Get Files
-command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
-
-
-" Get text in files with Rg
-" command! -bang -nargs=* Rg
-"   \ call fzf#vim#grep(
-"   \   "rg --column --line-number --no-heading --color=always --smart-case --glob '!.git/**' ".shellescape(<q-args>), 1,
-
- " Make Ripgrep ONLY search file contents and not filenames
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --hidden --smart-case --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
-  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4.. -e'}, 'right:50%', '?'),
-  \   <bang>0)
-
-" Ripgrep advanced
-function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
-
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-
-" Git grep
-command! -bang -nargs=* GGrep
-  \ call fzf#vim#grep(
-  \   'git grep --line-number '.shellescape(<q-args>), 0,
-  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
-
-" git gutter colors
-highlight clear DiffAdd
-highlight DiffAdd ctermfg=235 guifg=#98C379
-highlight clear DiffChange
-highlight DiffChange ctermfg=180 guifg=#E5C07B
-highlight clear DiffDelete
-highlight DiffDelete ctermfg=204 guifg=#E06C75
-highlight clear DiffText
-highlight DiffText ctermfg=180 guibg=#E5C07B
