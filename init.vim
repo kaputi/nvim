@@ -204,9 +204,6 @@ set nobackup                            " This is recommended by coc
 set nowritebackup                       " This is recommended by coer
 
     colorscheme ayu
-    " popup menu (coc autocomplete)
-    hi Pmenu     guifg=#ffffff guibg=#393939
-    hi PmenuSel  guifg=#ffffff guibg=#666666
 
  let ayucolor='dark'
 "let ayucolor='mirage'
@@ -317,83 +314,66 @@ noremap K 5k
 nnoremap B ^
 nnoremap E $
 
-" Better indenting
+" Better indenting in visual mode (indent and go back to visual sellection)
 vnoremap < <gv
 vnoremap > >gv
 
-  " quit and save with capitals Q W (sometimes i dont release shift in time)
-  :command! -bar -bang Q quit<bang>
-  :command! -bar -bang W write<bang>
-  :command! -bar -bang Wq wq<bang>
-  :command! -bar -bang WQ wq<bang>
-  :command! -bar -bang QQQ wqa<bang>
+" quit and save with capitals Q W (sometimes i dont release shift in time)
+:command! -bar -bang Q quit<bang>
+:command! -bar -bang W write<bang>
+:command! -bar -bang Wq wq<bang>
+:command! -bar -bang WQ wq<bang>
+:command! -bar -bang QQQ wqa<bang>
 
-  " Select all
-  nnoremap <C-a> ggVG
+" Select all
+nnoremap <C-a> ggVG
 
-  "next tab
-  noremap tn :tabn<CR>
-  " previous tab
-  noremap tp :tabp<CR>
-  " move tab (expects position number)
-  noremap tm :tabm
-  " new tab
-  noremap tt :tabnew
-  " split tab
-  noremap ts :tab split<CR>
-  " close tab
-  noremap tc :tabc<CR>
+"Comment
+nnoremap gc :call NERDComment('n','toggle')<CR>
+vnoremap gc :call NERDComment('x','toggle')<CR>gv
 
-  "next buffer
-  noremap bn :bn<CR>
-  " previous buffer
-  noremap bp :bp<CR>
-  " delete buffer
-  noremap bd :bd<CR>
-  " list buffers
-  noremap bl :Buffer<CR>
+"next buffer
+noremap bn :bn<CR>
+" previous buffer
+noremap bp :bp<CR>
+" delete buffer
+noremap bd :bd<CR>
+" list buffers
+noremap bl :Buffer<CR>
 
-  " I hate escape more than anything else
-  inoremap jk <Esc>
-  inoremap kj <Esc>
+" I hate escape more than anything else
+inoremap jk <Esc>
+inoremap kj <Esc>
 
-  " Alternate way to save
-  nnoremap <silent> <C-s> :w<CR>
-  " Alternate way to quit
-  nnoremap <silent> <C-Q> :wq!<CR>
+" Alternate way to save
+nnoremap <silent> <C-s> :w<CR>
+" Alternate way to quit
+nnoremap <silent> <C-Q> :wq!<CR>
 
-  " Better window navigation
-  nnoremap <C-h> <C-w>h
-  nnoremap <C-j> <C-w>j
-  nnoremap <C-k> <C-w>k
-  nnoremap <C-l> <C-w>l
+" Better window navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
-  " Use alt + hjkl to resize windows
-  nnoremap <silent> <M-j>    :resize -2<CR>
-  nnoremap <silent> <M-k>    :resize +2<CR>
-  nnoremap <silent> <M-h>    :vertical resize -2<CR>
-  nnoremap <silent> <M-l>    :vertical resize +2<CR>
+" Use alt + hjkl to resize windows
+nnoremap <silent> <M-j>    :resize -2<CR>
+nnoremap <silent> <M-k>    :resize +2<CR>
+nnoremap <silent> <M-h>    :vertical resize -2<CR>
+nnoremap <silent> <M-l>    :vertical resize +2<CR>
 
-  nmap f <Plug>(easymotion-fl)
-  nmap F <Plug>(easymotion-Fl)
-  nmap t <Plug>(easymotion-tl)
-  nmap T <Plug>(easymotion-Tl)
-  nmap s <Plug>(easymotion-bd-w)
+nmap f <Plug>(easymotion-fl)
+nmap F <Plug>(easymotion-Fl)
+nmap t <Plug>(easymotion-tl)
+nmap T <Plug>(easymotion-Tl)
+nmap s <Plug>(easymotion-bd-w)
 
-  " move selecction on visual mode
-  vnoremap <C-j> :m '>+1<CR>gv=gv
-  vnoremap <C-k> :m '<-2<CR>gv=gv
+" move selecction on visual mode
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
 
-  " copy with ctrl-c
-  vnoremap <C-c> :w !xsel -i -b <CR><CR>
-
-  " close <tags></tags>
-  " inoremap ><Tab> ><Esc>F<lyt>o</<C-r>"><Esc>O<Space>
-  " inoremap ><Tab>  ><Esc>F<lyt>f>a</<C-r>"><Esc>F>a
-  " inoremap <C-t> <Esc>F<lywf>a</<C-r>"><Esc>F>a
-  " exit insert, search bck <,move right, yank w, search >, insert </ paste yank, insert >, exit inster, search back <, clear search highlight, enter insert
-  inoremap <C-t> <Esc>?<<cr>lyW/><cr>a</<C-r>"><Esc>?><cr>:noh<cr>a
-  " nmap <silent><leader>c %lyWh%a</<C-r>"<Bs>><Esc>%i
+" copy with ctrl-c
+vnoremap <C-c> :w !xsel -i -b <CR><CR>
 
 " Map leader to which_key
 nnoremap <silent> <leader> :silent WhichKey '<Space>'<CR>
