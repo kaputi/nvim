@@ -38,6 +38,15 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'tomasr/molokai'
     Plug 'gosukiwi/vim-atom-dark'
 
+    " ident guides
+    " Plug 'nathanaelkane/vim-indent-guides'
+    " Plug 'thaerkh/vim-indentguides'
+    Plug 'Yggdroot/indentLine'
+
+    " color parenthesis
+    " Plug 'junegunn/rainbow_parentheses.vim'
+    Plug 'frazrepo/vim-rainbow'
+
     " VSode like autocompletion and other stuff
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -117,21 +126,15 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     "key mappings
     Plug 'liuchengxu/vim-which-key'
 
-    " ident guides
-    " Plug 'nathanaelkane/vim-indent-guides'
-    " Plug 'thaerkh/vim-indentguides'
-    Plug 'Yggdroot/indentLine'
-
-    " color parenthesis
-    " Plug 'junegunn/rainbow_parentheses.vim'
-    Plug 'frazrepo/vim-rainbow'
-
     " sessions
     " Plug 'thaerkh/vim-workspace'
     Plug 'mhinz/vim-startify'
 
     "snippets
     Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
+
+    "Org mode
+    Plug 'jceb/vim-orgmode'
 
 call plug#end()
 " Automatically install missing plugins on startup
@@ -158,13 +161,14 @@ set pumblend=35                         " Popup menu transparency
 
 "UI ============================"
 " set showtabline=2                         " always show tab bar
-set ruler              			            " Show the cursor position all the time
+set ruler                              " Show the cursor position all the time
 set cmdheight=2                         " More space for displaying messages
 set t_Co=256                            " Support 256 colors
 set number relativenumber               " relative numbers
 set nu rnu                              " current line number
 set cursorline                          " Enable highlighting of the current line
 set cursorcolumn
+set scrolloff=5
 set laststatus=2                        " Always display the status line
 set noshowmode                          " We don't need to see things like -- INSERT -- anymore
 set signcolumn=yes                      " Always show the signcolumn, otherwise it would shift the text each time
@@ -203,6 +207,10 @@ endif
 set dir=~/.config/nvim/swap/           " tell vim where to put swap files
 set nobackup                            " This is recommended by coc
 set nowritebackup                       " This is recommended by coer
+
+" load all help
+packloadall
+silent! helptags ALL
 
   "Auto cmd ========================
   "Trim Whitespace Function
@@ -321,9 +329,6 @@ let g:airline_mode_map = {
       \ ''     : 'V',
       \ }
 
-   " space is leader
-let mapleader=" "
-
 "no arrow key for training with hjkl
 map <up> <nop>
 map <down> <nop>
@@ -399,9 +404,17 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 " copy with ctrl-c
 vnoremap <C-c> :w !xsel -i -b <CR><CR>
 
+" space is leader
+" let mapleader=" "
+let g:mapleader = "\<Space>"
+" , is local leader
+let g:maplocalleader = '-'
 " Map leader to which_key
 nnoremap <silent> <leader> :silent WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
+" Map local leader to which kwy
+nnoremap <silent> <localleader> :<c-u>WhichKey  '-'<CR>
+
 
 " Create map to add keys to
 let g:which_key_map =  {}
