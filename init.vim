@@ -50,6 +50,12 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Plug 'leafgarland/typescript-vim' "typescript
     " Plug 'ianks/vim-tsx' "TSX
 
+    " Debugger
+    Plug 'puremourning/vimspector'
+
+    " Maximize window
+    Plug 'szw/vim-maximizer'
+
     "Search for unicode
     Plug 'chrisbra/unicode.vim'
 
@@ -98,7 +104,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     "zen mode
     Plug 'junegunn/goyo.vim'
 
-    "vista
+    "Tagbar
     Plug 'liuchengxu/vista.vim'
 
     "change to project root
@@ -135,8 +141,8 @@ autocmd VimEnter *
     \| endif
 
 "wrapping  and tabs ============================="
-set wrap
-" set nowrap                              " Display long lines as just one line
+" set wrap
+set nowrap                              " Display long lines as just one line
 set linebreak
 set textwidth=0 wrapmargin=0
 set tabstop=2                           " Insert 2 spaces for a tab
@@ -145,9 +151,11 @@ set smarttab                            " Makes tabbing smarter will realize you
 set expandtab                           " Converts tabs to spaces
 set smartindent                         " Makes indenting smart
 set autoindent                          " Good auto indent
+
 "popup  menu ============================"
 set pumheight=10                        " Makes popup menu smaller
 set pumblend=35                         " Popup menu transparency
+
 "UI ============================"
 " set showtabline=2                         " always show tab bar
 set ruler              			            " Show the cursor position all the time
@@ -164,6 +172,7 @@ set signcolumn=yes                      " Always show the signcolumn, otherwise 
 set termguicolors
 " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " set mmp=1300
+
 "Behaviour==========================
 set iskeyword+=-                      	" treat dash separated words as a word text object"
 "set formatoptions-=cro                  " Stop newline continution of comments
@@ -185,15 +194,7 @@ set updatetime=300                      " Faster completion
 set timeoutlen=300                      " By default timeoutlen is 1000 ms
 " set autochdir                           " Your working directory will always be the same as your working directory
 " set foldcolumn=2                        " Folding abilities
-" au! BufWritePost $MYVIMRC source %      " auto source when writing to init.vm alternatively you can run :source $MYVIMRC
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-"file types
-autocmd BufRead,BufNewFile .eslintrc,.babelrc,.prettierrc set filetype=json
-autocmd BufRead,BufNewFile *.js,*.jsx set filetype=typescriptreact
-autocmd BufRead,BufNewFile *.ts,*.tsx set filetype=typescriptreact
-" open everything in tabs
-" autocmd VimEnter * tab all
-" autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
+
 " Backups and swap ============================
 " create swap dir if not exist
 if !isdirectory($HOME."/.config/nvim/swap")
@@ -202,6 +203,26 @@ endif
 set dir=~/.config/nvim/swap/           " tell vim where to put swap files
 set nobackup                            " This is recommended by coc
 set nowritebackup                       " This is recommended by coer
+
+  "Auto cmd ========================
+  "Trim Whitespace Function
+fun! TrimWhitespace()
+       let l:save = winsaveview()
+       keeppatterns %s/\s\+$//e
+       call winrestview(l:save)
+endfun
+
+augroup autogroup
+      au!
+    "Trim whitespace
+    autocmd BufWritePre * : call TrimWhitespace()
+    " Format options
+    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+    "file types
+    autocmd BufRead,BufNewFile .eslintrc,.babelrc,.prettierrc set filetype=json
+    autocmd BufRead,BufNewFile *.js,*.jsx set filetype=typescriptreact
+    autocmd BufRead,BufNewFile *.ts,*.tsx set filetype=typescriptreact
+augroup END
 
     colorscheme ayu
 
@@ -398,10 +419,10 @@ highlight default link WhichKeySeperator DiffAdded
 highlight default link WhichKeyGroup     Identifier
 highlight default link WhichKeyDesc      Function
 
-" Hide status line
-autocmd! FileType which_key
-autocmd  FileType which_key set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
+    " Hide status line on which key
+    autocmd! FileType which_key
+    autocmd  FileType which_key set laststatus=0 noshowmode noruler
+    \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
 function! Coc_show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -513,8 +534,37 @@ let g:which_key_map.c['p'] = {
   \ }
 
 " Debug submenu
-let g:which_key_map['D'] = {
-  \ 'name': '+Debug'
+let g:which_key_map['d'] = {
+  \ 'name': '+Debug',
+  \ 'c' : [':call win_gotoid(g:vimspector_session_windows.code) <CR>'            , 'Code Window'],
+  \ 'd' : ['<Plug>VimspectorContinue'                                       , 'Launch/Continue'],
+  \ 'e' : ['<Plug>VimspectorBalloonEval'                                    , 'Balloon Eval'],
+  \ 'o' : [':call win_gotoid(g:vimspector_session_windows.output)<CR>'          , 'Output Window'],
+  \ 'P' : ['<Plug>VimspectorPause'                                          , 'Pause'],
+  \ 'R' : ['<Plug>VimspectorRestart'                                        , 'Restart'],
+  \ 's' : [':call win_gotoid(g:vimspector_session_windows.stack_trace)<CR>'     , 'Stack Window'],
+  \ 'S' : ['<Plug>VimspectorStop'                                           , 'Stop'],
+  \ 't' : [':call win_gotoid(g:vimspector_session_windows.tagpage)<CR>'         , 'Tag Window'],
+  \ 'v' : [':call win_gotoid(g:vimspector_session_windows.variables)<CR>'       , 'Variable Window'],
+  \ 'w' : [':call win_gotoid(g:vimspector_session_windows.watches)<CR>'         , 'Watch Window']
+  \ }
+
+" Debug Run Submenu
+let g:which_key_map.d['r'] ={
+  \ 'name' : '+Run',
+  \ 'c' : ['<Plug>VimspectorRunToCursor'                    , 'Run to Cursor'],
+  \ 'j' : ['<Plug>VimspectorStepOver'                       , 'Step Over'],
+  \ 'k' : ['<Plug>VimspectorStepOut'                        , 'Step Out'],
+  \ 'l' : ['<Plug>VimspectorStepInto'                       , 'Step Into']
+  \ }
+
+" Debug Breakpoint Submenu
+let g:which_key_map.d['b'] ={
+  \ 'name' : '+Breakpoints',
+  \ 'b' : ['<Plug>VimspectorToggleBreakpoint'               , 'Toggle Breakpoint'],
+  \ 'c' : ['<Plug>VimspectorToggleConditionalBreakpoint'    , 'Toggle Conditional Breakpoint'],
+  \ 'C' : [':call vimspector#ClearBreakpoints()<CR>'        , 'Clean'],
+  \ 'f' : ['<Plug>VimspectorAddFunctionBreakpoint'          , 'Functional Breakpoint']
   \ }
 
 " File Submenu
@@ -643,7 +693,7 @@ let g:which_key_map['T'] ={
   \ 'T' : [':hi Normal ctermbg=NONE guibg=NONE<CR>' , 'Transparent Background'],
   \ 'p' : [':RainbowToggle'                         , 'Color Parenthesis'],
   \ 'w' : [':set wrap!'                             , 'Wrap'],
-  \ 'z' : [':Goyo'                                  , 'Zen Mode']
+  \ 'z' : [':Goyo! 70%x90%'                                  , 'Zen Mode']
   \ }
 
 " Window submenu
@@ -692,6 +742,10 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
+
+let g:maximizer_restor_on_winleave=1
+let g:maximizer_set_default_mapping = 0
+let g:maximizer_set_mapping_with_bang = 0
 
 " Disable default mappings
 let g:EasyMotion_do_mapping = 0
@@ -1042,3 +1096,6 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
   nmap <C-LeftRelease>  <Plug>(coc-cursors-position)
   " nmap <M-LeftRelease> <Plug>(coc-cursors-word)
+
+let g:vimspector_install_gadgets = ['debugger-for-chrome','vscode-node-debug2']
+let g:vimspector_base_dir=expand( '$HOME/.config/nvim/vimspector-config' )
