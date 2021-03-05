@@ -205,7 +205,10 @@ set nowritebackup                       " This is recommended by coer
 
     colorscheme ayu
 
- let ayucolor='dark'
+let ayucolor='dark'
+ "mirage setings
+    hi CursorLine guibg=#1f262a
+    hi CursorColumn guibg=#1f262a
 "let ayucolor='mirage'
 "let ayucolor='light'
 
