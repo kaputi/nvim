@@ -7,3 +7,4 @@ swap
 undodir
 sessions
 scratch.vim
+vimspector-config/gadgets/
