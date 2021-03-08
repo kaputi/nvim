@@ -251,14 +251,16 @@ augroup autogroup
     autocmd BufRead,BufNewFile *.ts,*.tsx set filetype=typescriptreact
 augroup END
 
-    colorscheme ayu
-
-let ayucolor='dark'
- "mirage setings
-    hi CursorLine guibg=#1f262a
-    hi CursorColumn guibg=#1f262a
-"let ayucolor='mirage'
+" let ayucolor='dark'
+let ayucolor='mirage'
 "let ayucolor='light'
+ colorscheme ayu
+" " Dark
+" hi CursorLine guibg=#1f262a
+" hi CursorColumn guibg=#1f262a
+" Mirage
+hi CursorLine guibg=#272d38
+hi CursorColumn guibg=#272d38
 
 " let g:gruvbox_bold = 1
 " " let g:gruvbox_italic =1
@@ -279,9 +281,12 @@ let ayucolor='dark'
 " " let g:gruvbox_improved_strings=1
 " " let g:gruvbox_improved_warnings=1
 
+  " colorscheme gruvbox
+
     " popup is too clear on this theme
     " hi Pmenu     guifg=#ffffff guibg=#393939
     " hi PmenuSel  guifg=#ffffff guibg=#666666
+    " colorscheme landscape
 
 " always show
 let g:vem_tabline_show=2
@@ -320,7 +325,7 @@ let g:airline_right_alt_sep = ''
 " Switch to your current theme
 " let g:airline_theme = 'onedark'
 " let g:airline_theme = 'gruvbox'
-let g:airline_theme = 'deus'
+let g:airline_theme = 'ayu_mirage'
 
 " Sections
 " let g:airline_section_c = ''

@@ -10,17 +10,6 @@
     "typescript.tsx",
     "javascript.jsx"
   ],
-  "eslint.probe": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "html",
-    "vue",
-    "markdown",
-    "typescript.tsx",
-    "javascript.jsx"
-  ],
   "eslint.packageManager": "yarn",
   "eslint.alwaysShowStatus": true,
   "explorer.quitOnOpen": true,

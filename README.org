@@ -315,19 +315,21 @@ augroup END
 
 * UI
 ** Theme
-Set the theme here and comment/uncomment individual configs below
-#+BEGIN_SRC vimrc :tangle init.vim
-    colorscheme ayu
-#+END_SRC
+uncomment the configs for the theme
 *** ayu theme
 Great theme lots of contrast in every version
 #+BEGIN_SRC vimrc :tangle init.vim
-let ayucolor='dark'
- "mirage setings
-    hi CursorLine guibg=#1f262a
-    hi CursorColumn guibg=#1f262a
-"let ayucolor='mirage'
+" let ayucolor='dark'
+let ayucolor='mirage'
 "let ayucolor='light'
+ colorscheme ayu
+" " Dark
+" hi CursorLine guibg=#1f262a
+" hi CursorColumn guibg=#1f262a
+" Mirage
+hi CursorLine guibg=#272d38
+hi CursorColumn guibg=#272d38
+
 
 
 #+END_SRC
@@ -353,6 +355,8 @@ great theme suports all languages that ive tryed perfect
 " " let g:gruvbox_improved_strings=1
 " " let g:gruvbox_improved_warnings=1
 
+  " colorscheme gruvbox
+
 #+END_SRC
 *** landscape
 dark Theme with a lot of contrast
@@ -360,6 +364,7 @@ dark Theme with a lot of contrast
     " popup is too clear on this theme
     " hi Pmenu     guifg=#ffffff guibg=#393939
     " hi PmenuSel  guifg=#ffffff guibg=#666666
+    " colorscheme landscape
 #+END_SRC
 ** Tabline
 Settings for vem tabline plugin
@@ -406,7 +411,7 @@ let g:airline_right_alt_sep = ''
 " Switch to your current theme
 " let g:airline_theme = 'onedark'
 " let g:airline_theme = 'gruvbox'
-let g:airline_theme = 'deus'
+let g:airline_theme = 'ayu_mirage'
 
 " Sections
 " let g:airline_section_c = ''
