@@ -213,7 +213,7 @@ set shortmess+=c                        " Don't pass messages to |ins-completion
 set updatetime=300                      " Faster completion
 set timeoutlen=300                      " By default timeoutlen is 1000 ms
 " set autochdir                           " Your working directory will always be the same as your working directory
-" set foldcolumn=2                        " Folding abilities
+set foldcolumn=1                        " Folding abilities
 " set foldmethod=indent
 " set foldmethod=syntax
 set foldmethod=manual       "select the text and zf is the best way with this method
