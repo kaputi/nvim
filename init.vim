@@ -19,6 +19,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
     " Icons
     Plug 'ryanoasis/vim-devicons'
+    "lua fork of devicons
+    Plug 'kyazdani42/nvim-web-devicons'
 
     " themes
     Plug 'itchyny/landscape.vim'
@@ -122,6 +124,11 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     "fzf
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
+       " Telescope
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+
 
     "key mappings
     Plug 'liuchengxu/vim-which-key'
@@ -135,19 +142,27 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
     "Org mode
     Plug 'jceb/vim-orgmode'
+    Plug 'dhruvasagar/vim-dotoo'
+    Plug 'dhruvasagar/vim-table-mode'
+    "speed dating (for orgmode)
+    Plug 'tpope/vim-speeddating'
 
 call plug#end()
 " Automatically install missing plugins on startup
-autocmd VimEnter *
-    \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-    \|   PlugInstall --sync | q
-    \| endif
+ augroup InstallPlugins
+    autocmd! InstallPlugins
+    autocmd VimEnter *
+        \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+        \|   PlugInstall --sync | q
+        \| endif
+augroup END
 
 "wrapping  and tabs ============================="
 " set wrap
 set nowrap                              " Display long lines as just one line
 set linebreak
-set textwidth=0 wrapmargin=0
+set textwidth=80 wrapmargin=0
+set colorcolumn=+1                     " show column no 81(textwidth +1)
 set tabstop=2                           " Insert 2 spaces for a tab
 set shiftwidth=2                        " Change the number of space characters inserted for indentation
 set smarttab                            " Makes tabbing smarter will realize you have 2 vs 4
@@ -168,7 +183,8 @@ set number relativenumber               " relative numbers
 set nu rnu                              " current line number
 set cursorline                          " Enable highlighting of the current line
 set cursorcolumn
-set scrolloff=5
+set scrolloff=5                         " Always see 5 lines under cursor when scrolling
+set sidescrolloff=15                    " Always see 15 columns at the sides of the cursor
 set laststatus=2                        " Always display the status line
 set noshowmode                          " We don't need to see things like -- INSERT -- anymore
 set signcolumn=yes                      " Always show the signcolumn, otherwise it would shift the text each time
@@ -198,6 +214,9 @@ set updatetime=300                      " Faster completion
 set timeoutlen=300                      " By default timeoutlen is 1000 ms
 " set autochdir                           " Your working directory will always be the same as your working directory
 " set foldcolumn=2                        " Folding abilities
+" set foldmethod=indent
+" set foldmethod=syntax
+set foldmethod=manual       "select the text and zf is the best way with this method
 
 " Backups and swap ============================
 " create swap dir if not exist
@@ -445,6 +464,13 @@ function! Coc_show_documentation()
   endif
 endfunction
 
+"Close all buffers with fifletype
+" function! BDExt(ext)
+"   let buffers = filter(range(1, bufnr('$')), 'buflisted(v:val) && bufname(v:val) =~ "\.'.a:ext.'$"')
+"   if empty(buffers) |throw "no *.".a:ext." buffer" | endif
+"   exe 'bd '.join(buffers, ' ')
+" endfunction
+
 " Top Layer
 let g:which_key_map['/'] = ['<plug>NERDCommenterToggle'                     ,'Comment' ]
 let g:which_key_map['='] = ['<C-W>='                                        ,'Balance Windows' ]
@@ -456,7 +482,7 @@ let g:which_key_map['e'] = [':CocCommand explorer'                           ,'F
 let g:which_key_map['h'] = ['<C-W>s'                                        ,'Split Below']
 let g:which_key_map['j'] = ['<Plug>(easymotion-bd-w)'                       ,'Jump to Word' ]
 let g:which_key_map['J'] = ['<Plug>(easymotion-s2)'                         ,'Jump With 2 Chars' ]
-"TODO let g:which_key_map['m'] = ['XXXXXXX'                         ,'Maximize' ]
+let g:which_key_map['m'] = [':MaximizerToggle'                         ,'Maximize' ]
 let g:which_key_map['o'] = ['append(line("."),   repeat([""], v:count1))'   ,'Line Below' ]
 let g:which_key_map['O'] = ['append(line(".")-1,   repeat([""], v:count1))' ,'Line Above' ]
 let g:which_key_map['p'] = ['Files'                                         ,'Search File Local' ]
@@ -547,7 +573,7 @@ let g:which_key_map.c['p'] = {
   \ }
 
 " Debug submenu
-let g:which_key_map['d'] = {
+let g:which_key_map['D'] = {
   \ 'name': '+Debug',
   \ 'c' : [':call win_gotoid(g:vimspector_session_windows.code) <CR>'            , 'Code Window'],
   \ 'd' : ['<Plug>VimspectorContinue'                                       , 'Launch/Continue'],
@@ -563,7 +589,7 @@ let g:which_key_map['d'] = {
   \ }
 
 " Debug Run Submenu
-let g:which_key_map.d['r'] ={
+let g:which_key_map.D['r'] ={
   \ 'name' : '+Run',
   \ 'c' : ['<Plug>VimspectorRunToCursor'                    , 'Run to Cursor'],
   \ 'j' : ['<Plug>VimspectorStepOver'                       , 'Step Over'],
@@ -572,7 +598,7 @@ let g:which_key_map.d['r'] ={
   \ }
 
 " Debug Breakpoint Submenu
-let g:which_key_map.d['b'] ={
+let g:which_key_map.D['b'] ={
   \ 'name' : '+Breakpoints',
   \ 'b' : ['<Plug>VimspectorToggleBreakpoint'               , 'Toggle Breakpoint'],
   \ 'c' : ['<Plug>VimspectorToggleConditionalBreakpoint'    , 'Toggle Conditional Breakpoint'],
@@ -728,8 +754,11 @@ let g:which_key_map['x'] ={
   \ 'X' : [':Scratch!'            , 'Open Clean Scrach Buffer']
   \ }
 
+let g:which_key_local_org_map = {}
+
 " Register which key map
 call which_key#register('<Space>', "g:which_key_map")
+call which_key#register('-', "g:which_key_local_org_map")
 
 let g:NERDCreateDefaultMappings = 0
 " Add spaces after comment delimiters by default
@@ -881,11 +910,6 @@ let g:turtlePoem = [
       \ ]
 let g:startify_custom_header = 'startify#center(g:turtlePoem)'
 
-
-" nnoremap <leader><leader>s :SSave!<CR>
-" nnoremap <leader><leader>d :SDelete!<CR>
-" nnoremap <leader><leader>S :Startify<CR>
-
 " highlight StartifyBracket ctermfg=240
 " highlight StartifyFooter  ctermfg=240
 highlight StartifyHeader  ctermfg=114 guifg=#87d787
@@ -1027,8 +1051,10 @@ nmap <silent> gr <Plug>(coc-references)
 " nnoremap <silent> <leader><leader>k :call <SID>show_documentation()<CR>
 
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
+augroup Coc
+    autocmd! Coc
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup END
 
 " Remap for do codeAction of selected region
 function! s:cocActionsOpenFromSelected(type) abort
@@ -1112,3 +1138,141 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 let g:vimspector_install_gadgets = ['debugger-for-chrome','vscode-node-debug2']
 let g:vimspector_base_dir=expand( '$HOME/.config/nvim/vimspector-config' )
+
+hi CocGitAddedSign guifg=#B8CC52 guibg=NONE
+hi CocGitChangedSign guifg=#36A3D9 guibg=NONE
+hi CocGitRemovedSign guifg=#bf0505 guibg=NONE
+
+let g:org_todo_keywords = [['TODO(t)', 'DOING(d)', '|', 'DONE(D)']]
+
+let g:org_todo_keyword_faces = [['TODO', ' red'],['DOING','yellow'],['DONE','green']]
+let g:org_agenda_files = ['~/Documents/OrgFiles/projects.org']
+let g:org_heading_shade_leading_stars = 1
+
+" let g:org_todo_keyword_faces = [['WAITING', 'cyan'], ['CANCELED',
+"   \   [':foreground red', ':background black', ':weight bold',
+"   \   ':slant italic', ':decoration underline']]]
+
+                  " This setting defines whether the leading stars of the headlines
+            " will be shaded. Set this to 0 if you don't want them to be shaded. >
+                let g:dotoo_headline_shade_leading_stars = 1
+
+            " This setting defines what the faces of various TODO states look
+            " like. >
+                let g:dotoo_todo_keyword_faces = [
+                  \ ['TODO', [':foreground 160', ':weight bold']],
+                  \ ['DOING', [':foreground 27', ':weight bold']],
+                  \ ['DONE', [':foreground 22', ':weight bold']],
+                  \ ]
+
+            " This setting defines various todo keywords to be recognized. A `|`
+            " separates final done states from others. >
+                let g:dotoo#parser#todo_keywords = [
+                  \ 'TODO',
+                  \ 'DOING',
+                  \ '|',
+                  \ 'DONE']
+
+
+            " This setting sets the warning period, so you're warned about TODOs
+            " that are due within the warning period from today. It is a string
+            " of the form '{number}[dmy]' where 'd' stands for day, 'm' for
+            " month, 'y' for year. >
+                let g:dotoo#agenda#warning_days = '30d'
+
+            " This setting is an array of files the agenda will read to show
+            " what's on the agenda within the warning days. They can include
+            " wildcards which will be expanded using |glob()| >
+                " let g:dotoo#agenda#files = ['~/Documents/dotoo-files/*.dotoo']
+                let g:dotoo#agenda#files = ['~/Documents/OrgFiles/projects.org']
+
+            " This setting defines whether the time_ago would output a short
+            " value near the closest years, months, days, hours, minutes or
+            " seconds or a long value with the full time ago. Set it to 1 to see
+            " a short time ago. >
+                let g:dotoo#time#time_ago_short = 0
+
+            " This setting defines the default refile file where the capture
+            " captures templates into. >
+                let g:dotoo#capture#refile = expand('~/Documents/dotoo-files/refile.dotoo')
+
+            " This setting enables clocking while capturing. >
+                let g:dotoo#capture#clock = 1
+
+            " This setting defines the capture templates the capture menu uses. >
+                let g:dotoo#capture#templates = {
+                      \ 't': {
+                      \   'description': 'Todo',
+                      \   'lines': [
+                      \     '* TODO %?',
+                      \     'DEADLINE: [%(strftime(g:dotoo#time#datetime_format))]'
+                      \   ],
+                      \  'target': 'refile:Tasks'
+                      \ },
+                      \ 'n': {
+                      \   'description': 'Note',
+                      \   'lines': ['* %? :NOTE:'],
+                      \ },
+                      \ 'm': {
+                      \   'description': 'Meeting',
+                      \   'lines': ['* MEETING with %? :MEETING:'],
+                      \ },
+                      \ 'p': {
+                      \   'description': 'Phone call',
+                      \   'lines': ['* PHONE %? :PHONE:'],
+                      \ },
+                      \ 'h': {
+                      \   'description': 'Habit',
+                      \   'lines': [
+                      \     '* NEXT %?',
+                      \     'SCHEDULED: [%(strftime(g:dotoo#time#date_day_format)) +1m]',
+                      \     ':PROPERTIES:',
+                      \     ':STYLE: habit',
+                      \     ':REPEAT_TO_STATE: NEXT',
+                      \     ':END:'
+                      \   ]
+                      \ }
+                      \}
+
+            " Templates are represented by a dictionary where the key is the
+            " short_key used to select the template from the capture menu.
+
+            " It has the following structure
+
+            " ,* `description` provides a human friendly explanation of what this
+            "    template represents
+            " ,* `lines` is a list for each line of the template. You can use
+            "    `%?` as a placeholder for where the cursor will be while editing
+            "    the template immidiately after selecting it and `%(...)` to
+            "    inline viml code that will be evaluated.
+            " ,* `target` defines the target for  this capture template should be
+            "    saved to, it can either be a dotoo file path or a dotoo move
+            "    target such as `todo:Tasks` which represents a dotoo file
+            "    headline to use as the parent for this captured headline.
+
+            " For easier customization this allows you to be able to add new or
+            " override the provided templates easily. >
+                let g:dotoo#capture#templates = {
+                      \ 't': {
+                      \   'target': 'refile-personal:Todos'
+                      \ }
+                      \}
+
+                " Or add new template
+                let g:dotoo#capture#templates = {
+                      \ 'x': {
+                      \   'description': 'eXtra template',
+                      \   'lines': ['* eXtra %? :EXTRA:'],
+                      \ }
+                      \}
+
+                " Or both
+                let g:dotoo#capture#templates = {
+                      \ 't': {
+                      \   'target': 'refile-personal:Todos'
+                      \ },
+                      \ 'x': {
+                      \   'description': 'eXtra template',
+                      \   'lines': ['* eXtra %? :EXTRA:'],
+                      \ }
+                      \}
