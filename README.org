@@ -61,7 +61,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     "Plug 'itchyny/vim-gitbranch' "git branch on status bar
 
     "tabline
-    Plug 'pacha/vem-tabline'
+    " Plug 'pacha/vem-tabline'
+    Plug 'romgrk/barbar.nvim'
 
     " Icons
     Plug 'ryanoasis/vim-devicons'
@@ -367,7 +368,7 @@ dark Theme with a lot of contrast
     " colorscheme landscape
 #+END_SRC
 ** Tabline
-Settings for vem tabline plugin
+*** vem-tabline
 #+BEGIN_SRC vimrc :tangle init.vim
 " always show
 let g:vem_tabline_show=2
@@ -399,6 +400,22 @@ let g:vem_tabline_multiwindow_mode=1
 
 #+END_SRC
 
+*** barbar
+#+BEGIN_SRC vimrc :tangle init.vim
+ " NOTE: If barbar's option dict isn't created yet, create it
+let bufferline = get(g:, 'bufferline', {})
+ " Enable/disable icons
+" if set to 'numbers', will show buffer index in the tabline
+" if set to 'both', will show buffer index and icons in the tabline
+let bufferline.icons = 'both'
+" Sets the name of unsaved buffers
+let bufferline.no_name_title = 'New-File'
+" If set, the icon color will follow its corresponding buffer
+" highlight group. By default, the Buffer*Icon group is linked to the
+" Buffer* group (see Highlighting below). Otherwise, it will take its
+" default value as defined by devicons.
+let bufferline.icon_custom_colors = v:true
+#+END_SRC
 ** Modeline
 Settings for airline plugin
 #+BEGIN_SRC vimrc :tangle init.vim
@@ -442,40 +459,48 @@ let g:airline_mode_map = {
 #+END_SRC
 * Key bindings
 ** Maps
-|---------+--------+--------------------+--------------------------------------|
-| Mode    | Keys   | Mnemonic           | Description                          |
-|---------+--------+--------------------+--------------------------------------|
-| Normal  | Ctrl+a | All                | Select All                           |
-| Normal  | Ctrl+s | Save               | Save                                 |
-| Normal  | Ctrl+h | hjkl               | Focus Left Window                    |
-| Normal  | Ctrl+j | hjkl               | Focus Down Window                    |
-| Normal  | Ctrl+k | hjkl               | Focus Up Window                      |
-| Normal  | Ctrl+l | hjkl               | Focus Right Window                   |
-| Normal  | Alt+h  | hjkl               | Resize Window                        |
-| Normal  | Alt+j  | hjkl               | Resize Window                        |
-| Normal  | Alt+k  | hjkl               | Resize Window                        |
-| Normal  | Alt+l  | hjkl               | Resize Window                        |
-| Normal  | bn     | Buffer Next        | Next Buffer                          |
-| Normal  | bp     | Buffer Previous    | Previous Buffer                      |
-| Normal  | bd     | Buffer Delete      | Delete Buffer                        |
-| Normal  | bl     | Buffer List        | List Buffer                          |
-| Normal  | B      | Beggining          | Moves to first non blanc char        |
-| Normal  | E      | End                | Moves to Last non blanc char         |
-| Normal  | gc     | Comment            | Comments                             |
-| Normal  | J      | Big j              | Moves cursor down 5 times - 5j       |
-| Normal  | K      | Big k              | Moves cursor up 5 times - 5k         |
-| Insert  | jk     | Home Row           | Escape                               |
-| Insert  | kj     | Home Row           | Escape                               |
-| Visual  | Ctrl+j | j = down           | Move Selection Down                  |
-| Visual  | Ctrl+k | k = up             | Move Selection Up                    |
-| Visual  | Ctrl+c | Copy               | Copy to clipboard                    |
-| Visual  | gc     | Comment            | Comments                             |
-| Command | Q      | quit               | Because I dont release Shift in time |
-| Command | W      | Write              | Because I dont release Shift in time |
-| Command | Wq     | Write and Quit     | Because I dont release Shift in time |
-| Command | WQ     | Write and Quit     | Because I dont release Shift in time |
-| Command | QQQ    | Write and Quit All | Write And Quit All                   |
-|---------+--------+--------------------+--------------------------------------|
+TODO: If babar alt+... for buffers is more confortable remove b+...
+|---------+---------+--------------------+--------------------------------------|
+| Mode    | Keys    | Mnemonic           | Description                          |
+|---------+---------+--------------------+--------------------------------------|
+| Normal  | Ctrl+a  | All                | Select All                           |
+| Normal  | Ctrl+s  | Save               | Save                                 |
+| Normal  | Ctrl+h  | hjkl               | Focus Left Window                    |
+| Normal  | Ctrl+j  | hjkl               | Focus Down Window                    |
+| Normal  | Ctrl+k  | hjkl               | Focus Up Window                      |
+| Normal  | Ctrl+l  | hjkl               | Focus Right Window                   |
+| Normal  | Alt+h   | hjkl               | Resize Window                        |
+| Normal  | Alt+j   | hjkl               | Resize Window                        |
+| Normal  | Alt+k   | hjkl               | Resize Window                        |
+| Normal  | Alt+l   | hjkl               | Resize Window                        |
+| Normal  | Alt+.   |                    | Next Buffer                          |
+| Normal  | Alt+,   |                    | Previous Buffer                      |
+| Normal  | Alt+/   |                    | Pick Buffer                          |
+| Normal  | Alt+>   |                    | Move Buffer                          |
+| Normal  | Alt+<   |                    | Move Buffer                          |
+| Normal  | Alt+1-9 | Number             | Go to Buffer number                  |
+| Normal  | Alt+d   | Delete             | Close Buffer                         |
+| Normal  | bn      | Buffer Next        | Next Buffer                          |
+| Normal  | bp      | Buffer Previous    | Previous Buffer                      |
+| Normal  | bd      | Buffer Delete      | Delete Buffer                        |
+| Normal  | bl      | Buffer List        | List Buffer                          |
+| Normal  | B       | Beggining          | Moves to first non blanc char        |
+| Normal  | E       | End                | Moves to Last non blanc char         |
+| Normal  | gc      | Comment            | Comments                             |
+| Normal  | J       | Big j              | Moves cursor down 5 times - 5j       |
+| Normal  | K       | Big k              | Moves cursor up 5 times - 5k         |
+| Insert  | jk      | Home Row           | Escape                               |
+| Insert  | kj      | Home Row           | Escape                               |
+| Visual  | Ctrl+j  | j = down           | Move Selection Down                  |
+| Visual  | Ctrl+k  | k = up             | Move Selection Up                    |
+| Visual  | Ctrl+c  | Copy               | Copy to clipboard                    |
+| Visual  | gc      | Comment            | Comments                             |
+| Command | Q       | quit               | Because I dont release Shift in time |
+| Command | W       | Write              | Because I dont release Shift in time |
+| Command | Wq      | Write and Quit     | Because I dont release Shift in time |
+| Command | WQ      | Write and Quit     | Because I dont release Shift in time |
+| Command | QQQ     | Write and Quit All | Write And Quit All                   |
+|---------+---------+--------------------+--------------------------------------|
 #+BEGIN_SRC vimrc :tangle init.vim
 
 "no arrow key for training with hjkl
@@ -510,15 +535,54 @@ nnoremap <C-a> ggVG
 nnoremap gc :call NERDComment('n','toggle')<CR>
 vnoremap gc :call NERDComment('x','toggle')<CR>gv
 
+" "next buffer
+" noremap bn :bn<CR>
+" " previous buffer
+" noremap bp :bp<CR>
+" " delete buffer
+" noremap bd :bd<CR>
+" " list buffers
+" noremap bl :Buffer<CR>
+
+" barbar buffer s
 "next buffer
-noremap bn :bn<CR>
+noremap bn :BufferNext<CR>
 " previous buffer
-noremap bp :bp<CR>
+noremap bp :BufferPrevious<CR>
 " delete buffer
-noremap bd :bd<CR>
+noremap bd :BufferClose<CR>
 " list buffers
 noremap bl :Buffer<CR>
 
+" Magic buffer-picking mode
+nnoremap <silent> <A-/> :BufferPick<CR>
+" Sort automatically by...
+" nnoremap <silent> <Space>bd :BufferOrderByDirectory<CR>
+" nnoremap <silent> <Space>bl :BufferOrderByLanguage<CR>
+" Move to previous/next
+nnoremap <silent>    <A-,> :BufferPrevious<CR>
+nnoremap <silent>    <A-.> :BufferNext<CR>
+" Re-order to previous/next
+nnoremap <silent>    <A-<> :BufferMovePrevious<CR>
+nnoremap <silent>    <A->> :BufferMoveNext<CR>
+" Goto buffer in position...
+nnoremap <silent>    <A-1> :BufferGoto 1<CR>
+nnoremap <silent>    <A-2> :BufferGoto 2<CR>
+nnoremap <silent>    <A-3> :BufferGoto 3<CR>
+nnoremap <silent>    <A-4> :BufferGoto 4<CR>
+nnoremap <silent>    <A-5> :BufferGoto 5<CR>
+nnoremap <silent>    <A-6> :BufferGoto 6<CR>
+nnoremap <silent>    <A-7> :BufferGoto 7<CR>
+nnoremap <silent>    <A-8> :BufferGoto 8<CR>
+nnoremap <silent>    <A-9> :BufferLast<CR>
+" Close buffer
+nnoremap <silent>    <A-d> :BufferClose<CR>
+" Wipeout buffer
+"                          :BufferWipeout<CR>
+" Close commands
+"                          :BufferCloseAllButCurrent<CR>
+"                          :BufferCloseBuffersLeft<CR>
+"                          :BufferCloseBuffersRight<CR>
 " I hate escape more than anything else
 inoremap jk <Esc>
 inoremap kj <Esc>
@@ -641,7 +705,7 @@ TODO: fin files globaly, maximize(requires plugin)
 | "p"     |        | from Ctrl-p       | Search file in project = leader SPACE |
 | "P"     |        | From VScode C+S+p | Vim Commands                          |
 | "q"     |        | Quit              | Quit                                  |
-| "r"     |        | Ranger            | Ranger file explorer                  |
+| r"      |        | Ranger            | Ranger file explorer                  |
 | "s"     | Yes    | Search            | Search submenu                        |
 | "t"     | Yes    | Terminal          | Terminal submenu                      |
 | "T"     | Yes    | Toggles           | Toggle submenu                        |
@@ -658,7 +722,8 @@ let g:which_key_map['='] = ['<C-W>='                                        ,'Ba
 let g:which_key_map[','] = ['Buffers'                                       ,'Buffer List']
 let g:which_key_map[' '] = ['Files'                                         ,'Find File Local']
 "TODO: let g:which_key_map['.'] = ['XXXXXX'                         ,'Find File Global']
-let g:which_key_map['d'] = ['bd'                                            ,'Delete Buffer']
+let g:which_key_map['d'] = [':BufferClose'                                            ,'Delete Buffer']
+" let g:which_key_map['d'] = ['bd'                                            ,'Delete Buffer']
 let g:which_key_map['e'] = [':CocCommand explorer'                           ,'File Explorer' ]
 let g:which_key_map['h'] = ['<C-W>s'                                        ,'Split Below']
 let g:which_key_map['j'] = ['<Plug>(easymotion-bd-w)'                       ,'Jump to Word' ]
@@ -741,16 +806,23 @@ let g:which_key_map['a'] = {
 let g:which_key_map['b'] = {
   \ 'name' : '+Buffer' ,
   \ '/' : ['Buffers'   ,'Find Buffer'],
-  \ 'd' : ['bd'        ,'Delete Buffer'],
+  \ 'd' : [':BufferClose!'        ,'Delete Buffer Wihthout Saving'],
   \ 'D' : [':%bd'      ,'Delete All Buffers'],
-  \ 'f' : ['bfirst'    ,'First Buffer'],
-  \ 'k' : [':%bd|e#'   ,'Delete Other Buffers'],
-  \ 'l' : ['blast'     ,'Last Buffer'],
-  \ 'n' : ['bnext'     ,'Next Buffer'],
+  \ 'f' : [':BufferGoto 1'    ,'First Buffer'],
+  \ 'k' : [':BufferCloseAllButCurrent'   ,'Delete Other Buffers'],
+  \ 'l' : [':BufferLast'     ,'Last Buffer'],
+  \ 'n' : [':BufferNext'     ,'Next Buffer'],
   \ 'N' : ['enew'      ,'New Empty Buffer'],
-  \ 'p' : ['bprevious' ,'Previous Buffer']
+  \ 'p' : [':BufferPrevious' ,'Previous Buffer']
   \ }
 
+  " \ 'f' : ['bfirst'    ,'First Buffer'],
+  " \ 'l' : ['blast'     ,'Last Buffer'],
+  " \ 'D' : [':%bd'      ,'Delete All Buffers'],
+  " \ 'd' : ['bd'        ,'Delete Buffer'],
+  " \ 'k' : [':%bd|e#'   ,'Delete Other Buffers'],
+  " \ 'n' : ['bnext'     ,'Next Buffer'],
+  " \ 'p' : ['bprevious' ,'Previous Buffer']
 #+END_SRC
 *** Code (lsp) - Submenu (c)
 |-----------+--------+--------------+--------------------|

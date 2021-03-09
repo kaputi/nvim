@@ -15,7 +15,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     "Plug 'itchyny/vim-gitbranch' "git branch on status bar
 
     "tabline
-    Plug 'pacha/vem-tabline'
+    " Plug 'pacha/vem-tabline'
+    Plug 'romgrk/barbar.nvim'
 
     " Icons
     Plug 'ryanoasis/vim-devicons'
@@ -316,6 +317,20 @@ let g:vem_tabline_multiwindow_mode=1
 " highlight VemTablineTabNormal        term=reverse cterm=none ctermfg=0   ctermbg=251 guifg=#242424 guibg=#4a4a4a gui=none
 " highlight VemTablineTabSelected      term=bold    cterm=bold ctermfg=0   ctermbg=255 guifg=#242424 guibg=#ffffff gui=bold
 
+ " NOTE: If barbar's option dict isn't created yet, create it
+let bufferline = get(g:, 'bufferline', {})
+ " Enable/disable icons
+" if set to 'numbers', will show buffer index in the tabline
+" if set to 'both', will show buffer index and icons in the tabline
+let bufferline.icons = 'both'
+" Sets the name of unsaved buffers
+let bufferline.no_name_title = 'New-File'
+" If set, the icon color will follow its corresponding buffer
+" highlight group. By default, the Buffer*Icon group is linked to the
+" Buffer* group (see Highlighting below). Otherwise, it will take its
+" default value as defined by devicons.
+let bufferline.icon_custom_colors = v:true
+
 " enable powerline fonts
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
@@ -385,15 +400,54 @@ nnoremap <C-a> ggVG
 nnoremap gc :call NERDComment('n','toggle')<CR>
 vnoremap gc :call NERDComment('x','toggle')<CR>gv
 
+" "next buffer
+" noremap bn :bn<CR>
+" " previous buffer
+" noremap bp :bp<CR>
+" " delete buffer
+" noremap bd :bd<CR>
+" " list buffers
+" noremap bl :Buffer<CR>
+
+" barbar buffer s
 "next buffer
-noremap bn :bn<CR>
+noremap bn :BufferNext<CR>
 " previous buffer
-noremap bp :bp<CR>
+noremap bp :BufferPrevious<CR>
 " delete buffer
-noremap bd :bd<CR>
+noremap bd :BufferClose<CR>
 " list buffers
 noremap bl :Buffer<CR>
 
+" Magic buffer-picking mode
+nnoremap <silent> <A-/> :BufferPick<CR>
+" Sort automatically by...
+" nnoremap <silent> <Space>bd :BufferOrderByDirectory<CR>
+" nnoremap <silent> <Space>bl :BufferOrderByLanguage<CR>
+" Move to previous/next
+nnoremap <silent>    <A-,> :BufferPrevious<CR>
+nnoremap <silent>    <A-.> :BufferNext<CR>
+" Re-order to previous/next
+nnoremap <silent>    <A-<> :BufferMovePrevious<CR>
+nnoremap <silent>    <A->> :BufferMoveNext<CR>
+" Goto buffer in position...
+nnoremap <silent>    <A-1> :BufferGoto 1<CR>
+nnoremap <silent>    <A-2> :BufferGoto 2<CR>
+nnoremap <silent>    <A-3> :BufferGoto 3<CR>
+nnoremap <silent>    <A-4> :BufferGoto 4<CR>
+nnoremap <silent>    <A-5> :BufferGoto 5<CR>
+nnoremap <silent>    <A-6> :BufferGoto 6<CR>
+nnoremap <silent>    <A-7> :BufferGoto 7<CR>
+nnoremap <silent>    <A-8> :BufferGoto 8<CR>
+nnoremap <silent>    <A-9> :BufferLast<CR>
+" Close buffer
+nnoremap <silent>    <A-d> :BufferClose<CR>
+" Wipeout buffer
+"                          :BufferWipeout<CR>
+" Close commands
+"                          :BufferCloseAllButCurrent<CR>
+"                          :BufferCloseBuffersLeft<CR>
+"                          :BufferCloseBuffersRight<CR>
 " I hate escape more than anything else
 inoremap jk <Esc>
 inoremap kj <Esc>
@@ -482,7 +536,8 @@ let g:which_key_map['='] = ['<C-W>='                                        ,'Ba
 let g:which_key_map[','] = ['Buffers'                                       ,'Buffer List']
 let g:which_key_map[' '] = ['Files'                                         ,'Find File Local']
 "TODO: let g:which_key_map['.'] = ['XXXXXX'                         ,'Find File Global']
-let g:which_key_map['d'] = ['bd'                                            ,'Delete Buffer']
+let g:which_key_map['d'] = [':BufferClose'                                            ,'Delete Buffer']
+" let g:which_key_map['d'] = ['bd'                                            ,'Delete Buffer']
 let g:which_key_map['e'] = [':CocCommand explorer'                           ,'File Explorer' ]
 let g:which_key_map['h'] = ['<C-W>s'                                        ,'Split Below']
 let g:which_key_map['j'] = ['<Plug>(easymotion-bd-w)'                       ,'Jump to Word' ]
@@ -525,15 +580,23 @@ let g:which_key_map['a'] = {
 let g:which_key_map['b'] = {
   \ 'name' : '+Buffer' ,
   \ '/' : ['Buffers'   ,'Find Buffer'],
-  \ 'd' : ['bd'        ,'Delete Buffer'],
+  \ 'd' : [':BufferClose!'        ,'Delete Buffer Wihthout Saving'],
   \ 'D' : [':%bd'      ,'Delete All Buffers'],
-  \ 'f' : ['bfirst'    ,'First Buffer'],
-  \ 'k' : [':%bd|e#'   ,'Delete Other Buffers'],
-  \ 'l' : ['blast'     ,'Last Buffer'],
-  \ 'n' : ['bnext'     ,'Next Buffer'],
+  \ 'f' : [':BufferGoto 1'    ,'First Buffer'],
+  \ 'k' : [':BufferCloseAllButCurrent'   ,'Delete Other Buffers'],
+  \ 'l' : [':BufferLast'     ,'Last Buffer'],
+  \ 'n' : [':BufferNext'     ,'Next Buffer'],
   \ 'N' : ['enew'      ,'New Empty Buffer'],
-  \ 'p' : ['bprevious' ,'Previous Buffer']
+  \ 'p' : [':BufferPrevious' ,'Previous Buffer']
   \ }
+
+  " \ 'f' : ['bfirst'    ,'First Buffer'],
+  " \ 'l' : ['blast'     ,'Last Buffer'],
+  " \ 'D' : [':%bd'      ,'Delete All Buffers'],
+  " \ 'd' : ['bd'        ,'Delete Buffer'],
+  " \ 'k' : [':%bd|e#'   ,'Delete Other Buffers'],
+  " \ 'n' : ['bnext'     ,'Next Buffer'],
+  " \ 'p' : ['bprevious' ,'Previous Buffer']
 
 let g:which_key_map['c'] = {
   \ 'name' : '+Code(lsp)' ,
