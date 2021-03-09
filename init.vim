@@ -1171,6 +1171,9 @@ hi CocGitAddedSign guifg=#B8CC52 guibg=NONE
 hi CocGitChangedSign guifg=#36A3D9 guibg=NONE
 hi CocGitRemovedSign guifg=#bf0505 guibg=NONE
 
+hi DiffChange guibg=#5CCFE6 guifg=#000000
+hi DiffAdd guibg=#BBE67E guifg=#000000
+
 let g:org_todo_keywords = [['TODO(t)', 'DOING(d)', '|', 'DONE(D)']]
 
 let g:org_todo_keyword_faces = [['TODO', ' red'],['DOING','yellow'],['DONE','green']]
