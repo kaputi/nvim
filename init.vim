@@ -812,6 +812,12 @@ let g:pear_tree_pairs = {
             \ "'": {'closer': "'"},
             \ '"': {'closer': '"'},
             \ '`': {'closer': '`'},
+            \ }
+" See pear-tree/after/ftplugin/ for filetype-specific matching rules
+
+augroup TypescriptPairs
+  autocmd! TypescriptPairs
+  autocmd FileType typescriptreact let b:pear_tree_pairs = extend(deepcopy(g:pear_tree_pairs), {
             \ '<*>': {'closer' : '</*>',
             \         'not_if': ['br', 'hr', 'img', 'input', 'link', 'meta',
             \                    'area', 'base', 'col', 'command', 'embed',
@@ -819,8 +825,9 @@ let g:pear_tree_pairs = {
             \         'not_like': '/$',
             \         'not_in': ['typescriptTypeReference', 'TypeReference','String']
             \        }
-            \ }
-" See pear-tree/after/ftplugin/ for filetype-specific matching rules
+            \ }, 'keep')
+augroup END
+
 
 " Pear Tree is enabled for all filetypes by default:
 let g:pear_tree_ft_disabled = []
@@ -829,20 +836,20 @@ let g:pear_tree_ft_disabled = []
 let g:pear_tree_repeatable_expand = 1
 
 " Smart pairs are disabled by default:
-let g:pear_tree_smart_openers = 0
-let g:pear_tree_smart_closers = 0
-let g:pear_tree_smart_backspace = 0
+let g:pear_tree_smart_openers = 1
+let g:pear_tree_smart_closers = 1
+let g:pear_tree_smart_backspace = 1
 
 " If enabled, smart pair functions timeout after 60ms:
 let g:pear_tree_timeout = 60
 
 " Automatically map <BS>, <CR>, and <Esc>
-let g:pear_tree_map_special_keys = 1
+let g:pear_tree_map_special_keys = 0
 
 " Default mappings:
 imap <BS> <Plug>(PearTreeBackspace)
-imap <CR> <Plug>(PearTreeExpand)
-imap <Esc> <Plug>(PearTreeFinishExpansion)
+" imap <CR> <Plug>(PearTreeExpand)
+" imap <Esc> <Plug>(PearTreeFinishExpansion)
 " Pear Tree also makes <Plug> mappings for each opening and closing string.
 "     :help <Plug>(PearTreeOpener)
 "     :help <Plug>(PearTreeCloser)
