@@ -186,6 +186,7 @@ set cursorline                          " Enable highlighting of the current lin
 set cursorcolumn
 set scrolloff=5                         " Always see 5 lines under cursor when scrolling
 set sidescrolloff=15                    " Always see 15 columns at the sides of the cursor
+set fillchars+=vert:│
 set laststatus=2                        " Always display the status line
 set noshowmode                          " We don't need to see things like -- INSERT -- anymore
 set signcolumn=yes                      " Always show the signcolumn, otherwise it would shift the text each time
@@ -262,6 +263,7 @@ let ayucolor='mirage'
 " Mirage
 hi CursorLine guibg=#272d38
 hi CursorColumn guibg=#272d38
+hi VertSplit guibg=NONE guifg=#787878
 
 " let g:gruvbox_bold = 1
 " " let g:gruvbox_italic =1
