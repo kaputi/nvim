@@ -11,11 +11,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Status line
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-    " Plug 'itchyny/lightline.vim' " Status bar
-    "Plug 'itchyny/vim-gitbranch' "git branch on status bar
 
     "tabline
-    " Plug 'pacha/vem-tabline'
     Plug 'romgrk/barbar.nvim'
 
     " Icons
@@ -42,8 +39,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'gosukiwi/vim-atom-dark'
 
     " ident guides
-    " Plug 'nathanaelkane/vim-indent-guides'
-    " Plug 'thaerkh/vim-indentguides'
     Plug 'Yggdroot/indentLine'
 
     " color parenthesis
@@ -79,7 +74,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'junegunn/gv.vim'
 
     " Closetags and pairs <></> ,{},"", etc
-    Plug 'tmsvg/pear-tree'
+    " Plug 'tmsvg/pear-tree'
+    Plug 'alvan/vim-closetag'
+    Plug 'Raimondi/delimitMate'
 
     " undo tree
     Plug 'mbbill/undotree'
@@ -859,60 +856,101 @@ let g:indentLine_enabled = 0
 let g:indentLine_setColors = 0
 
     " Default rules for matching:
-let g:pear_tree_pairs = {
-            \ '(': {'closer': ')'},
-            \ '[': {'closer': ']'},
-            \ '{': {'closer': '}'},
-            \ "'": {'closer': "'"},
-            \ '"': {'closer': '"'},
-            \ '`': {'closer': '`'},
-            \ }
-" See pear-tree/after/ftplugin/ for filetype-specific matching rules
+" let g:pear_tree_pairs = {
+"             \ '(': {'closer': ')'},
+"             \ '[': {'closer': ']'},
+"             \ '{': {'closer': '}'},
+"             \ "'": {'closer': "'"},
+"             \ '"': {'closer': '"'},
+"             \ '`': {'closer': '`'},
+"             \ }
+" " See pear-tree/after/ftplugin/ for filetype-specific matching rules
 
-augroup TypescriptPairs
-  autocmd! TypescriptPairs
-  autocmd FileType typescriptreact let b:pear_tree_pairs = extend(deepcopy(g:pear_tree_pairs), {
-            \ '<*>': {'closer' : '</*>',
-            \         'not_if': ['br', 'hr', 'img', 'input', 'link', 'meta',
-            \                    'area', 'base', 'col', 'command', 'embed',
-            \                    'keygen', 'param', 'source', 'track', 'wbr'],
-            \         'not_like': '/$',
-            \         'not_in': ['typescriptTypeReference', 'TypeReference','String']
-            \        }
-            \ }, 'keep')
-augroup END
+" augroup TypescriptPairs
+"   autocmd! TypescriptPairs
+"   autocmd FileType typescriptreact let b:pear_tree_pairs = extend(deepcopy(g:pear_tree_pairs), {
+"             \ '<*>': {'closer' : '</*>',
+"             \         'not_if': ['br', 'hr', 'img', 'input', 'link', 'meta',
+"             \                    'area', 'base', 'col', 'command', 'embed',
+"             \                    'keygen', 'param', 'source', 'track', 'wbr'],
+"             \         'not_like': '/$',
+"             \         'not_in': ['typescriptTypeReference', 'TypeReference','String']
+"             \        }
+"             \ }, 'keep')
+" augroup END
 
 
-" Pear Tree is enabled for all filetypes by default:
-let g:pear_tree_ft_disabled = ['TelescopePrompt']
+" " Pear Tree is enabled for all filetypes by default:
+" let g:pear_tree_ft_disabled = ['TelescopePrompt','typescriptreact']
 
-" Pair expansion is dot-repeatable by default:
-let g:pear_tree_repeatable_expand = 1
+" " Pair expansion is dot-repeatable by default:
+" let g:pear_tree_repeatable_expand = 1
 
-" Smart pairs are disabled by default:
-let g:pear_tree_smart_openers = 1
-let g:pear_tree_smart_closers = 1
-let g:pear_tree_smart_backspace = 1
+" " Smart pairs are disabled by default:
+" let g:pear_tree_smart_openers = 1
+" let g:pear_tree_smart_closers = 1
+" let g:pear_tree_smart_backspace = 0
 
-" If enabled, smart pair functions timeout after 60ms:
-let g:pear_tree_timeout = 60
+" " If enabled, smart pair functions timeout after 60ms:
+" let g:pear_tree_timeout = 60
 
-" Automatically map <BS>, <CR>, and <Esc>
-let g:pear_tree_map_special_keys = 0
+" " Automatically map <BS>, <CR>, and <Esc>
+" let g:pear_tree_map_special_keys = 0
 
-" Default mappings:
-imap <BS> <Plug>(PearTreeBackspace)
-" imap <CR> <Plug>(PearTreeExpand)
-" imap <Esc> <Plug>(PearTreeFinishExpansion)
-" Pear Tree also makes <Plug> mappings for each opening and closing string.
-"     :help <Plug>(PearTreeOpener)
-"     :help <Plug>(PearTreeCloser)
+" " Default mappings:
+" " imap <BS> <Plug>(PearTreeBackspace)
+" " imap <CR> <Plug>(PearTreeExpand)
+" " imap <Esc> <Plug>(PearTreeFinishExpansion)
+" " Pear Tree also makes <Plug> mappings for each opening and closing string.
+" "     :help <Plug>(PearTreeOpener)
+" "     :help <Plug>(PearTreeCloser)
 
-" Not mapped by default:
-" <Plug>(PearTreeSpace)
-" <Plug>(PearTreeJump)
-" <Plug>(PearTreeExpandOne)
-" <Plug>(PearTreeJNR)
+" " Not mapped by default:
+" " <Plug>(PearTreeSpace)
+" " <Plug>(PearTreeJump)
+" " <Plug>(PearTreeExpandOne)
+" " <Plug>(PearTreeJNR)
+
+" filenames like *.xml, *.html, *.xhtml, ...
+" These are the file extensions where this plugin is enabled.
+"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*jsx,*tsx'
+
+" filenames like *.xml, *.xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*tsx'
+
+" filetypes like xml, html, xhtml, ...
+" These are the file types where this plugin is enabled.
+"
+let g:closetag_filetypes = 'html,xhtml,phtml,typescriptreact'
+
+" filetypes like xml, xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filetypes = 'xhtml,jsx,typescriptreact'
+
+" integer value [0|1]
+" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+"
+let g:closetag_emptyTags_caseSensitive = 1
+
+" dict
+" Disables auto-close if not in a "valid" region (based on filetype)
+"
+let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx': 'jsxRegion',
+    \ }
+
+" Shortcut for closing tags, default is '>'
+"
+let g:closetag_shortcut = '>'
+
+" Add > at current position without closing the current tag, default is ''
+"
+let g:closetag_close_shortcut = '<leader>>'
 
 let g:rainbow_active = 1
 
