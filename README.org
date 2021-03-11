@@ -372,11 +372,11 @@ dark Theme with a lot of contrast
 *** vem-tabline
 #+BEGIN_SRC vimrc :tangle init.vim
 " always show
-let g:vem_tabline_show=2
+" let g:vem_tabline_show=2
 
 
 " only display shown buffers when splits
-let g:vem_tabline_multiwindow_mode=1
+" let g:vem_tabline_multiwindow_mode=1
 
 " show  buffer number
 " let g:vem_tabline_show_number='buffnr'
@@ -676,7 +676,7 @@ endfunction
 
 #+END_SRC
 *** Top Layer
-TODO: fin files globaly, maximize(requires plugin)
+TODO: fin files globaly
 |---------+--------+-------------------+---------------------------------------|
 | Key     | Prefix | Mnemonic          | Description                           |
 |---------+--------+-------------------+---------------------------------------|
@@ -720,11 +720,10 @@ TODO: fin files globaly, maximize(requires plugin)
 " Top Layer
 let g:which_key_map['/'] = ['<plug>NERDCommenterToggle'                     ,'Comment' ]
 let g:which_key_map['='] = ['<C-W>='                                        ,'Balance Windows' ]
-let g:which_key_map[','] = ['Buffers'                                       ,'Buffer List']
-let g:which_key_map[' '] = ['Files'                                         ,'Find File Local']
+let g:which_key_map[','] = [':Telescope buffers'                                       ,'Buffer List']
+let g:which_key_map[' '] = [':Telescope find_files'                                         ,'Find File Local']
 "TODO: let g:which_key_map['.'] = ['XXXXXX'                         ,'Find File Global']
 let g:which_key_map['d'] = [':BufferClose'                                            ,'Delete Buffer']
-" let g:which_key_map['d'] = ['bd'                                            ,'Delete Buffer']
 let g:which_key_map['e'] = [':CocCommand explorer'                           ,'File Explorer' ]
 let g:which_key_map['h'] = ['<C-W>s'                                        ,'Split Below']
 let g:which_key_map['j'] = ['<Plug>(easymotion-bd-w)'                       ,'Jump to Word' ]
@@ -732,8 +731,8 @@ let g:which_key_map['J'] = ['<Plug>(easymotion-s2)'                         ,'Ju
 let g:which_key_map['m'] = [':MaximizerToggle'                         ,'Maximize' ]
 let g:which_key_map['o'] = ['append(line("."),   repeat([""], v:count1))'   ,'Line Below' ]
 let g:which_key_map['O'] = ['append(line(".")-1,   repeat([""], v:count1))' ,'Line Above' ]
-let g:which_key_map['p'] = ['Files'                                         ,'Search File Local' ]
-let g:which_key_map['P'] = ['Commands'                                      ,'Commands' ]
+let g:which_key_map['p'] = [':Telescope find_files'                                         ,'Search File Local' ]
+let g:which_key_map['P'] = [':Telescope commands'                                      ,'Commands' ]
 let g:which_key_map['q'] = ['q'                                             ,'Quit' ]
 let g:which_key_map['r'] = ['RnvimrToggle'                                  ,'Ranger' ]
 let g:which_key_map['u'] = ['UndotreeToggle'                                ,'Undo Tree' ]
@@ -741,6 +740,7 @@ let g:which_key_map['v'] = ['<C-W>v'                                        ,'Sp
 let g:which_key_map['y'] = [':CocList -A --normal yank'                     ,'Yank List']
 #+END_SRC
 *** Workspace/Session - Submenu (TAB)
+TODO tab should be a session list that when selecting a session saves currentone before switch (maybe telescope) and the dashboard should be in D
 |-------+----------+----------------|
 | Key   | Mnemonic | Description    |
 |-------+----------+----------------|
@@ -792,7 +792,7 @@ let g:which_key_map['a'] = {
 |-----+----------+----------------------|
 | Key | Mnemonic | Description          |
 |-----+----------+----------------------|
-| "/" |          | Find Buffer          |
+| "b" | Buffers  | Find Buffer          |
 | "d" | Delete   | Delete Buffer        |
 | "D" | Delete   | Delete all Buffers   |
 | "f" | First    | First Buffer         |
@@ -806,7 +806,7 @@ let g:which_key_map['a'] = {
 " Buffers submenu
 let g:which_key_map['b'] = {
   \ 'name' : '+Buffer' ,
-  \ '/' : ['Buffers'   ,'Find Buffer'],
+  \ 'b' : [':Telescope buffers'   ,'Find Buffer'],
   \ 'd' : [':BufferClose!'        ,'Delete Buffer Wihthout Saving'],
   \ 'D' : [':%bd'      ,'Delete All Buffers'],
   \ 'f' : [':BufferGoto 1'    ,'First Buffer'],
@@ -817,13 +817,6 @@ let g:which_key_map['b'] = {
   \ 'p' : [':BufferPrevious' ,'Previous Buffer']
   \ }
 
-  " \ 'f' : ['bfirst'    ,'First Buffer'],
-  " \ 'l' : ['blast'     ,'Last Buffer'],
-  " \ 'D' : [':%bd'      ,'Delete All Buffers'],
-  " \ 'd' : ['bd'        ,'Delete Buffer'],
-  " \ 'k' : [':%bd|e#'   ,'Delete Other Buffers'],
-  " \ 'n' : ['bnext'     ,'Next Buffer'],
-  " \ 'p' : ['bprevious' ,'Previous Buffer']
 #+END_SRC
 *** Code (lsp) - Submenu (c)
 |-----------+--------+--------------+--------------------|
@@ -1002,7 +995,7 @@ let g:which_key_map.D['b'] ={
   " \ 'y' : [':let @*=expand("%:p")'                       , 'Yank Path']
 let g:which_key_map['f'] = {
   \ 'name': '+File',
-  \ 'r' : [':History'                                    , 'Recent Files'],
+  \ 'r' : [':Telescope oldfiles'                                    , 'Recent Files'],
   \ 'R' : [':CocCommand workspace.renameCurrentFile'     , 'Rename File'],
   \ }
 #+END_SRC
@@ -1125,7 +1118,6 @@ let g:which_key_map['l'] = {
 |------+----------+--------------------|
 | Keys | Mnemonic | Description        |
 |------+----------+--------------------|
-| "/"  |          | History            |
 | ";"  |          | Commands           |
 | "a"  | Ag       | Text Ag            |
 | "B"  | Buffers  | Txt in Open Buffer |
@@ -1135,12 +1127,11 @@ let g:which_key_map['l'] = {
 | "f"  | Files    | Files              |
 | "G"  | Git      | Modified git files |
 | "g"  | Git      | Git Files          |
-| "H"  | History  | Command History    |
-| "h"  | History  | File History       |
+| "h"  | History  | Command History    |
+| "H"  | Help     | Help Tags          |
 | "M"  | Maps     | Normal Maps        |
 | "m"  | Marks    | Marks              |
-| "P"  | Project  | Project Tags       |
-| "p"  |          | Help Tags          |
+| "p"  | Project  | Project Tags       |
 | "S"  | Schemes  | Color Schemes      |
 | "s"  | Snippets | Snippets           |
 | "T"  | Tags     | Buffer Tags        |
@@ -1153,28 +1144,26 @@ let g:which_key_map['l'] = {
 " Search Submenu
 let g:which_key_map['s'] = {
   \ 'name' : '+Search' ,
-  \ '/' : [':History/'          , 'Search History'],
-  \ ';' : [':Commands'          , 'Commands'],
+  \ ';' : [':Telescope commands'          , 'Commands'],
   \ 'a' : [':Ag'                , 'Text Ag'],
-  \ 'b' : [':BLines'            , 'Current Buffer'],
+  \ 'b' : [':Telescope current_buffer_fuzzy_find'            , 'Current Buffer'],
   \ 'B' : [':Lines'             , 'Txt in Opened Buffers'] ,
-  \ 'c' : [':Commits'           , 'Commits'],
-  \ 'C' : [':BCommits'          , 'Buffer Commits'],
-  \ 'f' : [':Files'             , 'Local Files'],
-  \ 'g' : [':GFiles'            , 'Git Files'],
-  \ 'G' : [':GFiles?'           , 'Modified Git Files'],
-  \ 'h' : [':History'           , 'Files History'],
-  \ 'H' : [':History:'          , 'Command History'],
-  \ 'm' : [':Marks'             , 'Marks'] ,
-  \ 'M' : [':Maps'              , 'Normal Maps'] ,
-  \ 'p' : [':Helptags'          , 'Help Tags'] ,
-  \ 'P' : [':Tags'              , 'Project Tags'],
+  \ 'c' : [':Telescope git_commits'           , 'Commits'],
+  \ 'C' : [':Telescope git_bcommits'          , 'Buffer Commits'],
+  \ 'f' : [':Telescope find_files'             , 'Local Files'],
+  \ 'g' : [':Telescope git_files'            , 'Git Files'],
+  \ 'G' : [':Telescope git_status'           , 'Modified Git Files'],
+  \ 'h' : [':Telescope command_history'          , 'Command History'],
+  \ 'H' : [':Telescope help_tags'          , 'Help Tags'] ,
+  \ 'm' : [':Telescope marks'             , 'Marks'] ,
+  \ 'M' : [':Telescope keymaps'              , 'Key Maps'] ,
+  \ 'p' : [':Telescope tags'              , 'Project Tags'],
   \ 's' : [':CocList snippets'  , 'Snippets'],
-  \ 'S' : [':Colors'            , 'Color Schemes'],
-  \ 't' : [':Rg'                , 'Text Rg'],
-  \ 'T' : [':BTags'             , 'Buffer Tags'],
+  \ 'S' : [':Telescope colorscheme'            , 'Color Schemes'],
+  \ 't' : [':Telescope live_grep'                , 'Text Rg'],
+  \ 'T' : [':Telescope current_buffer_tags'             , 'Buffer Tags'],
   \ 'w' : [':Windows'           , 'Windows'],
-  \ 'y' : [':Filetypes'         , 'File Types'],
+  \ 'y' : [':Telescope       filetypes'         , 'File Types'],
   \ 'z' : [':FZF'               , 'FZF'],
   \ }
 #+END_SRC
@@ -1206,6 +1195,7 @@ let g:which_key_map['t'] = {
   \ }
 #+END_SRC
 *** Toggle - Submenu (T)
+TODO codelens, coc
 |------+-------------+------------------------|
 | Keys | Mnemonic    | Description            |
 |------+-------------+------------------------|
@@ -1376,7 +1366,7 @@ augroup END
 
 
 " Pear Tree is enabled for all filetypes by default:
-let g:pear_tree_ft_disabled = []
+let g:pear_tree_ft_disabled = ['TelescopePrompt']
 
 " Pair expansion is dot-repeatable by default:
 let g:pear_tree_repeatable_expand = 1

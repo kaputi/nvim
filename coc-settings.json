@@ -13,9 +13,8 @@
   "eslint.packageManager": "yarn",
   "eslint.alwaysShowStatus": true,
   "explorer.quitOnOpen": true,
-  "explorer.previewAction.onHover": "content",
   "explorer.openAction.strategy": "sourceWindow",
-  "explorer.file.showHiddenFiles":true,
+  "explorer.file.showHiddenFiles": true,
   "explorer.sources": [
     {
       "name": "file",
