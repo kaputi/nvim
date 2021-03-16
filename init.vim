@@ -37,6 +37,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'dikiaap/minimalist'
     Plug 'tomasr/molokai'
     Plug 'gosukiwi/vim-atom-dark'
+    Plug 'chriskempson/base16-vim'
+
 
     " ident guides
     Plug 'Yggdroot/indentLine'
@@ -379,7 +381,9 @@ noremap K 5k
 
 "begining and end of line
 nnoremap B ^
-nnoremap E $
+nnoremap E g_
+vnoremap B ^
+vnoremap E g_
 
 " Better indenting in visual mode (indent and go back to visual sellection)
 vnoremap < <gv
@@ -478,8 +482,10 @@ nmap s <Plug>(easymotion-bd-w)
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
-" copy with ctrl-c
-vnoremap <C-c> :w !xsel -i -b <CR><CR>
+" copy with ctrl-c in visual  and C in normal
+vnoremap <C-c> "+y
+nnoremap <C-c> "+y
+nnoremap <A-c> V"+y
 
 " space is leader
 " let mapleader=" "
@@ -529,6 +535,14 @@ endfunction
 "   exe 'bd '.join(buffers, ' ')
 " endfunction
 
+function CopyPath()
+ let @+=expand("%:p")
+endfunction
+
+function YankPath()
+  let @*=expand("%:p")
+endfunction
+
 " Top Layer
 let g:which_key_map['/'] = ['<plug>NERDCommenterToggle'                     ,'Comment' ]
 let g:which_key_map['='] = ['<C-W>='                                        ,'Balance Windows' ]
@@ -547,6 +561,8 @@ let g:which_key_map['p'] = [':Telescope find_files'                             
 let g:which_key_map['P'] = [':Telescope commands'                                      ,'Commands' ]
 let g:which_key_map['q'] = ['q'                                             ,'Quit' ]
 let g:which_key_map['r'] = ['RnvimrToggle'                                  ,'Ranger' ]
+nnoremap <leader>R :%s/\<<C-r><C-w>\>/
+let g:which_key_map['R'] = 'Replace Under Cursor'
 let g:which_key_map['u'] = ['UndotreeToggle'                                ,'Undo Tree' ]
 let g:which_key_map['v'] = ['<C-W>v'                                        ,'Split Right']
 let g:which_key_map['y'] = [':CocList -A --normal yank'                     ,'Yank List']
@@ -665,14 +681,12 @@ let g:which_key_map.D['b'] ={
   \ }
 
 " File Submenu
-  "TODO: \ 'c' : [':let @+=expand("%:p")'                      , 'Copy Path'],
-  " \ 'f' : ['','Find File Globaly']
-  " \ 'm' : [''                                    , 'Move File'],
-  " \ 'y' : [':let @*=expand("%:p")'                       , 'Yank Path']
 let g:which_key_map['f'] = {
   \ 'name': '+File',
+  \ 'c' : [':call CopyPath()'                      , 'Copy Path'],
   \ 'r' : [':Telescope oldfiles'                                    , 'Recent Files'],
   \ 'R' : [':CocCommand workspace.renameCurrentFile'     , 'Rename File'],
+  \ 'y' : [':call YankPath()'                      , 'Yank Path'],
   \ }
 
 " Git submenu
@@ -695,14 +709,6 @@ let g:which_key_map['g'] = {
   \ 'v' : [':GV'                               , 'View Commits'],
   \ 'V' : [':GV!'                              , 'View Buffer Commits'],
   \ }
-  " TODO: Check
-  " \ 'h' : [':GitGutterLineHighlightsToggle'    , 'highlight hunks'],
-  " \ 'H' : ['<Plug>(GitGutterPreviewHunk)'      , 'preview hunk'],
-  " \ 'j' : ['<Plug>(GitGutterNextHunk)'         , 'next hunk'],
-  " \ 'k' : ['<Plug>(GitGutterPrevHunk)'         , 'prev hunk'],
-  " \ 's' : ['<Plug>(GitGutterStageHunk)'        , 'stage hunk'],
-  " \ 't' : [':GitGutterSignsToggle'             , 'toggle signs'],
-  " \ 'u' : ['<Plug>(GitGutterUndoHunk)'         , 'undo hunk'],
 
 " Insert Submenu
 let g:which_key_map['i'] = {
@@ -776,18 +782,18 @@ let g:which_key_map['t'] = {
 " Toggle submenu
 let g:which_key_map['T'] ={
   \ 'name' : '+Toggle',
-  \ 'c' : [':set cursorcolumn!'                     , 'Cursor Column'],
+  \ 'c' : [':setlocal cursorcolumn!'                     , 'Cursor Column'],
   \ 'd' : [':set background=dark'                   , 'Dark  Background'],
   \ 'i' : [':IndentLinesToggle'                     , 'Indent Lines'],
   \ 'l' : [':set background=light'                  , 'Light Background'],
-  \ 'L' : [':set cursorline!'                       , 'Cursor Line'],
-  \ 'n' : [':set nonumber!'                         , 'Line Numbers'],
-  \ 'r' : [':set norelativenumber!'                 , 'Relative Numbers'],
+  \ 'L' : [':setlocal cursorline!'                       , 'Cursor Line'],
+  \ 'n' : [':setlocal nonumber!'                         , 'Line Numbers'],
+  \ 'r' : [':setlocal norelativenumber!'                 , 'Relative Numbers'],
   \ 'R' : [':syntax on'                             , 'Reset Colors (syntax on)'],
   \ 't' : [':Vista!!'                               , 'Tag Viewer'],
   \ 'T' : [':hi Normal ctermbg=NONE guibg=NONE<CR>' , 'Transparent Background'],
   \ 'p' : [':RainbowToggle'                         , 'Color Parenthesis'],
-  \ 'w' : [':set wrap!'                             , 'Wrap'],
+  \ 'w' : [':setlocal wrap!'                             , 'Wrap'],
   \ 'z' : [':Goyo! 70%x90%'                                  , 'Zen Mode']
   \ }
 
@@ -801,10 +807,12 @@ let g:which_key_map['w'] = {
   \ }
 
 " Scratch Buffer submenu
+nnoremap <leader>xn :Scratch<cr>:w !node<cr>
 let g:which_key_map['x'] ={
   \ 'name': '+Scratch',
   \ 'c' : [':ScratchSelection'    , 'Copy To Scratch Buffer'],
   \ 'C' : [':ScratchSelection!'   , 'Copy To Clean Scratch Buffer'],
+   \ 'n' : 'Run on node',
   \ 'v' : [':ScratchPreview'      , 'View Scratch Buffer'],
   \ 'x' : [':Scratch'             , 'Open Scrach Buffer'],
   \ 'X' : [':Scratch!'            , 'Open Clean Scrach Buffer']

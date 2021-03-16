@@ -1,5 +1,8 @@
 #+TITLE: init.vim
 * Table of content :toc:
+- [[#todo][TODO]]
+  - [[#mappings][mappings]]
+  - [[#general][General]]
 - [[#plugins][Plugins]]
   - [[#install-vim-plug-plugin-manager][Install vim-plug plugin manager]]
   - [[#ui][UI]]
@@ -7,7 +10,7 @@
   - [[#utils][Utils]]
   - [[#org-mode][Org mode]]
   - [[#vim-plug-finish][vim-plug finish]]
-- [[#general][General]]
+- [[#general-1][General]]
 - [[#ui-1][UI]]
   - [[#theme][Theme]]
   - [[#tabline][Tabline]]
@@ -35,6 +38,25 @@
   - [[#vim-orgmode][vim-orgmode]]
   - [[#dotoo][dotoo]]
 
+* TODO
+** mappings
+- operator maps
+- :onoremap il( :<c-u>normal! F)vi(<cr>  === inside last parethesis (easymotion breaks it)
+- :onoremap in( :<c-u>normal! f)vi(<cr>  === inside next parethesis easymotion breaksit
+- :onoremap p i( inside parenthesis for using like cp == ci(
+- :onoremap " i" inside quotes
+- :onoremap for inside { and [ without breaking vim movements like blocks and paragraphs
+*** whichkey mappings
+- global find (home dir or /)
+- tab tab should bring a list of sessions and save current before changing to next and D should be dashboard
+- file submenu should have find globaly and move file
+- improve unicode insert
+- toggle menu should have codelns, coc, and virtualtext
+- create some agenda menu to add and check todos  etc
+
+** General
+- spelling shouldnt put virtual text on coc
+- Find a way of doing a javascript scratchpad that can run code
 * Plugins
 ** Install vim-plug plugin manager
 #+BEGIN_SRC vimrc :tangle init.vim
@@ -83,6 +105,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'dikiaap/minimalist'
     Plug 'tomasr/molokai'
     Plug 'gosukiwi/vim-atom-dark'
+    Plug 'chriskempson/base16-vim'
+
 
     " ident guides
     Plug 'Yggdroot/indentLine'
@@ -457,7 +481,6 @@ let g:airline_mode_map = {
 #+END_SRC
 * Key bindings
 ** Maps
-TODO: If babar alt+... for buffers is more confortable remove b+...
 |---------+---------+--------------------+--------------------------------------|
 | Mode    | Keys    | Mnemonic           | Description                          |
 |---------+---------+--------------------+--------------------------------------|
@@ -513,7 +536,9 @@ noremap K 5k
 
 "begining and end of line
 nnoremap B ^
-nnoremap E $
+nnoremap E g_
+vnoremap B ^
+vnoremap E g_
 
 " Better indenting in visual mode (indent and go back to visual sellection)
 vnoremap < <gv
@@ -612,8 +637,10 @@ nmap s <Plug>(easymotion-bd-w)
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
-" copy with ctrl-c
-vnoremap <C-c> :w !xsel -i -b <CR><CR>
+" copy with ctrl-c in visual  and C in normal
+vnoremap <C-c> "+y
+nnoremap <C-c> "+y
+nnoremap <A-c> V"+y
 
 #+END_SRC
 
@@ -671,9 +698,16 @@ endfunction
 "   exe 'bd '.join(buffers, ' ')
 " endfunction
 
+function CopyPath()
+ let @+=expand("%:p")
+endfunction
+
+function YankPath()
+  let @*=expand("%:p")
+endfunction
+
 #+END_SRC
 *** Top Layer
-TODO: fin files globaly
 |---------+--------+-------------------+---------------------------------------|
 | Key     | Prefix | Mnemonic          | Description                           |
 |---------+--------+-------------------+---------------------------------------|
@@ -703,7 +737,8 @@ TODO: fin files globaly
 | "p"     |        | from Ctrl-p       | Search file in project = leader SPACE |
 | "P"     |        | From VScode C+S+p | Vim Commands                          |
 | "q"     |        | Quit              | Quit                                  |
-| r"      |        | Ranger            | Ranger file explorer                  |
+| "r"     |        | Ranger            | Ranger file explorer                  |
+| "R"     |        | Replace           | Replace under cursor                  |
 | "s"     | Yes    | Search            | Search submenu                        |
 | "t"     | Yes    | Terminal          | Terminal submenu                      |
 | "T"     | Yes    | Toggles           | Toggle submenu                        |
@@ -732,12 +767,13 @@ let g:which_key_map['p'] = [':Telescope find_files'                             
 let g:which_key_map['P'] = [':Telescope commands'                                      ,'Commands' ]
 let g:which_key_map['q'] = ['q'                                             ,'Quit' ]
 let g:which_key_map['r'] = ['RnvimrToggle'                                  ,'Ranger' ]
+nnoremap <leader>R :%s/\<<C-r><C-w>\>/
+let g:which_key_map['R'] = 'Replace Under Cursor'
 let g:which_key_map['u'] = ['UndotreeToggle'                                ,'Undo Tree' ]
 let g:which_key_map['v'] = ['<C-W>v'                                        ,'Split Right']
 let g:which_key_map['y'] = [':CocList -A --normal yank'                     ,'Yank List']
 #+END_SRC
 *** Workspace/Session - Submenu (TAB)
-TODO tab should be a session list that when selecting a session saves currentone before switch (maybe telescope) and the dashboard should be in D
 |-------+----------+----------------|
 | Key   | Mnemonic | Description    |
 |-------+----------+----------------|
@@ -973,7 +1009,6 @@ let g:which_key_map.D['b'] ={
 
 #+END_SRC
 *** File - Submenu (f)
-- TODO Copy File Path, Yank File Path, Find Globaly, Move File
 |------+----------+-------------------------------|
 | Keys | Mnemonic | Description                   |
 |------+----------+-------------------------------|
@@ -986,14 +1021,12 @@ let g:which_key_map.D['b'] ={
 |------+----------+-------------------------------|
 #+BEGIN_SRC vimrc :tangle init.vim
 " File Submenu
-  "TODO: \ 'c' : [':let @+=expand("%:p")'                      , 'Copy Path'],
-  " \ 'f' : ['','Find File Globaly']
-  " \ 'm' : [''                                    , 'Move File'],
-  " \ 'y' : [':let @*=expand("%:p")'                       , 'Yank Path']
 let g:which_key_map['f'] = {
   \ 'name': '+File',
+  \ 'c' : [':call CopyPath()'                      , 'Copy Path'],
   \ 'r' : [':Telescope oldfiles'                                    , 'Recent Files'],
   \ 'R' : [':CocCommand workspace.renameCurrentFile'     , 'Rename File'],
+  \ 'y' : [':call YankPath()'                      , 'Yank Path'],
   \ }
 #+END_SRC
 *** Git - submenu (g)
@@ -1038,17 +1071,8 @@ let g:which_key_map['g'] = {
   \ 'v' : [':GV'                               , 'View Commits'],
   \ 'V' : [':GV!'                              , 'View Buffer Commits'],
   \ }
-  " TODO: Check
-  " \ 'h' : [':GitGutterLineHighlightsToggle'    , 'highlight hunks'],
-  " \ 'H' : ['<Plug>(GitGutterPreviewHunk)'      , 'preview hunk'],
-  " \ 'j' : ['<Plug>(GitGutterNextHunk)'         , 'next hunk'],
-  " \ 'k' : ['<Plug>(GitGutterPrevHunk)'         , 'prev hunk'],
-  " \ 's' : ['<Plug>(GitGutterStageHunk)'        , 'stage hunk'],
-  " \ 't' : [':GitGutterSignsToggle'             , 'toggle signs'],
-  " \ 'u' : ['<Plug>(GitGutterUndoHunk)'         , 'undo hunk'],
 #+END_SRC
 *** Insert - Submenu (i)
-TODO: function for inserting unicode( now only searches ), name and path
 |------+----------+-------------------|
 | Keys | Mnemonic | Description       |
 |------+----------+-------------------|
@@ -1192,7 +1216,6 @@ let g:which_key_map['t'] = {
   \ }
 #+END_SRC
 *** Toggle - Submenu (T)
-TODO codelens, coc
 |------+-------------+------------------------|
 | Keys | Mnemonic    | Description            |
 |------+-------------+------------------------|
@@ -1215,18 +1238,18 @@ TODO codelens, coc
 " Toggle submenu
 let g:which_key_map['T'] ={
   \ 'name' : '+Toggle',
-  \ 'c' : [':set cursorcolumn!'                     , 'Cursor Column'],
+  \ 'c' : [':setlocal cursorcolumn!'                     , 'Cursor Column'],
   \ 'd' : [':set background=dark'                   , 'Dark  Background'],
   \ 'i' : [':IndentLinesToggle'                     , 'Indent Lines'],
   \ 'l' : [':set background=light'                  , 'Light Background'],
-  \ 'L' : [':set cursorline!'                       , 'Cursor Line'],
-  \ 'n' : [':set nonumber!'                         , 'Line Numbers'],
-  \ 'r' : [':set norelativenumber!'                 , 'Relative Numbers'],
+  \ 'L' : [':setlocal cursorline!'                       , 'Cursor Line'],
+  \ 'n' : [':setlocal nonumber!'                         , 'Line Numbers'],
+  \ 'r' : [':setlocal norelativenumber!'                 , 'Relative Numbers'],
   \ 'R' : [':syntax on'                             , 'Reset Colors (syntax on)'],
   \ 't' : [':Vista!!'                               , 'Tag Viewer'],
   \ 'T' : [':hi Normal ctermbg=NONE guibg=NONE<CR>' , 'Transparent Background'],
   \ 'p' : [':RainbowToggle'                         , 'Color Parenthesis'],
-  \ 'w' : [':set wrap!'                             , 'Wrap'],
+  \ 'w' : [':setlocal wrap!'                             , 'Wrap'],
   \ 'z' : [':Goyo! 70%x90%'                                  , 'Zen Mode']
   \ }
 #+END_SRC
@@ -1255,16 +1278,19 @@ let g:which_key_map['w'] = {
 |------+----------+-----------------------|
 | "c"  | Copy     | Copy to Scratch       |
 | "c"  | Copy     | Copy to Clean Scratch |
+| "r"  | Run      | Run on Node           |
 | "v"  | View     | View Scratch          |
 | "x"  |          | Open Scratch          |
 | "X"  |          | Open Clean Scractch   |
 |------+----------+-----------------------|
 #+BEGIN_SRC vimrc :tangle init.vim
 " Scratch Buffer submenu
+nnoremap <leader>xn :Scratch<cr>:w !node<cr>
 let g:which_key_map['x'] ={
   \ 'name': '+Scratch',
   \ 'c' : [':ScratchSelection'    , 'Copy To Scratch Buffer'],
   \ 'C' : [':ScratchSelection!'   , 'Copy To Clean Scratch Buffer'],
+   \ 'n' : 'Run on node',
   \ 'v' : [':ScratchPreview'      , 'View Scratch Buffer'],
   \ 'x' : [':Scratch'             , 'Open Scrach Buffer'],
   \ 'X' : [':Scratch!'            , 'Open Clean Scrach Buffer']
@@ -1452,7 +1478,6 @@ endif
 #+END_SRC
 ** Project management
 settings for the plugin
-Workspaces need to be saved witn the .vim option or Coc lisr wont show them
 #+BEGIN_SRC vimrc :tangle init.vim
     let g:rooter_silent_chdir = 1
 
