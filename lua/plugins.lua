@@ -38,5 +38,10 @@ return require('packer').startup(function()
   -- Auto pairs
   use 'windwp/nvim-autopairs'
 
+  --fzf find
+  use {
+  'nvim-telescope/telescope.nvim',
+    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+  }
 
 end)

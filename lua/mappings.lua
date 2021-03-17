@@ -2,6 +2,9 @@
 vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
 vim.g.mapleader = ' '
 
+-- Telescope find file
+vim.api.nvim_set_keymap('n', '<Leader><Space>', ':Telescope find_files<CR>', {noremap = true, silent = true}) 
+
 -- File Explorer
 vim.api.nvim_set_keymap('n', '<Leader>e', ':NvimTreeToggle<CR>', {noremap = true, silent = true}) 
 
