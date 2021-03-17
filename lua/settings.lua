@@ -14,7 +14,7 @@ vim.wo.cursorline = true
 vim.wo.cursorcolumn = true
 vim.o.fillchars = 'vert:│'
 vim.o.showmode = false
-vim.wo.foldcolumn = '1'
+--vim.wo.foldcolumn = '1'
 vim.wo.signcolumn='auto:1-3'
 
 --wrapping and tabs
