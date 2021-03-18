@@ -56,34 +56,36 @@ vim.g.nvim_tree_disable_netrw = 0
 vim.g.nvim_tree_hijack_netrw = 0 
 vim.g.nvim_tree_add_trailing = 1 
 
+
+vim.g.nvim_tree_show_icons = {
+  git = 1,
+  folders = 1,
+  files = 1,
+  }
 --[[
-let g:nvim_tree_show_icons = {
-    \ 'git': 1,
-    \ 'folders': 0,
-    \ 'files': 0,
-    \ }
 "If 0, do not show the icons for one of 'git' 'folder' and 'files'
 "1 by default, notice that if 'files' is 1, it will only display
 "if nvim-web-devicons is installed and on your runtimepath
 
 " default will show icon by default if no icon is provided
 " default shows no icon by default
-let g:nvim_tree_icons = {
-    \ 'default': '',
-    \ 'symlink': '',
-    \ 'git': {
-    \   'unstaged': "✗",
-    \   'staged': "✓",
-    \   'unmerged': "",
-    \   'renamed': "➜",
-    \   'untracked': "★"
-    \   },
-    \ 'folder': {
-    \   'default': "",
-    \   'open': "",
-    \   'empty': "",
-    \   'empty_open': "",
-    \   'symlink': "",
-    \   }
-    \ }
 --]]
+
+vim.g.nvim_tree_icons = {
+  default = '',
+  symlink = '',
+  git = {
+   unstaged = "✗",
+   staged = "✓",
+   unmerged = "",
+   renamed = "➜",
+   untracked = "★"
+   },
+  folder = {
+   default = "",
+   open = "",
+   empty = "",
+   empty_open = "",
+   symlink = "",
+   }
+  }
