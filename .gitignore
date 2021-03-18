@@ -8,3 +8,6 @@ undodir
 sessions
 scratch.vim
 vimspector-config/gadgets/
+todo.org
+plugin/packer*
+ls/*
