@@ -14,6 +14,9 @@ return require('packer').startup(function()
   -- Packer can manage itself as an optional plugin
   use {'wbthomason/packer.nvim', opt = true}
 
+  -- Comments
+  use 'b3nj5m1n/kommentary'
+
   -- Lsp
  use 'neovim/nvim-lspconfig'
  use 'hrsh7th/nvim-compe'
@@ -43,7 +46,6 @@ return require('packer').startup(function()
   'nvim-telescope/telescope.nvim',
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
   }
-
 
   --git
   use {
