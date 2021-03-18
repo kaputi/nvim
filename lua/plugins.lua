@@ -18,8 +18,11 @@ return require('packer').startup(function()
   use 'b3nj5m1n/kommentary'
 
   -- Lsp
- use 'neovim/nvim-lspconfig'
- use 'hrsh7th/nvim-compe'
+  use 'neovim/nvim-lspconfig'
+  -- Auto complete
+  use 'hrsh7th/nvim-compe'
+  use 'hrsh7th/vim-vsnip'
+  use 'hrsh7th/vim-vsnip-integ'
 
   -- Keybindings
   --use 'liuchengxu/vim-which-key'
