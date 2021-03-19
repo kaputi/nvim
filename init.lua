@@ -18,6 +18,9 @@ require('nv-hop')
 require('nv-startify')
 require('nv-whichkey')
 require('nv-lspkind')
+require('nv-lspsaga')
+-- require('nv-lspsignature')
+require('nv-telescope')
 
 
 -- LSP

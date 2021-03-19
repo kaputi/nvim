@@ -19,6 +19,8 @@ return require('packer').startup(function(use)
   -- Lsp
   use 'neovim/nvim-lspconfig'
   use 'onsails/lspkind-nvim'
+  use 'glepnir/lspsaga.nvim'
+  -- use 'ray-x/lsp_signature.nvim'
   -- Auto complete
   use 'hrsh7th/nvim-compe'
   use 'hrsh7th/vim-vsnip'

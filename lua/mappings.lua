@@ -16,6 +16,7 @@ map('n', '<A-l>', ':vertical resize +2<CR>', {noremap = true, silent = true})
 -- Copy and paste
 map('n', '<C-c>', '"+y', {noremap = true, silent = true})
 map('n', '<A-c>', 'V"+y', {noremap = true, silent = true})
+map('v', '<C-c>', '"+y', {noremap = true, silent = true})
 
 -- Select all
 map('n', '<C-a>', 'ggVG', {noremap = true, silent = true})
