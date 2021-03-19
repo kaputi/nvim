@@ -14,8 +14,7 @@ return require('packer').startup(function()
   -- Packer can manage itself as an optional plugin
   use {'wbthomason/packer.nvim', opt = true}
 
-  -- Comments
-  use 'b3nj5m1n/kommentary'
+  -- LSP AUTOCOMPLETE AND SYNTAX ======================
 
   -- Lsp
   use 'neovim/nvim-lspconfig'
@@ -23,33 +22,38 @@ return require('packer').startup(function()
   use 'hrsh7th/nvim-compe'
   use 'hrsh7th/vim-vsnip'
   use 'hrsh7th/vim-vsnip-integ'
+  -- Treesitter
+  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+  use 'nvim-treesitter/playground'
+  use 'p00f/nvim-ts-rainbow'
 
-  -- Keybindings
-  --use 'liuchengxu/vim-which-key'
+  -- UI =====================================
 
-  -- File explorer
-  use 'kyazdani42/nvim-tree.lua'
-  
   -- Theme
-  use 'ayu-theme/ayu-vim'
-
+  use 'ayu-theme/ayu-vim' -- high contrast themes use with let g:ayucolor="light" | "dark" | "mirage"
   --  Icons
   use 'kyazdani42/nvim-web-devicons'
-
+  -- Colors
+  use 'norcalli/nvim-colorizer.lua'
   -- Status bar
   use 'glepnir/galaxyline.nvim'
   -- Tab bar
   use 'akinsho/nvim-bufferline.lua'
 
+  -- Code =====================================
+
   -- Auto pairs
   use 'windwp/nvim-autopairs'
+  -- Comments
+  use 'b3nj5m1n/kommentary'
+
+  -- TOOLS ======================================
 
   --fzf find
   use {
   'nvim-telescope/telescope.nvim',
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
   }
-
   --git
   use {
     'lewis6991/gitsigns.nvim',
@@ -57,5 +61,8 @@ return require('packer').startup(function()
       'nvim-lua/plenary.nvim'
     }
   }
-
+  -- File explorer
+  use 'kyazdani42/nvim-tree.lua'
+  -- Keybindings
+  --use 'liuchengxu/vim-which-key'
 end)

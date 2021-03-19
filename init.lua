@@ -10,6 +10,8 @@ require('nv-nvimtree')
 require('nv-compe')
 require('nv-gitsigns')
 require('nv-kommentary')
+require('nv-treesitter')
+require('nv-colorizer')
 
 
 -- LSP

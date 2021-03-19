@@ -1,8 +1,6 @@
 -- UI
 vim.o.termguicolors = true
-vim.api.nvim_set_var('ayucolor', 'mirage')
-vim.cmd [[silent! colorscheme ayu]]
-vim.cmd('hi VertSplit guibg=NONE guifg=#787878')
+vim.cmd [[silent! colorscheme bumbler]]
 vim.o.cmdheight = 2
 vim.o.t_Co = '256'
 vim.wo.number = true
