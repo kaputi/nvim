@@ -26,6 +26,17 @@ vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', {noremap = true, silent = true}) 
 vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', {noremap = true, silent = true}) 
 
+-- Resize
+-- " Use alt + hjkl to resize windows
+vim.api.nvim_set_keymap('n', '<A-j>', ':resize -2<CR>', {noremap = true, silent = true}) 
+vim.api.nvim_set_keymap('n', '<A-k>', ':resize +2<CR>', {noremap = true, silent = true}) 
+vim.api.nvim_set_keymap('n', '<A-h>', ':vertical resize -2<CR>', {noremap = true, silent = true}) 
+vim.api.nvim_set_keymap('n', '<A-l>', ':vertical resize +2<CR>', {noremap = true, silent = true}) 
+-- nnoremap <silent> <M-j>    :resize -2<CR>
+-- nnoremap <silent> <M-k>    :resize +2<CR>
+-- nnoremap <silent> <M-h>    :vertical resize -2<CR>
+-- nnoremap <silent> <M-l>    :vertical resize +2<CR>
+
 -- Copy and paste
 vim.api.nvim_set_keymap('n', '<C-c>', '"+y', {noremap = true, silent = true}) 
 vim.api.nvim_set_keymap('n', '<A-c>', 'V"+y', {noremap = true, silent = true}) 
