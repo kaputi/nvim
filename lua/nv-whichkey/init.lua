@@ -35,7 +35,7 @@ which_key_map['/'] = {'<Plug>kommentary_line_default'                 ,'Comment'
 which_key_map['='] = {'<C-W>='                                        ,'Balance Windows' }
 which_key_map[','] = {':Telescope buffers'                            ,'Buffer List'}
 which_key_map[' '] = {':Telescope find_files'                         ,'Find File'}
--- TODO: which_key_map['d'] = {':BufferClose'                                  ,'Delete Buffer'}
+which_key_map['d'] = {':bp | bd #'                                    ,'Delete Buffer'}
 which_key_map['e'] = {':NvimTreeToggle'                               ,'File Explorer' }
 which_key_map['h'] = {'<C-W>s'                                        ,'Split Below'}
 which_key_map['j'] = {':HopWord'                                      ,'Jump to Word' }
@@ -57,40 +57,39 @@ which_key_map['y'] = {':Telescope registers'                          ,'Yank Lis
 -- ==========================================
 which_key_map['<Tab>'] = {
   name = "+Dashboard",
-  ['<Tab>'] = {':Telescope','Session List'},
-  ['d'] = {':SDelete!', 'Delete Session'},
-  ['D'] = {':Startify', 'Dashboard'},
-  ['l'] = {':SLoad', 'Load Session'},
-  ['s'] = {':SSave!', 'Save Session'}
+  ['<Tab>'] = {':Telescope' ,'Session List'},
+  ['d'] = {':SDelete!'      , 'Delete Session'},
+  ['D'] = {':Startify'      , 'Dashboard'},
+  ['l'] = {':SLoad'         , 'Load Session'},
+  ['s'] = {':SSave!'        , 'Save Session'}
 }
-
 
 -- ==========================================
 -- Actions layer ============================
 -- ==========================================
 which_key_map['a'] = {
    name = '+Actions' ,
-   ['c'] = {'PackerClean'                       ,'Clean Old Plugin'},
-   ['i'] = {'PackerInstall'                     ,'Install Plugins'},
-   ['s'] = {':set hls!'                         ,'Remove Search Highlights'},
-   ['S'] = {':source $MYVIMRC'                  ,'Source $MYVIMRC'},
-   ['u'] = {':PackerUpdate'                     ,'Update Plugins'},
-   ['U'] = {':PackerSync'                       ,'Sync Plugins'},
+   ['c'] = {'PackerClean'      ,'Clean Old Plugin'},
+   ['i'] = {'PackerInstall'    ,'Install Plugins'},
+   ['s'] = {':set hls!'        ,'Remove Search Highlights'},
+   ['S'] = {':source $MYVIMRC' ,'Source $MYVIMRC'},
+   ['u'] = {':PackerUpdate'    ,'Update Plugins'},
+   ['U'] = {':PackerSync'      ,'Sync Plugins'},
 }
 -- ==========================================
 -- Buffer layer =============================
 -- ==========================================
 which_key_map['b'] = {
    name  = '+Buffer' ,
-   ['b'] = {':Telescope buffers'   ,'Find Buffer'},
-   -- ['d'] = {':BufferClose!'        ,'Delete Buffer Wihthout Saving'},
-   ['D'] = {':%bd'      ,'Delete All Buffers'},
+   ['b'] = {':Telescope buffers'            ,'Find Buffer'},
+   ['d'] = {':bp | bd! #'                   ,'Delete Buffer Wihthout Saving'},
+   ['D'] = {':%bd'                          ,'Delete All Buffers'},
    -- ['f'] = {':BufferGoto 1'    ,'First Buffer'},
-   -- ['k'] = {':BufferCloseAllButCurrent'   ,'Delete Other Buffers'},
+   ['k'] = {':%bd!|edit #|bd #|normal `"'   ,'Delete Other Buffers'}, -- %bd kills all, edit # opens last ,bd # kills last(after killing all there is a new empty buffer) '" goes to last place before close
    -- ['l'] = {':BufferLast'     ,'Last Buffer'},
-   -- ['n'] = {':BufferNext'     ,'Next Buffer'},
-   ['N'] = {'enew'      ,'New Empty Buffer'},
-   -- ['p'] = {':BufferPrevious' ,'Previous Buffer'}
+   ['n'] = {':bn'                           ,'Next Buffer'},
+   ['N'] = {'enew'                          ,'New Empty Buffer'},
+   ['p'] = {':bp'                           ,'Previous Buffer'}
 }
 
 -- ==========================================
@@ -142,17 +141,17 @@ which_key_map.c['p'] = {
 -- ==========================================
 which_key_map['D'] = {
    name = '+Debug',
-   ['c'] = {':call win_gotoid(g:vimspector_session_windows.code) <CR>'            , 'Code Window'},
+   ['c'] = {':call win_gotoid(g:vimspector_session_windows.code) <CR>'       , 'Code Window'},
    ['d'] = {'<Plug>VimspectorContinue'                                       , 'Launch/Continue'},
    ['e'] = {'<Plug>VimspectorBalloonEval'                                    , 'Balloon Eval'},
-   ['o'] = {':call win_gotoid(g:vimspector_session_windows.output)<CR>'          , 'Output Window'},
+   ['o'] = {':call win_gotoid(g:vimspector_session_windows.output)<CR>'      , 'Output Window'},
    ['P'] = {'<Plug>VimspectorPause'                                          , 'Pause'},
    ['R'] = {'<Plug>VimspectorRestart'                                        , 'Restart'},
-   ['s'] = {':call win_gotoid(g:vimspector_session_windows.stack_trace)<CR>'     , 'Stack Window'},
+   ['s'] = {':call win_gotoid(g:vimspector_session_windows.stack_trace)<CR>' , 'Stack Window'},
    ['S'] = {'<Plug>VimspectorStop'                                           , 'Stop'},
-   ['t'] = {':call win_gotoid(g:vimspector_session_windows.tagpage)<CR>'         , 'Tag Window'},
-   ['v'] = {':call win_gotoid(g:vimspector_session_windows.variables)<CR>'       , 'Variable Window'},
-   ['w'] = {':call win_gotoid(g:vimspector_session_windows.watches)<CR>'         , 'Watch Window'}
+   ['t'] = {':call win_gotoid(g:vimspector_session_windows.tagpage)<CR>'     , 'Tag Window'},
+   ['v'] = {':call win_gotoid(g:vimspector_session_windows.variables)<CR>'   , 'Variable Window'},
+   ['w'] = {':call win_gotoid(g:vimspector_session_windows.watches)<CR>'     , 'Watch Window'}
 }
 -- Debug Run Submenu
 which_key_map.D['r'] ={
@@ -175,10 +174,10 @@ which_key_map.D['b'] ={
 -- ==========================================
 which_key_map['f'] = {
    name = '+File',
-   ['c'] = {':call CopyPath()'                      , 'Copy Path'},
-   ['r'] = {':Telescope oldfiles'                                    , 'Recent Files'},
-   ['R'] = {':CocCommand workspace.renameCurrentFile'     , 'Rename File'},
-   ['y'] = {':call YankPath()'                      , 'Yank Path'},
+   ['c'] = {':call CopyPath()'                          , 'Copy Path'},
+   ['r'] = {':Telescope oldfiles'                       , 'Recent Files'},
+   ['R'] = {':CocCommand workspace.renameCurrentFile'   , 'Rename File'},
+   ['y'] = {':call YankPath()'                          , 'Yank Path'},
 }
 -- ==========================================
 -- Git layer ===============================
@@ -224,7 +223,7 @@ which_key_map['s'] = {
    ['B'] = {':Lines'             , 'Txt in Opened Buffers'} ,
    ['c'] = {':Telescope git_commits'           , 'Commits'},
    ['C'] = {':Telescope git_bcommits'          , 'Buffer Commits'},
-   ['f'] = {':Telescope find_files'             , 'Files'},
+   ['f'] = {':Telescope find_files'             , 'Filesk'},
    ['g'] = {':Telescope git_files'            , 'Git Files'},
    ['G'] = {':Telescope git_status'           , 'Modified Git Files'},
    ['h'] = {':Telescope command_history'          , 'Command History'},

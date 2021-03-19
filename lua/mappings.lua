@@ -37,7 +37,8 @@ map('v', '<', '<gv', {noremap = true, silent = true})
 -- Buffer navigation
 map('n', 'bn', ':bn<CR>', {noremap = true, silent = true})
 map('n', 'bp', ':bp<CR>', {noremap = true, silent = true})
-map('n', 'bd', ':bd<CR>', {noremap = true, silent = true})
+-- map('n', 'bd', ':bd<CR>', {noremap = true, silent = true})
+map('n', 'bd', ':bp | bd #<CR>', {noremap = true, silent = true}) -- thisone doesn't close splits
 
 
 -- I dont release Shift in time
