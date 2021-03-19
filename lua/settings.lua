@@ -37,7 +37,16 @@ vim.o.splitright = true
 vim.o.clipboard = 'unnamed'
 vim.o.updatetime = 300
 vim.o.timeoutlen = 300
-
+--persistent undo
+vim.cmd([[
+if has("persistent_undo")
+  if !isdirectory($HOME."/.config/nvim/undodir")
+    silent call mkdir($HOME."/.config/nvim/undodir", "p")
+  endif
+  set undodir=~/.config/nvim/undodir
+  set undofile
+endif
+]])
 -- highlight yank
 vim.api.nvim_command('augroup YankHighlight')
 vim.api.nvim_command('autocmd!')
