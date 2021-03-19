@@ -18,6 +18,8 @@ vim.api.nvim_set_keymap('n', '<Leader>h', ':split<CR>', {noremap = true, silent 
 -- Quit
 vim.api.nvim_set_keymap('n', '<Leader>q', ':q<CR>', {noremap = true, silent = true}) 
 
+-- Yank list (registers)
+vim.api.nvim_set_keymap('n', '<Leader>y', ':Telescope registers<CR>', {noremap = true, silent = true}) 
 
 -- Modes keymapping
 -- Better window navigation

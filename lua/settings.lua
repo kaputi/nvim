@@ -38,6 +38,12 @@ vim.o.clipboard = 'unnamed'
 vim.o.updatetime = 300
 vim.o.timeoutlen = 300
 
+-- highlight yank
+vim.api.nvim_command('augroup YankHighlight')
+vim.api.nvim_command('autocmd!')
+vim.api.nvim_command('autocmd TextYankPost * silent! lua require"vim.highlight".on_yank()')
+vim.api.nvim_command('augroup END')
+
 -- Lsp And Autocomplete
 vim.o.completeopt = "menuone,noselect"
 
