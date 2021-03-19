@@ -13,6 +13,7 @@ require('nv-kommentary')
 require('nv-treesitter')
 require('nv-colorizer')
 require('nv-toggleterm')
+require('nv-hop')
 
 
 -- LSP

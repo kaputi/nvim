@@ -46,6 +46,8 @@ return require('packer').startup(function()
   use 'windwp/nvim-autopairs'
   -- Comments
   use 'b3nj5m1n/kommentary'
+  -- Movement
+  use 'phaazon/hop.nvim'
 
   -- TOOLS ======================================
 
