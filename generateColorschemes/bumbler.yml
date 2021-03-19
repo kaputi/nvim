@@ -288,15 +288,15 @@ highlights:
   # -- END Easymotion --
 
   # -- START Startify --
-  StartifyNumber: "light_green"
+  StartifyNumber: "yellow"
   StartifySelect: "green"
   StartifyBracket: "blue"
   StartifySpecial: "cyan"
   StartifyVar: "blue"
   StartifyPath: "blue"
-  StartifyFile: "cyan"
+  StartifyFile: "yellow"
   StartifySlash: "blue"
-  StartifyHeader: "green"
+  StartifyHeader: "blue"
   StartifySection: "purple"
   StartifyFooter: "green"
   # -- END Startify --

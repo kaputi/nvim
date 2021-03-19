@@ -14,6 +14,8 @@ require('nv-treesitter')
 require('nv-colorizer')
 require('nv-toggleterm')
 require('nv-hop')
+-- require('nv-dashboard')
+require('nv-startify')
 
 
 -- LSP

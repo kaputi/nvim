@@ -10,9 +10,9 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 
-return require('packer').startup(function()
+return require('packer').startup(function(use)
   -- Packer can manage itself as an optional plugin
-  use {'wbthomason/packer.nvim', opt = true}
+  use 'wbthomason/packer.nvim'
 
   -- LSP AUTOCOMPLETE AND SYNTAX ======================
 
@@ -33,12 +33,16 @@ return require('packer').startup(function()
   use 'ayu-theme/ayu-vim' -- high contrast themes use with let g:ayucolor="light" | "dark" | "mirage"
   --  Icons
   use 'kyazdani42/nvim-web-devicons'
+  use 'ryanoasis/vim-devicons'
   -- Colors
   use 'norcalli/nvim-colorizer.lua'
   -- Status bar
   use 'glepnir/galaxyline.nvim'
   -- Tab bar
   use 'akinsho/nvim-bufferline.lua'
+  -- Dashboard
+  -- use 'glepnir/dashboard-nvim'
+  use 'mhinz/vim-startify'
 
   -- Code =====================================
 
