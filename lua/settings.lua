@@ -1,6 +1,10 @@
 -- UI
 vim.o.termguicolors = true
 vim.cmd [[silent! colorscheme bumbler]]
+-- vim.cmd [[
+  -- let g:ayucolor="light"
+  -- silent! colorscheme ayu
+  -- ]]
 vim.o.cmdheight = 2
 vim.o.t_Co = '256'
 vim.wo.number = true
@@ -13,7 +17,9 @@ vim.wo.cursorcolumn = true
 vim.o.fillchars = 'vert:│'
 vim.o.showmode = false
 --vim.wo.foldcolumn = '1'
-vim.wo.signcolumn='auto:1-3'
+-- vim.wo.signcolumn='auto:1-3'
+-- vim.wo.signcolumn='yes'
+vim.wo.signcolumn='yes:2'
 
 --wrapping and tabs
 vim.wo.wrap = false

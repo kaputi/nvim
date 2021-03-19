@@ -32,8 +32,8 @@ endfunction
 
 vim.g.startify_bookmarks = {}
 vim.g.startify_lists = {
-  { type = 'sessions',  header = {'   Sessions'}},
-  { type = 'files',     header = {'   Recent Files'}, indices= {'a','b','c','d','e','f','g','h','i','j'}},
+  { type = 'sessions',  header = {'   Sessions'},indices= {'a','s','d','f'}},
+  { type = 'files',     header = {'   Recent Files'} },
   -- { type = 'bookmarks', header = {'   Bookmarks'}},
   -- { type = 'commands',  header = {'   Commands'}},
  }

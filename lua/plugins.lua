@@ -70,7 +70,7 @@ return require('packer').startup(function(use)
   -- File explorer
   use 'kyazdani42/nvim-tree.lua'
   -- Keybindings
-  --use 'liuchengxu/vim-which-key'
+  use 'liuchengxu/vim-which-key'
   -- Terminal
   use 'akinsho/nvim-toggleterm.lua'
 end)

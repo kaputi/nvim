@@ -16,6 +16,7 @@ require('nv-toggleterm')
 require('nv-hop')
 -- require('nv-dashboard')
 require('nv-startify')
+require('nv-whichkey')
 
 
 -- LSP
