@@ -41,7 +41,7 @@ hi Todo guifg=#d4bfff ctermfg=183 guibg=NONE ctermbg=NONE gui=bold,italic cterm=
 hi Underlined guifg=#4ec9b0 ctermfg=79 gui=underline cterm=underline
 hi Cursor guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE gui=reverse cterm=reverse
 hi ColorColumn guifg=NONE ctermfg=NONE guibg=#2c323c ctermbg=236 gui=NONE cterm=NONE
-hi CursorLineNr guifg=#ffc44c ctermfg=221 guibg=NONE ctermbg=NONE gui=bold cterm=bold
+hi CursorLineNr guifg=#ffc44c ctermfg=221 guibg=#2c323c ctermbg=236 gui=bold cterm=bold
 hi SignColumn guifg=NONE ctermfg=NONE guibg=#212733 ctermbg=235 gui=NONE cterm=NONE
 hi Conceal guifg=#5c6370 ctermfg=241 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CursorColumn guifg=NONE ctermfg=NONE guibg=#2c323c ctermbg=236 gui=NONE cterm=NONE
@@ -58,8 +58,8 @@ hi FoldColumn guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE gui=NONE cterm=NON
 hi IncSearch guifg=#1da1f2 ctermfg=39 guibg=#5c6370 ctermbg=241 gui=NONE cterm=NONE
 hi LineNr guifg=#4b5263 ctermfg=240 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi NonText guifg=#3b4048 ctermfg=238 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi Pmenu guifg=#abb2bf ctermfg=249 guibg=#282c34 ctermbg=236 gui=NONE cterm=NONE
-hi PmenuSel guifg=#1e1e1e ctermfg=234 guibg=#5ccfe6 ctermbg=80 gui=NONE cterm=NONE
+hi Pmenu guifg=#d4bfff ctermfg=183 guibg=#282c34 ctermbg=236 gui=NONE cterm=NONE
+hi PmenuSel guifg=#ffc44c ctermfg=221 guibg=#343f4c ctermbg=238 gui=NONE cterm=NONE
 hi PmenuSbar guifg=NONE ctermfg=NONE guibg=#3b4048 ctermbg=238 gui=NONE cterm=NONE
 hi PmenuThumb guifg=NONE ctermfg=NONE guibg=#abb2bf ctermbg=249 gui=NONE cterm=NONE
 hi Question guifg=#d4bfff ctermfg=183 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
@@ -92,7 +92,7 @@ hi TSConstant guifg=#ffc44c ctermfg=221 guibg=NONE ctermbg=NONE gui=NONE cterm=N
 hi TSConstBuiltin guifg=#5ccfe6 ctermfg=80 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi TSConstMacro guifg=#4ec9b0 ctermfg=79 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi TSStringRegex guifg=#ffae57 ctermfg=215 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi TSString guifg=#ffae57 ctermfg=215 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi TSString guifg=#bbe67e ctermfg=150 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi TSStringEscape guifg=#d7ba7d ctermfg=180 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi TSCharacter guifg=#ffae57 ctermfg=215 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi TSNumber guifg=#95e6cb ctermfg=116 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
@@ -113,7 +113,7 @@ hi TSConstructor guifg=#4ec9b0 ctermfg=79 guibg=NONE ctermbg=NONE gui=NONE cterm
 hi TSConditional guifg=#d4bfff ctermfg=183 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi TSRepeat guifg=#d4bfff ctermfg=183 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi TSLabel guifg=#80d4ff ctermfg=117 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi TSKeyword guifg=#5ccfe6 ctermfg=80 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi TSKeyword guifg=#ffc44c ctermfg=221 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi TSKeywordFunction guifg=#d4bfff ctermfg=183 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi TSKeywordOperator guifg=#5ccfe6 ctermfg=80 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi TSOperator guifg=#abb2bf ctermfg=249 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
@@ -132,7 +132,7 @@ hi TSTitle guifg=#ffff00 ctermfg=226 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi TSLiteral guifg=#ffff00 ctermfg=226 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi TSURI guifg=#ffff00 ctermfg=226 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi TSTag guifg=#5ccfe6 ctermfg=80 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi TSTagDelimiter guifg=#5c6370 ctermfg=241 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi TSTagDelimiter guifg=#f07178 ctermfg=204 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi htmlArg guifg=#d7ba7d ctermfg=180 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi htmlBold guifg=#d7ba7d ctermfg=180 guibg=NONE ctermbg=NONE gui=bold cterm=bold
 hi htmlEndTag guifg=#abb2bf ctermfg=249 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE

@@ -18,7 +18,6 @@ return require('packer').startup(function(use)
   use 'norcalli/nvim_utils'
 
   -- LSP AUTOCOMPLETE AND SYNTAX ======================
-
   -- Lsp
   use 'neovim/nvim-lspconfig'
   use 'onsails/lspkind-nvim'
@@ -34,6 +33,8 @@ return require('packer').startup(function(use)
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
   use 'nvim-treesitter/playground'
   use 'p00f/nvim-ts-rainbow'
+  -- Debugger
+  use 'puremourning/vimspector'
 
   -- UI =====================================
 
@@ -60,7 +61,11 @@ return require('packer').startup(function(use)
   use 'b3nj5m1n/kommentary'
   -- Movement
   use 'phaazon/hop.nvim'
-
+  -- Match tags
+  -- use 'AndrewRadev/tagalong.vim'-- treesitter one does this besides autoclose
+  use 'windwp/nvim-ts-autotag' -- uses treesitter
+  -- Surround
+  use 'tpope/vim-surround'
   -- TOOLS ======================================
 
   --fzf find
@@ -69,6 +74,9 @@ return require('packer').startup(function(use)
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
   }
   --git
+  use 'tpope/vim-fugitive'
+  use 'tpope/vim-rhubarb'
+  use 'f-person/git-blame.nvim'
   use {
     'lewis6991/gitsigns.nvim',
     requires = {
@@ -81,4 +89,20 @@ return require('packer').startup(function(use)
   use 'liuchengxu/vim-which-key'
   -- Terminal
   use 'akinsho/nvim-toggleterm.lua'
+  -- change root
+  use 'airblade/vim-rooter'
+  -- Zen mode
+  use 'junegunn/goyo.vim'
+  --  Tag viewer
+  use 'liuchengxu/vista.vim'
+  -- Ranger
+  use 'kevinhwang91/rnvimr'
+  -- Maximizer
+  use 'szw/vim-maximizer'
+  -- Indent Guides
+  use 'Yggdroot/indentLine'
+  -- Scratch Buffer
+  use 'mtth/scratch.vim'
+  -- Undotree
+  use 'mbbill/undotree'
 end)

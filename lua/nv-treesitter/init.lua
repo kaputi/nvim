@@ -12,10 +12,13 @@ require'nvim-treesitter.configs'.setup {
   rainbow = {
     enable = true
   },
-  refactor = {
-      highlight_definitions = {
-        enable = false
-      }
-   }
+  autotag = {
+      enable = true,
+  },
+  -- refactor = {
+  --     highlight_definitions = {
+  --       enable = false
+  --     }
+  --  }
 }
 

@@ -78,15 +78,14 @@ which_key_map['k'] = 'LSP Hover'
 map('n', '<Leader>k', '<Cmd> lua vim.lsp.buf.hover()<CR>', {noremap = true, silent = true})
 which_key_map['K'] = 'LSP Signature'
 map('n', '<Leader>K', '<Cmd> lua vim.lsp.buf.signature_help()<CR>', {noremap = true, silent = true})
--- which_key_map['m'] = {':MaximizerToggle'                              ,'Maximize' }
+which_key_map['m'] = {':MaximizerToggle'                              ,'Maximize' }
 which_key_map['o'] = {'append(line("."),   repeat([""], v:count1))'   ,'Line Below' }
 which_key_map['O'] = {'append(line(".")-1,   repeat([""], v:count1))' ,'Line Above' }
 which_key_map['p'] = {':Telescope find_files'                         ,'Search File' }
 which_key_map['P'] = {':Telescope commands'                           ,'Commands' }
 which_key_map['q'] = {'q'                                             ,'Quit' }
--- which_key_map['r'] = {'RnvimrToggle'                                  ,'Ranger' }
--- which_key_map['u'] = {'UndotreeToggle'                                ,'Undo Tree' }
--- which_key_map['v'] = {'<C-W>v'                                        ,'Split Right'}
+which_key_map['r'] = {'RnvimrToggle'                                  ,'Ranger' }
+which_key_map['u'] = {'UndotreeToggle'                                ,'Undo Tree' }
 which_key_map['v'] = 'Vertical Split'
 map('n', '<Leader>v', '<Cmd>vsplit | Telescope buffers<CR>',{noremap=true, silent=true})
 which_key_map['y'] = {':Telescope registers'                          ,'Yank List'}
@@ -126,9 +125,9 @@ which_key_map['b'] = {
    -- ['f'] = {':BufferGoto 1'    ,'First Buffer'},
    ['k'] = {':%bd!|edit #|bd #|normal `"'   ,'Delete Other Buffers'}, -- %bd kills all, edit # opens last ,bd # kills last(after killing all there is a new empty buffer) '" goes to last place before close
    -- ['l'] = {':BufferLast'     ,'Last Buffer'},
-   ['n'] = {':bn'                           ,'Next Buffer'},
+   ['n'] = {':BufferLineCycleNext'          ,'Previous Buffer'},
    ['N'] = {'enew'                          ,'New Empty Buffer'},
-   ['p'] = {':bp'                           ,'Previous Buffer'}
+   ['p'] = {':BufferLineCyclePrev'          ,'Previous Buffer'}
 }
 
 -- ==========================================
@@ -217,7 +216,7 @@ which_key_map['f'] = {
    name = '+File',
    ['c'] = {':call CopyPath()'                          , 'Copy Path'},
    ['r'] = {':Telescope oldfiles'                       , 'Recent Files'},
-   ['R'] = {':CocCommand workspace.renameCurrentFile'   , 'Rename File'},
+   -- ['R'] = {':CocCommand workspace.renameCurrentFile'   , 'Rename File'},
    ['y'] = {':call YankPath()'                          , 'Yank Path'},
 }
 -- ==========================================
@@ -227,20 +226,20 @@ which_key_map['g'] = {
    name = '+Git' ,
    ['A'] = {':Git add .'                        , 'Add Current'},
    ['a'] = {':Git add %'                        , 'Add ALl'},
-   ['b'] = {':Git blame'                        , 'Blame'},
+   ['b'] = {':GitBlameToggle'                        , 'Blame'},
    ['B'] = {':GBrowse'                          , 'Browse'},
    ['c'] = {':Git commit'                       , 'Commit'},
    ['d'] = {':Git diff'                         , 'Diff'},
    ['D'] = {':Gdiffsplit'                       , 'Diff Split'},
-   ['g'] = {':FloatermNew lazygit'              , 'Lazy Git'},
-   ['G'] = {':GGrep'                            , 'Git Grep'},
+   ['g'] = {':TermExec lazygit'                 , 'Lazy Git'},
+   -- ['G'] = {':GGrep'                            , 'Git Grep'},
    ['l'] = {':Git log'                          , 'Log'},
    ['P'] = {':Git push'                         , 'Push'},
    ['p'] = {':Git pull'                         , 'Pull'},
    ['r'] = {':GRemove'                          , 'Remove'},
    ['s'] = {':Gstatus'                          , 'Status'},
-   ['v'] = {':GV'                               , 'View Commits'},
-   ['V'] = {':GV!'                              , 'View Buffer Commits'},
+   ['v'] = {':Telescope git_commits '           , 'View Commits'},
+   ['V'] = {':Telescope git_bcommits'           , 'View Buffer Commits'},
  }
 
 -- ==========================================
@@ -259,9 +258,9 @@ which_key_map['R'] = {
 which_key_map['s'] = {
    name = '+Search' ,
    [';'] = {':Telescope commands'          , 'Commands'},
-   ['a'] = {':Ag'                , 'Text Ag'},
+   -- ['a'] = {':Ag'                , 'Text Ag'},
    ['b'] = {':Telescope current_buffer_fuzzy_find'            , 'Current Buffer'},
-   ['B'] = {':Lines'             , 'Txt in Opened Buffers'} ,
+   -- ['B'] = {':Lines'             , 'Txt in Opened Buffers'} ,
    ['c'] = {':Telescope git_commits'           , 'Commits'},
    ['C'] = {':Telescope git_bcommits'          , 'Buffer Commits'},
    ['f'] = {':Telescope find_files'             , 'Filesk'},
@@ -272,17 +271,17 @@ which_key_map['s'] = {
    ['m'] = {':Telescope marks'             , 'Marks'} ,
    ['M'] = {':Telescope keymaps'              , 'Key Maps'} ,
    ['p'] = {':Telescope tags'              , 'Project Tags'},
-   ['s'] = {':CocList snippets'  , 'Snippets'},
+   -- ['s'] = {':CocList snippets'  , 'Snippets'},
    ['S'] = {':Telescope colorscheme'            , 'Color Schemes'},
    ['t'] = {':Telescope live_grep'                , 'Text Rg'},
    ['T'] = {':Telescope current_buffer_tags'             , 'Buffer Tags'},
-   ['w'] = {':Windows'           , 'Windows'},
+   -- ['w'] = {':Windows'           , 'Windows'},
    ['y'] = {':Telescope       filetypes'         , 'File Types'},
 }
 -- ==========================================
 -- Toggle layer =============================
 -- ==========================================
-which_key_map['T'] ={
+which_key_map['t'] ={
    name = '+Toggle',
    ['c'] = {':setlocal cursorcolumn!'                     , 'Cursor Column'},
    ['d'] = {':set background=dark'                   , 'Dark  Background'},
@@ -294,9 +293,9 @@ which_key_map['T'] ={
    ['R'] = {':syntax on'                             , 'Reset Colors (syntax on)'},
    ['t'] = {':Vista!!'                               , 'Tag Viewer'},
    ['T'] = {':hi Normal ctermbg=NONE guibg=NONE<CR>' , 'Transparent Background'},
-   ['p'] = {':RainbowToggle'                         , 'Color Parenthesis'},
+   -- ['p'] = {':RainbowToggle'                         , 'Color Parenthesis'},
    ['w'] = {':setlocal wrap!'                             , 'Wrap'},
-   ['z'] = {':Goyo! 70%x90%'                                  , 'Zen Mode'}
+   ['z'] = {':Goyo'                                  , 'Zen Mode'}
 }
 
 -- ==========================================

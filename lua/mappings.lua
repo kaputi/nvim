@@ -13,6 +13,10 @@ map('n', '<A-k>', ':resize +2<CR>', {noremap = true, silent = true})
 map('n', '<A-h>', ':vertical resize -2<CR>', {noremap = true, silent = true})
 map('n', '<A-l>', ':vertical resize +2<CR>', {noremap = true, silent = true})
 
+-- Tab switch buffer
+map('n', '<TAB>', ':bnext<CR>', {noremap = true, silent = true})
+map('n', '<S-TAB>', ':bprevious<CR>', {noremap = true, silent = true})
+
 -- Copy and paste
 map('n', '<C-c>', '"+y', {noremap = true, silent = true})
 map('n', '<A-c>', 'V"+y', {noremap = true, silent = true})
@@ -25,6 +29,14 @@ map('n', '<C-a>', 'ggVG', {noremap = true, silent = true})
 map('n', 'J', '5j', {noremap = true, silent = true})
 map('n', 'K', '5k', {noremap = true, silent = true})
 
+-- Move to Wraps
+map('n', 'j', 'gj', {noremap=true, silent=true})
+map('n', 'k', 'gk', {noremap=true, silent=true})
+
+-- Move selected line / block of text in visual mode
+map('x', 'K', ':move \'<-2<CR>gv-gv', {noremap = true, silent = true})
+map('x', 'J', ':move \'>+1<CR>gv-gv', {noremap = true, silent = true})
+
 --Beggining and End
 map('n', 'B', '^', {noremap = true, silent = true})
 map('n', 'E', 'g_', {noremap = true, silent = true})
@@ -36,8 +48,8 @@ map('v', '>', '>gv', {noremap = true, silent = true})
 map('v', '<', '<gv', {noremap = true, silent = true})
 
 -- Buffer navigation
-map('n', 'bn', ':bn<CR>', {noremap = true, silent = true})
-map('n', 'bp', ':bp<CR>', {noremap = true, silent = true})
+map('n', 'bn', ':BufferLineCycleNext<CR>', {noremap = true, silent = true})
+map('n', 'bp', ':BufferLineCyclePrev<CR>', {noremap = true, silent = true})
 -- map('n', 'bd', ':bd<CR>', {noremap = true, silent = true})
 map('n', 'bd', ':bp | bd #<CR>', {noremap = true, silent = true}) -- thisone doesn't close splits
 

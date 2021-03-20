@@ -87,7 +87,7 @@ highlights:
   Cursor: "- - r"
 
   ColorColumn: "- cursor_grey"
-  CursorLineNr: "yellow - b"
+  CursorLineNr: "yellow cursor_grey b"
   SignColumn: "- bg"
   Conceal: "line_grey"
   CursorColumn: "- cursor_grey"
@@ -104,8 +104,8 @@ highlights:
   IncSearch: "search_blue line_grey"
   LineNr: "gutter_fg_grey"
   NonText: "special_grey"
-  Pmenu: "white menu_grey"
-  PmenuSel: "black blue"
+  Pmenu: "purple menu_grey"
+  PmenuSel: "yellow grey2"
   PmenuSbar: "- special_grey"
   PmenuThumb: "- white"
   Question: "purple"
@@ -143,7 +143,8 @@ highlights:
   # Not sure about this guy
   TSConstMacro: "cyan"
   TSStringRegex: "orange"
-  TSString: "orange"
+  # TSString: "orange"
+  TSString: "green"
   TSStringEscape: "dark_yellow"
   TSCharacter: "orange"
   TSNumber: "light_green"
@@ -167,7 +168,8 @@ highlights:
   TSRepeat: "purple"
   TSLabel: "light_blue"
   # Does not work for yield and return they should be diff then class and def
-  TSKeyword: "blue"
+  # TSKeyword: "blue"
+  TSKeyword: "yellow"
   TSKeywordFunction: "purple"
   TSKeywordOperator: "blue"
   TSOperator: "white"
@@ -189,7 +191,8 @@ highlights:
   TSURI: "#FFFF00"
   # Tags
   TSTag: "blue"
-  TSTagDelimiter: "line_grey"
+  # TSTagDelimiter: "line_grey"
+  TSTagDelimiter: "red"
   # -- END Treesitter --
 
   # -- START Languages --

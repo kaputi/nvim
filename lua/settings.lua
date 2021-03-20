@@ -1,3 +1,4 @@
+require 'nvim_utils'
 -- UI
 vim.o.termguicolors = true
 vim.cmd [[silent! colorscheme bumbler]]
@@ -20,6 +21,7 @@ vim.o.showmode = false
 -- vim.wo.signcolumn='auto:1-3'
 -- vim.wo.signcolumn='yes'
 vim.wo.signcolumn='yes:2'
+vim.o.pumblend=25
 
 --wrapping and tabs
 vim.wo.wrap = false
@@ -57,11 +59,43 @@ if has("persistent_undo")
   set undofile
 endif
 ]])
--- highlight yank
-vim.api.nvim_command('augroup YankHighlight')
-vim.api.nvim_command('autocmd!')
-vim.api.nvim_command('autocmd TextYankPost * silent! lua require"vim.highlight".on_yank()')
-vim.api.nvim_command('augroup END')
+
+-- swap and backups
+vim.cmd([[
+" create swap dir if not exist
+if !isdirectory($HOME."/.config/nvim/swap")
+silent call mkdir($HOME."/.config/nvim/swap", "p")
+endif
+]])
+vim.o.dir="~/.config/nvim/swap/"
+vim.o.backup = false
+vim.o.writebackup = false
+
+--Autocommands
+vim.cmd([[
+fun! TrimWhitespace()
+       let l:save = winsaveview()
+       keeppatterns %s/\s\+$//e
+       call winrestview(l:save)
+endfun
+]])
+
+local autocmds = {
+  YankHighlight = {
+    {'TextYankPost', '*', 'silent! lua require"vim.highlight".on_yank()'}
+  },
+  FormatOptions = {
+    {'FileType,BufRead,BufEnter', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o' }
+  },
+  JsonFileTypes = {
+    {'BufRead,BufNewFile', '.eslintrc,.babelrc,.prettierrc', 'set filetype=json'}
+  },
+  TrimWhitespace = {
+    {'BufWritePre', '*', 'call TrimWhitespace()'}
+  },
+}
+
+nvim_create_augroups(autocmds)
 
 -- Lsp And Autocomplete
 vim.o.completeopt = "menuone,noselect"

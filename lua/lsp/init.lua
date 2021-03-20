@@ -29,6 +29,8 @@ map('n', 'gr', '<Cmd> lua vim.lsp.buf.references()<CR>', {noremap = true, silent
 map('n', 'gi', '<Cmd> lua vim.lsp.buf.implementation()<CR>', {noremap = true, silent = true})
 map('n', 'ca', '<Cmd> lua vim.lsp.buf.code_action()<CR>', {noremap = true, silent = true})
 map('n', '<C-n>', '<Cmd> lnext<CR>', {noremap = true, silent = true})
+map('n', '<C-p>', '<Cmd> lprev<CR>', {noremap = true, silent = true})
+map('i', '<C-k>', '<Esc><Cmd>lua vim.lsp.buf.hover()<CR>a', {noremap = true, silent = true})
 
 --[[ " autoformat
 autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)

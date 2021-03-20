@@ -1,7 +1,7 @@
 require'bufferline'.setup{
   options = {
     view =  "multiwindow", --"multiwindow" | "default",
-    numbers = "ordinal", --"none" | "ordinal" | "buffer_id",
+    numbers = "none", --"none" | "ordinal" | "buffer_id",
     number_style = "", --"superscript" | "",
     mappings = false,
     buffer_close_icon= '',
