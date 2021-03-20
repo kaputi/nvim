@@ -23,7 +23,11 @@ vim.wo.signcolumn='yes:2'
 
 --wrapping and tabs
 vim.wo.wrap = false
-vim.bo.textwidth = 80
+vim.o.textwidth = 0
+vim.o.wrapmargin = 0
+vim.o.linebreak = true
+vim.o.breakindent = true
+vim.o.showbreak="->->->"
 vim.wo.colorcolumn = '81'
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2

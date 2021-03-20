@@ -36,6 +36,12 @@ local saga = require 'lspsaga'
 -- server_filetype_map = {}
 
 saga.init_lsp_saga {
+  code_action_prompt = {
+    enable = false,
+    sign = true,
+    sign_priority = 20,
+    virtual_text = false,
+  },
   code_action_keys = {
     quit = {'<Esc>', 'q'}, exec = '<CR>'
   },

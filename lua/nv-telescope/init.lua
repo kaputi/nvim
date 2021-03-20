@@ -4,8 +4,8 @@ local actions = require('telescope.actions')
 -- '--color=never',
 require('telescope').setup {
     defaults = {
-        vimgrep_arguments = {'rg', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case'},
-        prompt_position = "top",
+        vimgrep_arguments = {'rg', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case','--hidden'},
+        prompt_position = "bottom",
         prompt_prefix = " ",
         selection_caret = " ",
         entry_prefix = "  ",

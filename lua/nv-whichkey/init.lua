@@ -21,6 +21,34 @@ endfunction
 function YankPath()
   let @*=expand("%:p")
 endfunction
+
+function! GetBufferList()
+  redir =>buflist
+  silent! ls!
+  redir END
+  return buflist
+endfunction
+
+function! ToggleList(bufname, pfx)
+  let buflist = GetBufferList()
+  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+    if bufwinnr(bufnum) != -1
+      exec(a:pfx.'close')
+      return
+    endif
+  endfor
+  if a:pfx == 'l' && len(getloclist(0)) == 0
+      echohl ErrorMsg
+      echo "Location List is Empty."
+      return
+  endif
+  let winnr = winnr()
+  exec(a:pfx.'open')
+  if winnr() != winnr
+    wincmd p
+  endif
+endfunction
+
 ]])
 
 --==========================================
@@ -31,15 +59,25 @@ local which_key_map =  {}
 -- ==========================================
 -- Top Layer ================================
 -- ==========================================
+-- require'telescope.builtin'.find_files{
+--   -- Optional
+--   -- cwd = "/home/tj/"
+--   -- find_command = { "rg", "-i", "--hidden", "--files", "-g", "!.git" }
+-- }
 which_key_map['/'] = {'<Plug>kommentary_line_default'                 ,'Comment' }
 which_key_map['='] = {'<C-W>='                                        ,'Balance Windows' }
 which_key_map[','] = {':Telescope buffers'                            ,'Buffer List'}
-which_key_map[' '] = {':Telescope find_files'                         ,'Find File'}
+which_key_map[' '] = {':Telescope find_files find_command=rg,--ignore-case,--hidden,--files,--ignore'                         ,'Find File'}
 which_key_map['d'] = {':bp | bd #'                                    ,'Delete Buffer'}
 which_key_map['e'] = {':NvimTreeToggle'                               ,'File Explorer' }
-which_key_map['h'] = {'<C-W>s'                                        ,'Split Below'}
+which_key_map['h'] = 'Horizontal Split'
+map('n', '<Leader>v', '<Cmd>split | Telescope buffers<CR>',{noremap=true, silent=true})
 which_key_map['j'] = {':HopWord'                                      ,'Jump to Word' }
 which_key_map['J'] = {':HopChar2'                                     ,'Jump With 2 Chars' }
+which_key_map['k'] = 'LSP Hover'
+map('n', '<Leader>k', '<Cmd> lua vim.lsp.buf.hover()<CR>', {noremap = true, silent = true})
+which_key_map['K'] = 'LSP Signature'
+map('n', '<Leader>K', '<Cmd> lua vim.lsp.buf.signature_help()<CR>', {noremap = true, silent = true})
 -- which_key_map['m'] = {':MaximizerToggle'                              ,'Maximize' }
 which_key_map['o'] = {'append(line("."),   repeat([""], v:count1))'   ,'Line Below' }
 which_key_map['O'] = {'append(line(".")-1,   repeat([""], v:count1))' ,'Line Above' }
@@ -48,7 +86,9 @@ which_key_map['P'] = {':Telescope commands'                           ,'Commands
 which_key_map['q'] = {'q'                                             ,'Quit' }
 -- which_key_map['r'] = {'RnvimrToggle'                                  ,'Ranger' }
 -- which_key_map['u'] = {'UndotreeToggle'                                ,'Undo Tree' }
-which_key_map['v'] = {'<C-W>v'                                        ,'Split Right'}
+-- which_key_map['v'] = {'<C-W>v'                                        ,'Split Right'}
+which_key_map['v'] = 'Vertical Split'
+map('n', '<Leader>v', '<Cmd>vsplit | Telescope buffers<CR>',{noremap=true, silent=true})
 which_key_map['y'] = {':Telescope registers'                          ,'Yank List'}
 
 
@@ -57,9 +97,8 @@ which_key_map['y'] = {':Telescope registers'                          ,'Yank Lis
 -- ==========================================
 which_key_map['<Tab>'] = {
   name = "+Dashboard",
-  ['<Tab>'] = {':Telescope' ,'Session List'},
+  ['<Tab>'] = {':Startify' ,'Dashboard'},
   ['d'] = {':SDelete!'      , 'Delete Session'},
-  ['D'] = {':Startify'      , 'Dashboard'},
   ['l'] = {':SLoad'         , 'Load Session'},
   ['s'] = {':SSave!'        , 'Save Session'}
 }
@@ -97,45 +136,46 @@ which_key_map['b'] = {
 -- ==========================================
 which_key_map['c'] = {
    name = '+Code(lsp)' ,
-   -- ['.'] = {':CocConfig'                          , 'CocConfig'},
    -- [';'] = {'<Plug>(coc-refactor)'                , 'Refactor'},
-   ['a'] = {':Lspsaga code_action'              , 'Line Action'},
-   -- ['A'] = {':Lspsaga range_code_action'     , 'Selected Action'},
+   ['a'] =  'Code Action',
+   ['A'] =  'Selected Action',
    -- ['c'] = {':CocList commands'                   , 'Coc Commands'},
-   -- ['d'] = {':Lspsaga lsp_finder'              , 'Definitions'},
-   ['d'] = {':Lspsaga preview_definition'              , 'Definitions'},
-   -- ['D'] = {'<Plug>(coc-declaration)'             , 'Declarations'},
+   ['c'] =  'Clear Diagnostics',
+   ['d'] =  'Definitions',
+   ['D'] =  'Declarations',
+   ['e'] =  'Document Error List',
+   ['E'] =  'Workspace Error List',
    -- ['f'] = {'<Plug>(coc-format-selected)'         , 'Format Selected'},
    -- ['F'] = {'<Plug>(coc-format)'                  , 'Format'},
-   -- ['h'] = {'<Plug>(coc-float-hide)'              , 'Hide Floating Windows'},
-   -- ['i'] = {'<Plug>(coc-implementation)'          , 'Implementation'},
-   -- ['I'] = {':CocList --normal diagnostics'       , 'Diagnostics'},
-   -- ['j'] = {'<Plug>(coc-float-jump)'              , 'Jump Into Float Window'},
-   ['k'] = {':Lspsaga signature_help'      , 'Show Documentation'},
+   ['i'] =  'Implementation',
+   ['k'] =  'Show Documentation',
    -- ['l'] = {'<Plug>(coc-codelens-action)'         , 'Codelens Action'},
-   -- ['o'] = {'<Plug>(coc-openlink)'                , 'Open Link'},
-   -- ['O'] = {':CocList outline'                    , 'Outline'},
-   -- ['q'] = {'<Plug>(coc-fix-current)'             , 'QuickFix'},
-   ['r'] = {':Lspsaga rename'                  , 'Rename'},
-   -- ['R'] = {'<Plug>(coc-references)'              , 'References'},
-   -- ['s'] = {':CocList -I symbols'                 , 'References List'},
-   -- ['t'] = {'<Plug>(coc-type-definition)'         , 'Type Deffinition'},
-   -- ['u'] = {':CocListResume'                      , 'Resume List'}
+   ['n'] =  'Next Diagnostic',
+   ['O'] =  'Outline(workspece symbols)',
+   ['o'] =  'Outline(document symbols)',
+   ['p'] =  'Previous Diagnostic',
+   ['r'] =  'Rename Symbol',
+   ['R'] =  'References',
+   ['s'] =  'Signature Help',
+   ['t'] =  'Type Deffinition',
 }
--- Code + Next submenu
-which_key_map.c['n'] = {
-   name = '+Next' ,
-   ['a'] = {':CocNext'                            , 'Next Action'},
-   ['d'] = {'<Plug>(coc-diagnostic-next)'         , 'Next Diagnostic'},
-   ['e'] = {'<Plug>(coc-diagnostic-next-error)'   , 'Next Errorj'}
- }
--- Code + Previous submenu
-which_key_map.c['p'] = {
-   name = '+Previous' ,
-   ['a'] = {':CocPrev'                            , 'Previous Action'},
-   ['d'] = {'<Plug>(coc-diagnostic-prev)'         , 'Previous Diagnostic'},
-   ['e'] = {'<Plug>(coc-diagnostic-prev-error)'   , 'Previous Error'}
-}
+map('n', '<Leader>ca', '<Cmd> lua vim.lsp.buf.code_action()<CR>', {noremap = true, silent = true})
+map('v', '<Leader>cA', '<Cmd> lua vim.lsp.buf.range_code_action()<CR>', {noremap = true, silent = true})
+map('n', '<Leader>cc', '<Cmd> lua vim.lsp.diagnostic.clear(vim.fn.bufnr("%"))<CR>', {noremap = true, silent = true})
+map('n', '<Leader>cd', '<Cmd> lua vim.lsp.buf.definition()<CR>', {noremap = true, silent = true})
+map('n', '<Leader>cD', '<Cmd> lua vim.lsp.buf.declaration()<CR>', {noremap = true, silent = true})
+map('n', '<Leader>ce', '<Cmd> w | Telescope lsp_document_diagnostics<CR>', {noremap = true, silent = true})
+map('n', '<Leader>cE', '<Cmd> wa | Telescope lsp_workspace_diagnostics<CR>', {noremap = true, silent = true})
+map('n', '<Leader>ci', '<Cmd> lua vim.lsp.buf.implementation()<CR>', {noremap = true, silent = true})
+map('n', '<Leader>ck', '<Cmd> lua vim.lsp.buf.hover()<CR>', {noremap = true, silent = true})
+map('n', '<Leader>cn', '<Cmd> lnext<CR>', {noremap = true, silent = true})
+map('n', '<Leader>co', '<Cmd> lua vim.lsp.buf.document_symbol()<CR>', {noremap = true, silent = true})
+map('n', '<Leader>cO', '<Cmd> lua vim.lsp.buf.workspace_symbol()<CR>', {noremap = true, silent = true})
+map('n', '<Leader>cp', '<Cmd> lprev<CR>', {noremap = true, silent = true})
+map('n', '<Leader>cr', '<Cmd> lua vim.lsp.buf.rename()<CR>', {noremap = true, silent = true})
+map('n', '<Leader>cR', '<Cmd> lua vim.lsp.buf.references()<CR>', {noremap = true, silent = true})
+map('n', '<Leader>cs', '<Cmd> lua vim.lsp.buf.signature_help()<CR>', {noremap = true, silent = true})
+map('n', '<Leader>ct', '<Cmd> lua vim.lsp.buf.type_definition()<CR>', {noremap = true, silent = true})
 
 -- ==========================================
 -- Debug layer ==============================

@@ -17,9 +17,6 @@ require('nv-hop')
 -- require('nv-dashboard')
 require('nv-startify')
 require('nv-whichkey')
-require('nv-lspkind')
-require('nv-lspsaga')
--- require('nv-lspsignature')
 require('nv-telescope')
 
 
@@ -33,3 +30,8 @@ require('lsp.json-ls')
 require('lsp.lua-ls')
 require('lsp.vim-ls')
 require('lsp.yaml-ls')
+-- LSP Plugins
+require('nv-lspkind')
+-- require('nv-lspsaga')
+require('nv-lsputil')
+-- require('nv-lspsignature')

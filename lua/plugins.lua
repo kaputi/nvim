@@ -14,13 +14,18 @@ return require('packer').startup(function(use)
   -- Packer can manage itself as an optional plugin
   use 'wbthomason/packer.nvim'
 
+  -- neovim lua utils
+  use 'norcalli/nvim_utils'
+
   -- LSP AUTOCOMPLETE AND SYNTAX ======================
 
   -- Lsp
   use 'neovim/nvim-lspconfig'
   use 'onsails/lspkind-nvim'
-  use 'glepnir/lspsaga.nvim'
+  -- use 'glepnir/lspsaga.nvim'
   -- use 'ray-x/lsp_signature.nvim'
+  use 'RishabhRD/popfix'
+  use 'RishabhRD/nvim-lsputils'
   -- Auto complete
   use 'hrsh7th/nvim-compe'
   use 'hrsh7th/vim-vsnip'
