@@ -111,19 +111,21 @@ end
 
 
 -- esc wont exit insert mode but  will close completion menu
-_G.esc_close = function()
-  if vim.fn.pumvisible() == 1 then
-      return vim.fn['compe#close']()
-  else
-    return t "<Esc>"
-  end
-end
+-- _G.esc_close = function()
+--   if vim.fn.pumvisible() == 1 then
+--       return vim.fn['compe#close']()
+--   else
+--     return t "<Esc>"
+--   end
+-- end
 
 vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<Esc>", "v:lua.esc_close()", {expr = true})
-vim.api.nvim_set_keymap("s", "<Esc>", "v:lua.esc_close()", {expr = true})
+-- vim.api.nvim_set_keymap("i", "<Esc>", "v:lua.esc_close()", {expr = true})
+-- vim.api.nvim_set_keymap("s", "<Esc>", "v:lua.esc_close()", {expr = true})
+vim.api.nvim_set_keymap('i', '<C-e>', 'compe#close("<C-e>")', {silent = true, noremap = true, expr = true})
 -- vim.cmd('inoremap <expr> <c-j> (\"\\<C-n>\")')
 -- vim.cmd('inoremap <expr> <c-k> (\"\\<C-p>\")') -- C-k is set to show signature on insert
+-- inoremap <silent><expr> <C-e>     compe#close('<C-e>')

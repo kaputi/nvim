@@ -25,10 +25,11 @@ return require('packer').startup(function(use)
   -- use 'ray-x/lsp_signature.nvim'
   use 'RishabhRD/popfix'
   use 'RishabhRD/nvim-lsputils'
-  -- Auto complete
+  -- Auto complete and snippets
   use 'hrsh7th/nvim-compe'
   use 'hrsh7th/vim-vsnip'
   use 'hrsh7th/vim-vsnip-integ'
+  use 'dsznajder/vscode-es7-javascript-react-snippets'
   -- Treesitter
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
   use 'nvim-treesitter/playground'
@@ -47,6 +48,7 @@ return require('packer').startup(function(use)
   use 'norcalli/nvim-colorizer.lua'
   -- Status bar
   use 'glepnir/galaxyline.nvim'
+  use 'nvim-lua/lsp-status.nvim' -- generate lsp components for status bar
   -- Tab bar
   use 'akinsho/nvim-bufferline.lua'
   -- Dashboard
@@ -61,6 +63,7 @@ return require('packer').startup(function(use)
   use 'b3nj5m1n/kommentary'
   -- Movement
   use 'phaazon/hop.nvim'
+  use 'unblevable/quick-scope'
   -- Match tags
   -- use 'AndrewRadev/tagalong.vim'-- treesitter one does this besides autoclose
   use 'windwp/nvim-ts-autotag' -- uses treesitter

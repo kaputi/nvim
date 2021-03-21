@@ -13,10 +13,6 @@ map('n', '<A-k>', ':resize +2<CR>', {noremap = true, silent = true})
 map('n', '<A-h>', ':vertical resize -2<CR>', {noremap = true, silent = true})
 map('n', '<A-l>', ':vertical resize +2<CR>', {noremap = true, silent = true})
 
--- Tab switch buffer
-map('n', '<TAB>', ':bnext<CR>', {noremap = true, silent = true})
-map('n', '<S-TAB>', ':bprevious<CR>', {noremap = true, silent = true})
-
 -- Copy and paste
 map('n', '<C-c>', '"+y', {noremap = true, silent = true})
 map('n', '<A-c>', 'V"+y', {noremap = true, silent = true})
@@ -52,7 +48,9 @@ map('n', 'bn', ':BufferLineCycleNext<CR>', {noremap = true, silent = true})
 map('n', 'bp', ':BufferLineCyclePrev<CR>', {noremap = true, silent = true})
 -- map('n', 'bd', ':bd<CR>', {noremap = true, silent = true})
 map('n', 'bd', ':bp | bd #<CR>', {noremap = true, silent = true}) -- thisone doesn't close splits
-
+-- Tab switch buffer
+map('n', '<TAB>', ':BufferLineCycleNext<CR>', {noremap = true, silent = true})
+map('n', '<S-TAB>', ':BufferLineCyclePrev<CR>', {noremap = true, silent = true})
 
 -- I dont release Shift in time
 vim.cmd(':command! -bar -bang WQ wq<bang>')

@@ -17,7 +17,7 @@ palette:
   light_yellow: "#FFD57F"
   yellow: "#FFC44C"
   orange: "#FFAE57"
-         
+
   bright_red: "#FF3333"
   bright_purple: "#C586C0"
   bright_blue: "#1da1f2"
@@ -33,7 +33,7 @@ palette:
   grey3: "#3D4751"
   light_grey: "#D9D7CE"
 
-  
+
   error_red: "#F44747"
   dark_yellow: "#D7BA7D"
   grey_blue: "#729CB3"
@@ -261,7 +261,7 @@ highlights:
   QuickScopeSecondary: "#eF5F70 - u"
 
   MatchWord: "- - u"
-  MatchParen: "- - u"
+  MatchParen: "info_yellow red"
   MatchWordCur: "- - u"
   MatchParenCur: "- - u"
 

@@ -1,4 +1,6 @@
 require 'nvim_utils'
+local execute = vim.api.nvim_command
+local HOME = os.getenv('HOME')
 -- UI
 vim.o.termguicolors = true
 vim.cmd [[silent! colorscheme bumbler]]
@@ -19,8 +21,8 @@ vim.o.fillchars = 'vert:│'
 vim.o.showmode = false
 --vim.wo.foldcolumn = '1'
 -- vim.wo.signcolumn='auto:1-3'
--- vim.wo.signcolumn='yes'
-vim.wo.signcolumn='yes:2'
+vim.wo.signcolumn='yes'
+-- vim.wo.signcolumn='yes:2'
 vim.o.pumblend=25
 
 --wrapping and tabs
@@ -50,24 +52,29 @@ vim.o.clipboard = 'unnamed'
 vim.o.updatetime = 300
 vim.o.timeoutlen = 300
 --persistent undo
-vim.cmd([[
-if has("persistent_undo")
-  if !isdirectory($HOME."/.config/nvim/undodir")
-    silent call mkdir($HOME."/.config/nvim/undodir", "p")
-  endif
-  set undodir=~/.config/nvim/undodir
-  set undofile
-endif
-]])
+-- execute('!mkdir -p ' ..HOME.. '/.config/nvim/undodir')
+vim.o.undodir = HOME .. '/.config/nvim/undodir'
+vim.o.undofile = true
+-- vim.cmd([[
+-- if has("persistent_undo")
+--   if !isdirectory($HOME."/.config/nvim/undodir")
+--     silent call mkdir($HOME."/.config/nvim/undodir", "p")
+--   endif
+--   set undodir=~/.config/nvim/undodir
+--   set undofile
+-- endif
+-- ]])
 
--- swap and backups
-vim.cmd([[
-" create swap dir if not exist
-if !isdirectory($HOME."/.config/nvim/swap")
-silent call mkdir($HOME."/.config/nvim/swap", "p")
-endif
-]])
-vim.o.dir="~/.config/nvim/swap/"
+
+-- execute('!mkdir -p ' ..HOME.. '/.config/nvim/swap')
+vim.o.dir = HOME .. '/.config/nvim/undodir'
+-- -- swap and backups
+-- vim.cmd([[
+-- " create swap dir if not exist
+-- if !isdirectory($HOME."/.config/nvim/swap")
+-- silent call mkdir($HOME."/.config/nvim/swap", "p")
+-- endif
+-- ]])
 vim.o.backup = false
 vim.o.writebackup = false
 

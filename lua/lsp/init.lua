@@ -23,33 +23,23 @@ vim.fn.sign_define("LspDiagnosticsSignHint", {
     numhl = "LspDiagnosticsSignHint"
 })
 
-map('n', 'gd', '<Cmd> lua vim.lsp.buf.definitions()<CR>', {noremap = true, silent = true})
-map('n', 'gD', '<Cmd> lua vim.lsp.buf.declaration()<CR>', {noremap = true, silent = true})
+map('n', 'gd', '<Cmd> lua vim.lsp.buf.definition()<CR>', {noremap = true, silent = true})
+map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', {noremap = true, silent = true})
 map('n', 'gr', '<Cmd> lua vim.lsp.buf.references()<CR>', {noremap = true, silent = true})
+map('n', 'gt', '<Cmd> lua vim.lsp.buf.type_definition()<CR>', {noremap = true, silent = true})
 map('n', 'gi', '<Cmd> lua vim.lsp.buf.implementation()<CR>', {noremap = true, silent = true})
 map('n', 'ca', '<Cmd> lua vim.lsp.buf.code_action()<CR>', {noremap = true, silent = true})
 map('n', '<C-n>', '<Cmd> lnext<CR>', {noremap = true, silent = true})
 map('n', '<C-p>', '<Cmd> lprev<CR>', {noremap = true, silent = true})
 map('i', '<C-k>', '<Esc><Cmd>lua vim.lsp.buf.hover()<CR>a', {noremap = true, silent = true})
+vim.cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()')
 
---[[ " autoformat
-autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100) ]]
--- Java
--- autocmd FileType java nnoremap ca <Cmd>lua require('jdtls').code_action()<CR>
-
--- vim.cmd([[
---   augroup LspLocalQuickFix
---     autocmd! LspLocalQuickFix
---     autocmd BuffWrite,BuffEnter,InsertLeave * <cmd> lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
---   augroup END
--- ]])
 
 local autocmds = {
 	diagnoticLocList = {
-		{"BufWrite,BufEnter,InsertLeave",     "*", "lua vim.lsp.diagnostic.set_loclist({open_loclist = false})"};
+		{"BufWrite,BufEnter,InsertLeave",     "*", "lua vim.lsp.diagnostic.set_loclist({open_loclist = false})"},
 		-- {"FileType",     "todo",   "lua FILETYPE_HOOKS.todo()"};
+    {'BufWritePre', '*.js,*.jsx,*.ts,*.tsx', 'lua vim.lsp.buf.formatting_sync(nil, 1000)'}
 	};
 }
 
@@ -74,6 +64,10 @@ function lsp_config.common_on_attach(client, bufnr)
     end
 end
 
+function lsp_config.tsserver_on_attach(client, bufnr)
+    lsp_config.common_on_attach(client, bufnr)
+    client.resolved_capabilities.document_formatting = false
+end
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
 -- local servers = {"pyright", "tsserver"}

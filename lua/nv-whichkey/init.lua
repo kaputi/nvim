@@ -110,7 +110,6 @@ which_key_map['a'] = {
    ['c'] = {'PackerClean'      ,'Clean Old Plugin'},
    ['i'] = {'PackerInstall'    ,'Install Plugins'},
    ['s'] = {':set hls!'        ,'Remove Search Highlights'},
-   ['S'] = {':source $MYVIMRC' ,'Source $MYVIMRC'},
    ['u'] = {':PackerUpdate'    ,'Update Plugins'},
    ['U'] = {':PackerSync'      ,'Sync Plugins'},
 }
@@ -157,6 +156,7 @@ which_key_map['c'] = {
    ['R'] =  'References',
    ['s'] =  'Signature Help',
    ['t'] =  'Type Deffinition',
+   ['v'] =  'Toggle Virtual Text',
 }
 map('n', '<Leader>ca', '<Cmd> lua vim.lsp.buf.code_action()<CR>', {noremap = true, silent = true})
 map('v', '<Leader>cA', '<Cmd> lua vim.lsp.buf.range_code_action()<CR>', {noremap = true, silent = true})
@@ -175,6 +175,7 @@ map('n', '<Leader>cr', '<Cmd> lua vim.lsp.buf.rename()<CR>', {noremap = true, si
 map('n', '<Leader>cR', '<Cmd> lua vim.lsp.buf.references()<CR>', {noremap = true, silent = true})
 map('n', '<Leader>cs', '<Cmd> lua vim.lsp.buf.signature_help()<CR>', {noremap = true, silent = true})
 map('n', '<Leader>ct', '<Cmd> lua vim.lsp.buf.type_definition()<CR>', {noremap = true, silent = true})
+map('n', '<Leader>cv', '<Cmd> LspVirtualTextToggle<CR>', {noremap = true, silent = true})
 
 -- ==========================================
 -- Debug layer ==============================
