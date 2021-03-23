@@ -1,6 +1,6 @@
 local virtual_text = {}
 
-virtual_text.show = true
+virtual_text.show = false
 
 virtual_text.toggle = function()
     virtual_text.show = not virtual_text.show

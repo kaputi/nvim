@@ -153,24 +153,25 @@ gls.left[5] = {
 gls.right[1] = {
   DiagnosticError = {
     provider = 'DiagnosticError',
-    icon = '  ',
+    icon = ' ' ,
     highlight = {colors.red,colors.bg},
-    separator = '  ',
-    separator_highlight = {colors.darkblue,colors.bg},
+    -- separator = '  ',
+    -- separator_highlight = {colors.darkblue,colors.bg},
   },
   DiagnosticWarn = {
     provider = 'DiagnosticWarn',
-    icon = '  ',
+    icon = ' ',
     highligh = {colors.yellow,colors.bg},
   },
   DiagnosticHint = {
     provider = 'DiagnosticHint',
-    icon = '   ',
+    icon = ' ',
     highlight = {colors.blue,colors.bg},
   },
   DiagnosticInfo = {
     provider = 'DiagnosticInfo',
-    icon = '   ',
+    -- icon = ' ',
+    icon = '',
     highlight = {colors.orange,colors.bg},
   }
 }

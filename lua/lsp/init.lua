@@ -64,6 +64,20 @@ function lsp_config.common_on_attach(client, bufnr)
     end
 end
 
+-- diasble virtual_text by default
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+ vim.lsp.diagnostic.on_publish_diagnostics, {
+   -- Enable underline, use default values
+   underline = true,
+   -- Enable virtual text only on Warning or above, override spacing to 2
+   -- virtual_text = {
+   --   spacing = 2,
+   --   severity_limit = "Warning",
+   -- },
+   virtual_text = false
+ }
+)
+
 function lsp_config.tsserver_on_attach(client, bufnr)
     lsp_config.common_on_attach(client, bufnr)
     client.resolved_capabilities.document_formatting = false

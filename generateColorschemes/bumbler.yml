@@ -241,10 +241,10 @@ highlights:
   markdownUrl: "cyan - u"
   # -- END Languages --
 
-  # LspDiagnosticsUnderlineError: "error_red"
-  # LspDiagnosticsUnderlineWarning: "orange"
-  # LspDiagnosticsUnderlineInformation: "yellow"
-  LspDiagnosticsUnderlineHint: "grey_blue"
+  LspDiagnosticsUnderlineError: "error_red - u"
+  LspDiagnosticsUnderlineWarning: "orange - u"
+  LspDiagnosticsUnderlineInformation: "yellow - u"
+  LspDiagnosticsUnderlineHint: "grey_blue - u"
 
   LspDiagnosticsSignError: "error_red"
   LspDiagnosticsSignWarning: "warning_orange"
@@ -263,7 +263,7 @@ highlights:
   MatchWord: "- - u"
   MatchParen: "info_yellow red"
   MatchWordCur: "- - u"
-  MatchParenCur: "- - u"
+  MatchParenCur: "yellow - u"
 
   # -- START CoC --
   CocExplorerIndentLine: "line_grey"

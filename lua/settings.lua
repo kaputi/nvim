@@ -51,6 +51,8 @@ vim.o.splitright = true
 vim.o.clipboard = 'unnamed'
 vim.o.updatetime = 300
 vim.o.timeoutlen = 300
+vim.o.ignorecase = true -- search is not case sensitive
+vim.o.smartcase = true -- search becomes case sensitive if you search with case
 --persistent undo
 -- execute('!mkdir -p ' ..HOME.. '/.config/nvim/undodir')
 vim.o.undodir = HOME .. '/.config/nvim/undodir'
