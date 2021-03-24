@@ -27,6 +27,7 @@ require('nv-maximizer')
 require('nv-indentguides')
 require('nv-scratch')
 require('nv-quickscope')
+require('nv-suda')
 
 
 -- LSP
