@@ -336,3 +336,32 @@ vim.fn['which_key#register']('<Space>', which_key_map)
 
 -- " Map local leader to which kwy
 -- nnoremap <silent> <localleader> :<c-u>WhichKey  '-'<CR>
+-- map('n', '\\', '<NOP>', {noremap = true, silent = true})
+-- vim.g.maploaclleader = '\\'
+
+-- map('n', '<Localleader>', ':WhichKey "\"<CR>', {noremap = true, silent = true})
+-- map('v', '<Localleader>', ':WhichKeyVisual "\"<CR>', {noremap = true, silent = true})
+
+-- local which_key_local_map = {}
+-- vim.fn['which_key#register']('\\', which_key_local_map)
+
+
+map('n', '-', '<NOP>', {noremap = true, silent = true})
+vim.g.maplocalleader = '-'
+
+map('n', '<localleader>', ':WhichKey "-"<CR>', {noremap = true, silent = true})
+map('v', '<localleader>', ':WhichKeyVisual "-"<CR>', {noremap = true, silent = true})
+
+local which_key_local_map = {}
+
+which_key_local_map[','] = 'Folding Normal'
+
+vim.g.org_local_which_map = which_key_local_map
+
+vim.cmd([[
+au FileType org call which_key#register('-', g:org_local_which_map)
+]])
+
+-- vim.fn['which_key#register']('-', which_key_local_map)
+
+

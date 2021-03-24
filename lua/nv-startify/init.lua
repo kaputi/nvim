@@ -1,3 +1,4 @@
+require 'nvim_utils'
 
 --   if !isdirectory($HOME."/.config/nvim/sessions")
 --     silent call mkdir($HOME."/.config/nvim/sessions", "p")
@@ -21,6 +22,19 @@ vim.g.startify_padding_left = 3
 vim.g.startify_enable_special = 0 -- show <empty-buffer> and <quit>
 vim.g.startify_session_sort = 1 -- sort sessions by modification time
 vim.g.startify_session_number = 10
+
+-- Dont show tab or status bar
+local autocmds = {
+	Startify = {
+		{"User", "StartifyReady", "set laststatus=0"},
+		{"User", "StartifyReady", "set showtabline=0"},
+    {"User", "StartifyBufferOpened", "set showtabline=2"},
+    {"User", "StartifyBufferOpened", "set laststatus=2"}
+	};
+}
+
+nvim_create_augroups(autocmds)
+
 
 -- show file icons
 vim.cmd([[

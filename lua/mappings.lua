@@ -52,6 +52,11 @@ map('n', 'bd', ':bp | bd #<CR>', {noremap = true, silent = true}) -- thisone doe
 map('n', '<TAB>', ':BufferLineCycleNext<CR>', {noremap = true, silent = true})
 map('n', '<S-TAB>', ':BufferLineCyclePrev<CR>', {noremap = true, silent = true})
 
+-- I FUCKING HATE THE COMAN-LINE WINDOW
+map('n', 'q:', '<NOP>', {noremap = true, silent = true})
+map('n', 'q/', '<NOP>', {noremap = true, silent = true})
+map('n', 'q?', '<NOP>', {noremap = true, silent = true})
+
 -- I dont release Shift in time
 vim.cmd(':command! -bar -bang WQ wq<bang>')
 vim.cmd(':command! -bar -bang WQ wq<bang>')
