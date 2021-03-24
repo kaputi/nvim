@@ -1,6 +1,5 @@
 require 'nvim_utils'
-local execute = vim.api.nvim_command
-local HOME = os.getenv('HOME')
+
 -- UI
 vim.o.termguicolors = true
 vim.cmd [[silent! colorscheme bumbler]]
@@ -40,7 +39,6 @@ vim.o.expandtab = true
 vim.o.smartindent = true
 vim.o.autoindent = true
 
-
 -- Behaviour
 vim.o.hidden = true
 vim.o.encoding = 'utf-8'
@@ -54,29 +52,10 @@ vim.o.timeoutlen = 300
 vim.o.ignorecase = true -- search is not case sensitive
 vim.o.smartcase = true -- search becomes case sensitive if you search with case
 --persistent undo
--- execute('!mkdir -p ' ..HOME.. '/.config/nvim/undodir')
-vim.o.undodir = HOME .. '/.config/nvim/undodir'
+vim.o.undodir = DATA_PATH .. '/undodir'
 vim.o.undofile = true
--- vim.cmd([[
--- if has("persistent_undo")
---   if !isdirectory($HOME."/.config/nvim/undodir")
---     silent call mkdir($HOME."/.config/nvim/undodir", "p")
---   endif
---   set undodir=~/.config/nvim/undodir
---   set undofile
--- endif
--- ]])
-
-
--- execute('!mkdir -p ' ..HOME.. '/.config/nvim/swap')
-vim.o.dir = HOME .. '/.config/nvim/undodir'
--- -- swap and backups
--- vim.cmd([[
--- " create swap dir if not exist
--- if !isdirectory($HOME."/.config/nvim/swap")
--- silent call mkdir($HOME."/.config/nvim/swap", "p")
--- endif
--- ]])
+--Swap and backups
+vim.o.dir = CACHE_PATH .. '/swap'
 vim.o.backup = false
 vim.o.writebackup = false
 
@@ -88,6 +67,9 @@ fun! TrimWhitespace()
        call winrestview(l:save)
 endfun
 ]])
+
+-- Lsp And Autocomplete
+vim.o.completeopt = "menuone,noselect"
 
 local autocmds = {
   YankHighlight = {
@@ -105,8 +87,3 @@ local autocmds = {
 }
 
 nvim_create_augroups(autocmds)
-
--- Lsp And Autocomplete
-vim.o.completeopt = "menuone,noselect"
-
-

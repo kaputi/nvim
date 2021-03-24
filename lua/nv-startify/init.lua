@@ -1,10 +1,6 @@
 require 'nvim_utils'
 
---   if !isdirectory($HOME."/.config/nvim/sessions")
---     silent call mkdir($HOME."/.config/nvim/sessions", "p")
---   endif
-local HOME = os.getenv('HOME')
-vim.g.startify_session_dir = HOME .. '/.config/nvim/sessions'
+vim.g.startify_session_dir = DATA_PATH .. '/startify-session'
 
 if vim.fn.empty(vim.fn.glob(vim.g.startify_session_dir)) > 0 then
   vim.api.nvim_command ('!mkdir -p ' .. vim.g.startify_session_dir)
