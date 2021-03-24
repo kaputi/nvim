@@ -232,7 +232,7 @@ which_key_map['g'] = {
    ['c'] = {':Git commit'                       , 'Commit'},
    ['d'] = {':Git diff'                         , 'Diff'},
    ['D'] = {':Gdiffsplit'                       , 'Diff Split'},
-   ['g'] = {':TermExec lazygit'                 , 'Lazy Git'},
+   ['g'] = {':3TermExec cmd="lazygit"'                 , 'Lazy Git'},
    -- ['G'] = {':GGrep'                            , 'Git Grep'},
    ['l'] = {':Git log'                          , 'Log'},
    ['P'] = {':Git push'                         , 'Push'},
