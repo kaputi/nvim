@@ -18,7 +18,7 @@ require('telescope').setup {
         file_ignore_patterns = {},
         generic_sorter = require'telescope.sorters'.get_generic_fuzzy_sorter,
         shorten_path = true,
-        winblend = 0,
+        winblend = 20,
         width = 0.75,
         preview_cutoff = 120,
         results_height = 1,
@@ -31,9 +31,6 @@ require('telescope').setup {
         file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
         grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
         qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
-
-        -- Developer configurations: Not meant for general override
-        buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker,
         mappings = {
             i = {
                 ["<C-j>"] = actions.move_selection_next,
@@ -47,7 +44,7 @@ require('telescope').setup {
                 -- ["<C-i>"] = actions.select_horizontal,
 
                 -- Add up multiple actions
-                ["<CR>"] = actions.select_default + actions.center
+                ["<CR>"] = actions.select_default + actions.center,
 
                 -- You can perform as many actions in a row as you like
                 -- ["<CR>"] = actions.select_default + actions.center + my_cool_custom_action,
@@ -57,6 +54,14 @@ require('telescope').setup {
                 ["<C-k>"] = actions.move_selection_previous
                 -- ["<C-i>"] = my_cool_custom_action,
             }
-        }
+        },
+        -- Developer configurations: Not meant for general override
+        buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker,
     },
 }
+
+-- More practical example of adding a new mapping
+-- require'telescope.builtin'.find_files({ attach_mappings = function(_, map)
+--   map('i', '<CR>', actions.file_edit) -- this action already exist
+--   return true
+-- end})

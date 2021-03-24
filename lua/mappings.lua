@@ -44,18 +44,30 @@ map('v', '>', '>gv', {noremap = true, silent = true})
 map('v', '<', '<gv', {noremap = true, silent = true})
 
 -- Buffer navigation
-map('n', 'bn', ':BufferLineCycleNext<CR>', {noremap = true, silent = true})
-map('n', 'bp', ':BufferLineCyclePrev<CR>', {noremap = true, silent = true})
+-- map('n', 'bn', ':BufferLineCycleNext<CR>', {noremap = true, silent = true})
+map('n', 'bn', ':BufferNext<CR>', {noremap = true, silent = true})
+-- map('n', 'bp', ':BufferLineCyclePrev<CR>', {noremap = true, silent = true})
+map('n', 'bp', ':BufferPrevious<CR>', {noremap = true, silent = true})
 -- map('n', 'bd', ':bd<CR>', {noremap = true, silent = true})
-map('n', 'bd', ':bp | bd #<CR>', {noremap = true, silent = true}) -- thisone doesn't close splits
+-- map('n', 'bd', ':bp | bd #<CR>', {noremap = true, silent = true}) -- thisone doesn't close splits
+map('n', 'bd', ':BufferClose<CR>', {noremap = true, silent = true}) -- thisone doesn't close splits
 -- Tab switch buffer
-map('n', '<TAB>', ':BufferLineCycleNext<CR>', {noremap = true, silent = true})
-map('n', '<S-TAB>', ':BufferLineCyclePrev<CR>', {noremap = true, silent = true})
+map('n', '<TAB>', ':BufferNext<CR>', {noremap = true, silent = true})
+map('n', '<S-TAB>', ':BufferPrevious<CR>', {noremap = true, silent = true})
 
 -- I FUCKING HATE THE COMAN-LINE WINDOW
 map('n', 'q:', '<NOP>', {noremap = true, silent = true})
 map('n', 'q/', '<NOP>', {noremap = true, silent = true})
 map('n', 'q?', '<NOP>', {noremap = true, silent = true})
+
+-- quickfix
+map('n', 'qq', ':copen<CR>', {noremap = true, silent = true})
+map('n', 'qw', ':cclose<CR>', {noremap = true, silent = true})
+map('n', 'qn', ':cnext<CR>', {noremap = true, silent = true})
+map('n', 'qp', ':cprev<CR>', {noremap = true, silent = true})
+map('n', 'qll', ':lopen<CR>', {noremap = true, silent = true})
+map('n', 'qln', ':lnext<CR>', {noremap = true, silent = true})
+map('n', 'qlp', ':pprev<CR>', {noremap = true, silent = true})
 
 -- I dont release Shift in time
 vim.cmd(':command! -bar -bang WQ wq<bang>')

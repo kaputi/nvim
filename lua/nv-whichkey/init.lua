@@ -68,7 +68,8 @@ which_key_map['/'] = {'<Plug>kommentary_line_default'                 ,'Comment'
 which_key_map['='] = {'<C-W>='                                        ,'Balance Windows' }
 which_key_map[','] = {':Telescope buffers'                            ,'Buffer List'}
 which_key_map[' '] = {':Telescope find_files find_command=rg,--ignore-case,--hidden,--files,--ignore'                         ,'Find File'}
-which_key_map['d'] = {':bp | bd #'                                    ,'Delete Buffer'}
+-- which_key_map['d'] = {':bp | bd #'                                    ,'Delete Buffer'}
+which_key_map['d'] = {':BufferClose'                                    ,'Delete Buffer'}
 which_key_map['e'] = {':NvimTreeToggle'                               ,'File Explorer' }
 which_key_map['h'] = 'Horizontal Split'
 map('n', '<Leader>v', '<Cmd>split | Telescope buffers<CR>',{noremap=true, silent=true})
@@ -84,6 +85,7 @@ which_key_map['O'] = {'append(line(".")-1,   repeat([""], v:count1))' ,'Line Abo
 which_key_map['p'] = {':Telescope find_files'                         ,'Search File' }
 which_key_map['P'] = {':Telescope commands'                           ,'Commands' }
 which_key_map['q'] = {'q'                                             ,'Quit' }
+which_key_map['Q'] = {':qa!'                                          ,'Quit all!!' }
 which_key_map['r'] = {'RnvimrToggle'                                  ,'Ranger' }
 which_key_map['u'] = {'UndotreeToggle'                                ,'Undo Tree' }
 which_key_map['v'] = 'Vertical Split'
@@ -122,11 +124,12 @@ which_key_map['b'] = {
    ['d'] = {':bp | bd! #'                   ,'Delete Buffer Wihthout Saving'},
    ['D'] = {':%bd'                          ,'Delete All Buffers'},
    -- ['f'] = {':BufferGoto 1'    ,'First Buffer'},
-   ['k'] = {':%bd!|edit #|bd #|normal `"'   ,'Delete Other Buffers'}, -- %bd kills all, edit # opens last ,bd # kills last(after killing all there is a new empty buffer) '" goes to last place before close
+   -- ['k'] = {':%bd!|edit #|bd #|normal `"'   ,'Delete Other Buffers'}, -- %bd kills all, edit # opens last ,bd # kills last(after killing all there is a new empty buffer) '" goes to last place before close
+   ['k'] = {':BufferCloseAllButCurrent'   ,'Delete Other Buffers'},
    -- ['l'] = {':BufferLast'     ,'Last Buffer'},
-   ['n'] = {':BufferLineCycleNext'          ,'Previous Buffer'},
+   ['n'] = {':BufferNext'          ,'Previous Buffer'},
    ['N'] = {'enew'                          ,'New Empty Buffer'},
-   ['p'] = {':BufferLineCyclePrev'          ,'Previous Buffer'}
+   ['p'] = {':BufferPrevious'          ,'Previous Buffer'}
 }
 
 -- ==========================================

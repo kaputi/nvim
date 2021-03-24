@@ -53,7 +53,8 @@ return require('packer').startup(function(use)
   use 'glepnir/galaxyline.nvim'
   use 'nvim-lua/lsp-status.nvim' -- generate lsp components for status bar
   -- Tab bar
-  use 'akinsho/nvim-bufferline.lua'
+  -- use 'akinsho/nvim-bufferline.lua'
+  use 'romgrk/barbar.nvim'
   -- Dashboard
   -- use 'glepnir/dashboard-nvim'
   use 'mhinz/vim-startify'
