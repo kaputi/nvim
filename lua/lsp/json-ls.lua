@@ -1,5 +1,6 @@
 -- npm install -g vscode-json-languageserver
-require'lspconfig'.jsonls.setup {
+-- require'lspconfig'.jsonls.setup {
+require'lspconfig'.json.setup { -- Form lspinstall
     on_attach = require'lsp'.common_on_attach,
     commands = {
       Format = {

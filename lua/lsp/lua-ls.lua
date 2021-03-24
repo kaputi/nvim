@@ -1,25 +1,27 @@
 -- https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
-USER = vim.fn.expand('$USER')
+-- USER = vim.fn.expand('$USER')
 
-local sumneko_root_path = ""
-local sumneko_binary = ""
+-- local sumneko_root_path = ""
+-- local sumneko_binary = ""
 
-if vim.fn.has("mac") == 1 then
-    sumneko_root_path = "/Users/" .. USER ..
-                            "/.config/nvim/ls/lua-language-server"
-    sumneko_binary = "/Users/" .. USER ..
-                         "/.config/nvim/ls/lua-language-server/bin/macOS/lua-language-server"
-elseif vim.fn.has("unix") == 1 then
-    sumneko_root_path = "/home/" .. USER ..
-                            "/.config/nvim/ls/lua-language-server"
-    sumneko_binary = "/home/" .. USER ..
-                         "/.config/nvim/ls/lua-language-server/bin/Linux/lua-language-server"
-else
-    print("Unsupported system for sumneko")
-end
+-- if vim.fn.has("mac") == 1 then
+--     sumneko_root_path = "/Users/" .. USER ..
+--                             "/.config/nvim/ls/lua-language-server"
+--     sumneko_binary = "/Users/" .. USER ..
+--                          "/.config/nvim/ls/lua-language-server/bin/macOS/lua-language-server"
+-- elseif vim.fn.has("unix") == 1 then
+--     sumneko_root_path = "/home/" .. USER ..
+--                             "/.config/nvim/ls/lua-language-server"
+--     sumneko_binary = "/home/" .. USER ..
+--                          "/.config/nvim/ls/lua-language-server/bin/Linux/lua-language-server"
+-- else
+--     print("Unsupported system for sumneko")
+-- end
 
-require'lspconfig'.sumneko_lua.setup {
-    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+-- I DON'T NEED THE cmd IF INSTALLED WITH lspinstall and is lua and not sumneko lua for lspconfig
+-- require'lspconfig'.sumneko_lua.setup {
+    -- cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+require 'lspconfig'.lua.setup{
     on_attach = require'lsp'.common_on_attach,
     settings = {
         Lua = {

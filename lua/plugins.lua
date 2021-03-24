@@ -26,6 +26,7 @@ return require('packer').startup(function(use)
   use 'RishabhRD/popfix'
   use 'RishabhRD/nvim-lsputils'
   use 'kaputi/e-kaput'
+  use 'kabouzeid/nvim-lspinstall'
   -- Auto complete and snippets
   use 'hrsh7th/nvim-compe'
   use 'hrsh7th/vim-vsnip'

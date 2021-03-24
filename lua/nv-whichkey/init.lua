@@ -248,10 +248,16 @@ which_key_map['g'] = {
 -- ==========================================
 map('n', '<leader>RR', ':%s/<C-r><C-w>/', {noremap = true, silent = true})
 map('n', '<leader>Rr', ':s/<C-r><C-w>/', {noremap = true, silent = true})
+map('v', '<leader>Rs', '"_d"*p', {noremap = true, silent = true})
+map('n', '<leader>Ry', ':s/<C-r><C-w>/<C-r>0', {noremap = true, silent = true})
+map('n', '<leader>RY', ':%s/<C-r><C-w>/<C-r>0', {noremap = true, silent = true})
 which_key_map['R'] = {
   name='+Replace',
   ['R'] = 'Replace All',
-  ['r'] = 'Replace Under Cursor'
+  ['r'] = 'Replace Under Cursor',
+  ['s'] = 'Replace Selection with register',
+  ['y'] = 'Replace With Register Under Cursor',
+  ['Y'] = 'Replace With Register All',
 }
 -- ==========================================
 -- Search layer =============================

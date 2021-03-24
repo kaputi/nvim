@@ -1,3 +1,4 @@
+require('nv-globals')
 require('plugins')
 require('settings')
 require('mappings')
@@ -30,9 +31,9 @@ require('nv-quickscope')
 require('nv-suda')
 require('nv-emmet')
 
-
 -- LSP
 require('lsp')
+require('nv-lspinstall')
 require('lsp.bash-ls')
 require('lsp.css-ls')
 require('lsp.docker-ls')

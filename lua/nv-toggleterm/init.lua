@@ -17,13 +17,13 @@ vim.api.nvim_set_keymap('t', '<F1>', '<C-\\><C-N>:1ToggleTerm<CR>', {noremap = t
 vim.api.nvim_set_keymap('t', '<F2>', '<C-\\><C-N>:2ToggleTerm<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('t', '<F3>', '<C-\\><C-N>:3ToggleTerm<CR>', {noremap = true, silent = true})
 
---navigate 
+--navigate
 vim.api.nvim_set_keymap('t', '<C-h>', '<C-\\><C-N><C-w>h', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('t', '<C-j>', '<C-\\><C-N><C-w>j', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('t', '<C-k>', '<C-\\><C-N><C-w>k', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('t', '<C-l>', '<C-\\><C-N><C-w>l', {noremap = true, silent = true})
 
---resize 
+--resize
 vim.api.nvim_set_keymap('t', '<A-h>', '<C-\\><C-N>:resize -2<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('t', '<A-j>', '<C-\\><C-N>:resize +2<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('t', '<A-k>', '<C-\\><C-N>:vertical resize -2<CR>', {noremap = true, silent = true})
