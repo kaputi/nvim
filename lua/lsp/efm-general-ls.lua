@@ -8,20 +8,23 @@
 -- local isort = {formatCommand = "isort --quiet -", formatStdin = true}
 -- local yapf = {formatCommand = "yapf --quiet", formatStdin = true}
 -- lua
--- local luaFormat = {
---     formatCommand = "lua-format -i --no-keep-simple-function-one-line --column-limit=120",
---     formatStdin = true
--- }
+local luaFormat = {
+  formatCommand = "lua-format -i --no-keep-simple-function-one-line --column-limit=80 --indent-width=2 --tab-width=2 --no-use-tab --no-align-parameter --no-align-args",
+  formatStdin = true
+}
 -- JavaScript/React/TypeScript
-local prettier = {formatCommand = "./node_modules/.bin/prettier --stdin-filepath ${INPUT}", formatStdin = true}
+local prettier = {
+  formatCommand = "./node_modules/.bin/prettier --stdin-filepath ${INPUT}",
+  formatStdin = true
+}
 
 local eslint = {
-    lintCommand = "./node_modules/.bin/eslint -f unix --stdin --stdin-filename ${INPUT}",
-    lintIgnoreExitCode = true,
-    lintStdin = true,
-    lintFormats = {"%f:%l:%c: %m"},
-    -- formatCommand = "./node_modules/.bin/eslint --fix-to-stdout --stdin --stdin-filename=${INPUT}",
-    -- formatStdin = true
+  lintCommand = "./node_modules/.bin/eslint -f unix --stdin --stdin-filename ${INPUT}",
+  lintIgnoreExitCode = true,
+  lintStdin = true,
+  lintFormats = {"%f:%l:%c: %m"}
+  -- formatCommand = "./node_modules/.bin/eslint --fix-to-stdout --stdin --stdin-filename=${INPUT}",
+  -- formatStdin = true
 }
 
 -- local shellcheck = {
@@ -48,26 +51,29 @@ local eslint = {
 -- }
 
 require"lspconfig".efm.setup {
-    init_options = {documentFormatting = true, codeAction = true},
-    filetypes = {'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'html','css', 'json', 'yaml'},
-    settings = {
-        rootMarkers = {".git/"},
-        languages = {
-            -- lua = {luaFormat},
-            -- python = {isort, yapf},
-            javascriptreact = { prettier,eslint},
-            javascript = {prettier,eslint},
-            typescript = {prettier, eslint},
-            typescriptreact = {prettier, eslint},
-            -- sh = {shellcheck, shfmt},
-            html = {prettier},
-            css = {prettier},
-            json = {prettier},
-            yaml = {prettier},
-            -- markdown = {markdownPandocFormat, markdownlint},
-            -- markdown = {markdownPandocFormat},
-        },
-         -- log_level = 1, log_file = '~/efm.log'
+  init_options = {documentFormatting = true, codeAction = true},
+  filetypes = {
+    'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'html',
+    'css', 'json', 'yaml', 'lua'
+  },
+  settings = {
+    rootMarkers = {".git/"},
+    languages = {
+      lua = {luaFormat},
+      -- python = {isort, yapf},
+      javascriptreact = {prettier, eslint},
+      javascript = {prettier, eslint},
+      typescript = {prettier, eslint},
+      typescriptreact = {prettier, eslint},
+      -- sh = {shellcheck, shfmt},
+      html = {prettier},
+      css = {prettier},
+      json = {prettier},
+      yaml = {prettier}
+      -- markdown = {markdownPandocFormat, markdownlint},
+      -- markdown = {markdownPandocFormat},
     }
+    -- log_level = 1, log_file = '~/efm.log'
+  }
 }
 
