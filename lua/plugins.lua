@@ -1,14 +1,13 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
-
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
-  execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
+  execute('!git clone https://github.com/wbthomason/packer.nvim ' ..
+              install_path)
   execute 'packadd packer.nvim'
 end
-
 
 return require('packer').startup(function(use)
   -- Packer can manage itself as an optional plugin
@@ -58,6 +57,8 @@ return require('packer').startup(function(use)
   -- Dashboard
   -- use 'glepnir/dashboard-nvim'
   use 'mhinz/vim-startify'
+  -- Smooth scroling
+  use 'psliwka/vim-smoothie'
 
   -- Code =====================================
 
@@ -75,21 +76,16 @@ return require('packer').startup(function(use)
   use 'tpope/vim-surround'
   -- TOOLS ======================================
 
-  --fzf find
+  -- fzf find
   use {
-  'nvim-telescope/telescope.nvim',
+    'nvim-telescope/telescope.nvim',
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
   }
-  --git
+  -- git
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
   use 'f-person/git-blame.nvim'
-  use {
-    'lewis6991/gitsigns.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim'
-    }
-  }
+  use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
   -- File explorer
   use 'kyazdani42/nvim-tree.lua'
   -- Keybindings
@@ -120,4 +116,8 @@ return require('packer').startup(function(use)
   use 'tpope/vim-eunuch'
   -- neovim save with sudo is broken
   use 'lambdalisue/suda.vim'
+  -- better quickfix
+  use 'kevinhwang91/nvim-bqf'
+  -- cursor in last postion when opening a file
+  use 'farmergreg/vim-lastplace'
 end)
