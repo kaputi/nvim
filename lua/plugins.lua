@@ -26,6 +26,7 @@ return require('packer').startup(function(use)
   use 'RishabhRD/nvim-lsputils'
   use 'kaputi/e-kaput'
   use 'kabouzeid/nvim-lspinstall'
+  use 'jose-elias-alvarez/nvim-lsp-ts-utils' -- a few great commands like LspRenameFile, renames file and change ALL import in other files
   -- Auto complete and snippets
   use 'hrsh7th/nvim-compe'
   use 'hrsh7th/vim-vsnip'
@@ -103,7 +104,9 @@ return require('packer').startup(function(use)
   -- Maximizer
   use 'szw/vim-maximizer'
   -- Indent Guides
-  use 'Yggdroot/indentLine'
+  -- use 'Yggdroot/indentLine'
+  -- use 'lukas-reineke/indent-blankline.nvim'
+  use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
   -- Scratch Buffer
   use 'mtth/scratch.vim'
   -- Undotree

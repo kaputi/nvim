@@ -24,16 +24,18 @@ map('n', '<C-a>', 'ggVG', {noremap = true, silent = true})
 -- Move faster
 map('n', 'J', '5j', {noremap = true, silent = true})
 map('n', 'K', '5k', {noremap = true, silent = true})
+map('v', 'J', '5j', {noremap = true, silent = true})
+map('v', 'K', '5k', {noremap = true, silent = true})
 
 -- Move to Wraps
-map('n', 'j', 'gj', {noremap=true, silent=true})
-map('n', 'k', 'gk', {noremap=true, silent=true})
+map('n', 'j', 'gj', {noremap = true, silent = true})
+map('n', 'k', 'gk', {noremap = true, silent = true})
 
 -- Move selected line / block of text in visual mode
-map('x', 'K', ':move \'<-2<CR>gv-gv', {noremap = true, silent = true})
-map('x', 'J', ':move \'>+1<CR>gv-gv', {noremap = true, silent = true})
+map('x', '<C-k>', ':move \'<-2<CR>gv-gv', {noremap = true, silent = true})
+map('x', '<C-j>', ':move \'>+1<CR>gv-gv', {noremap = true, silent = true})
 
---Beggining and End
+-- Beggining and End
 map('n', 'B', '^', {noremap = true, silent = true})
 map('n', 'E', 'g_', {noremap = true, silent = true})
 map('v', 'E', '^', {noremap = true, silent = true})
