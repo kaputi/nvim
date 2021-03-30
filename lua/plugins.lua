@@ -43,7 +43,7 @@ return require('packer').startup(function(use)
   -- UI =====================================
 
   -- Theme
-  use 'ayu-theme/ayu-vim' -- high contrast themes use with let g:ayucolor="light" | "dark" | "mirage"
+  use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
   --  Icons
   use 'kyazdani42/nvim-web-devicons'
   use 'ryanoasis/vim-devicons'

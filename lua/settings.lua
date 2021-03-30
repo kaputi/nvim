@@ -3,10 +3,8 @@ require 'nvim_utils'
 -- UI
 vim.o.termguicolors = true
 vim.cmd [[silent! colorscheme bumbler]]
--- vim.cmd [[
-  -- let g:ayucolor="light"
-  -- silent! colorscheme ayu
-  -- ]]
+-- vim.o.background = "light"
+-- vim.cmd([[colorscheme gruvbox]])
 vim.o.cmdheight = 2
 vim.o.t_Co = '256'
 vim.wo.number = true
@@ -18,19 +16,19 @@ vim.wo.cursorline = true
 vim.wo.cursorcolumn = true
 vim.o.fillchars = 'vert:│'
 vim.o.showmode = false
---vim.wo.foldcolumn = '1'
+-- vim.wo.foldcolumn = '1'
 -- vim.wo.signcolumn='auto:1-3'
-vim.wo.signcolumn='yes'
+vim.wo.signcolumn = 'yes'
 -- vim.wo.signcolumn='yes:2'
-vim.o.pumblend=25
+vim.o.pumblend = 25
 
---wrapping and tabs
+-- wrapping and tabs
 vim.wo.wrap = false
 vim.o.textwidth = 0
 vim.o.wrapmargin = 0
 vim.o.linebreak = true
 vim.o.breakindent = true
-vim.o.showbreak="->->->"
+vim.o.showbreak = "->->->"
 vim.wo.colorcolumn = '81'
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
@@ -53,15 +51,15 @@ vim.o.updatetime = 300
 vim.o.timeoutlen = 300
 vim.o.ignorecase = true -- search is not case sensitive
 vim.o.smartcase = true -- search becomes case sensitive if you search with case
---persistent undo
+-- persistent undo
 vim.o.undodir = DATA_PATH .. '/undodir'
 vim.o.undofile = true
---Swap and backups
+-- Swap and backups
 vim.o.dir = CACHE_PATH .. '/swap'
 vim.o.backup = false
 vim.o.writebackup = false
 
---Autocommands
+-- Autocommands
 vim.cmd([[
 fun! TrimWhitespace()
        let l:save = winsaveview()
@@ -78,14 +76,18 @@ local autocmds = {
     {'TextYankPost', '*', 'silent! lua require"vim.highlight".on_yank()'}
   },
   FormatOptions = {
-    {'FileType,BufRead,BufEnter', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o' }
+    {
+      'FileType,BufRead,BufEnter', '*',
+      'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'
+    }
   },
   JsonFileTypes = {
-    {'BufRead,BufNewFile', '.eslintrc,.babelrc,.prettierrc', 'set filetype=json'}
+    {
+      'BufRead,BufNewFile', '.eslintrc,.babelrc,.prettierrc',
+      'set filetype=json'
+    }
   },
-  TrimWhitespace = {
-    {'BufWritePre', '*', 'call TrimWhitespace()'}
-  },
+  TrimWhitespace = {{'BufWritePre', '*', 'call TrimWhitespace()'}}
 }
 
 nvim_create_augroups(autocmds)

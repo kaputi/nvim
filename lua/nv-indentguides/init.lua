@@ -5,7 +5,7 @@
 vim.g.indent_blankline_show_current_context = true
 -- vim.g.indent_blankline_show_current_context = true
 vim.g.indent_blankline_char_list = {'|', '¦', '┆', '┊'}
-vim.g.indent_blankline_enabled = true
+vim.g.indent_blankline_enabled = false
 vim.g.indent_blankline_use_treesitter = true
 -- let g:indent_blankline_context_highlight_list = ['Error', 'Warning']
 vim.g.indent_blankline_filetype_exclude = {'help', 'startify', 'vista'}
