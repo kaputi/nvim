@@ -85,7 +85,6 @@ return require('packer').startup(function(use)
   -- git
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
-  use 'f-person/git-blame.nvim'
   use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
   -- File explorer
   use 'kyazdani42/nvim-tree.lua'
