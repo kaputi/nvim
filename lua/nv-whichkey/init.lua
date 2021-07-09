@@ -383,8 +383,7 @@ which_key_map['x'] = {
 -- Hide status line on which key
 vim.cmd([[
     autocmd! FileType which_key
-    autocmd  FileType which_key set laststatus=0 noshowmode noruler
-    \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
+    autocmd  FileType which_key set laststatus=0 noshowmode noruler | autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 ]])
 
 -- vim.fn['which_key#register']('<Space>', 'g:which_key_map')

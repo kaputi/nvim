@@ -31,6 +31,7 @@ require('nv-quickscope')
 require('nv-suda')
 require('nv-emmet')
 require('nv-lastplace')
+require('nv-vimwiki')
 
 -- LSP
 require('lsp')

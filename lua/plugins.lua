@@ -111,9 +111,9 @@ return require('packer').startup(function(use)
   -- Undotree
   use 'mbbill/undotree'
   -- Org mode
-  use 'jceb/vim-orgmode'
+  -- use 'jceb/vim-orgmode'
   -- Vimwiki
-  -- use 'vimwiki/vimwiki'
+  use 'vimwiki/vimwiki'
   -- Comand line tools
   use 'tpope/vim-eunuch'
   -- neovim save with sudo is broken
