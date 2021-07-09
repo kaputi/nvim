@@ -6,7 +6,8 @@ vim.cmd [[silent! colorscheme bumbler]]
 -- vim.o.background = "light"
 -- vim.cmd([[colorscheme gruvbox]])
 vim.o.cmdheight = 2
-vim.o.t_Co = '256'
+-- vim.o.t_Co = '256'
+-- vim.o.t_Cw = '256'
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.o.scrolloff = 5
