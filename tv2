@@ -1,0 +1,4 @@
+#!/bin/bash
+export NVIM_APPNAME="tv2"
+
+exec nvim "$@"
