@@ -14,7 +14,9 @@ local remaps = {
       { expr = true, noremap = true },
     },
     ['<C-k>'] = {
+      -- TOOD: this should be on lsp config
       'pumvisible() ? "\\<C-p>" : "<cmd>lua vim.lsp.buf.signature_help()<CR>"',
+      -- 'pumvisible() ? "\\<C-p>" : "<cmd>Lspsaga hover_doc<CR>"',
       { expr = true, noremap = true },
     },
 

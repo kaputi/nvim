@@ -9,8 +9,9 @@ M.setup = function(bufnr)
   local leader_keys = {
     -- ['k'] = { '<cmd>lua vim.lsp.buf.hover()<CR>', 'Show hover' },
     ['k'] = {
-      '<cmd>lua vim.lsp.buf.signature_help()<CR>',
-      'Show hover',
+      -- '<cmd>lua vim.lsp.buf.signature_help()<CR>',
+      '<cmd>Lspsaga hover_doc<CR>',
+      'Signature Help',
     },
     ['l'] = {
       name = '>> LSP <<',
@@ -39,7 +40,8 @@ M.setup = function(bufnr)
         'Goto Implementation',
       },
       ['p'] = {
-        "<cmd>lua require('goto-preview').goto_preview_definition()<CR>",
+        -- "<cmd>lua require('goto-preview').goto_preview_definition()<CR>",
+        '<cmd>Lspsaga peek_definition<CR>',
         'Peak Definition',
       },
       ['s'] = {
@@ -67,12 +69,13 @@ M.setup = function(bufnr)
       'Goto Implementation',
     },
     ['gp'] = {
-      "<cmd>Lspsaga peek_definition<CR>",
+      '<cmd>Lspsaga peek_definition<CR>',
       'Peak Definition',
     },
     ['gs'] = {
-      '<cmd>lua vim.lsp.buf.signature_help()<CR>',
-      'show signature help',
+      -- '<cmd>lua vim.lsp.buf.signature_help()<CR>',
+      '<cmd>Lspgaga hover_doc<CR>',
+      'Signature Help',
     },
     -- TODO: this fucks up gv for go visual
     -- ['gvd'] = { '<cmd>vsplit | lua vim.lsp.buf.definition()<CR>', 'Goto Definition' },

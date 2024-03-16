@@ -29,5 +29,8 @@ return {
         require('user.functions').lineDiagnostics()
       end,
     })
+
+    -- too many errors for vulkan that don't matter to me
+    -- require('lspconfig').glslls.setup({})
   end,
 }

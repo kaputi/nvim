@@ -4,9 +4,11 @@ return {
   config = function()
     require('ibl').setup({
       indent = {
-        char = '│',
+        -- char = '│',
+        char = '▏',
         -- char = '',
-        highlight = 'Comment',
+        -- highlight = 'Comment',
+        highlight = 'IndentBlanklineChar',
         -- highlight = 'Normal'
       },
       scope = {
