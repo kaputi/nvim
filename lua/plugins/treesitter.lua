@@ -7,6 +7,7 @@ return {
         'lua',
         'vim',
         'javascript',
+        'jsdoc',
         'markdown',
         'markdown_inline',
       },
