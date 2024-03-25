@@ -221,8 +221,8 @@ return {
         ['L'] = { '<cmd>set cursorline!<CR>', 'Cursor Line' },
         ['n'] = { '<cmd>set nonumber!<CR>', 'Line Numbers' },
         ['r'] = { '<cmd>set norelativenumber!<CR>', 'Relative Numbers' },
-        ['t'] = { '<cmd>SymbolsOutline<CR>', 'Symbol explorer' },
-        ['v'] = { '<cmd>SymbolsOutline<CR>', 'Symbol Explorer' },
+        ['t'] = { '<cmd>Lspsaga outline<CR>', 'Symbol explorer' },
+        -- ['v'] = { '<cmd>SymbolsOutline<CR>', 'Symbol Explorer' },
         ['w'] = { '<cmd>setlocal wrap!<CR>', 'Wrap' },
         ['W'] = {
           '<cmd>lua require"user.functions".toggleTrimWhitespace()<CR>',
@@ -250,10 +250,18 @@ return {
       },
 
       -- Debug Layer
-      -- ['D'] = {
-      --   name = '>> Debug <<',
-      --   -- TODO:
-      -- },
+      ['c'] = {
+        name = '>> Debug <<',
+        ['t'] = { '<cmd>DapToggleBreakpoint<CR>', 'Toggle breakpoint' },
+        ['u'] = {
+          function()
+            local widgets = require('dap.ui.widgets')
+            local sidebar = widgets.sidebar(widgets.scopes)
+            sidebar.open()
+          end,
+          'Sidebar open',
+        },
+      },
 
       -- File Layer
       ['f'] = {

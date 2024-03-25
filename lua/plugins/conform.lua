@@ -7,6 +7,8 @@ return {
         typescript = { { 'prettier', 'prettierd' } },
         javascriptreact = { { 'prettier', 'prettierd' } },
         typescriptreact = { { 'prettier', 'prettierd' } },
+        json = { { 'prettier', 'prettierd' } },
+        jsonc = { { 'prettier', 'prettierd' } },
         css = { { 'prettier', 'prettierd' } },
         html = { { 'prettier', 'prettierd' } },
         lua = { 'stylua' },

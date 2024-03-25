@@ -3,6 +3,7 @@ local nevarasu = {
   lazy = false,
   priority = 1000,
   config = function()
+    local palette = require('onedark.palette')
     require('onedark').setup({
       -- Main options --
       style = MySettings.colorscheme_flavour, -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
@@ -45,6 +46,24 @@ local nevarasu = {
       }, -- Override default colors
       highlights = {
         ['@comment'] = { fg = '$comment_green', fmt = 'italic' },
+        ['@keyword.import'] = {
+          fg = palette[MySettings.colorscheme_flavour].blue,
+          fmt = 'italic',
+        },
+        ['Search'] = {
+          bg = palette[MySettings.colorscheme_flavour].diff_change,
+          fg = 'none',
+        },
+        ['IncSearch'] = {
+          bg = palette[MySettings.colorscheme_flavour].diff_change,
+          fg = 'none',
+          fmt = 'reverse',
+        },
+        ['CurSearch'] = {
+          bg = palette[MySettings.colorscheme_flavour].diff_change,
+          fg = 'none',
+          fmt = 'reverse',
+        },
       }, -- Override highlight groups
 
       -- Plugins Config --

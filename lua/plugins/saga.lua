@@ -13,6 +13,12 @@ return {
         extend_gitsigns = true,
         show_server_name = true,
       },
+      outline = {
+        close_after_jump = true,
+        keys = {
+          jump = '<CR>'
+        }
+      },
     })
   end,
 }
