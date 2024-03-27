@@ -147,7 +147,7 @@ return {
       -- ['d'] = {'<cmd>BufferClose<CR>', 'Delete Buffer'},
       -- ['d'] = { '<cmd>bdelete<CR>', 'Delete Buffer' },
       ['d'] = { '<cmd>Bdelete<CR>', 'Delete Buffer' },
-      ['D'] = { '<cmd>Neogen<CR>', 'Create Docs' },
+      -- ['D'] = { '<cmd>Neogen<CR>', 'Create Docs' },
       -- ['E'] = { '<cmd>NvimTreeToggle<CR>', 'File Explorer' },
       -- ['e'] = { '<cmd>NvimTreeFindFileToggle<CR>', 'File Explorer' },
       ['e'] = { '<cmd>Neotree reveal toggle<CR>', 'File Explorer' },
@@ -250,7 +250,7 @@ return {
       },
 
       -- Debug Layer
-      ['c'] = {
+      ['D'] = {
         name = '>> Debug <<',
         ['t'] = { '<cmd>DapToggleBreakpoint<CR>', 'Toggle breakpoint' },
         ['u'] = {
