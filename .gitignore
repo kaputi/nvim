@@ -11,3 +11,4 @@ vimspector-config/gadgets/
 todo.org
 plugin/packer*
 ls/*
+openai_api_key.lua

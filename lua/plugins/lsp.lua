@@ -19,7 +19,6 @@ return {
     require('mason-lspconfig').setup_handlers({
       function(server_name)
         local opts = globalOpts
-        print(server_name)
         if server_name == 'lua_ls' then
           opts = vim.tbl_extend('force', opts, {
             settings = {
