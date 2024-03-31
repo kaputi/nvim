@@ -18,7 +18,20 @@ return {
     require('mason-lspconfig').setup()
     require('mason-lspconfig').setup_handlers({
       function(server_name)
-        require('lspconfig')[server_name].setup(globalOpts)
+        local opts = globalOpts
+        print(server_name)
+        if server_name == 'lua_ls' then
+          opts = vim.tbl_extend('force', opts, {
+            settings = {
+              Lua = {
+                diagnostics = {
+                  globals = { 'vim' },
+                },
+              },
+            },
+          })
+        end
+        require('lspconfig')[server_name].setup(opts)
       end,
     })
 
