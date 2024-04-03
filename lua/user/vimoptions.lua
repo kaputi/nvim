@@ -36,6 +36,7 @@ local options = {
   termguicolors = true,
   textwidth = 0,
   timeoutlen = 500,
+  ttimeoutlen = 0,
   -- undodir = CACHE_PATH .. '/undo',
   undofile = true,
   updatetime = 300,

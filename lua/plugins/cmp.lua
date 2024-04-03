@@ -102,15 +102,15 @@ return {
           select = false,
         }),
         -- ['<C-CR>'] = cmp.mapping.confirm({ select = true }),
-        ['<C-CR>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
-          elseif require('copilot.suggestion').is_visible() then
-            require('copilot.suggestion').accept()
-          else
-            fallback()
-          end
-        end),
+        -- ['<C-CR>'] = cmp.mapping(function(fallback)
+        --   if cmp.visible() then
+        --     cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
+        --   elseif require('copilot.suggestion').is_visible() then
+        --     require('copilot.suggestion').accept()
+        --   else
+        --     fallback()
+        --   end
+        -- end),
       },
       experimental = {
         ghost_text = true,
