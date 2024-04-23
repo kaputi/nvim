@@ -6,7 +6,7 @@ return {
       typescript = { 'eslint' },
       javascriptreact = { 'eslint' },
       typescriptreact = { 'eslint' },
-      glsl = { 'glslc' },
+      -- glsl = { 'glslc' },
       go = { 'golangcilint' },
     }
 
