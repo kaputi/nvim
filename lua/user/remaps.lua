@@ -37,10 +37,10 @@ local remaps = {
     ['<c-l>'] = '<c-w>l',
 
     -- Use Alt + hjkl for resize
-    -- ['<s-A-j>'] = ':resize +2<CR>',
-    -- ['<s-A-k>'] = ':resize -2<CR>',
-    -- ['<s-A-h>'] = ':vertical resize -2<CR>',
-    -- ['<s-A-l>'] = ':vertical resize +2<CR>',
+    ['<s-A-j>'] = ':resize +2<CR>',
+    ['<s-A-k>'] = ':resize -2<CR>',
+    ['<s-A-h>'] = ':vertical resize -2<CR>',
+    ['<s-A-l>'] = ':vertical resize +2<CR>',
 
     -- Copy and paste
     ['<C-c>'] = '"+y',
