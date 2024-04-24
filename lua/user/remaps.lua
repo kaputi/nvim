@@ -37,10 +37,10 @@ local remaps = {
     ['<c-l>'] = '<c-w>l',
 
     -- Use Alt + hjkl for resize
-    ['<A-j>'] = ':resize +2<CR>',
-    ['<A-k>'] = ':resize -2<CR>',
-    ['<A-h>'] = ':vertical resize -2<CR>',
-    ['<A-l>'] = ':vertical resize +2<CR>',
+    -- ['<s-A-j>'] = ':resize +2<CR>',
+    -- ['<s-A-k>'] = ':resize -2<CR>',
+    -- ['<s-A-h>'] = ':vertical resize -2<CR>',
+    -- ['<s-A-l>'] = ':vertical resize +2<CR>',
 
     -- Copy and paste
     ['<C-c>'] = '"+y',
@@ -52,6 +52,9 @@ local remaps = {
     -- Move faster
     ['J'] = '5j',
     ['K'] = '5k',
+
+    -- J is used for moving so join with ctrl shift j
+    ['<s-C-j>'] = '<cmd>join<CR>',
 
     -- Move to wraps
     ['j'] = 'gj',
