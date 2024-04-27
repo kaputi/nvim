@@ -252,7 +252,8 @@ return {
       -- Debug Layer
       ['D'] = {
         name = '>> Debug <<',
-        ['t'] = { '<cmd>DapToggleBreakpoint<CR>', 'Toggle breakpoint' },
+        ['b'] = { '<cmd>DapToggleBreakpoint<CR>', 'Toggle breakpoint' },
+        ['c'] = { '<cmd>DapContinue<CR>', 'Continue' },
         ['u'] = {
           function()
             local widgets = require('dap.ui.widgets')
