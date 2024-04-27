@@ -14,7 +14,11 @@ return {
       root_dir = require('lspconfig').util.root_pattern('package.json', '.git'),
     }
 
-    require('mason').setup({})
+    require('mason').setup({
+      ensure_installed = {
+        'js-debug-adapter',
+      },
+    })
     require('mason-lspconfig').setup()
     require('mason-lspconfig').setup_handlers({
       function(server_name)
