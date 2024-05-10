@@ -28,6 +28,13 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   command = 'set ft=json',
 })
 
+-- go filetype
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  group = '_user',
+  pattern = { 'go.mod' },
+  command = 'set ft=go',
+})
+
 -- format options
 vim.api.nvim_create_autocmd({ 'FileType', 'BufRead', 'BufEnter' }, {
   group = '_user',
