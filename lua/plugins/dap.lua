@@ -46,5 +46,21 @@ return {
     -- setup adapters ---------------------------------------------
     -- go is easy because of package
     require('dap-go').setup()
+    -- dap.configurations.go = {
+    --   {
+    --     type = 'go',
+    --     name = 'Debug',
+    --     request = 'launch',
+    --     program = '${file}',
+    --   },
+    -- }
+    -- dap.adapters.go = {
+    --   type = 'server',
+    --   port = '38697',
+    --   executalbe = {
+    --     command = 'dlv',
+    --     args = { 'dap', '-l', '127.0.0.1:38697' },
+    --   },
+    -- }
   end,
 }
