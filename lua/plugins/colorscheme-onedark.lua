@@ -51,8 +51,9 @@ local nevarasu = {
           fmt = 'italic',
         },
         ['Search'] = {
-          bg = palette[MySettings.colorscheme_flavour].diff_change,
-          fg = 'none',
+          -- bg = palette[MySettings.colorscheme_flavour].diff_change,
+          bg = '#ffff99',
+          fg = '#000000',
         },
         ['IncSearch'] = {
           bg = palette[MySettings.colorscheme_flavour].diff_change,
