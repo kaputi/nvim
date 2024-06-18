@@ -88,6 +88,8 @@ local remaps = {
     -- sideScroll scroll
     -- ['<ScrollWheelDown>'] = '<C-E>',
     -- ['<ScrollWheelUp>'] = '<C-Y>'
+
+    ['/'] = ':set hls<CR>/',
   },
   term_mode = {},
   visual_mode = {
