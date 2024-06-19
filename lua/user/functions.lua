@@ -180,4 +180,10 @@ M.toggleLineDiagnostics = function()
   M.notify('Line Diagnostics = ' .. onOrOff(MySettings.lineDiagnostics))
 end
 
+M.enableSearchHl = function()
+  if vim.o.hls == false then
+    vim.o.hls = true
+  end
+end
+
 return M

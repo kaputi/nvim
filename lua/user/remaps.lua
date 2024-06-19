@@ -1,7 +1,7 @@
 local remaps = {
   insert_mode = {
     --  jk for exit insert
-    ['jk'] = '<ESC>',
+    -- ['jk'] = '<ESC>',
 
     -- move current line / block with alt=j/k
     ['<A-j>'] = '<ESC>:m .+1<CR>==gi',
@@ -36,7 +36,7 @@ local remaps = {
     ['<c-k>'] = '<c-w>k',
     ['<c-l>'] = '<c-w>l',
 
-    -- Use Alt + hjkl for resize
+    -- Use shift Alt + hjkl for resize
     ['<s-A-j>'] = ':resize +2<CR>',
     ['<s-A-k>'] = ':resize -2<CR>',
     ['<s-A-h>'] = ':vertical resize -2<CR>',
@@ -71,8 +71,8 @@ local remaps = {
     -- Tab and s-tab to switch tabs
     -- ['<Tab>'] = ':BufferNext<CR>',
     -- ['<S-Tab>'] = ':BufferPrevious<CR>',
-    ['<Tab>'] = ':bn | f<CR>',
-    ['<S-Tab>'] = ':bp | f<CR>',
+    -- ['<Tab>'] = ':bn | f<CR>',
+    -- ['<S-Tab>'] = ':bp | f<CR>',
     -- ['<Tab>'] = ':BufferLineCycleNext<CR>',
     -- ['<S-Tab>'] = ':BufferLineCyclePrev<CR>',
 
@@ -89,7 +89,7 @@ local remaps = {
     -- ['<ScrollWheelDown>'] = '<C-E>',
     -- ['<ScrollWheelUp>'] = '<C-Y>'
 
-    ['/'] = ':set hls<CR>/',
+    ['/'] = '<cmd>lua require("user.functions").enableSearchHl()<CR>/',
   },
   term_mode = {},
   visual_mode = {
