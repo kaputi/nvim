@@ -5,7 +5,7 @@ return {
     local navic = require('nvim-navic')
     navic.setup({
       icons = require('user.gui').kind,
-      highlight = false,
+      highlight = true,
       separator = ' > ',
       depth_limit = 0,
       depth_limit_indicator = '..',
@@ -37,6 +37,7 @@ return {
       'notify',
       'noice',
       '',
+      'glsl',
     }
 
     local get_gps = function()
@@ -60,7 +61,6 @@ return {
         return ''
       end
     end
-
 
     local get_winbar = function()
       if vim.tbl_contains(filetype_exclude, vim.bo.filetype) then

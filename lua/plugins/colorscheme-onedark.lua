@@ -75,6 +75,8 @@ local nevarasu = {
       },
     })
     require('onedark').load()
+
+    vim.cmd('highlight clear WinBar')
   end,
 }
 
