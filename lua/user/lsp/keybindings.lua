@@ -56,7 +56,8 @@ M.setup = function(bufnr)
       --   "<cmd>lua require'lsp.handlers'.show_line_diagnostics()<CR>",
       --   'Show line diagnostics',
       -- },
-      ['t'] = { '<cmd>TroubleToggle<CR>', 'Trouble' },
+      -- ['t'] = { '<cmd>TroubleToggle<CR>', 'Trouble' },
+      ['t'] = { '<cmd>Trouble diagnostics toggle filter.buf=0<CR>', 'Trouble' },
     },
   }
 

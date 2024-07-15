@@ -15,6 +15,9 @@ return {
         },
       },
       defaults = {
+        preview = {
+          filesize_limit = 0.8, -- in MB
+        },
         mappings = {
           i = {
             ['<esc>'] = actions.close,
