@@ -90,6 +90,8 @@ local remaps = {
     -- ['<ScrollWheelUp>'] = '<C-Y>'
 
     ['/'] = '<cmd>lua require("user.functions").enableSearchHl()<CR>/',
+    ['n'] = '<cmd>lua require("user.functions").disableSearchHlTimer()<CR>n',
+    ['N'] = '<cmd>lua require("user.functions").disableSearchHlTimer()<CR>N',
   },
   term_mode = {},
   visual_mode = {

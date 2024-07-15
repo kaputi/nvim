@@ -186,4 +186,19 @@ M.enableSearchHl = function()
   end
 end
 
+local timer = vim.uv.new_timer()
+M.disableSearchHlTimer = function()
+  M.enableSearchHl()
+  if timer:get_due_in() == 0 then
+    timer:stop()
+  end
+
+  timer:start(1000, 0, function()
+    vim.schedule(function()
+      vim.o.hls = false
+    end)
+    timer:stop()
+  end)
+end
+
 return M

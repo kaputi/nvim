@@ -72,3 +72,12 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
     vim.bo.filetype = 'glsl'
   end,
 })
+
+vim.api.nvim_create_autocmd({ 'CmdLineLeave' }, {
+  group = '_user',
+  callback = function()
+    if vim.fn.getcmdtype() == '/' then
+      require('user.functions').disableSearchHlTimer()
+    end
+  end,
+})
