@@ -1,32 +1,17 @@
+local drawings = {
+  require('user.asciiArt.shardik'),
+  require('user.asciiArt.treeOfGondor'),
+}
+
 return {
   'goolord/alpha-nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
     local dashboard = require('alpha.themes.dashboard')
+    math.randomseed(os.time())
+    local selectedDrawing = math.random(#drawings)
 
-    dashboard.section.header.val = {
-      '                                   ____',
-      '                                 /   () \\',
-      '                          .--.  |   //   |  .--.',
-      '                         : (\\ ". \\ ____ / ." /) :',
-      '                          ".    `   ||     `  ."',
-      '                           /    _        _    \\',
-      '                          /     0}      {0     \\',
-      '                         |       /      \\       |',
-      '                         |      /        \\     |',
-      '                          \\    |.  .==.  .|   /',
-      '                           "._ \\.  \\__/  ./ _."',
-      '                           /  ``"._-""-_."``  \\',
-      '==========================================================================',
-      '  _____     ____                                          ____     _____  ',
-      ' /      \\  |  o |   See the TURTLE of  Enormous Girth    | o  |  /      \\ ',
-      '|        |/ ___\\|    On his shell he holds the Earth     |/___ \\|        |',
-      '|_________/        His thought is slow, but always kind        \\_________|',
-      '|_|_| |_|_|          He holds us all within his mind           |_|_| |_|_|',
-      '                                                                          ',
-      '==========================================================================',
-      '                             Stand and be true',
-    }
+    dashboard.section.header.val = drawings[selectedDrawing]
     local name = ''
 
     local scandir = require('plenary.scandir')
@@ -68,7 +53,11 @@ return {
       dashboard.button('q', '  Quit', ':qa<CR>'),
     }
 
-    dashboard.section.footer.val = 'Go then, there are other worlds than these'
+    -- dashboard.section.footer.val = 'Go then, there are other worlds than these'
+    if selectedDrawing == 1 then
+      dashboard.section.footer.val =
+        'Go then, there are other worlds than these'
+    end
 
     require('alpha').setup(dashboard.opts)
   end,
