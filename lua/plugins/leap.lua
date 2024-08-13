@@ -4,7 +4,7 @@ return {
     local leap = require('leap')
 
     leap.opts.case_sensitive = false
-    leap.opts.equivalence_classes = { ' \t\r\n' }
+    leap.opts.equivalence_classes = { ' \t\r\n', '([{', ')]}', '\'"`' }
     -- leap.opts.max_phase_one_targets = nil
     -- leap.opts.highlight_unlabeled_phase_one_targets = false
     -- leap.opts.max_highlighted_traversal_targets = 10
@@ -22,18 +22,30 @@ return {
     leap.opts.special_keys.prev_target = '<bs>'
     leap.opts.special_keys.prev_group = '<bs>'
 
-    require('leap.user').set_repeat_keys('<cr>', '<bs>')
+    require('leap.user').set_repeat_keys(
+      '<cr>',
+      '<enter>',
+      '<bs>',
+      '<backspace>'
+    )
     vim.keymap.set({ 'n', 'x', 'o' }, 'f', '<Plug>(leap-forward)')
     vim.keymap.set({ 'n', 'x', 'o' }, 'F', '<Plug>(leap-backward)')
     vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap-forward)')
     vim.keymap.set({ 'n', 'x', 'o' }, 'S', '<Plug>(leap-backward)')
 
-    vim.api.nvim_set_hl(0, 'LeapLabelPrimary', { bg = 'NONE', fg = '#ff0000' })
-    vim.api.nvim_set_hl(
-      0,
-      'LeapLabelSecondary',
-      { bg = 'NONE', fg = '#ffff00' }
-    )
-    vim.api.nvim_set_hl(0, 'LeapLabelSelected', { bg = 'NONE', fg = '#00ffff' })
+    -- vim.api.nvim_set_hl(0, 'LeapLabelPrimary', { bg = 'NONE', fg = '#ff0000' })
+    -- vim.api.nvim_set_hl(
+    --   0,
+    --   'LeapLabelSecondary',
+    --   { bg = 'NONE', fg = '#ffff00' }
+    -- )
+    -- vim.api.nvim_set_hl(0, 'LeapLabelSelected', { bg = 'NONE', fg = '#00ffff' })
+    vim.api.nvim_set_hl(0, 'LeapBackdrop', { link = 'Comment' })
+    vim.api.nvim_set_hl(0, 'LeapLabel', {
+      fg = '#ff0000',
+      bold = true,
+      nocombine = true,
+    })
+    -- require('leap').opts.highlight_unlabeled_phase_one_targets = true
   end,
 }
