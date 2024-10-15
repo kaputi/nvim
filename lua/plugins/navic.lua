@@ -37,7 +37,7 @@ return {
       'notify',
       'noice',
       '',
-      'glsl',
+      -- 'glsl',
     }
 
     local get_gps = function()
