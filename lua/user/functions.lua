@@ -201,4 +201,17 @@ M.disableSearchHlTimer = function()
   end)
 end
 
+M.killWindowlessBufs = function()
+  local bufInfos = vim.fn.getbufinfo({ buflisted = true })
+  vim.tbl_map(function(bufInfo)
+    if
+      bufInfo.changed == 0 and (not bufInfo.windows or #bufInfo.windows == 0)
+    then
+      -- print(('Deleting buffer %d : %s'):format(bufInfo.bufnr, bufInfo.name))
+      vim.api.nvim_buf_delete(bufInfo.bufnr, { force = false, unload = false })
+    end
+  end, bufInfos)
+  print('Deleted windowless buffers')
+end
+
 return M
