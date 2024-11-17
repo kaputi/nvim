@@ -106,14 +106,9 @@ return {
           ['h'] = 'close_node',
           ['z'] = 'close_all_nodes',
           ['R'] = 'refresh',
-          ['a'] = {
-            'add',
-            -- some commands may take optional config options, see `:h neo-tree-mappings` for details
-            config = {
-              show_path = 'none', -- "none", "relative", "absolute"
-            },
-          },
-          ['A'] = 'add_directory', -- also accepts the config.show_path option.
+          ['a'] = { 'add', config = { show_path = 'relative' } }, -- "none", "relative", "absolute"
+          -- ['A'] = 'add_directory', -- also accepts the config.show_path option.
+          ['A'] = { 'add', config = { show_path = 'relative' } }, -- "none", "relative", "absolute"
           ['df'] = 'delete',
           ['r'] = 'rename',
           ['yy'] = 'copy_to_clipboard',
