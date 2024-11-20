@@ -18,8 +18,12 @@ return {
       return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s')
     end
 
+    local userGui = require('user.gui')
+
     local cmp = require('cmp')
     cmp.setup({
+
+      preselect = cmp.PreselectMode.None,
 
       snippet = {
         expand = function(args)
@@ -33,15 +37,19 @@ return {
       },
       formatting = {
         format = function(entry, vim_item)
-          local icons = require('user.gui').kind
-          vim_item.kind = icons[vim_item.kind]
+          vim_item.kind = userGui.kind[vim_item.kind]
           vim_item.menu = ({
             nvim_lsp = '[lsp]',
             path = '[path]',
             vsnip = '[snippet]',
             buffer = '[buffer]',
             codeium = '[codeium]',
+            copilot = '[copilot]',
           })[entry.source.name]
+
+          vim_item.kind_hl_group = userGui.cmpHighlight.kind[entry.source.name]
+          vim_item.menu_hl_group = userGui.cmpHighlight.menu[entry.source.name]
+
           vim_item.dup = ({ buffer = 1, path = 1, nvim_lsp = 0 })[entry.source.name]
             or 0
           return vim_item
@@ -53,6 +61,7 @@ return {
         { name = 'buffer' },
         { name = 'path' },
         { name = 'codeium' },
+        { name = 'copilot' },
       },
       mapping = {
         ['<c-d>'] = cmp.mapping.scroll_docs(-4),

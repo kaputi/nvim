@@ -1,5 +1,17 @@
 local M = {}
 
+M.cmpHighlight = {
+  kind = {
+    copilot = '@string',
+    vsnip = '@module',
+  },
+  menu = {
+    copilot = '@string',
+    nvim_lsp = '@label',
+    vsnip = '@module',
+  },
+}
+
 M.kind = {
   Text = '󰉿',
   Method = '󰆧',
@@ -26,6 +38,7 @@ M.kind = {
   Event = '',
   Operator = '󰆕',
   TypeParameter = '𝙏',
+  Copilot = '',
 }
 M.diagnostics = {
   error = '',
