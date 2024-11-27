@@ -7,6 +7,10 @@ return {
   },
   -- build = 'make tiktoken', -- Only on MacOS or Linux
   config = function()
-    require('CopilotChat').setup()
+    require('CopilotChat').setup({
+      window = {
+        layout = 'float',
+      },
+    })
   end,
 }

@@ -12,7 +12,7 @@ return {
         css = { 'prettier', 'prettierd' },
         html = { 'prettier', 'prettierd' },
         lua = { 'stylua' },
-        go = { 'gofmt' },
+        go = { 'goimports', 'gofmt' },
       },
     })
 
