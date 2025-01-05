@@ -13,6 +13,7 @@ return {
         html = { 'prettier', 'prettierd' },
         lua = { 'stylua' },
         go = { 'goimports', 'gofmt' },
+        sh = { 'shfmt' },
       },
     })
 

@@ -34,6 +34,11 @@ return {
             },
           })
         end
+        if server_name == 'ts_ls' then
+          opts = vim.tbl_extend('force', opts, {
+            single_file_support = false,
+          })
+        end
         require('lspconfig')[server_name].setup(opts)
       end,
     })
@@ -48,5 +53,9 @@ return {
 
     -- too many errors for vulkan that don't matter to me
     -- require('lspconfig').glslls.setup({})
+
+    require('lspconfig').denols.setup({
+      root_dir = require('lspconfig').util.root_pattern('deno.json'),
+    })
   end,
 }
