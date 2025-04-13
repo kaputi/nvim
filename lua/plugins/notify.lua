@@ -16,7 +16,7 @@ return {
       render = 'default',
 
       -- Default timeout for notifications
-      timeout = 2500,
+      timeout = 800,
 
       -- Max number of columns for messages
       max_width = nil,

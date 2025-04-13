@@ -1,16 +1,16 @@
 vim.api.nvim_create_augroup('_user', {})
 
 -- highlight yanked text
-vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
-  group = '_user',
-  pattern = { '*' },
-  callback = function()
-    -- require('vim.highlight').on_yank({ higroup = 'IncSearch', timeout = 300 })
-    require('vim.highlight').on_yank({ higroup = 'CurSearch', timeout = 300 })
-    -- require('vim.highlight').on_yank({ higroup = 'Cursor', timeout = 300 })
-    -- require('vim.highlight').on_yank({ higroup = 'CursorColumn', timeout = 300 })
-  end,
-})
+-- vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
+--   group = '_user',
+--   pattern = { '*' },
+--   callback = function()
+--     -- require('vim.highlight').on_yank({ higroup = 'IncSearch', timeout = 300 })
+--     require('vim.highlight').on_yank({ higroup = 'CurSearch', timeout = 300 })
+--     -- require('vim.highlight').on_yank({ higroup = 'Cursor', timeout = 300 })
+--     -- require('vim.highlight').on_yank({ higroup = 'CursorColumn', timeout = 300 })
+--   end,
+-- })
 
 -- on save
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {

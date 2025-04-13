@@ -302,6 +302,10 @@ return {
           name = '>> Reset <<',
           ['B'] = { '<cmd>Gitsigns reset_buffer<CR>', 'Reset Buffer' },
           ['h'] = { '<cmd>Gitsigns reset_hunk<CR>', 'Reset Hunk' },
+          ['n'] = {
+            '<cmd>Gitsigns reset_hunk<CR> <cmd>Gitsigns next_hunk<CR> <cmd>Gitsigns preview_hunk<CR>',
+            'Reset Hunk and go to next change (preview)',
+          },
         },
         ['R'] = { '<cmd>Gitsigns refresh<CR>', 'Gitsigns Refresh' },
         ['S'] = { '<cmd>Gitsigns stage_buffer<CR>', 'Stage Buffer' },
@@ -380,7 +384,6 @@ return {
         ['M'] = { '<cmd>Telescope keymaps<CR>', 'Key Maps' },
         ['p'] = { '<cmd>Telescope tags<CR>', 'Project Tags' },
         ['r'] = { '<cmd>Telescope resume<CR>', 'Resume last search' },
-        -- ['s'] = {':CocList snippets'  , 'Snippets'},
         ['S'] = { '<cmd>Telescope colorscheme<CR>', 'Color Schemes' },
         ['t'] = { '<cmd>Telescope live_grep<CR>', 'Text Rg' },
         ['T'] = {

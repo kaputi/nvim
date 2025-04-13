@@ -16,7 +16,7 @@ return {
 
     require('mason').setup({
       ensure_installed = {
-        'js-debug-adapter',
+        -- 'js-debug-adapter',
       },
     })
     require('mason-lspconfig').setup()

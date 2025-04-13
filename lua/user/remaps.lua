@@ -30,18 +30,6 @@ local remaps = {
     ['q/'] = '<NOP>',
     ['q?'] = '<NOP>',
 
-    -- Better window navigation
-    ['<c-h>'] = '<c-w>h',
-    ['<c-j>'] = '<c-w>j',
-    ['<c-k>'] = '<c-w>k',
-    ['<c-l>'] = '<c-w>l',
-
-    -- Use shift Alt + hjkl for resize
-    ['<s-A-j>'] = ':resize +2<CR>',
-    ['<s-A-k>'] = ':resize -2<CR>',
-    ['<s-A-h>'] = ':vertical resize -2<CR>',
-    ['<s-A-l>'] = ':vertical resize +2<CR>',
-
     -- Copy and paste
     ['<C-c>'] = '"+y',
     ['<A-c>'] = 'V"+y',
@@ -54,7 +42,7 @@ local remaps = {
     ['K'] = '5k',
 
     -- J is used for moving so join with ctrl shift j
-    ['<s-C-j>'] = '<cmd>join<CR>',
+    ['<S-C-j>'] = '<cmd>join<CR>',
 
     -- Move to wraps
     ['j'] = 'gj',

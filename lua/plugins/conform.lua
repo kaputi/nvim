@@ -14,6 +14,8 @@ return {
         lua = { 'stylua' },
         go = { 'goimports', 'gofmt' },
         sh = { 'shfmt' },
+        dart = { 'dart_format' },
+        glsl = { 'clang-format' },
       },
     })
 
