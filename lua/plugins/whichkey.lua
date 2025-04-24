@@ -117,22 +117,32 @@ return {
         'Find selection.',
       },
 
-      -- GPT layer
-      ['G'] = {
-        name = '>> ChatGPT <<',
-        ['c'] = { '<cmd>ChatGPTRun complete_code<CR>', 'Complete' },
-        ['d'] = { '<cmd>ChatGPTRun docstring<CR>', 'Docs' },
-        ['D'] = { '<cmd>ChatGPTRun fix_bugs<CR>', 'Debug' },
-        ['e'] = { '<cmd>ChatGPTRun explain_code<CR>', 'Explain' },
-        ['o'] = { '<cmd>ChatGPTRun optimize_code<CR>', 'Optimize' },
-        ['t'] = { '<cmd>ChatGPTRun add_tests<CR>', 'Unit Test' },
-        -- ['c'] = { '<cmd>Chat completion<CR>', 'Complete' },
-        -- ['d'] = { '<cmd>Chat doc<CR>', 'Docs' },
-        -- ['D'] = { '<cmd>Chat debug<CR>', 'Debug' },
-        -- ['e'] = { '<cmd>Chat explain<CR>', 'Explain' },
-        -- ['o'] = { '<cmd>Chat opt<CR>', 'Optimize' },
-        -- ['t'] = { '<cmd>Chat test<CR>', 'Unit Test' },
+      ['c'] = {
+        name = '>> Copilot Chat <<',
+        ['d'] = { '<cmd>CopilotChatDocs<CR>', 'Document' },
+        ['e'] = { '<cmd>CopilotChatExplain<CR>', 'Explain' },
+        ['f'] = { '<cmd>CopilotChatFix<CR>', 'Fix' },
+        ['o'] = { '<cmd>CopilotChatOptimize<CR>', 'Optimize' },
+        ['r'] = { '<cmd>CopilotChatReview<CR>', 'Review' },
+        ['t'] = { '<cmd>CopilotChatTest<CR>', 'Test' },
       },
+
+      -- GPT layer
+      -- ['G'] = {
+      --   name = '>> ChatGPT <<',
+      --   ['c'] = { '<cmd>ChatGPTRun complete_code<CR>', 'Complete' },
+      --   ['d'] = { '<cmd>ChatGPTRun docstring<CR>', 'Docs' },
+      --   ['D'] = { '<cmd>ChatGPTRun fix_bugs<CR>', 'Debug' },
+      --   ['e'] = { '<cmd>ChatGPTRun explain_code<CR>', 'Explain' },
+      --   ['o'] = { '<cmd>ChatGPTRun optimize_code<CR>', 'Optimize' },
+      --   ['t'] = { '<cmd>ChatGPTRun add_tests<CR>', 'Unit Test' },
+      -- ['c'] = { '<cmd>Chat completion<CR>', 'Complete' },
+      -- ['d'] = { '<cmd>Chat doc<CR>', 'Docs' },
+      -- ['D'] = { '<cmd>Chat debug<CR>', 'Debug' },
+      -- ['e'] = { '<cmd>Chat explain<CR>', 'Explain' },
+      -- ['o'] = { '<cmd>Chat opt<CR>', 'Optimize' },
+      -- ['t'] = { '<cmd>Chat test<CR>', 'Unit Test' },
+      -- },
     }
 
     local nmappings = {
@@ -152,7 +162,7 @@ return {
       -- ['e'] = { '<cmd>NvimTreeFindFileToggle<CR>', 'File Explorer' },
       ['e'] = { '<cmd>Neotree reveal toggle<CR>', 'File Explorer' },
       ['E'] = { '<cmd>Neotree toggle<CR>', 'File Explorer' },
-      ['G'] = { '<cmd>ChatGPT<CR>', 'Chat GPT' },
+      -- ['G'] = { '<cmd>ChatGPT<CR>', 'Chat GPT' },
       -- ['G'] = {'<cmd>Chat<CR>','Chat GPT'},
       ['h'] = {
         '<cmd>split | Telescope buffers initial_mode=normal<CR>',
@@ -251,6 +261,29 @@ return {
         ['N'] = { '<cmd>enew<CR>', 'New Empty Buffer' },
         -- ['p'] = { '<cmd>BufferLineCyclePrev<CR>', 'Previous Buffer' },
         ['p'] = { '<cmd>bp<CR>', 'Previous Buffer' },
+      },
+
+      ['c'] = {
+        name = '>> Copilot <<',
+        ['a'] = { '<cmd>Copilot attach<CR>', 'Attach' },
+        ['d'] = { '<cmd>Copilot detach<CR>', 'Detach' },
+        ['c'] = { '<cmd>Copilot suggestion<CR>', 'Suggestion' },
+        ['i'] = { '<cmd>Copilot status<CR>', 'Info / Status' },
+        ['p'] = { '<cmd>Copilot panel<CR>', 'Panel' },
+        ['s'] = { '<cmd>Copilot enable<CR>', 'Start' },
+        ['S'] = { '<cmd>Copilot disable<CR>', 'Stop' },
+        ['t'] = { '<cmd>Copilot toggle<CR>', 'Toggle' },
+      },
+
+      ['C'] = {
+        name = '>> Copilot Chat <<',
+        ['a'] = { '<cmd>CopilotChatAgent<CR>', 'Select Agent' },
+        ['c'] = { '<cmd>CopilotChatOpen<CR>', 'Open Chat' },
+        ['l'] = { '<cmd>CopilotChatLoad<CR>', 'Load Chat' },
+        ['m'] = { '<cmd>CopilotChatModel<CR>', 'Select Model' },
+        ['p'] = { '<cmd>CopilotChatPrompt<CR>', 'Select Prompt' },
+        ['s'] = { '<cmd>CopilotChatSave<CR>', 'Save Chat' },
+        ['R'] = { '<cmd>CopilotChatReset<CR>', 'Reset Chat' },
       },
 
       -- Debug Layer
