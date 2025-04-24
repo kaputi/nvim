@@ -1,12 +1,26 @@
 return {
   'nvim-telescope/telescope.nvim',
   branch = '0.1.x',
-  dependencies = { 'nvim-lua/plenary.nvim' },
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'nvim-telescope/telescope-ui-select.nvim',
+  },
   config = function()
     local actions = require('telescope.actions')
 
     require('telescope').setup({
       extensions = {
+        ['ui-select'] = {
+          require('telescope.themes').get_dropdown({
+            -- even more opts
+            -- width = 0.5,
+            -- previewer = false,
+            -- prompt_title = 'UI Select',
+            -- results_title = 'Results',
+            -- layout_strategy = 'vertical',
+            -- layout_config = { preview_width = 60 },
+          }),
+        },
         media_files = {
           -- filetypes whitelist
           -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
@@ -71,5 +85,6 @@ return {
 
     -- TODO:
     -- require('telescope').load_extension('media_files')
+    require('telescope').load_extension('ui-select')
   end,
 }
