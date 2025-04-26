@@ -1,5 +1,7 @@
 #!/bin/bash
+
+#!/bin/bash
 export NVIM_APPNAME="tv2"
 
-exec nvim "$@"
+sudo -E -s exec nvim "$@"
 # exec nvim --listen /tmp/nvim-server.pipe "$@"
