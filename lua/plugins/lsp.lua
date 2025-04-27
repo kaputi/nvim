@@ -37,6 +37,18 @@ return {
         if server_name == 'ts_ls' then
           opts = vim.tbl_extend('force', opts, {
             single_file_support = false,
+            -- settings = {
+            --   typescript = {
+            --     inlayHints = {
+            --       includeInlayParameterNameHints = 'all',
+            --       includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+            --       includeInlayFunctionParameterTypeHints = true,
+            --       includeInlayVariableTypeHints = true,
+            --       includeInlayPropertyDeclarationTypeHints = true,
+            --       includeInlayFunctionLikeReturnTypes = true,
+            --     },
+            --   },
+            -- },
           })
         end
         require('lspconfig')[server_name].setup(opts)

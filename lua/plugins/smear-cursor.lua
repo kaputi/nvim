@@ -27,5 +27,7 @@ return {
     stiffness = 0.95,
 
     cursor_color = '#48b0bd',
+    -- cursor_color = '#00ff00',
+    -- cursor_color = '#ff0000',
   },
 }
