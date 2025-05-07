@@ -4,7 +4,18 @@ MySettings = {
     trimWhitespace = false,
   },
   linter = true,
+  -- Diagnostics --------------------------
+  virtua_text = false,
+  signs = true,
+  underline = true,
+  severity_sort = true,
   lineDiagnostics = true,
+  virtual_lines = false,
+  -- virtual_lines = {
+  --   current_line = true,
+  --   severity_sort = true,
+  -- },
+  ---------------------------------
   -- colorscheme = 'edge',
 
   -- colorscheme = 'darkplus',

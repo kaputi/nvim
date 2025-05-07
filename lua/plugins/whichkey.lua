@@ -117,7 +117,7 @@ return {
         'Find selection.',
       },
 
-      ['c'] = {
+      ['C'] = {
         name = '>> Copilot Chat <<',
         ['d'] = { '<cmd>CopilotChatDocs<CR>', 'Document' },
         ['e'] = { '<cmd>CopilotChatExplain<CR>', 'Explain' },

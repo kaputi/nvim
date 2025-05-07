@@ -2,10 +2,11 @@ local function on_attach(client, bufnr)
   require('user.lsp.keybindings').setup(bufnr)
 
   vim.diagnostic.config({
-    virtual_text = false,
-    signs = true,
-    underline = true,
-    severity_sort = true,
+    virtual_text = MySettings.virtual_text,
+    signs = MySettings.signs,
+    underline = MySettings.underline,
+    severity_sort = MySettings.severity_sort,
+    virtual_lines = MySettings.virtual_lines,
   })
 
   local navic_ok, navic = pcall(require, 'nvim-navic')

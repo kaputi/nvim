@@ -10,7 +10,8 @@ return {
     require('CopilotChat').setup({
       model = 'gpt-4o',
       window = {
-        layout = 'float',
+        -- layout = 'float',
+        layout = 'horizontal',
       },
     })
   end,

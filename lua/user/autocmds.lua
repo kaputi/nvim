@@ -73,6 +73,17 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   end,
 })
 
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  group = '_user',
+  pattern = {
+    '*.wgsl',
+  },
+  -- callback = "set ft=glsl"
+  callback = function()
+    vim.bo.filetype = 'wgsl'
+  end,
+})
+
 vim.api.nvim_create_autocmd({ 'CmdLineLeave' }, {
   group = '_user',
   callback = function()
