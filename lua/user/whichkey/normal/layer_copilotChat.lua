@@ -1,0 +1,10 @@
+return {
+  name = '>> Copilot Chat <<',
+  ['a'] = { '<cmd>CopilotChatAgent<CR>', 'Select Agent' },
+  ['c'] = { '<cmd>CopilotChatOpen<CR>', 'Open Chat' },
+  ['l'] = { '<cmd>CopilotChatLoad<CR>', 'Load Chat' },
+  ['m'] = { '<cmd>CopilotChatModel<CR>', 'Select Model' },
+  ['p'] = { '<cmd>CopilotChatPrompt<CR>', 'Select Prompt' },
+  ['s'] = { '<cmd>CopilotChatSave<CR>', 'Save Chat' },
+  ['R'] = { '<cmd>CopilotChatReset<CR>', 'Reset Chat' },
+}

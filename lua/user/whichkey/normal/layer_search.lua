@@ -1,0 +1,38 @@
+return {
+  name = '>> Search <<',
+  [';'] = { '<cmd>Telescope commands<CR>', 'Commands' },
+  -- ['a'] = {':Ag'                , 'Text Ag'},
+  ['b'] = {
+    '<cmd>Telescope current_buffer_fuzzy_find<CR>',
+    'Current Buffer',
+  },
+  -- ['B'] = {':Lines'             , 'Txt in Opened Buffers'} ,
+  ['c'] = { '<cmd>Telescope git_commits<CR>', 'Commits' },
+  ['C'] = { '<cmd>Telescope git_bcommits<CR>', 'Buffer Commits' },
+  -- ['f'] = {'<cmd>Telescope find_files<CR>', 'Files'},
+  ['f'] = {
+    '<cmd>Telescope find_files find_command=rg,--ignore-case,--hidden,--files<CR>',
+    'Find File (include .)',
+  },
+  ['F'] = {
+    '<cmd>Telescope find_files find_command=rg,--ignore-case,--hidden,--files,--ignore<CR>',
+    'Find File (include ignore)',
+  },
+  ['g'] = { '<cmd>Telescope git_files<CR>', 'Git Files' },
+  ['G'] = { '<cmd>Telescope git_status<CR>', 'Modified Git Files' },
+  ['h'] = { '<cmd>Telescope command_history<CR>', 'Command History' },
+  ['H'] = { '<cmd>Telescope help_tags<CR>', 'Help Tags' },
+  ['m'] = { '<cmd>Telescope marks<CR>', 'Marks' },
+  ['M'] = { '<cmd>Telescope keymaps<CR>', 'Key Maps' },
+  ['p'] = { '<cmd>Telescope tags<CR>', 'Project Tags' },
+  ['r'] = { '<cmd>Telescope resume<CR>', 'Resume last search' },
+  ['S'] = { '<cmd>Telescope colorscheme<CR>', 'Color Schemes' },
+  ['t'] = { '<cmd>Telescope live_grep<CR>', 'Text Rg' },
+  ['T'] = {
+    '<cmd>Telescope grep_string<cr>',
+    'search string under cursor',
+  },
+  -- ['T'] = { '<cmd>Telescope current_buffer_tags<CR>', 'Buffer Tags' },
+  -- ['w'] = {':Windows'           , 'Windows'},
+  ['y'] = { '<cmd>Telescope       filetypes<CR>', 'File Types' },
+}
