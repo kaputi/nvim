@@ -28,9 +28,10 @@ return {
       '<bs>',
       '<backspace>'
     )
+    -- vim.keymap.set({ 'n', 'x', 'o' }, 'f', '<Plug>(leap-forward)')
     vim.keymap.set({ 'n', 'x', 'o' }, 'f', '<Plug>(leap-forward)')
     vim.keymap.set({ 'n', 'x', 'o' }, 'F', '<Plug>(leap-backward)')
-    vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap-forward)')
+    vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap)')
     vim.keymap.set({ 'n', 'x', 'o' }, 'S', '<Plug>(leap-backward)')
 
     -- vim.api.nvim_set_hl(0, 'LeapLabelPrimary', { bg = 'NONE', fg = '#ff0000' })
