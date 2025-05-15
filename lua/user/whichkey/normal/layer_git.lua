@@ -30,5 +30,9 @@ return {
   ['s'] = { '<cmd>Gitsigns stage_hunk<CR>', 'Stage hunk' },
   ['u'] = { '<cmd>Gitsigns undo_stage_hunk<CR>', 'Undo stage hunk' },
   ['v'] = { '<cmd>Gitsigns select_hunk<CR>', 'Select Hunk' },
+  [']'] = {
+    '<cmd>Gitsigns next_hunk<CR><cmd>Gitsigns preview_hunk_inline<CR>',
+    'Next Hunk with preview',
+  },
   -- TODO:
 }
