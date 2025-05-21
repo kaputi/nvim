@@ -229,4 +229,24 @@ M.deepCopy = function(orig)
   return copy
 end
 
+M.runSilentMacro = function()
+  local count = vim.v.count -- Gets the count before pressing <leader>r
+  -- local reg = vim.fn.nr2char(vim.fn.getchar())
+  -- Prompt the user with an input box
+  local reg = vim.fn.input('Run macro from register: ')
+
+  -- Validate the input
+  if reg == '' or reg:match('%s') then
+    print('Invalid register key.')
+    return
+  end
+
+  -- If no count, default to 1
+  if count == 0 then
+    count = ''
+  end
+
+  vim.cmd('silent normal! ' .. count .. '@' .. reg)
+end
+
 return M

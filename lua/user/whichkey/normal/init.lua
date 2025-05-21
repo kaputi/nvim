@@ -11,6 +11,10 @@ return {
     '<cmd>split | Telescope buffers initial_mode=normal<CR>',
     'Horizontal Split',
   },
+  ['m'] = {
+    '<cmd>lua require"user.functions".runSilentMacro()<CR>',
+    'Run macro silenty (promtp for macro)',
+  },
   ['M'] = { '<cmd>delmarks A-Z0-9<CR>', 'Delete all marks' },
   ['n'] = { '<cmd>bn<CR>', 'next buffer' },
   ['o'] = {
