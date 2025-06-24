@@ -5,7 +5,7 @@ return {
     { 'zbirenbaum/copilot.lua' },
     { 'nvim-lua/plenary.nvim' },
   },
-  -- build = 'make tiktoken', -- Only on MacOS or Linux
+  build = 'make tiktoken', -- Only on MacOS or Linux
   config = function()
     require('CopilotChat').setup({
       model = 'gpt-4o',
@@ -13,6 +13,14 @@ return {
         -- layout = 'float',
         layout = 'horizontal',
       },
+
+      highlight_headers = false,
+      separator = '---',
+      error_header = '> [!ERROR] Error',
+      question_header = '# ', -- Header to use for user questions
+      answer_header = '#  ', -- Header to use for AI answers
+
+      insert_at_end = true,
     })
   end,
 }

@@ -31,6 +31,7 @@ MySettings = {
   -- nevarasu
   colorscheme = 'onedark',
   colorscheme_flavour = 'darker', -- 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+  -- colorscheme_flavour = 'light',
 
   -- kanagawa
   -- colorscheme = 'kanagawa'
