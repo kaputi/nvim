@@ -7,5 +7,6 @@ return {
   ---@type render.md.UserConfig
   opts = {
     file_types = { 'markdown', 'copilot-chat' },
+    preset = 'obsidian',
   },
 }

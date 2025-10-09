@@ -249,4 +249,13 @@ M.runSilentMacro = function()
   vim.cmd('silent normal! ' .. count .. '@' .. reg)
 end
 
+M.copilotBufferAsk = function()
+  local input = vim.fn.input('Quick Chat: ')
+  if input ~= '' then
+    require('CopilotChat').ask(input, {
+      selection = require('CopilotChat.select').buffer,
+    })
+  end
+end
+
 return M

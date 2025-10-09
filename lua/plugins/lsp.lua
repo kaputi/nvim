@@ -59,6 +59,7 @@ return {
     vim.api.nvim_create_autocmd({ 'CursorHold' }, {
       group = '_lsp',
       callback = function()
+        -- TODO: exclude file types
         require('user.functions').lineDiagnostics()
       end,
     })
