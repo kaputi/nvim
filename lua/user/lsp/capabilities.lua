@@ -1,5 +1,9 @@
 local function getCapabilities()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true,
+  }
   local cmp_ok, cmp = pcall(require, 'cmp_nvim_lsp')
   if cmp_ok then
     getCapabilities = cmp.default_capabilities(capabilities)
