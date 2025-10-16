@@ -1,11 +1,18 @@
 return {
   'mfussenegger/nvim-lint',
   config = function()
+    local eslint = 'eslint'
+
+    if vim.fn.executable('eslint_d') == 1 then
+      print('using system eslint_d instead of eslint')
+      eslint = 'eslint_d'
+    end
+
     require('lint').linters_by_ft = {
-      javascript = { 'eslint' },
-      typescript = { 'eslint' },
-      javascriptreact = { 'eslint' },
-      typescriptreact = { 'eslint' },
+      javascript = { eslint },
+      typescript = { eslint },
+      javascriptreact = { eslint },
+      typescriptreact = { eslint },
       -- glsl = { 'glslc' },
       go = { 'golangcilint' },
     }
