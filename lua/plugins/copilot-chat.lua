@@ -13,13 +13,23 @@ return {
         -- layout = 'float',
         -- layout = 'horizontal',
         layout = 'vertical',
+        width = 0.3,
       },
 
-      highlight_headers = false,
-      separator = '---',
-      error_header = '> [!ERROR] Error',
-      question_header = '# ', -- Header to use for user questions
-      answer_header = '# ', -- Header to use for AI answers
+      -- highlight_headers = false,
+      -- separator = '---',
+      -- error_header = '> [!ERROR] Error',
+      -- question_header = '# ', -- Header to use for user questions
+      -- answer_header = '# ', -- Header to use for AI answers
+
+      chat_autocomplete = true,
+
+      headers = {
+        user = ' You',
+        assistant = '#  Copilot',
+        tool = 'Tool',
+      },
+      separator = '━━',
 
       insert_at_end = false,
 

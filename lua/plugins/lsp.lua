@@ -55,12 +55,36 @@ return {
       end,
     })
 
+    -- vim.api.nvim_create_augroup('_lsp', {})
+    -- vim.api.nvim_create_autocmd({ 'CursorHold' }, {
+    --   group = '_lsp',
+    --   callback = function()
+    --     -- TODO: exclude file types
+    --     require('user.functions').lineDiagnostics()
+    --   end,
+    -- })
+
     vim.api.nvim_create_augroup('_lsp', {})
-    vim.api.nvim_create_autocmd({ 'CursorHold' }, {
-      group = '_lsp',
+    local whitelist = {
+      'python',
+      'lua',
+      'go',
+      'javascript',
+      'typescript',
+      'typescriptreact',
+      'javascriptreact',
+      'bash',
+    } -- Add your desired filetypes
+    vim.api.nvim_create_autocmd('CursorHold', {
+      group = vim.api.nvim_create_augroup('_lsp', { clear = true }),
       callback = function()
-        -- TODO: exclude file types
-        require('user.functions').lineDiagnostics()
+        local ft = vim.bo.filetype
+        for _, allowed in ipairs(whitelist) do
+          if ft == allowed then
+            require('user.functions').lineDiagnostics()
+            break
+          end
+        end
       end,
     })
 
