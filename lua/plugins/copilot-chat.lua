@@ -39,15 +39,15 @@ return {
         },
         close = {
           normal = 'q',
-          insert = '<C-c>',
+          -- insert = '<C-c>',
         },
         reset = {
           normal = '<S-l>',
-          insert = '<S-l>',
+          -- insert = '<S-l>',
         },
         submit_prompt = {
           normal = '<CR>',
-          insert = '<C-s>',
+          -- insert = '<C-s>',
         },
         toggle_sticky = {
           normal = 'grr',
@@ -57,7 +57,7 @@ return {
         },
         accept_diff = {
           normal = '<C-y>',
-          insert = '<C-y>',
+          -- insert = '<C-y>',
         },
         jump_to_diff = {
           normal = 'gj',
