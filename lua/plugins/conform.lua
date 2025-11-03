@@ -16,7 +16,7 @@ return {
         sh = { 'shfmt' },
         dart = { 'dart_format' },
         glsl = { 'clang-format' },
-        wgsl = { 'clang-format' },
+        -- wgsl = { 'clang-format' },
         -- wgsl = { 'rustfmt' },
       },
     })
