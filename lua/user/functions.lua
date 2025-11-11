@@ -212,6 +212,27 @@ M.killWindowlessBufs = function()
     end
   end, bufInfos)
   print('Deleted windowless buffers')
+
+  M.notify('Deleted windowless buffers')
+end
+
+M.killAllBuffersButFocused = function()
+  -- '<cmd>%bd!|edit #|bd #|normal `"<CR>',
+  local current_buf = vim.api.nvim_get_current_buf()
+  local buf_infos = vim.fn.getbufinfo({ buflisted = true })
+
+  for _, buf_info in ipairs(buf_infos) do
+    if buf_info.bufnr ~= current_buf then
+      vim.api.nvim_buf_delete(buf_info.bufnr, { force = true })
+    end
+  end
+
+  -- Ensure the current buffer remains active
+  if vim.fn.bufexists(current_buf) == 1 then
+    vim.api.nvim_set_current_buf(current_buf)
+  end
+
+  M.notify('Deleted all buffers but focused')
 end
 
 M.deepCopy = function(orig)

@@ -9,7 +9,8 @@ return {
     'Delete buffers not in window',
   },
   ['K'] = {
-    '<cmd>%bd!|edit #|bd #|normal `"<CR>',
+    '<cmd>lua require"user.functions".killAllBuffersButFocused()<CR>',
+    -- '<cmd>%bd!|edit #|bd #|normal `"<CR>',
     'Delete all Buffers but focused',
   }, -- %bd kills all, edit # opens last ,bd # kills last(after killing all there is a new empty buffer) '" goes to last place before close
   -- ['k'] = {'<cmd>BufferCloseAllButCurrent<CR>', 'Delete Other Buffers'},
