@@ -255,7 +255,9 @@ return {
           { 'bufnr' },
         },
       },
-      nesting_rules = {},
+      nesting_rules = {
+        ['js'] = { 'js.map' },
+      },
       filesystem = {
         window = {
           mappings = {
