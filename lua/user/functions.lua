@@ -211,7 +211,7 @@ M.killWindowlessBufs = function()
       vim.api.nvim_buf_delete(bufInfo.bufnr, { force = false, unload = false })
     end
   end, bufInfos)
-  print('Deleted windowless buffers')
+  -- print('Deleted windowless buffers')
 
   M.notify('Deleted windowless buffers')
 end
