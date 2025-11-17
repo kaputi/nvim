@@ -58,6 +58,10 @@ M.setup = function(bufnr)
       -- },
       -- ['t'] = { '<cmd>TroubleToggle<CR>', 'Trouble' },
       ['t'] = { '<cmd>Trouble diagnostics toggle filter.buf=0<CR>', 'Trouble' },
+      ['T'] = {
+        '<cmd>Lspsaga peek_type_definition<CR>',
+        'Peak type definition',
+      },
     },
   }
 
