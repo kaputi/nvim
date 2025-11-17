@@ -48,6 +48,7 @@ return {
       'typescriptreact',
       'javascriptreact',
       'bash',
+      'wgsl',
     } -- Add your desired filetypes
     vim.api.nvim_create_autocmd('CursorHold', {
       group = vim.api.nvim_create_augroup('_lsp', { clear = true }),

@@ -144,14 +144,11 @@ M.lineDiagnostics = function()
     prefix = '',
     format = function(diagnostic)
       local sign, hl = require('user.gui').getSignAndHl(diagnostic)
-      return ' '
-        .. sign
-        .. ' '
-        .. diagnostic.message
-        .. ' ['
-        .. diagnostic.source
-        .. '] ',
-        hl
+      local source = ''
+      if diagnostic.source then
+        source = '[..' .. diagnostic.source .. ']'
+      end
+      return ' ' .. sign .. ' ' .. diagnostic.message .. source, hl
     end,
   })
 end
