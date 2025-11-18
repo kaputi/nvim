@@ -8,28 +8,47 @@ return {
   config = function()
     require('user.lsp.lspGui')
 
-    vim.lsp.config('denols', {
-      root_dir = require('lspconfig').util.root_pattern('deno.json'),
+    local commonOpts = {
+      on_attach = require('user.lsp.on_attach'),
+      root_markers = { '.git', '.hg' },
+      capabilities = require('user.lsp.capabilities'),
+    }
+
+    vim.lsp.config('*', commonOpts)
+
+    vim.lsp.config(
+      'denols',
+      vim.tbl_extend('force', commonOpts, {
+        root_markers = nil,
+        root_dir = require('lspconfig').util.root_pattern(
+          'deno.json',
+          'deno.jsonc'
+        ),
+      })
+    )
+
+    local ts_options = vim.tbl_extend('force', commonOpts, {
+      root_markers = { '.git', '.hg', 'package.json', 'tsconfig.json' },
     })
 
-    vim.lsp.config('*', {
-      on_attach = require('user.lsp.on_attach'),
-      root_markers = { '.git', '.hg', 'package.json' },
-      capabilities = require('user.lsp.capabilities'),
-    })
+    vim.lsp.config('ts_ls', ts_options)
+    vim.lsp.config('tsserver', ts_options)
 
     -- too many errors for vulkan that don't matter to me
     -- require('lspconfig').glslls.setup({})
 
-    vim.lsp.config('lua_ls', {
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { 'vim' },
+    vim.lsp.config(
+      'lua_ls',
+      vim.tbl_extend('force', commonOpts, {
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { 'vim' },
+            },
           },
         },
-      },
-    })
+      })
+    )
 
     require('mason').setup({
       ensure_installed = {
