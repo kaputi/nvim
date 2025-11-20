@@ -17,7 +17,7 @@ return {
         dart = { 'dart_format' },
         -- glsl = { 'clang-format' },
         -- wgsl = { 'clang-format' },
-        -- wgsl = { 'rustfmt' },
+        wgsl = { 'prettier', 'prettierd' },
       },
     })
 
