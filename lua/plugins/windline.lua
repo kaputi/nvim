@@ -126,7 +126,7 @@ return {
         local icon = ' '
         local lspSep = '|'
 
-        for _, client in pairs(vim.lsp.buf_get_clients(bufnr or 0)) do
+        for _, client in pairs(vim.lsp.get_clients({ bufnr or 0 })) do
           -- DONT SHOW null-ls
           if client.name ~= 'null-ls' then
             clients[#clients + 1] = client.name
