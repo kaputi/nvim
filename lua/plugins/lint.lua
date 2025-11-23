@@ -4,7 +4,9 @@ return {
     local eslint = 'eslint'
 
     if vim.fn.executable('eslint_d') == 1 then
-      print('using system eslint_d instead of eslint')
+      require('user.functions').notify(
+        'using system eslint_d instead of eslint'
+      )
       eslint = 'eslint_d'
     end
 

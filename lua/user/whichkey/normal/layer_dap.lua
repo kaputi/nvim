@@ -4,10 +4,14 @@ return {
   ['c'] = { '<cmd>DapContinue<CR>', 'Continue' },
   ['u'] = {
     function()
-      local widgets = require('dap.ui.widgets')
-      local sidebar = widgets.sidebar(widgets.scopes)
-      sidebar.open()
+      require('dapui').toggle()
     end,
-    'Sidebar open',
+    'UI toggle',
+  },
+  ['e'] = {
+    function()
+      require('dapui').eval()
+    end,
+    'Eval',
   },
 }
