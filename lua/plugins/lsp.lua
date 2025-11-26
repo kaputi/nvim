@@ -29,6 +29,17 @@ return {
 
     local ts_options = vim.tbl_extend('force', commonOpts, {
       root_markers = { '.git', '.hg', 'package.json', 'tsconfig.json' },
+      init_options = {
+        preferences = {
+          includeInlayParameterNameHints = 'all',
+          includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        },
+      },
     })
 
     vim.lsp.config('ts_ls', ts_options)

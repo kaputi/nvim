@@ -25,6 +25,10 @@ M.setup = function(bufnr)
       ['D'] = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'Goto declaration' },
       ['f'] = { '<cmd>lua require("conform").format()<CR><escape>', 'format' },
       ['F'] = { '<cmd>Lspsaga finder<CR>', 'Finder' },
+      ['h'] = {
+        '<cmd>lua require"user.functions".toggleInlayHints()<CR>',
+        'Toggle Inlay Hints',
+      },
       ['l'] = {
         '<cmd>lua require("user.functions").lineDiagnostics()<CR>',
         'line diagnostic',
