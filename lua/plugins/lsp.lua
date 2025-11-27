@@ -14,6 +14,7 @@ return {
       capabilities = require('user.lsp.capabilities'),
     }
 
+    -- GENERAL LSP =======================================================
     vim.lsp.config('*', commonOpts)
 
     vim.lsp.config(
@@ -26,7 +27,7 @@ return {
         ),
       })
     )
-
+    -- TS,JS ============================================================
     local ts_options = vim.tbl_extend('force', commonOpts, {
       root_markers = { '.git', '.hg', 'package.json', 'tsconfig.json' },
       init_options = {
@@ -41,13 +42,12 @@ return {
         },
       },
     })
-
     vim.lsp.config('ts_ls', ts_options)
     vim.lsp.config('tsserver', ts_options)
-
+    -- SHADERS ==========================================================
     -- too many errors for vulkan that don't matter to me
     -- require('lspconfig').glslls.setup({})
-
+    -- LUA =============================================================
     vim.lsp.config(
       'lua_ls',
       vim.tbl_extend('force', commonOpts, {
@@ -60,12 +60,27 @@ return {
         },
       })
     )
+    -- GO ===============================================================
+    vim.lsp.config(
+      'gopls',
+      vim.tbl_extend('force', commonOpts, {
+        settings = {
+          gopls = {
+            hints = {
+              assignVariableTypes = true,
+              compositeLiteralFields = true,
+              compositeLiteralTypes = true,
+              constantValues = true,
+              functionTypeParameters = true,
+              parameterNames = true,
+              rangeVariableTypes = true,
+            },
+          },
+        },
+      })
+    )
 
-    require('mason').setup({
-      ensure_installed = {
-        -- 'js-debug-adapter',
-      },
-    })
+    require('mason').setup({})
     require('mason-lspconfig').setup()
 
     vim.api.nvim_create_augroup('_lsp', {})
