@@ -123,9 +123,9 @@ M.format = function()
   end
 end
 
-M.lint = function()
+M.lint = function(linter)
   if MySettings.linter then
-    require('lint').try_lint()
+    require('lint').try_lint(linter)
   end
 end
 
