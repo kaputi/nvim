@@ -7,10 +7,6 @@ local function on_attach(client, bufnr)
       navic.attach(client, bufnr)
     end
   end
-
-  -- if client.server_capabilities.inlayHintProvider then
-  --   vim.lsp.buf.inlay_hint(bufnr, true)
-  -- end
 end
 
 return on_attach

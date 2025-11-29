@@ -18,6 +18,22 @@ return {
       -- glsl = { 'glslc' },
       go = { 'golangcilint' },
       -- go = { 'revive', 'golangcilint' },
+      haskell = { 'hlint' },
+      cabal = { 'cabal-fmt' },
+    }
+
+    require('lint').linters.hlint = {
+      cmd = 'hlint',
+      stdin = false,
+      args = {
+        '--json',
+        vim.fn.expand('%:p'),
+      },
+      stream = 'stdout',
+      ignore_exitcode = true,
+      parser = require('lint.parser').from_errorformat(
+        '%f:%l:%c: %tarning: %m,%f:%l:%c: %terror: %m'
+      ),
     }
 
     vim.api.nvim_create_autocmd(

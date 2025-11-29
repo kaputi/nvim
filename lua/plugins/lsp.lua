@@ -64,6 +64,12 @@ return {
     vim.lsp.config(
       'gopls',
       vim.tbl_extend('force', commonOpts, {
+        root_dir = require('lspconfig').util.root_pattern(
+          'cabal.project',
+          '*.cabal',
+          '.git',
+          'stack.yaml'
+        ),
         settings = {
           gopls = {
             hints = {
@@ -74,6 +80,33 @@ return {
               functionTypeParameters = true,
               parameterNames = true,
               rangeVariableTypes = true,
+            },
+          },
+        },
+      })
+    )
+    -- Haskell ==========================================================
+    vim.lsp.config(
+      'haskell',
+      vim.tbl_extend('force', commonOpts, {
+        settings = {
+          haskell = {
+            formattingProvider = 'fourmolu',
+            checkProject = true,
+            plugin = {
+              enabled = {
+                'ghcide-type-fixes',
+                'ghcide-code-actions',
+                'stan',
+                'retrie',
+                'fourmolu',
+              },
+              fourmolu = {
+                config = {
+                  external = true,
+                  -- Your fourmolu config here
+                },
+              },
             },
           },
         },
@@ -94,6 +127,9 @@ return {
       'javascriptreact',
       'bash',
       'wgsl',
+      'haskell',
+      'lhaskell',
+      'cabal',
     } -- Add your desired filetypes
     vim.api.nvim_create_autocmd('CursorHold', {
       group = vim.api.nvim_create_augroup('_lsp', { clear = true }),
