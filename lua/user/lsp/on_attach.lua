@@ -1,6 +1,5 @@
 local function on_attach(client, bufnr)
-  require('user.lsp.keybindings').setup(bufnr)
-
+  require('user.lsp.keybindings').setup(client, bufnr)
 
   local navic_ok, navic = pcall(require, 'nvim-navic')
   if navic_ok then
