@@ -147,6 +147,23 @@ M.setup = function(client, bufnr)
     '<cmd>Lspsaga peek_type_definition<CR>',
     { buffer = bufnr, desc = 'Peak type definition' }
   )
+
+  -- Haskell-specific mappings (already correct)
+  if client.name == 'haskell-language-server' then
+    vim.keymap.set('n', '<leader>lc', '') -- Fixed incomplete mapping
+    vim.keymap.set(
+      'n',
+      '<leader>lch',
+      'md>lua require("haskell-tools").hoogle.search({hoogle_command = true})r>',
+      { buffer = true, desc = 'Hoogle Search' }
+    )
+    vim.keymap.set(
+      'n',
+      '<leader>lct',
+      'md>lua require("haskell-tools").telescope.definitions()r>',
+      { buffer = true, desc = 'Hoogle Type Definition' }
+    )
+  end
 end
 
 return M
