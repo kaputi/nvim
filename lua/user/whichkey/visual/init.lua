@@ -1,12 +1,36 @@
-return {
-  ['r'] = { '"_d"*p', 'Replace Selection with register' },
-  -- ['/'] = {'y/V<C-R>=escape(@",'/')<CR><CR>', 'Find selection.'},
-  ['/'] = {
-    '<escape><cmd>lua require"user.functions".findSelectedText()<CR>',
-    'Find selection.',
-  },
+local M = {}
 
-  -- Layers
-  ['l'] = require('user.whichkey.visual.layer_lsp'),
-  ['C'] = require('user.whichkey.visual.layer_copilot'),
-}
+M.setup = function(wk)
+  local NonLayerKeys = {
+    { 'r', '"_d"*p', 'Replace Selection with register' },
+    -- {'/','y/V<C-R>=escape(@",'/')<CR><CR>', 'Find selection.'},
+    {
+      '/',
+      '<escape><cmd>lua require"user.functions".findSelectedText()<CR>',
+      'Find selection.',
+    },
+  }
+
+  for _, mapping in ipairs(NonLayerKeys) do
+    vim.keymap.set(
+      'v',
+      '<leader>' .. mapping[1],
+      mapping[2],
+      { desc = mapping[3] }
+    )
+  end
+
+  local lsp = require('user.whichkey.visual.layer_lsp')
+  local copilot = require('user.whichkey.visual.layer_copilot')
+
+  local layers = {
+    lsp,
+    copilot,
+  }
+
+  for _, layer in ipairs(layers) do
+    require('user.whichkey.utils').registerLayer(wk, layer, 'v')
+  end
+end
+
+return M

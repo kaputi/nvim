@@ -97,10 +97,9 @@ return {
 
     local wk = require('which-key')
 
-    local vmappings = require('user.whichkey.visual')
-    local nmappings = require('user.whichkey.normal')
-    wk.register(nmappings, nopts)
-    wk.register(vmappings, vopts)
+
+    require('user.whichkey.normal').setup(wk)
+    require('user.whichkey.visual').setup(wk)
 
     -- Highlights
     vim.cmd([[au VimEnter * highlight WhichKeyGroup guifg=#ff0000]])
