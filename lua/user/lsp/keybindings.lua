@@ -6,6 +6,13 @@ M.setup = function(client, bufnr)
     return
   end
 
+  vim.keymap.set(
+    'n',
+    '<leader>k',
+    '<cmd>Lspsaga hover_doc<CR>',
+    { buffer = bufnr, desc = 'Signature Help' }
+  )
+
   -- Define LSP group name for <leader>l prefix only
   wk.register({
     l = { name = '>> LSP <<' },
