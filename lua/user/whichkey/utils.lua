@@ -1,7 +1,6 @@
 local M = {}
 
 M.registerLayer = function(wk, layer, mode)
-  print('Registering layer: ' .. layer.name)
   wk.register({
     [layer.key] = { name = layer.name },
   }, {
