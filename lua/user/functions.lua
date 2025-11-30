@@ -134,23 +134,47 @@ M.preSave = function()
   M.format()
 end
 
-M.lineDiagnostics = function()
-  if not MySettings.lineDiagnostics then
+M.has_diagnostics_on_line = function(bufnr, line)
+  bufnr = bufnr or 0 -- Use the current buffer if not specified
+  local diagnostics = vim.diagnostic.get(bufnr, { lnum = line })
+  return #diagnostics > 0
+end
+
+M.is_fold_closed_on_line = function(line)
+  line = line or vim.fn.line('.') -- Default to the current line
+  return vim.fn.foldclosed(line) ~= -1
+end
+
+M.cursorHold = function()
+  local line = vim.fn.line('.') - 1 -- Current line (0-indexed)
+
+  local has_diagnostic = M.has_diagnostics_on_line(0, line)
+
+  if has_diagnostic and MySettings.lineDiagnostics then
+    vim.diagnostic.open_float({
+      focusable = false,
+      header = '',
+      prefix = '',
+      format = function(diagnostic)
+        local sign, hl = require('user.gui').getSignAndHl(diagnostic)
+        local source = ''
+        if diagnostic.source then
+          source = '[..' .. diagnostic.source .. ']'
+        end
+        return ' ' .. sign .. ' ' .. diagnostic.message .. source, hl
+      end,
+    })
     return
   end
-  vim.diagnostic.open_float({
-    focusable = false,
-    header = '',
-    prefix = '',
-    format = function(diagnostic)
-      local sign, hl = require('user.gui').getSignAndHl(diagnostic)
-      local source = ''
-      if diagnostic.source then
-        source = '[..' .. diagnostic.source .. ']'
-      end
-      return ' ' .. sign .. ' ' .. diagnostic.message .. source, hl
-    end,
-  })
+
+  local has_closed_fold = M.is_fold_closed_on_line()
+  if has_closed_fold then
+    local ok, ufo = pcall(require, 'ufo')
+    if not ok then
+      return
+    end
+    ufo.peekFoldedLinesUnderCursor()
+  end
 end
 
 -- TOGGLERS ========================================

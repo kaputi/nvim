@@ -134,7 +134,7 @@ return {
         local ft = vim.bo.filetype
         for _, allowed in ipairs(whitelist) do
           if ft == allowed then
-            require('user.functions').lineDiagnostics()
+            require('user.functions').cursorHold()
             break
           end
         end
