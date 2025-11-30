@@ -64,12 +64,6 @@ return {
     vim.lsp.config(
       'gopls',
       vim.tbl_extend('force', commonOpts, {
-        root_dir = require('lspconfig').util.root_pattern(
-          'cabal.project',
-          '*.cabal',
-          '.git',
-          'stack.yaml'
-        ),
         settings = {
           gopls = {
             hints = {
@@ -102,7 +96,6 @@ return {
         },
       },
     })
-    vim.lsp.enable('haskell')
     vim.api.nvim_create_autocmd('FileType', {
       pattern = 'haskell',
       callback = function()
