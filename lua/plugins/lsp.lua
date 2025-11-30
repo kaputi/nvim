@@ -86,32 +86,29 @@ return {
       })
     )
     -- Haskell ==========================================================
-    vim.lsp.config(
-      'haskell',
-      vim.tbl_extend('force', commonOpts, {
-        settings = {
-          haskell = {
-            formattingProvider = 'fourmolu',
-            checkProject = true,
-            plugin = {
-              enabled = {
-                'ghcide-type-fixes',
-                'ghcide-code-actions',
-                'stan',
-                'retrie',
-                'fourmolu',
-              },
-              fourmolu = {
-                config = {
-                  external = true,
-                  -- Your fourmolu config here
-                },
-              },
-            },
-          },
+    vim.lsp.config('haskell', {
+      cmd = { 'haskell-language-server-wrapper', '--lsp' },
+      filetypes = { 'haskell', 'lhaskell', 'cabal' },
+      root_markers = {
+        'stack.yaml',
+        'cabal.project',
+        '*.cabal',
+        'package.yaml',
+        'hie.yaml',
+      },
+      settings = {
+        haskell = {
+          checkProject = true,
         },
-      })
-    )
+      },
+    })
+    vim.lsp.enable('haskell')
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = 'haskell',
+      callback = function()
+        vim.lsp.enable('haskell')
+      end,
+    })
 
     require('mason').setup({})
     require('mason-lspconfig').setup()

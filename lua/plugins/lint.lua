@@ -18,8 +18,8 @@ return {
       -- glsl = { 'glslc' },
       go = { 'golangcilint' },
       -- go = { 'revive', 'golangcilint' },
-      haskell = { 'hlint' },
-      cabal = { 'cabal-fmt' },
+      -- haskell = { 'hlint' },
+      -- cabal = { 'cabal-fmt' },
     }
 
     require('lint').linters.hlint = {

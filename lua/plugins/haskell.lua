@@ -1,31 +1,6 @@
 return {
+  enabled = false,
   'mrcjkb/haskell-tools.nvim',
-  dependencies = {
-    'nvim-lspconfig',
-    'nvim-telescope/telescope.nvim',
-  },
-  ft = { 'haskell', 'lhaskell', 'cabal', 'cabalproject' },
-  config = function()
-    require('haskell-tools').setup({
-      tools = {
-        hoogle = {
-          mode = 'telescope',
-        },
-      },
-      hls = {
-        settings = {
-          haskell = {
-            formattingProvider = 'fourmolu',
-            plugin = {
-              fourmolu = {
-                config = {
-                  external = true,
-                },
-              },
-            },
-          },
-        },
-      },
-    })
-  end,
+  version = '^6', -- Recommended
+  lazy = false, -- This plugin is already lazy
 }

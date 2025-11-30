@@ -18,8 +18,7 @@ return {
         -- glsl = { 'clang-format' },
         -- wgsl = { 'clang-format' },
         wgsl = { 'prettier', 'prettierd' },
-        haskell = { 'fourmolu' },
-        cabal = { 'cabal-fmt' },
+        haskell = { 'ormolu' },
       },
     })
 

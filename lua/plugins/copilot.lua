@@ -44,7 +44,7 @@ return {
         cvs = false,
         ['.'] = false,
       },
-      copilot_model = 'o3-mini',
+      copilot_model = '',
     })
 
     -- local cmp_ok, cmp = pcall(require, 'cmp')
