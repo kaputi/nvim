@@ -9,6 +9,11 @@ return {
     mode = 'legacy',
     instructions_file = 'avante.md',
     provider = 'copilot',
+
+    hints = {
+      enabled = false,
+    },
+
     mappings = {
       --   --- @class AvanteConflictMappings
       --   diff = {
