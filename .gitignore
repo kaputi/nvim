@@ -13,3 +13,4 @@ plugin/packer*
 ls/*
 openai_api_key.lua
 anthropic_key.lua
+secrets*

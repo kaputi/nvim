@@ -1,14 +1,20 @@
 return {
   'yetone/avante.nvim',
 
-  -- enabled = false,
   build = 'make',
   event = 'VeryLazy',
   version = false, -- Never set this value to "*"! Never!
   opts = {
-    mode = 'legacy',
+    -- mode = 'legacy',
+    mode = 'agentic',
     instructions_file = 'avante.md',
-    provider = 'copilot',
+    provider = 'claude',
+
+    providers = {
+      claude = {
+        api_key_name = 'cmd:echo ' .. require('secrets').anthropic_api_key, -- or whatever key name you use
+      },
+    },
 
     hints = {
       enabled = false,
@@ -44,15 +50,15 @@ return {
         insert = { '<C-c>' },
       },
       sidebar = {
-        --     apply_all = 'A',
-        --     apply_cursor = 'a',
+        apply_all = 'A',
+        apply_cursor = 'a',
         --     retry_user_request = 'r',
         --     edit_user_request = 'e',
         --     switch_windows = '<Tab>',
         --     reverse_switch_windows = '<S-Tab>',
         remove_file = 'd',
         add_file = '@',
-        close = { '<Esc>', 'q' },
+        close = { 'q' },
         --     close_from_input = nil, -- e.g., { normal = "<Esc>", insert = "<C-d>" }
       },
     },
