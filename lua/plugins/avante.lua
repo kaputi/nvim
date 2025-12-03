@@ -5,13 +5,17 @@ return {
   event = 'VeryLazy',
   version = false, -- Never set this value to "*"! Never!
   config = function()
-    local ok, anthropic_api_key = pcall(require, 'secrets')
+    local ok, secrets = pcall(require, 'secrets')
+    local anthropic_api_key = ''
     if not ok then
       vim.notify(
         'Avante: anthropic_api_key not found in secrets.lua',
         vim.log.levels.ERROR
       )
-      anthropic_api_key = ''
+    else
+      if secrets.anthropic_api_key ~= nil then
+        anthropic_api_key = secrets.anthropic_api_key
+      end
     end
 
     require('avante').setup({
