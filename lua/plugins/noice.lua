@@ -24,6 +24,8 @@ return {
         signature = { enabled = false },
       },
     })
+
+    vim.opt.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,c:ver25'
   end,
   dependencies = {
     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
