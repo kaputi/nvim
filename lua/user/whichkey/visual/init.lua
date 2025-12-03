@@ -2,6 +2,21 @@ local M = {}
 
 M.setup = function(wk)
   local NonLayerKeys = {
+    {
+      'j',
+      'grc',
+      'increment selection scope',
+    },
+    {
+      'J',
+      'grn',
+      'increment selection node',
+    },
+    {
+      'k',
+      ' grm ',
+      'decrement selection node',
+    },
     { 'r', '"_d"*p', 'Replace Selection with register' },
     -- {'/','y/V<C-R>=escape(@",'/')<CR><CR>', 'Find selection.'},
     {

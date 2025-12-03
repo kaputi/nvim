@@ -16,6 +16,7 @@ M.setup = function(wk)
       '<cmd>split | Telescope buffers initial_mode=normal<CR>',
       'Horizontal Split',
     },
+    { 'j', 'gnn', 'Start text object selection' },
     {
       'm',
       '<cmd>lua require"user.functions".runSilentMacro()<CR>',
