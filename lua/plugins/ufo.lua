@@ -51,6 +51,8 @@ return {
 
     -- UFO keymaps
     vim.keymap.set('n', 'zR', ufo.openAllFolds)
+    -- Remap zo to open fold recursively
+    vim.keymap.set('n', 'zo', 'zO', { desc = 'Open fold recursively' })
     vim.keymap.set('n', 'zM', ufo.closeAllFolds)
     vim.keymap.set('n', 'zr', ufo.openFoldsExceptKinds)
     vim.keymap.set('n', 'zm', ufo.closeFoldsWith)
@@ -68,12 +70,12 @@ return {
       if level < 0 then
         level = 0
       end
-      require('ufo').closeFoldsWith(level)
+      ufo.closeFoldsWith(level)
     end, { desc = 'Fold at previous level' })
 
     vim.keymap.set('n', '<leader>Z', function()
       local level = vim.fn.foldlevel('.') -- Gets fold level at cursor line
-      require('ufo').closeFoldsWith(level)
+      ufo.closeFoldsWith(level)
     end, { desc = 'Fold at current level' })
 
     local fcs = vim.opt.fillchars:get()
