@@ -19,7 +19,9 @@ return {
         truncate
       )
         local newVirtText = {}
-        local suffix = ('  ........................... %d lines'):format(endLnum - lnum)
+        local suffix = ('  ........................... %d lines'):format(
+          endLnum - lnum
+        )
         local sufWidth = vim.fn.strdisplaywidth(suffix)
         local targetWidth = width - sufWidth
         local curWidth = 0
@@ -59,6 +61,20 @@ return {
       --   vim.lsp.buf.hover()
       -- end
     end)
+
+    vim.keymap.set('n', '<leader>z', function()
+      local level = vim.fn.foldlevel('.') -- Gets fold level at cursor line
+      level = level - 1
+      if level < 0 then
+        level = 0
+      end
+      require('ufo').closeFoldsWith(level)
+    end, { desc = 'Fold at previous level' })
+
+    vim.keymap.set('n', '<leader>Z', function()
+      local level = vim.fn.foldlevel('.') -- Gets fold level at cursor line
+      require('ufo').closeFoldsWith(level)
+    end, { desc = 'Fold at current level' })
 
     local fcs = vim.opt.fillchars:get()
 
