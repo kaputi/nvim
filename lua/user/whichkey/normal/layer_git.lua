@@ -8,6 +8,7 @@ return {
       '<cmd>Gitsigns toggle_current_line_blame<CR>',
       'Toggle Blame Line',
     },
+    { 'c', '<cmd>Telescope git_bcommits<CR>', 'Buffer Commits' },
     { 'd', '<cmd>Gitsigns diffthis<CR>', 'Gitsigns DiffView' },
     { 'D', '<cmd>DiffviewOpen<CR>', 'DiffView' },
     { 'H', '<cmd>DiffviewFileHistory %<CR>', 'File History' },

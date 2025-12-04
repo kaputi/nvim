@@ -9,7 +9,7 @@ M.setup = function(wk)
     { ',', '<cmd>Telescope buffers initial_mode=normal<CR>', 'Buffer List' },
     { ' ', '<cmd>Telescope find_files<CR>', 'Files' },
     { 'd', '<cmd>Bdelete<CR>', 'Delete Buffer' },
-    { 'e', '<cmd>Neotree reveal toggle<CR>', 'File Explorer' },
+    { 'e', '<cmd>Neotree reveal toggle<CR>', 'File Explorer (current file)' },
     { 'E', '<cmd>Neotree toggle<CR>', 'File Explorer' },
     {
       'h',

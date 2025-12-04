@@ -13,6 +13,13 @@ M.setup = function(client, bufnr)
     { buffer = bufnr, desc = 'Signature Help' }
   )
 
+  vim.keymap.set(
+    'n',
+    '<leader>K',
+    '<cmd>Lspsaga peek_type_definition<CR>',
+    { buffer = bufnr, desc = 'Peak type definition' }
+  )
+
   -- Define LSP group name for <leader>l prefix only
   wk.register({
     l = { name = '>> LSP <<' },
