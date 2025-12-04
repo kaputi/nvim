@@ -64,6 +64,16 @@ return {
       -- end
     end)
 
+    vim.keymap.set('n', 'l', function()
+      if vim.fn.foldclosed('.') ~= -1 then
+        -- On a closed fold, open recursively
+        vim.cmd('normal! zO')
+      else
+        -- Not on a fold, move right normally
+        vim.cmd('normal! l')
+      end
+    end, { desc = 'Move right or open fold recursively' })
+
     vim.keymap.set('n', '<leader>z', function()
       local level = vim.fn.foldlevel('.') -- Gets fold level at cursor line
       level = level - 1
