@@ -81,7 +81,10 @@ local remaps = {
     ['n'] = '<cmd>lua require("user.functions").disableSearchHlTimer()<CR>n',
     ['N'] = '<cmd>lua require("user.functions").disableSearchHlTimer()<CR>N',
   },
-  term_mode = {},
+  term_mode = {
+    -- Disable exiting terminal mode
+    ['<C-\\><C-n>'] = '<NOP>',
+  },
   visual_mode = {
     -- Copy and paste
     ['<C-c>'] = '"+y',
