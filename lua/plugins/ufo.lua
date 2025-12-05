@@ -1,5 +1,4 @@
-return {
-  -- enabled = false,
+return { -- enabled = false,
   'kevinhwang91/nvim-ufo',
   dependencies = { 'kevinhwang91/promise-async' },
   -- enabled = false,
@@ -19,32 +18,28 @@ return {
         truncate
       )
         local newVirtText = {}
-        local suffix = ('  ........................... %d lines'):format(
-          endLnum - lnum
-        )
-        local sufWidth = vim.fn.strdisplaywidth(suffix)
-        local targetWidth = width - sufWidth
-        local curWidth = 0
+        local lineCount = endLnum - lnum
+        local lineCountText = string.format(' %d lines', lineCount)
+        local lineCountWidth = vim.fn.strdisplaywidth(lineCountText)
 
+        local curWidth = 0
         for _, chunk in ipairs(virtText) do
           local chunkText = chunk[1]
           local chunkWidth = vim.fn.strdisplaywidth(chunkText)
-          if targetWidth > curWidth + chunkWidth then
-            table.insert(newVirtText, chunk)
-          else
-            chunkText = truncate(chunkText, targetWidth - curWidth)
-            local hlGroup = chunk[2]
-            table.insert(newVirtText, { chunkText, hlGroup })
-            chunkWidth = vim.fn.strdisplaywidth(chunkText)
-            if curWidth + chunkWidth < targetWidth then
-              suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
-            end
-            break
-          end
+          table.insert(newVirtText, chunk)
           curWidth = curWidth + chunkWidth
         end
 
-        table.insert(newVirtText, { suffix, 'MoreMsg' })
+        -- Fill remaining space with dots, leaving room for line count
+        local remainingWidth = width - curWidth - lineCountWidth
+        if remainingWidth > 0 then
+          local dots = string.rep('.', remainingWidth - 10)
+          table.insert(newVirtText, { dots, 'Comment' })
+        end
+
+        -- Add line count at the end
+        table.insert(newVirtText, { lineCountText, 'MoreMsg' })
+
         return newVirtText
       end,
     })
