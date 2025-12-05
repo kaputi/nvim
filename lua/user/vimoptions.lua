@@ -17,6 +17,7 @@ local options = {
   fillchars = 'vert:│,foldopen:,foldclose:,foldsep: ',
   foldcolumn = '0',
   foldnestmax = 3,
+  foldopen = 'block,jump,mark,percent,quickfix,search,tag,undo', -- Removed 'hor' to prevent l/h from opening folds
   hidden = true,
   hlsearch = false,
   ignorecase = true,
