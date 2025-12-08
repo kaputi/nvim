@@ -3,6 +3,10 @@ local nevarasu = {
   lazy = false,
   priority = 1000,
   config = function()
+    if MySettings.colorscheme ~= 'onedark' then
+      return
+    end
+
     local palette = require('onedark.palette')
     require('onedark').setup({
       -- Main options --

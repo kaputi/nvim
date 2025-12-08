@@ -2,6 +2,12 @@ return {
   'lukas-reineke/indent-blankline.nvim',
   main = 'ibl',
   config = function()
+    vim.api.nvim_set_hl(
+      0,
+      'IndentBlanklineChar',
+      { fg = '#282c34', nocombine = true }
+    )
+
     require('ibl').setup({
       indent = {
         -- char = '│',

@@ -29,12 +29,15 @@ MySettings = {
   -- colorscheme = 'night-owl',
 
   -- nevarasu
-  colorscheme = 'onedark',
-  colorscheme_flavour = 'darker', -- 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+  -- colorscheme = 'onedark',
+  -- colorscheme_flavour = 'darker', -- 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
   -- colorscheme_flavour = 'light',
 
   -- kanagawa
   -- colorscheme = 'kanagawa'
+
+  colorscheme = 'oasis',
+  colorscheme_flavour = 'mirage',
 }
 
 require('user.remaps')
