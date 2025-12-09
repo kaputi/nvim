@@ -20,8 +20,8 @@ MySettings = {
 
   -- colorscheme = 'darkplus',
 
-  -- colorscheme = 'tokyonight',
-  -- colorscheme_flavour = 'night', -- storm, night, moon, day
+  colorscheme = 'tokyonight',
+  colorscheme_flavour = 'moon', -- storm, night, moon, day
 
   -- colorscheme = 'nightfox',
   -- colorscheme_flavour = 'carbonfox', -- nightfox, dayfox, duskfox, dawnfox, nordfox, carbonfox, terafox
@@ -36,8 +36,8 @@ MySettings = {
   -- kanagawa
   -- colorscheme = 'kanagawa'
 
-  colorscheme = 'oasis',
-  colorscheme_flavour = 'mirage',
+  -- colorscheme = 'oasis',
+  -- colorscheme_flavour = 'mirage'
 }
 
 require('user.remaps')
