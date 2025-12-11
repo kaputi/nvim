@@ -37,7 +37,7 @@ M.setup = function(wk)
     { 'P', '<cmd>Telescope commands<CR>', 'Commands' },
     { 'q', '<cmd>q<CR>', 'Quit' },
     { 'Q', '<cmd>qa!<CR>', 'Quit All!!' },
-    { 'u', '<cmd>UndotreeToggle<CR>', 'Undo tree' },
+    { 'u', '<cmd>Telescope undo<CR>', 'Undo tree' },
     {
       'v',
       '<cmd>vsplit | Telescope buffers initial_mode=normal<CR>',
