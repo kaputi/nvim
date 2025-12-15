@@ -7,6 +7,11 @@ return {
     local session_ok, session_manager = pcall(require, 'session_manager')
     local telescope_ok, telescope = pcall(require, 'telescope')
 
+    local dir = Path:new(vim.fn.stdpath('data'), 'sessions')
+    if vim.fn.isdirectory(dir) == 0 then
+      vim.fn.mkdir(dir, 'p')
+    end
+
     if path_ok and session_ok then
       -- local create_dir_if_no_exist =
       --   require('core.tvUtils').create_dir_if_no_exist
