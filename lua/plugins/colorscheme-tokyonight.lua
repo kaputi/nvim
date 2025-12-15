@@ -86,7 +86,7 @@ return {
     local cycle_flavour = function()
       index = index + 1
       setColorscheme()
-      vim.notify('Oasis style set to ' .. flavours[index])
+      vim.notify('Tokyonight style set to ' .. flavours[index])
     end
 
     wk.register({
