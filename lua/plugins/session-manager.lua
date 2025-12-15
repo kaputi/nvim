@@ -7,7 +7,7 @@ return {
     local session_ok, session_manager = pcall(require, 'session_manager')
     local telescope_ok, telescope = pcall(require, 'telescope')
 
-    local dir = Path:new(vim.fn.stdpath('data'), 'sessions')
+    local dir = vim.fn.stdpath('data') .. '/sessions'
     if vim.fn.isdirectory(dir) == 0 then
       vim.fn.mkdir(dir, 'p')
     end
