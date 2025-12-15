@@ -36,6 +36,11 @@ return {
         enabled = false,
       },
 
+      selection = {
+        enabled = true,
+        hint_display = "none",
+      },
+
       mappings = {
         --   --- @class AvanteConflictMappings
         diff = {
