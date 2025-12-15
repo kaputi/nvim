@@ -4,11 +4,13 @@ M.cmpHighlight = {
   kind = {
     copilot = '@string',
     vsnip = '@module',
+    codeium = '@string',
   },
   menu = {
     copilot = '@string',
     nvim_lsp = '@label',
     vsnip = '@module',
+    codeium = '@label',
   },
 }
 
@@ -39,6 +41,7 @@ M.kind = {
   Operator = '󰆕',
   TypeParameter = '𝙏',
   Copilot = '',
+  Codeium = '',
 }
 M.diagnostics = {
   error = '',

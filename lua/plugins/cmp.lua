@@ -58,10 +58,10 @@ return {
       sources = {
         { name = 'vsnip' },
         { name = 'nvim_lsp' },
+        { name = 'codeium' },
         { name = 'buffer' },
         { name = 'path' },
-        { name = 'codeium' },
-        { name = 'copilot' },
+        -- { name = 'copilot' },
       },
       mapping = {
         ['<c-d>'] = cmp.mapping.scroll_docs(-4),
