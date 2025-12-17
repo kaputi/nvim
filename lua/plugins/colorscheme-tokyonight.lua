@@ -41,7 +41,12 @@ return {
       --- function will be called with a Highlights and ColorScheme table
       ---@param highlights Highlights
       ---@param colors ColorScheme
-      on_highlights = function(highlights, colors) end,
+      on_highlights = function(hl, c)
+        hl.Folded = {
+          bg = c.bg_highlight, -- or c.bg_visual for a slightly stronger highlight
+          -- bg = '#1f2335'
+        }
+      end,
     })
 
     local flavours = {

@@ -103,8 +103,8 @@ return { -- enabled = false,
     vim.o.statuscolumn = '%!v:lua.get_statuscol()'
 
     vim.cmd([[
-        hi default UfoFoldedFg guifg=Normal.foreground
-        hi default UfoFoldedBg guibg=Folded.background
+        " hi default UfoFoldedFg guifg=Normal.foreground
+        " hi default UfoFoldedBg guibg=Folded.background
         hi default link UfoPreviewSbar PmenuSbar
         hi default link UfoPreviewThumb PmenuThumb
         hi default link UfoPreviewWinBar UfoFoldedBg
