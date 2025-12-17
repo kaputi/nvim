@@ -116,8 +116,8 @@ M.setup = function(client, bufnr)
   vim.keymap.set(
     'n',
     '<leader>ll',
-    '<cmd>lua require("user.functions").lineDiagnostics()<CR>',
-    { buffer = bufnr, desc = 'line diagnostic' }
+    '<cmd>lua require("user.functions").toggleLineDiagnostics()<CR>',
+    { buffer = bufnr, desc = 'toggle line diagnostic' }
   )
   vim.keymap.set(
     'n',
