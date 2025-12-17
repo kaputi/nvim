@@ -1,15 +1,47 @@
-local drawings = {
+local goku_drawings = require('user.asciiArt.goku')
+local other_drawings = {
   require('user.asciiArt.shardik'),
   require('user.asciiArt.treeOfGondor'),
 }
+
+local drawings = vim.list_extend(other_drawings, goku_drawings)
+
+local cache_dir = vim.fn.stdpath('cache')
+local counter_file = cache_dir .. '/my_counter.json'
+
+-- Load counter (default 0)
+local function load_counter()
+  local file = io.open(counter_file, 'r')
+  if file then
+    local content = file:read('*a')
+    file:close()
+    local ok, data = pcall(vim.fn.json_decode, content)
+    return ok and data.counter or 1
+  end
+  return 1
+end
+
+-- Save counter
+local function save_counter(value)
+  local data = { counter = value }
+  local file = io.open(counter_file, 'w')
+  if file then
+    file:write(vim.fn.json_encode(data))
+    file:close()
+  end
+end
 
 return {
   'goolord/alpha-nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
     local dashboard = require('alpha.themes.dashboard')
-    math.randomseed(os.time())
-    local selectedDrawing = math.random(#drawings)
+    -- math.randomseed(os.time())
+    -- local selectedDrawing = math.random(#drawings)
+    local selectedDrawing = load_counter()
+    if selectedDrawing > #drawings then
+      selectedDrawing = 1
+    end
 
     dashboard.section.header.val = drawings[selectedDrawing]
     local name = ''
@@ -60,5 +92,8 @@ return {
     end
 
     require('alpha').setup(dashboard.opts)
+
+    selectedDrawing = selectedDrawing + 1
+    save_counter(selectedDrawing)
   end,
 }
