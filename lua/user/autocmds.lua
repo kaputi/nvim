@@ -94,10 +94,13 @@ vim.api.nvim_create_autocmd({ 'CmdLineLeave' }, {
 })
 
 -- Auto-enter insert mode in terminal buffers
-vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter', 'WinEnter', 'TermOpen' }, {
-  group = '_user',
-  pattern = 'term://*',
-  callback = function()
-    vim.cmd('startinsert')
-  end,
-})
+vim.api.nvim_create_autocmd(
+  { 'BufEnter', 'BufWinEnter', 'WinEnter', 'TermOpen' },
+  {
+    group = '_user',
+    pattern = 'term://*',
+    callback = function()
+      vim.cmd('startinsert')
+    end,
+  }
+)

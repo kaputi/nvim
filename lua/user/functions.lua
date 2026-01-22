@@ -151,7 +151,8 @@ M.cursorHold = function()
   local has_diagnostic = M.has_diagnostics_on_line(0, line)
 
   if has_diagnostic and MySettings.lineDiagnostics then
-    vim.diagnostic.open_float({
+    -- require('nvim-pretty-ts-errors').show_line_diagnostics()
+    local bufnr = vim.diagnostic.open_float({
       focusable = false,
       header = '',
       prefix = '',
@@ -159,11 +160,21 @@ M.cursorHold = function()
         local sign, hl = require('user.gui').getSignAndHl(diagnostic)
         local source = ''
         if diagnostic.source then
-          source = '[..' .. diagnostic.source .. ']'
+          source = '[' .. diagnostic.source .. ']'
         end
-        return ' ' .. sign .. ' ' .. diagnostic.message .. source, hl
+        return ' '
+          .. sign
+          .. ' '
+          .. source
+          .. '\n '
+          .. vim.fn.PrettyTsFormat(diagnostic.message)
       end,
     })
+
+    if bufnr then
+      vim.api.nvim_buf_set_option(bufnr, 'filetype', 'markdown')
+    end
+
     return
   end
 
