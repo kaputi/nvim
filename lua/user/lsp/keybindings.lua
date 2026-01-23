@@ -97,12 +97,6 @@ M.setup = function(client, bufnr)
   )
   vim.keymap.set(
     'n',
-    '<leader>lf',
-    '<cmd>lua require("conform").format()<CR><escape>',
-    { buffer = bufnr, desc = 'format' }
-  )
-  vim.keymap.set(
-    'n',
     '<leader>lF',
     '<cmd>Lspsaga finder<CR>',
     { buffer = bufnr, desc = 'Finder' }
