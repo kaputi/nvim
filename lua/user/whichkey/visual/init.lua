@@ -40,7 +40,7 @@ M.setup = function(wk)
 
   local layers = {
     lsp,
-    copilot,
+    -- copilot,
   }
 
   for _, layer in ipairs(layers) do

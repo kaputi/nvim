@@ -1,20 +1,33 @@
 return {
   'yetone/avante.nvim',
 
+  enabled = false,
   build = 'make',
   event = 'VeryLazy',
   version = false, -- Never set this value to "*"! Never!
   config = function()
     local ok, secrets = pcall(require, 'secrets')
-    local anthropic_api_key = ''
+    -- local anthropic_api_key = ''
+    local perplexity_api_key = ''
     if not ok then
-      vim.notify(
-        'Avante: anthropic_api_key not found in secrets.lua',
-        vim.log.levels.ERROR
-      )
+      vim.notify('Avante: secrets.lua not found', vim.log.levels.ERROR)
     else
-      if secrets.anthropic_api_key ~= nil then
-        anthropic_api_key = secrets.anthropic_api_key
+      -- if secrets.anthropic_api_key ~= nil then
+      --   anthropic_api_key = secrets.anthropic_api_key
+      -- else
+      --   vim.notify(
+      --     'Avante: anthropic_api_key not found in secrets.lua',
+      --     vim.log.levels.ERROR
+      --   )
+      -- end
+
+      if secrets.perplexity_api_key ~= nil then
+        perplexity_api_key = secrets.perplexity_api_key
+      else
+        vim.notify(
+          'Avante: perplexity_api_key not found in secrets.lua',
+          vim.log.levels.ERROR
+        )
       end
     end
 
@@ -24,11 +37,24 @@ return {
       mode = 'legacy',
       -- mode = 'agentic',
       instructions_file = 'avante.md',
-      provider = 'claude',
+      -- provider = 'claude',
+      provider = 'perplexity',
 
       providers = {
-        claude = {
-          api_key_name = 'cmd:echo ' .. anthropic_api_key, -- or whatever key name you use
+        -- claude = {
+        --   api_key_name = 'cmd:echo ' .. anthropic_api_key, -- or whatever key name you use
+        -- },
+        perplexity = {
+          __inherited_from = 'openai',
+          api_key_name = 'cmd:echo ' .. perplexity_api_key,
+          endpoint = 'https://api.perplexity.ai/chat/completions',
+          models = {
+            'sonar',
+            'sonar-pro',
+            'sonar-reasoning-pro',
+            'sonar-deep-research',
+          },
+          model = 'sonar',
         },
       },
 
@@ -38,7 +64,7 @@ return {
 
       selection = {
         enabled = true,
-        hint_display = "none",
+        hint_display = 'none',
       },
 
       mappings = {
@@ -87,7 +113,7 @@ return {
       behaviour = {
         auto_suggestions = false, -- Experimental stage
         auto_set_highlight_group = true,
-        auto_set_keymaps = false,
+        auto_set_keymaps = true,
         auto_apply_diff_after_generation = false,
         support_paste_from_clipboard = false,
         minimize_diff = true, -- Whether to remove unchanged lines when applying a code block
