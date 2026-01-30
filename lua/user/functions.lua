@@ -173,6 +173,24 @@ M.cursorHold = function()
 
     if bufnr then
       vim.api.nvim_buf_set_option(bufnr, 'filetype', 'markdown')
+      local ns = vim.api.nvim_create_namespace('diagnostic_float_hl')
+
+      local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+      local diagnostics = vim.diagnostic.get(0, { lnum = line })
+
+      -- Clear all existing highlights
+      vim.api.nvim_buf_clear_namespace(bufnr, -1, 0, -1)
+
+      -- Re-apply highlight only to sign/source lines
+      for i, _ in ipairs(lines) do
+        local diag_idx = math.ceil(i / 2)
+        local diag = diagnostics[diag_idx]
+
+        if diag and i % 2 == 1 then
+          local _, hl = require('user.gui').getSignAndHl(diag)
+          vim.api.nvim_buf_add_highlight(bufnr, ns, hl, i - 1, 0, -1)
+        end
+      end
     end
 
     return
