@@ -22,7 +22,7 @@ return {
       '<CR>',
       function()
         local title = vim.fn.getqflist({ title = 1 }).title or ''
-        vim.cmd('normal! <CR>')
+        vim.cmd('.cc')
         for _, pattern in ipairs(auto_close_titles) do
           if title:match(pattern) then
             vim.cmd('cclose')
