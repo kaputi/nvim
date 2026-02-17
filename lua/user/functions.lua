@@ -151,59 +151,83 @@ M.cursorHold = function()
   local has_diagnostic = M.has_diagnostics_on_line(0, line)
 
   if has_diagnostic and MySettings.lineDiagnostics then
-    -- require('nvim-pretty-ts-errors').show_line_diagnostics()
-    local bufnr = vim.diagnostic.open_float({
-      focusable = false,
-      header = '',
-      prefix = '',
-      format = function(diagnostic)
-        local sign, hl = require('user.gui').getSignAndHl(diagnostic)
-        local source = ''
-        if diagnostic.source then
-          source = '[' .. diagnostic.source .. ']'
+    local ft = vim.bo.filetype
+    local is_ts = ft == 'typescript'
+      or ft == 'typescriptreact'
+      or ft == 'javascript'
+      or ft == 'javascriptreact'
+
+    if is_ts then
+      local bufnr = vim.diagnostic.open_float({
+        focusable = false,
+        header = '',
+        prefix = '',
+        format = function(diagnostic)
+          local sign, hl = require('user.gui').getSignAndHl(diagnostic)
+          local source = ''
+          if diagnostic.source then
+            source = '[' .. diagnostic.source .. ']'
+          end
+          return ' '
+            .. sign
+            .. ' '
+            .. source
+            .. '\n '
+            .. vim.fn.PrettyTsFormat(diagnostic.message)
+        end,
+      })
+
+      if bufnr then
+        local ns = vim.api.nvim_create_namespace('diagnostic_float_hl')
+
+        local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+        local diagnostics = vim.diagnostic.get(0, { lnum = line })
+
+        -- Clear all existing highlights
+        vim.api.nvim_buf_clear_namespace(bufnr, -1, 0, -1)
+
+        -- Re-apply highlight only to sign/source lines
+        for i, _ in ipairs(lines) do
+          local diag_idx = math.ceil(i / 2)
+          local diag = diagnostics[diag_idx]
+
+          if diag and i % 2 == 1 then
+            local _, hl = require('user.gui').getSignAndHl(diag)
+            vim.api.nvim_buf_add_highlight(bufnr, ns, hl, i - 1, 0, -1)
+          end
         end
-        return ' '
-          .. sign
-          .. ' '
-          .. source
-          .. '\n '
-          .. vim.fn.PrettyTsFormat(diagnostic.message)
-      end,
-    })
 
-    if bufnr then
-      vim.api.nvim_buf_set_option(bufnr, 'filetype', 'markdown')
-      local ns = vim.api.nvim_create_namespace('diagnostic_float_hl')
-
-      local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-      local diagnostics = vim.diagnostic.get(0, { lnum = line })
-
-      -- Clear all existing highlights
-      vim.api.nvim_buf_clear_namespace(bufnr, -1, 0, -1)
-
-      -- Re-apply highlight only to sign/source lines
-      for i, _ in ipairs(lines) do
-        local diag_idx = math.ceil(i / 2)
-        local diag = diagnostics[diag_idx]
-
-        if diag and i % 2 == 1 then
-          local _, hl = require('user.gui').getSignAndHl(diag)
-          vim.api.nvim_buf_add_highlight(bufnr, ns, hl, i - 1, 0, -1)
-        end
+        -- Set filetype last so render-markdown attaches after highlights are cleared
+        vim.api.nvim_buf_set_option(bufnr, 'filetype', 'markdown')
       end
+    else
+      vim.diagnostic.open_float({
+        focusable = false,
+        header = '',
+        prefix = '',
+        format = function(diagnostic)
+          local sign, hl = require('user.gui').getSignAndHl(diagnostic)
+          local source = ''
+          if diagnostic.source then
+            source = '[' .. diagnostic.source .. ']'
+          end
+          return ' ' .. sign .. ' ' .. diagnostic.message .. source, hl
+        end,
+      })
     end
 
     return
   end
 
-  local has_closed_fold = M.is_fold_closed_on_line()
-  if has_closed_fold then
-    local ok, ufo = pcall(require, 'ufo')
-    if not ok then
-      return
-    end
-    ufo.peekFoldedLinesUnderCursor()
-  end
+  -- UNCOMENT FOR PEAK FOLD ON CURSOR HOLD
+  -- local has_closed_fold = M.is_fold_closed_on_line()
+  -- if has_closed_fold then
+  --   local ok, ufo = pcall(require, 'ufo')
+  --   if not ok then
+  --     return
+  --   end
+  --   ufo.peekFoldedLinesUnderCursor()
+  -- end
 end
 
 -- TOGGLERS ========================================
