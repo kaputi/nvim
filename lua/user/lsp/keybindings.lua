@@ -133,6 +133,18 @@ M.setup = function(client, bufnr)
   )
   vim.keymap.set(
     'n',
+    '<leader>li',
+    '<cmd>lua vim.lsp.buf.incoming_calls()<CR>',
+    { buffer = bufnr, desc = 'Incoming Calls' }
+  )
+  vim.keymap.set(
+    'n',
+    '<leader>lo',
+    '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>',
+    { buffer = bufnr, desc = 'Outgoing Calls' }
+  )
+  vim.keymap.set(
+    'n',
     '<leader>lp',
     '<cmd>Lspsaga peek_definition<CR>',
     { buffer = bufnr, desc = 'Peak Definition' }
