@@ -163,42 +163,34 @@ M.cursorHold = function()
         header = '',
         prefix = '',
         format = function(diagnostic)
-          local sign, hl = require('user.gui').getSignAndHl(diagnostic)
           local source = ''
           if diagnostic.source then
-            source = '[' .. diagnostic.source .. ']'
+            source = ' ' .. diagnostic.source
           end
-          return ' '
-            .. sign
-            .. ' '
+
+          -- Map severity to callout
+          -- HINT options: [!TIP], [!HINT], [!INFO], [!SUCCESS], [!CHECK], [!DONE], [!QUESTION], [!HELP], [!FAQ], [!ABSTRACT], [!SUMMARY], [!TLDR], [!IMPORTANT], [!EXAMPLE], [!QUOTE], [!CITE]
+          local callout = ({
+            [vim.diagnostic.severity.ERROR] = '[!CAUTION]',
+            [vim.diagnostic.severity.WARN] = '[!WARNING]',
+            [vim.diagnostic.severity.INFO] = '[!NOTE]',
+            [vim.diagnostic.severity.HINT] = '[!NOTE]',
+          })[diagnostic.severity] or '[!NOTE]'
+
+          return '> '
+            .. callout
             .. source
-            .. '\n '
+            .. '\n> '
             .. vim.fn.PrettyTsFormat(diagnostic.message)
         end,
       })
 
       if bufnr then
-        local ns = vim.api.nvim_create_namespace('diagnostic_float_hl')
-
-        local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-        local diagnostics = vim.diagnostic.get(0, { lnum = line })
-
-        -- Clear all existing highlights
+        -- Clear all default diagnostic highlights from the float
         vim.api.nvim_buf_clear_namespace(bufnr, -1, 0, -1)
 
-        -- Re-apply highlight only to sign/source lines
-        for i, _ in ipairs(lines) do
-          local diag_idx = math.ceil(i / 2)
-          local diag = diagnostics[diag_idx]
-
-          if diag and i % 2 == 1 then
-            local _, hl = require('user.gui').getSignAndHl(diag)
-            vim.api.nvim_buf_add_highlight(bufnr, ns, hl, i - 1, 0, -1)
-          end
-        end
-
-        -- Set filetype last so render-markdown attaches after highlights are cleared
-        vim.api.nvim_buf_set_option(bufnr, 'filetype', 'markdown')
+        -- Set filetype so render-markdown attaches
+        vim.bo[bufnr].filetype = 'markdown'
       end
     else
       vim.diagnostic.open_float({
