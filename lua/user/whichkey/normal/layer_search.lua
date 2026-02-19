@@ -32,10 +32,10 @@ return {
     { 'p', '<cmd>Telescope tags<CR>', 'Project Tags' },
     { 'r', '<cmd>Telescope resume<CR>', 'Resume last search' },
     { 'S', '<cmd>Telescope colorscheme<CR>', 'Color Schemes' },
-    { 't', '<cmd>Telescope live_grep<CR>', 'Text Rg' },
+    { 't', '<cmd>TelescopeLiveGrep<CR>', 'Text Rg' },
     {
       'T',
-      '<cmd>Telescope grep_string<cr>',
+      '<cmd>TelescopeGrepString<cr>',
       'search string under cursor',
     },
     -- {'T', '<cmd>Telescope current_buffer_tags<CR>', 'Buffer Tags' },

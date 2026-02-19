@@ -9,6 +9,25 @@ return {
   config = function()
     local actions = require('telescope.actions')
 
+    local file_ignore_defaults = {
+      '%.git/',
+      '%node_modules/',
+      '%vendor/',
+      '%build/',
+      '%dist/',
+      '%tmp/',
+      '%.next/',
+    }
+
+    local function get_file_ignore_patterns()
+      return vim.tbl_deep_extend(
+        'force',
+        file_ignore_defaults,
+        require('user.projectConfigs').load_project_config('telescope').file_ignore_patterns
+          or {}
+      )
+    end
+
     require('telescope').setup({
       extensions = {
         undo = {
@@ -73,6 +92,9 @@ return {
             },
           },
         },
+        find_files = {
+          hidden = true,
+        },
       },
     })
 
@@ -91,5 +113,19 @@ return {
     -- require('telescope').load_extension('media_files')
     require('telescope').load_extension('ui-select')
     require('telescope').load_extension('undo')
+
+    local builtin = require('telescope.builtin')
+
+    vim.api.nvim_create_user_command('TelescopeFindFiles', function()
+      builtin.find_files({ file_ignore_patterns = get_file_ignore_patterns() })
+    end, {})
+
+    vim.api.nvim_create_user_command('TelescopeLiveGrep', function()
+      builtin.live_grep({ file_ignore_patterns = get_file_ignore_patterns() })
+    end, {})
+
+    vim.api.nvim_create_user_command('TelescopeGrepString', function()
+      builtin.grep_string({ file_ignore_patterns = get_file_ignore_patterns() })
+    end, {})
   end,
 }
