@@ -12,6 +12,10 @@ return {
       '<cmd>:Telescope sessions initial_mode=normal save_current=true<CR>',
       'Load Session',
     },
-    { 's', '<cmd>:SaveSession<CR>', 'Save Session' },
+    {
+      's',
+      '<cmd>lua require"user.functions".saveSession()<CR>',
+      'Save Project',
+    },
   },
 }

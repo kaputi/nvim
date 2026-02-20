@@ -353,4 +353,9 @@ M.toggleInlayHints = function()
   )
 end
 
+M.saveSession = function()
+  vim.cmd('silent SaveSession')
+  M.notify('Saved Project')
+end
+
 return M
