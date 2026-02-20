@@ -12,11 +12,8 @@ local auto_close_titles = {
 
 return {
   'kevinhwang91/nvim-bqf',
-  opts = {
-    func_map = {
-      open = '',
-    },
-  },
+  ft = 'qf',
+  opts = {},
   keys = {
     {
       '<CR>',
