@@ -123,9 +123,38 @@ M.format = function()
   end
 end
 
+-- Find nearest eslint config directory (monorepo support)
+local function find_eslint_root()
+  local eslint_configs = {
+    'eslint.config.js',
+    'eslint.config.mjs',
+    'eslint.config.cjs',
+    '.eslintrc.js',
+    '.eslintrc.json',
+    '.eslintrc',
+  }
+  local found = vim.fs.find(eslint_configs, {
+    upward = true,
+    path = vim.api.nvim_buf_get_name(0),
+  })
+  if found[1] then
+    return vim.fn.fnamemodify(found[1], ':h')
+  end
+end
+
 M.lint = function(linter)
   if MySettings.linter then
-    require('lint').try_lint(linter)
+    local opts = {}
+    local ft = vim.bo.filetype
+    if
+      ft == 'javascript'
+      or ft == 'typescript'
+      or ft == 'javascriptreact'
+      or ft == 'typescriptreact'
+    then
+      opts.cwd = find_eslint_root()
+    end
+    require('lint').try_lint(linter, opts)
   end
 end
 
