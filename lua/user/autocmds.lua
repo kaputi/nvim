@@ -104,3 +104,19 @@ vim.api.nvim_create_autocmd(
     end,
   }
 )
+
+-- source project-local .nvim.lua on startup and cwd change
+local function source_project_config()
+  local nvim_lua = vim.fn.getcwd() .. '/.nvim.lua'
+  if vim.fn.filereadable(nvim_lua) == 1 then
+    local notify = require('user.functions').notify
+    notify('Project config loaded')
+    dofile(nvim_lua)
+  end
+end
+
+source_project_config()
+vim.api.nvim_create_autocmd('DirChanged', {
+  group = '_user',
+  callback = source_project_config,
+})

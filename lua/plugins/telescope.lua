@@ -20,12 +20,8 @@ return {
     }
 
     local function get_file_ignore_patterns()
-      return vim.tbl_deep_extend(
-        'force',
-        file_ignore_defaults,
-        require('user.projectConfigs').load_project_config('telescope').file_ignore_patterns
-          or {}
-      )
+      local extra = (vim.g.project_telescope or {}).file_ignore_patterns or {}
+      return vim.list_extend(vim.deepcopy(file_ignore_defaults), extra)
     end
 
     require('telescope').setup({
