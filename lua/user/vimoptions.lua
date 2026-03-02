@@ -8,6 +8,7 @@ local options = {
   -- colorcolumn = '101',
   completeopt = { 'menuone', 'noselect' },
   conceallevel = 0, -- so that `` is visible in markdown files
+  exrc = true,
   encoding = 'utf-8',
   fileencoding = 'utf-8',
   -- opt.fillchars       = "fold: "
