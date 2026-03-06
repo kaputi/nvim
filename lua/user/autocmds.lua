@@ -120,3 +120,27 @@ vim.api.nvim_create_autocmd('DirChanged', {
   group = '_user',
   callback = source_project_config,
 })
+
+-- disable stuff for large/bundled files
+vim.api.nvim_create_autocmd('BufReadPre', {
+  group = '_user',
+  callback = function(args)
+    local ok, stats = pcall(vim.loop.fs_stat, args.file)
+    local large_file = ok and stats and stats.size > 150 * 1024 -- 150kb
+
+    if not large_file then
+      local file = io.open(args.file, 'r')
+      if file then
+        local line = file:read('*l')
+        file:close()
+        large_file = line and #line > 10000
+      end
+    end
+
+    if large_file then
+      vim.b.large_file = true
+      vim.opt_local.syntax = 'off'
+      vim.cmd('TSBufDisable highlight')
+    end
+  end,
+})
