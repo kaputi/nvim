@@ -203,6 +203,18 @@ return {
       end,
     }
 
+    basic.filepath = {
+      width = 80,
+      hl_colors = { text = { 'white', 'black' } },
+      text = function(bufnr)
+        local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ':.')
+        if path == '' then
+          return ''
+        end
+        return { { ' ' .. path .. ' ', 'text' } }
+      end,
+    }
+
     basic.vi_mode = {
       hl_colors = {
         Normal = { 'black', 'red', 'bold' },
@@ -254,6 +266,7 @@ return {
         -- basic.file,
         { sep.right_rounded, { 'black_light', 'black' } },
         basic.git,
+        basic.filepath,
         basic.divider,
         basic.lsp_diagnos,
         { ' ', hl_list.Black },

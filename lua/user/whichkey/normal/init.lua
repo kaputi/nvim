@@ -60,10 +60,9 @@ M.setup = function(wk)
   local dashboard = require('user.whichkey.normal.layer_dashboard')
   local action = require('user.whichkey.normal.layer_action')
   local buffer = require('user.whichkey.normal.layer_buffer')
-  local copilot = require('user.whichkey.normal.layer_copilot')
-  local copilotChat = require('user.whichkey.normal.layer_copilotChat')
+  -- local copilot = require('user.whichkey.normal.layer_copilot')
+  -- local copilotChat = require('user.whichkey.normal.layer_copilotChat')
   local dap = require('user.whichkey.normal.layer_dap')
-  local file = require('user.whichkey.normal.layer_file')
   local git = require('user.whichkey.normal.layer_git')
   local lsp = require('user.whichkey.normal.layer_lsp')
   local replace = require('user.whichkey.normal.layer_replace')
@@ -76,7 +75,6 @@ M.setup = function(wk)
     -- copilot,
     -- copilotChat,
     dap,
-    file,
     git,
     lsp,
     replace,
