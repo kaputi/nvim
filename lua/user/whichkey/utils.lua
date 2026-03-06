@@ -1,15 +1,8 @@
 local M = {}
 
 M.registerLayer = function(wk, layer, mode)
-  wk.register({
-    [layer.key] = { name = layer.name },
-  }, {
-    mode = mode,
-    buffer = nil,
-    prefix = '<leader>',
-    silent = true,
-    noremap = true,
-    nowait = true,
+  wk.add({
+    { '<leader>' .. layer.key, group = layer.name, mode = mode },
   })
 
   for _, mapping in ipairs(layer.keymaps) do

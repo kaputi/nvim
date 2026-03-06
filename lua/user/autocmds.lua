@@ -48,10 +48,10 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
   -- command = 'cd %:p:h',
   callback = function()
     vim.cmd('cd %:p:h')
-    if vim.o.ft ~= 'alpha' then
-      -- require('user.functions').notify('cd to '.. vim.fn.getcwd())
-      print(vim.fn.getcwd())
-    end
+    -- if vim.o.ft ~= 'alpha' then
+    --   -- require('user.functions').notify('cd to '.. vim.fn.getcwd())
+    --   print(vim.fn.getcwd())
+    -- end
   end,
 })
 

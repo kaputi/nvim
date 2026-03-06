@@ -94,15 +94,8 @@ return {
       vim.notify('Tokyonight style set to ' .. flavours[index])
     end
 
-    wk.register({
-      ['<leader>t'] = { name = '>> Theme <<' },
-    }, {
-      mode = 'n',
-      buffer = nil,
-      prefix = '<leader>',
-      silent = true,
-      noremap = true,
-      nowait = true,
+    wk.add({
+      { '<leader>t', group = '>> Theme <<' },
     })
 
     vim.keymap.set('n', '<leader>tf', cycle_flavour, { desc = 'Cycle flavour' })

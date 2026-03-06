@@ -21,15 +21,8 @@ M.setup = function(client, bufnr)
   )
 
   -- Define LSP group name for <leader>l prefix only
-  wk.register({
-    l = { name = '>> LSP <<' },
-  }, {
-    mode = 'n',
-    buffer = bufnr,
-    prefix = '<leader>',
-    silent = true,
-    noremap = true,
-    nowait = true,
+  wk.add({
+    { '<leader>l', group = '>> LSP <<', buffer = bufnr, mode = 'n' },
   })
 
   -- Non-leader LSP mappings (gd, gD, etc.)
