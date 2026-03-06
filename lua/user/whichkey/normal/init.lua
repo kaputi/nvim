@@ -67,6 +67,8 @@ M.setup = function(wk)
   local lsp = require('user.whichkey.normal.layer_lsp')
   local replace = require('user.whichkey.normal.layer_replace')
   local search = require('user.whichkey.normal.layer_search')
+  local tbl = require('user.whichkey.normal.layer_table')
+  local theme = require('user.whichkey.normal.layer_theme')
 
   local layers = {
     dashboard,
@@ -79,6 +81,8 @@ M.setup = function(wk)
     lsp,
     replace,
     search,
+    tbl,
+    theme,
   }
 
   for _, layer in ipairs(layers) do

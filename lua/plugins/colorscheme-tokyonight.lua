@@ -1,5 +1,3 @@
-local index = 1
-
 return {
   'folke/tokyonight.nvim',
   lazy = false,
@@ -49,55 +47,7 @@ return {
       end,
     })
 
-    local flavours = {
-      'night',
-      'storm',
-      'moon',
-      'day',
-    }
-
-    -- if MySettings.colorscheme_flavour ~= nil and
-    -- vim.tbl_contains(flavours, MySettings.colorscheme_flavour)) then
-    -- index = vim.tbl_indexof(flavours, MySettings.colorscheme_flavour)
-    -- end
-
-    if MySettings.colorscheme_flavour ~= nil then
-      local flavour = MySettings.colorscheme_flavour
-      for i, v in ipairs(flavours) do
-        if v == flavour then
-          index = i
-          break
-        end
-      end
-    end
-
-    local setColorscheme = function()
-      if index > #flavours then
-        index = 1
-      end
-      if index < 1 then
-        index = #flavours
-      end
-      vim.cmd('colorscheme tokyonight-' .. flavours[index])
-    end
-
-    setColorscheme()
-
-    local ok, wk = pcall(require, 'which-key')
-    if not ok then
-      return
-    end
-
-    local cycle_flavour = function()
-      index = index + 1
-      setColorscheme()
-      vim.notify('Tokyonight style set to ' .. flavours[index])
-    end
-
-    wk.add({
-      { '<leader>t', group = '>> Theme <<' },
-    })
-
-    vim.keymap.set('n', '<leader>tf', cycle_flavour, { desc = 'Cycle flavour' })
+    local flavour = MySettings.colorscheme_flavour or 'night'
+    vim.cmd('colorscheme tokyonight-' .. flavour)
   end,
 }
