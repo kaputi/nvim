@@ -10,7 +10,6 @@ local onOrOff = function(setting)
 end
 
 M.notify = function(text)
-  print(text)
   local ok, _ = pcall(require, 'notify')
   if not ok then
     return

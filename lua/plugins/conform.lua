@@ -1,12 +1,29 @@
 return {
   'stevearc/conform.nvim',
   config = function()
+    local eslint = 'eslint'
+
+    if vim.fn.executable('eslint_d') == 1 then
+      require('user.functions').notify(
+        'using system eslint_d instead of eslint'
+      )
+      eslint = 'eslint_d'
+    end
+
+    local function js_formatters(bufnr)
+      local prettier = 'prettierd'
+      if require('conform').get_formatter_info('prettier', bufnr).available then
+        prettier = 'prettier'
+      end
+      return { eslint, prettier, stop_after_first = false }
+    end
+
     require('conform').setup({
       formatters_by_ft = {
-        javascript = { 'prettier', 'prettierd' },
-        typescript = { 'prettier', 'prettierd' },
-        javascriptreact = { 'prettier', 'prettierd' },
-        typescriptreact = { 'prettier', 'prettierd' },
+        javascript = js_formatters,
+        typescript = js_formatters,
+        javascriptreact = js_formatters,
+        typescriptreact = js_formatters,
         json = { 'prettier', 'prettierd' },
         jsonc = { 'prettier', 'prettierd' },
         css = { 'prettier', 'prettierd' },
