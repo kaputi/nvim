@@ -110,7 +110,13 @@ M.setup = function(client, bufnr)
     'n',
     '<leader>lR',
     '<cmd>lua vim.lsp.buf.references()<CR>',
-    { buffer = bufnr, desc = 'Goto references' }
+    { buffer = bufnr, desc = 'References (project)' }
+  )
+  vim.keymap.set(
+    'n',
+    '<leader>lb',
+    '<cmd>Trouble lsp_references toggle filter.buf=0<CR>',
+    { buffer = bufnr, desc = 'References (buffer)' }
   )
   vim.keymap.set(
     'n',
