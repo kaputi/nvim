@@ -2,6 +2,26 @@ return {
   'akinsho/toggleterm.nvim',
   version = '*',
   config = function()
+    local Terminal = require('toggleterm.terminal').Terminal
+    local lazygit = Terminal:new({
+      cmd = 'lazygit',
+      count = 9,
+      direction = 'float',
+      float_opts = {
+        border = 'curved',
+        width = math.floor(vim.o.columns * 0.9),
+        height = math.floor(vim.o.lines * 0.9),
+      },
+      on_open = function(term)
+        vim.cmd('startinsert!')
+        vim.api.nvim_buf_set_keymap(term.bufnr, 't', '<C-g>', '<cmd>lua lazygit_toggle()<CR>', { noremap = true, silent = true })
+      end,
+    })
+
+    _G.lazygit_toggle = function()
+      lazygit:toggle()
+    end
+
     require('toggleterm').setup({
       -- size can be a number or function which is passed the current terminal
       size = 20,

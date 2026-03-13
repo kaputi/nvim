@@ -12,7 +12,7 @@ return {
     { 'd', '<cmd>Gitsigns diffthis<CR>', 'Gitsigns DiffView' },
     { 'D', '<cmd>DiffviewOpen<CR>', 'DiffView' },
     { 'H', '<cmd>DiffviewFileHistory %<CR>', 'File History' },
-    { 'l', '<cmd>LazyGit<CR>', 'Lazygit' },
+    { 'l', lazygit_toggle, 'Lazygit' },
     { 'L', '<cmd>Gitsigns toggle_linehl<CR>', 'Line Highlights' },
     { 'n', '<cmd>Gitsigns next_hunk<CR>', 'Next Hunk' },
     { 'N', '<cmd>Neogit<CR>', 'Neogit' },
