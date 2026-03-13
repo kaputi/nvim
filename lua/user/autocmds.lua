@@ -144,3 +144,29 @@ vim.api.nvim_create_autocmd('BufReadPre', {
     end
   end,
 })
+
+-- Track when buffer becomes hidden (no longer visible)
+vim.api.nvim_create_autocmd('BufHidden', {
+  group = '_user',
+  callback = function(args)
+    require('user.functions').trackBufferHidden(args.buf)
+  end,
+})
+
+-- Clear hidden tracking when buffer becomes visible again
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  group = '_user',
+  callback = function(args)
+    require('user.functions').clearBufferHidden(args.buf)
+  end,
+})
+
+-- Start periodic buffer cleanup on VimEnter
+-- Params: interval (minutes), max_age (minutes)
+vim.api.nvim_create_autocmd('VimEnter', {
+  group = '_user',
+  callback = function()
+    -- Check every 5 minutes, kill buffers not viewed in 30 minutes
+    require('user.functions').startBufferCleanup(5, 30)
+  end,
+})

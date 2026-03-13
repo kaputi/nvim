@@ -1,5 +1,8 @@
 local M = {}
 
+-- Buffer last-viewed tracking
+M.buffer_last_viewed = {}
+
 -- UTILS ===========================================
 
 local onOrOff = function(setting)
@@ -327,6 +330,92 @@ M.killAllBuffersButFocused = function()
   end
 
   M.notify('Deleted all buffers but focused')
+end
+
+-- Track when buffer becomes hidden (no longer visible in any window)
+M.trackBufferHidden = function(bufnr)
+  M.buffer_last_viewed[bufnr] = os.time()
+end
+
+-- Clear tracking when buffer becomes visible again
+M.clearBufferHidden = function(bufnr)
+  M.buffer_last_viewed[bufnr] = nil
+end
+
+-- Kill windowless buffers not viewed in `max_age_minutes`
+M.killStaleWindowlessBufs = function(max_age_minutes)
+  max_age_minutes = max_age_minutes or 30
+  local max_age_seconds = max_age_minutes * 60
+  local now = os.time()
+  local killed = 0
+
+  local bufInfos = vim.fn.getbufinfo({ buflisted = true })
+  for _, bufInfo in ipairs(bufInfos) do
+    local bufnr = bufInfo.bufnr
+    local is_windowless = not bufInfo.windows or #bufInfo.windows == 0
+    local is_unchanged = bufInfo.changed == 0
+    local has_name = bufInfo.name and bufInfo.name ~= ''
+
+    -- Skip special buffers (terminal, quickfix, help, etc.)
+    local buftype = vim.bo[bufnr].buftype
+    local is_regular_file = buftype == ''
+
+    if is_windowless and is_unchanged and has_name and is_regular_file then
+      local last_hidden = M.buffer_last_viewed[bufnr] or 0
+      local age = now - last_hidden
+
+      if age >= max_age_seconds then
+        pcall(vim.api.nvim_buf_delete, bufnr, { force = false, unload = false })
+        M.buffer_last_viewed[bufnr] = nil
+        killed = killed + 1
+      end
+    end
+  end
+
+  if killed > 0 then
+    M.notify('Killed ' .. killed .. ' stale buffer(s)')
+  end
+end
+
+-- Timer for periodic buffer cleanup
+local cleanup_timer = nil
+
+-- Start periodic buffer cleanup (interval_minutes, max_age_minutes)
+M.startBufferCleanup = function(interval_minutes, max_age_minutes)
+  interval_minutes = interval_minutes or 5
+  max_age_minutes = max_age_minutes or 30
+
+  if cleanup_timer then
+    cleanup_timer:stop()
+    cleanup_timer:close()
+  end
+
+  cleanup_timer = vim.uv.new_timer()
+  cleanup_timer:start(
+    interval_minutes * 60 * 1000,
+    interval_minutes * 60 * 1000,
+    vim.schedule_wrap(function()
+      M.killStaleWindowlessBufs(max_age_minutes)
+    end)
+  )
+
+  M.notify(
+    'Buffer cleanup: every '
+      .. interval_minutes
+      .. 'min, max age '
+      .. max_age_minutes
+      .. 'min'
+  )
+end
+
+-- Stop periodic buffer cleanup
+M.stopBufferCleanup = function()
+  if cleanup_timer then
+    cleanup_timer:stop()
+    cleanup_timer:close()
+    cleanup_timer = nil
+    M.notify('Buffer cleanup stopped')
+  end
 end
 
 M.deepCopy = function(orig)
