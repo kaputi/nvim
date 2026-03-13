@@ -67,6 +67,12 @@ return {
         return
       end
 
+      -- Skip DiffView buffers (they use the original filetype but have special buffer names)
+      local bufname = vim.api.nvim_buf_get_name(0)
+      if bufname:match('^diffview://') then
+        return
+      end
+
       local f = require('user.functions')
 
       local gps_added = false
