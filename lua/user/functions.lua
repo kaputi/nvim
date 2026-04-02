@@ -470,6 +470,14 @@ M.toggleInlayHints = function()
   )
 end
 
+M.toggleDiff = function()
+  if vim.wo.diff then
+    vim.cmd('diffoff')
+  else
+    vim.cmd('diffthis')
+  end
+end
+
 M.saveSession = function()
   vim.cmd('silent SaveSession')
   M.notify('Saved Project')

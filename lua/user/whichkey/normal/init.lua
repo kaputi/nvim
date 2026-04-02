@@ -43,7 +43,7 @@ M.setup = function(wk)
       '<cmd>vsplit | Telescope buffers initial_mode=normal<CR>',
       'Vertical Split',
     },
-    { 'V', '<cmd>diffthis<CR>', 'Diff this' },
+    { 'V', '<cmd>lua require"user.functions".toggleDiff()<CR>', 'Toggle Diff' },
     { 'y', '<cmd>Telescope registers<CR>', 'Yank List' },
   }
 
