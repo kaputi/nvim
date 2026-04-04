@@ -77,3 +77,5 @@ end
 for k, v in pairs(localoptions) do
   vim.opt_local[k] = v
 end
+
+vim.opt.shortmess:append('I')
