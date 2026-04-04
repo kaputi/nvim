@@ -66,20 +66,25 @@ return {
 
     -- Textobjects
     local textobjects_ok, textobjects =
-      pcall(require, 'nvim-treesitter.textobjects')
+      pcall(require, 'nvim-treesitter-textobjects')
     if textobjects_ok then
-      pcall(textobjects.select.enable, {
-        keymaps = {
-          ['af'] = '@function.outer',
-          ['if'] = '@function.inner',
-          ['ac'] = '@class.outer',
-          ['ic'] = '@class.inner',
-          ['ib'] = '@block.inner',
-          ['ab'] = '@block.outer',
-          ['ii'] = '@conditional.inner',
-          ['ai'] = '@conditional.outer',
-        },
-      })
+      textobjects.setup({ select = { lookahead = true } })
+      local select = require('nvim-treesitter-textobjects.select')
+      local keymaps = {
+        ['af'] = '@function.outer',
+        ['if'] = '@function.inner',
+        ['ac'] = '@class.outer',
+        ['ic'] = '@class.inner',
+        ['ib'] = '@block.inner',
+        ['ab'] = '@block.outer',
+        ['ii'] = '@conditional.inner',
+        ['ai'] = '@conditional.outer',
+      }
+      for key, query in pairs(keymaps) do
+        vim.keymap.set({ 'x', 'o' }, key, function()
+          select.select_textobject(query)
+        end)
+      end
     end
   end,
 }
