@@ -19,6 +19,7 @@ return {
     }, -- %bd kills all, edit # opens last ,bd # kills last(after killing all there is a new empty buffer) '" goes to last place before close
     -- {'k','<cmd>BufferCloseAllButCurrent<CR>', 'Delete Other Buffers'},
     -- {'n', '<cmd>BufferLineCycleNext<CR>', 'Previous Buffer' },
+    { 'T', '<cmd>tabonly<CR>', 'Close all tabs but current' },
     { 'n', '<cmd>bn<CR>', 'Previous Buffer' },
     { 'N', '<cmd>enew<CR>', 'New Empty Buffer' },
     -- {'p', '<cmd>BufferLineCyclePrev<CR>', 'Previous Buffer' },
