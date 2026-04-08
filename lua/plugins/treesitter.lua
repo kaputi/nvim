@@ -14,9 +14,13 @@ return {
       'jsdoc',
       'markdown',
       'markdown_inline',
+      'kconf',
     }, { summary = false }):wait(30000) -- 30s timeout
   end,
   config = function()
+    -- use kconfig for conf files
+    vim.treesitter.language.register('kconfig', 'conf')
+
     -- Auto-install missing parsers and start treesitter highlighting
     vim.api.nvim_create_autocmd('FileType', {
       callback = function(event)
