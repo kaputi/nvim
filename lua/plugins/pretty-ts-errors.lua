@@ -1,4 +1,5 @@
+-- requires: npm i -g neovim
 return {
   'enochchau/nvim-pretty-ts-errors',
-  build = 'npm install',
+  build = { 'npm install', ':UpdateRemotePlugins' },
 }
