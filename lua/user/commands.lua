@@ -9,7 +9,7 @@ local commands = {
   '-bar -bang WQA wqa<bang>',
   '-bar -bang W w<bang>',
   '-bar -bang Q q<bang>',
-  '-bar -bang E e<bang>',
+  '-bang -nargs=* E e<bang> <args>',
 }
 
 for _, command in pairs(commands) do
