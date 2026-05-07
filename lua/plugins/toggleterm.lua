@@ -3,6 +3,8 @@ return {
   version = '*',
   config = function()
     local Terminal = require('toggleterm.terminal').Terminal
+    local lazygit_prev_laststatus
+    local lazygit_prev_ruler
     local lazygit = Terminal:new({
       cmd = 'lazygit',
       count = 9,
@@ -13,8 +15,16 @@ return {
         height = math.floor(vim.o.lines * 0.9),
       },
       on_open = function(term)
+        lazygit_prev_laststatus = vim.o.laststatus
+        lazygit_prev_ruler = vim.o.ruler
+        vim.o.laststatus = 0
+        vim.o.ruler = false
         vim.cmd('startinsert!')
         vim.api.nvim_buf_set_keymap(term.bufnr, 't', '<C-g>', '<cmd>lua lazygit_toggle()<CR>', { noremap = true, silent = true })
+      end,
+      on_close = function()
+        vim.o.laststatus = lazygit_prev_laststatus or 2
+        vim.o.ruler = lazygit_prev_ruler ~= false
       end,
     })
 
