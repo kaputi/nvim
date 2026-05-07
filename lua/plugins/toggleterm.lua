@@ -23,8 +23,13 @@ return {
         lazygit_prev_ruler = vim.o.ruler
         vim.o.laststatus = 0
         vim.o.ruler = false
-        vim.cmd('startinsert!')
         vim.api.nvim_buf_set_keymap(term.bufnr, 't', '<C-g>', '<cmd>lua lazygit_toggle()<CR>', { noremap = true, silent = true })
+        vim.api.nvim_buf_set_keymap(term.bufnr, 't', '<F1>', '<cmd>lua lazygit_toggle()<CR>', { noremap = true, silent = true })
+        vim.defer_fn(function()
+          if not vim.api.nvim_buf_is_valid(term.bufnr) then return end
+          vim.fn.winrestview({ leftcol = 0 })
+          vim.cmd('startinsert!')
+        end, 50)
       end,
       on_close = function()
         vim.o.laststatus = lazygit_prev_laststatus or 2
