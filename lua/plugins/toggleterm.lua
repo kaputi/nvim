@@ -11,8 +11,12 @@ return {
       direction = 'float',
       float_opts = {
         border = 'curved',
-        width = math.floor(vim.o.columns * 0.9),
-        height = math.floor(vim.o.lines * 0.9),
+        width = function()
+          return math.floor(vim.o.columns * 0.9)
+        end,
+        height = function()
+          return math.floor(vim.o.lines * 0.9)
+        end,
       },
       on_open = function(term)
         lazygit_prev_laststatus = vim.o.laststatus
