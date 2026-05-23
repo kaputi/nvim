@@ -1,0 +1,13 @@
+.git
+.gitignore
+.github
+docs
+todo.md
+CLAUDE.md
+*.bak
+*.swp
+.netrwhist
+backup
+undodir
+sessions
+scratch.vim

@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Wrapper around the published tv2 Docker image.
+# Bind-mounts the current directory at /work and persists nvim state at
+# ~/.local/share/tv2-docker on the host.
+set -euo pipefail
+
+IMAGE="${TV2_DOCKER_IMAGE:-ghcr.io/kaputi/tv2:latest}"
+
+STATE_DIR="${TV2_DOCKER_STATE_DIR:-$HOME/.local/share/tv2-docker}"
+mkdir -p "$STATE_DIR"
+
+tty_flags=(-i)
+if [ -t 0 ] && [ -t 1 ]; then
+  tty_flags+=(-t)
+fi
+
+exec docker run --rm "${tty_flags[@]}" \
+  -v "$PWD:/work" \
+  -v "$STATE_DIR:/opt/tv2/state/tv2" \
+  -w /work \
+  -u "$(id -u):$(id -g)" \
+  -e TERM \
+  -e COLORTERM \
+  "$IMAGE" "$@"
