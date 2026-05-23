@@ -140,7 +140,7 @@ vim.api.nvim_create_autocmd('BufReadPre', {
     if large_file then
       vim.b.large_file = true
       vim.opt_local.syntax = 'off'
-      vim.cmd('TSBufDisable highlight')
+      pcall(vim.treesitter.stop, args.buf)
     end
   end,
 })
