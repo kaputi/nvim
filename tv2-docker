@@ -9,6 +9,26 @@ IMAGE="${TV2_DOCKER_IMAGE:-ghcr.io/kaputi/tv2:latest}"
 STATE_DIR="${TV2_DOCKER_STATE_DIR:-$HOME/.local/share/tv2-docker}"
 mkdir -p "$STATE_DIR"
 
+# Strip --update from the args and pull the image if present. If --update is
+# the only argument, exit after pulling; otherwise pass the remaining args on
+# to nvim.
+do_update=0
+nvim_args=()
+for arg in "$@"; do
+  if [ "$arg" = "--update" ]; then
+    do_update=1
+  else
+    nvim_args+=("$arg")
+  fi
+done
+
+if [ "$do_update" = "1" ]; then
+  docker pull "$IMAGE"
+  if [ "${#nvim_args[@]}" -eq 0 ]; then
+    exit 0
+  fi
+fi
+
 tty_flags=(-i)
 if [ -t 0 ] && [ -t 1 ]; then
   tty_flags+=(-t)
@@ -21,4 +41,4 @@ exec docker run --rm "${tty_flags[@]}" \
   -u "$(id -u):$(id -g)" \
   -e TERM \
   -e COLORTERM \
-  "$IMAGE" "$@"
+  "$IMAGE" ${nvim_args[@]+"${nvim_args[@]}"}
