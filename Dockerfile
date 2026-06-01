@@ -128,13 +128,13 @@ RUN nvim --headless -c "luafile /opt/tv2/config/tv2/docker/bootstrap_mason.lua" 
 # nvim-treesitter version; parsers were already installed by :Lazy! sync).
 RUN nvim --headless "+TSUpdateSync" +qa || true
 
-# Make the baked plugin/LSP data world-readable so the runtime user (whatever
-# UID the wrapper passes via -u) can read it. Cache and state need to be
-# writable too — nvim writes luac bytecode to cache on every load, and state
-# (shada, undodir) is normally written but typically bind-mounted from the
-# host at runtime.
-RUN chmod -R a+rX /opt/tv2/share /opt/tv2/config \
- && chmod -R a+rwX /opt/tv2/cache /opt/tv2/state
+# Make baked data accessible to any runtime UID. Share/cache/state must be
+# writable: nvim caches luac bytecode in cache on every load, state is
+# bind-mounted from the host, and some plugins (e.g. oklch-color-picker) drop
+# runtime artifacts inside their share dir on first use. Config stays
+# read-only — there's no reason to mutate it at runtime.
+RUN chmod -R a+rX /opt/tv2/config \
+ && chmod -R a+rwX /opt/tv2/share /opt/tv2/cache /opt/tv2/state
 
 # === Entrypoint =================================================================
 WORKDIR /work
