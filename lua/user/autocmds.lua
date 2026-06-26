@@ -145,6 +145,38 @@ vim.api.nvim_create_autocmd('BufReadPre', {
   end,
 })
 
+-- quickfix: dd / visual d to remove entries in place (bqf re-previews live)
+vim.api.nvim_create_autocmd('FileType', {
+  group = '_user',
+  pattern = 'qf',
+  callback = function(ev)
+    local function remove(start_line, count)
+      local qf = vim.fn.getqflist()
+      for _ = 1, count do
+        table.remove(qf, start_line)
+      end
+      -- 'r' = replace the current list in place, so bqf stays put & re-previews
+      vim.fn.setqflist({}, 'r', { items = qf })
+      if #qf > 0 then
+        vim.api.nvim_win_set_cursor(0, { math.max(1, math.min(start_line, #qf)), 0 })
+      end
+    end
+
+    vim.keymap.set('n', 'dd', function()
+      remove(vim.fn.line('.'), vim.v.count1)
+    end, { buffer = ev.buf, silent = true, desc = 'qf: remove entry' })
+
+    vim.keymap.set('x', 'd', function()
+      local s, e = vim.fn.line('v'), vim.fn.line('.')
+      if s > e then
+        s, e = e, s
+      end
+      vim.cmd('normal! \27') -- exit visual so it doesn't linger
+      remove(s, e - s + 1)
+    end, { buffer = ev.buf, silent = true, desc = 'qf: remove selection' })
+  end,
+})
+
 -- Track when buffer becomes hidden (no longer visible)
 vim.api.nvim_create_autocmd('BufHidden', {
   group = '_user',
