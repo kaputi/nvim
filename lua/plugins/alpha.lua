@@ -65,7 +65,12 @@ return {
     local filename = get_last_session_filename()
 
     if filename ~= nil then
-      name = ': ' .. filename:match('^.+_(.+)$')
+      local session_utils = require('session_manager.utils')
+      local dir_path = session_utils.session_filename_to_dir(filename).filename
+      local dir_name = dir_path:match('([^/]+)$')
+      local branch = session_utils.get_git_branch(dir_path)
+      name = branch and (': ' .. dir_name .. ' (' .. branch .. ')')
+        or (': ' .. dir_name)
     end
 
     dashboard.section.buttons.val = {
