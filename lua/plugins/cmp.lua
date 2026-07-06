@@ -43,7 +43,7 @@ return {
             path = '[path]',
             vsnip = '[snippet]',
             buffer = '[buffer]',
-            codeium = '[codeium]',
+            supermaven = '[supermaven]',
             copilot = '[copilot]',
           })[entry.source.name]
 
@@ -58,7 +58,7 @@ return {
       sources = {
         { name = 'vsnip' },
         { name = 'nvim_lsp' },
-        { name = 'codeium' },
+        { name = 'supermaven' },
         { name = 'buffer' },
         { name = 'path' },
         -- { name = 'copilot' },

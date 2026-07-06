@@ -4,13 +4,13 @@ M.cmpHighlight = {
   kind = {
     copilot = '@string',
     vsnip = '@module',
-    codeium = '@string',
+    supermaven = '@string',
   },
   menu = {
     copilot = '@string',
     nvim_lsp = '@label',
     vsnip = '@module',
-    codeium = '@label',
+    supermaven = '@label',
   },
 }
 
