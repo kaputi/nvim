@@ -42,6 +42,15 @@ vim.api.nvim_create_autocmd({ 'FileType', 'BufRead', 'BufEnter' }, {
   command = 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o',
 })
 
+-- wrap by default for prose filetypes
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  group = '_user',
+  pattern = { 'markdown', 'text' },
+  callback = function()
+    vim.opt_local.wrap = true
+  end,
+})
+
 -- change dir to oppened file
 vim.api.nvim_create_autocmd({ 'VimEnter' }, {
   group = '_user',
