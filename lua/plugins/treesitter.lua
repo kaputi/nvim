@@ -14,12 +14,11 @@ return {
       'jsdoc',
       'markdown',
       'markdown_inline',
-      'kconf',
     }, { summary = false }):wait(30000) -- 30s timeout
   end,
   config = function()
     -- use kconfig for conf files
-    vim.treesitter.language.register('kconfig', 'conf')
+    vim.treesitter.language.register('properties', 'conf')
 
     -- Auto-install missing parsers and start treesitter highlighting
     vim.api.nvim_create_autocmd('FileType', {
@@ -28,10 +27,13 @@ return {
         local lang = vim.treesitter.language.get_lang(event.match)
           or event.match
 
-        -- Start treesitter if parser exists, otherwise install then start
-        if pcall(vim.treesitter.get_parser, buf, lang) then
+        -- Start treesitter if parser exists, otherwise install then start.
+        -- Note: on nvim 0.12+ get_parser returns nil instead of erroring,
+        -- so check the returned parser too, not just pcall success.
+        local has_parser, parser = pcall(vim.treesitter.get_parser, buf, lang)
+        if has_parser and parser then
           pcall(vim.treesitter.start, buf, lang)
-        else
+        elseif vim.tbl_contains(require('nvim-treesitter').get_available(), lang) then
           local ok, task = pcall(require('nvim-treesitter').install, { lang })
           if ok then
             task:await(function()
