@@ -104,8 +104,15 @@ return {
       end,
     })
     -- Arduino ===========================================================
-    vim.lsp.config('arduino_language_server', {
+    vim.lsp.config(
+      'arduino_language_server',
       vim.tbl_extend('force', commonOpts, {
+        cmd = {
+          'arduino-language-server',
+          '-skip-libraries-discovery-on-rebuild',
+          '-jobs',
+          '0',
+        },
         filetypes = { 'arduino', 'ino', 'cpp', 'c', 'h', 'hpp' },
         -- root_dir = require('lspconfig').util.root_pattern('sketch.yaml'),
         -- Neovim-native root detection, preferring sketch.yaml
@@ -123,29 +130,8 @@ return {
           end
           on_dir(root)
         end,
-      }),
-    })
-    -- Clang =============================================================
-    vim.lsp.config('clangd', {
-      filetypes = { 'cpp', 'c', 'h', 'hpp' },
-
-      root_dir = function(bufnr, on_dir)
-        local fname = vim.api.nvim_buf_get_name(bufnr)
-
-        -- If this file belongs to an Arduino sketch (has sketch.yaml above),
-        -- do NOT start clangd here; let arduino_language_server own it.
-        local arduino_root = vim.fs.root(fname, { 'sketch.yaml' })
-        if arduino_root then
-          return -- no on_dir => clangd stays inactive for this buffer
-        end
-
-        -- Normal C/C++ projects: look for compile_commands.json or .git
-        local root = util.root_pattern('compile_commands.json', '.git')(fname)
-          or vim.fn.fnamemodify(fname, ':p:h')
-
-        on_dir(root)
-      end,
-    })
+      })
+    )
     -- ===================================================================
     require('mason').setup({})
     require('mason-lspconfig').setup()
