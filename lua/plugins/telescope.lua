@@ -17,6 +17,8 @@ return {
       '%dist/',
       '%tmp/',
       '%.next/',
+      '%.lock$',
+      'package%-lock%.json',
     }
 
     local function get_file_ignore_patterns()
