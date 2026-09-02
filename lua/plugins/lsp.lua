@@ -20,31 +20,13 @@ return {
     vim.lsp.config('*', commonOpts)
 
     -- DENO ==============================================================
-    vim.lsp.config(
-      'denols',
-      vim.tbl_extend('force', commonOpts, {
-        root_markers = nil,
-        root_dir = util.root_pattern('deno.json', 'deno.jsonc'),
-      })
-    )
+    -- upstream denols root_dir only attaches inside deno projects (deno.json /
+    -- deno.jsonc / deno.lock) and tsc aborts there, so the two never overlap
+    vim.lsp.config('denols', commonOpts)
     -- TS,JS ============================================================
-    local ts_options = vim.tbl_extend('force', commonOpts, {
-      root_markers = { '.git', '.hg', 'package.json', 'tsconfig.json' },
-      init_options = {
-        preferences = {
-          includeInlayParameterNameHints = 'all',
-          includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-          includeInlayFunctionParameterTypeHints = true,
-          includeInlayVariableTypeHints = true,
-          includeInlayPropertyDeclarationTypeHints = true,
-          includeInlayFunctionLikeReturnTypeHints = true,
-          includeInlayEnumMemberValueHints = true,
-          preferTypeOnlyAutoImports = true,
-        },
-      },
-    })
-    vim.lsp.config('ts_ls', ts_options)
-    vim.lsp.config('tsserver', ts_options)
+    -- native typescript 7 server; install with :MasonInstall tsc
+    -- upstream config already enables all inlay hints via settings['js/ts']
+    vim.lsp.config('tsc', commonOpts)
     -- SHADERS ==========================================================
     -- too many errors for vulkan that don't matter to me
     -- require('lspconfig').glslls.setup({})
@@ -134,7 +116,7 @@ return {
     )
     -- ===================================================================
     require('mason').setup({})
-    require('mason-lspconfig').setup()
+    require('mason-lspconfig').setup({})
 
     vim.api.nvim_create_augroup('_lsp', {})
     local whitelist = {
