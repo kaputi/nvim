@@ -8,8 +8,6 @@ return {
   config = function()
     require('user.lsp.lspGui')
 
-    local util = require('lspconfig.util')
-
     local commonOpts = {
       on_attach = require('user.lsp.on_attach'),
       root_markers = { '.git', '.hg' },
@@ -104,7 +102,7 @@ return {
           local root = vim.fs.root(fname, { 'sketch.yaml' })
           -- 2) fallback: git repo root, if any
           if not root then
-            root = util.find_git_ancestor(fname)
+            root = vim.fs.root(fname, '.git')
           end
           -- 3) final fallback: directory of the file
           if not root or root == '' then
