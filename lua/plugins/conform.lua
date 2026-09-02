@@ -1,14 +1,7 @@
 return {
   'stevearc/conform.nvim',
   config = function()
-    local eslint = 'eslint'
-
-    if vim.fn.executable('eslint_d') == 1 then
-      require('user.functions').notify(
-        'using system eslint_d instead of eslint'
-      )
-      eslint = 'eslint_d'
-    end
+    local eslint = require('user.functions').eslintCmd()
 
     local function js_formatters(bufnr)
       local prettier = 'prettierd'

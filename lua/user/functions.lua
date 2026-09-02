@@ -20,6 +20,21 @@ M.notify = function(text)
   vim.notify(text)
 end
 
+-- Resolves 'eslint_d' when available, else 'eslint'. Memoized so the
+-- notification fires once even though conform and nvim-lint both ask.
+local eslint_cmd
+M.eslintCmd = function()
+  if eslint_cmd then
+    return eslint_cmd
+  end
+  eslint_cmd = 'eslint'
+  if vim.fn.executable('eslint_d') == 1 then
+    M.notify('using system eslint_d instead of eslint')
+    eslint_cmd = 'eslint_d'
+  end
+  return eslint_cmd
+end
+
 M.get_buf_option = function(opt)
   local status_ok, buf_option = pcall(vim.api.nvim_buf_get_option, 0, opt)
   if not status_ok then
