@@ -11,6 +11,7 @@ return {
     { 'c', '<cmd>Telescope git_bcommits<CR>', 'Buffer Commits' },
     { 'd', '<cmd>Gitsigns diffthis<CR>', 'Gitsigns DiffView' },
     { 'D', '<cmd>DiffviewOpen<CR>', 'DiffView' },
+    { 'V', '<cmd>DiffviewOpen develop...HEAD<CR>', 'DiffView vs develop' },
     { 'H', '<cmd>DiffviewFileHistory %<CR>', 'File History' },
     { 'l', lazygit_toggle, 'Lazygit' },
     { 'L', '<cmd>Gitsigns toggle_linehl<CR>', 'Line Highlights' },

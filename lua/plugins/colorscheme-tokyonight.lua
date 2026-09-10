@@ -33,7 +33,17 @@ return {
       --- You can override specific color groups to use other groups or a hex color
       --- function will be called with a ColorScheme table
       ---@param colors ColorScheme
-      on_colors = function(colors) end,
+      on_colors = function(colors)
+        -- Stronger diff backgrounds (defaults blend at 0.25 / 0.25 / 0.15).
+        -- Used by DiffAdd/DiffChange/DiffDelete, which diffview and gitsigns link to.
+        local util = require('tokyonight.util')
+        colors.diff.add = util.blend_bg(colors.green2, 0.45)
+        colors.diff.delete = util.blend_bg(colors.red1, 0.45)
+        -- Same 0.45 blend as add/delete, but with the bright blue instead of the muted blue7.
+        colors.diff.change = util.blend_bg(colors.blue, 0.45)
+        -- Changed text within a changed line must stand out against the new change bg.
+        colors.diff.text = util.blend_bg(colors.blue1, 0.65)
+      end,
 
       --- You can override specific highlights to use other groups or a hex color
       --- function will be called with a Highlights and ColorScheme table
