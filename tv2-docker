@@ -23,7 +23,16 @@ for arg in "$@"; do
 done
 
 if [ "$do_update" = "1" ]; then
+  old_id=$(docker image inspect --format '{{.Id}}' "$IMAGE" 2>/dev/null || true)
   docker pull "$IMAGE"
+  new_id=$(docker image inspect --format '{{.Id}}' "$IMAGE")
+  # Remove the image this pull replaced so old versions don't pile up, but only
+  # once it has no tags left: with the containerd image store, rm by ID also
+  # deletes every other tag pointing at it. rm refuses if a container uses it.
+  if [ -n "$old_id" ] && [ "$old_id" != "$new_id" ] \
+    && [ "$(docker image inspect --format '{{len .RepoTags}}' "$old_id" 2>/dev/null)" = "0" ]; then
+    docker image rm "$old_id" >/dev/null 2>&1 && echo "Removed previous image ${old_id:7:12}" || true
+  fi
   if [ "${#nvim_args[@]}" -eq 0 ]; then
     exit 0
   fi

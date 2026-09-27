@@ -10,6 +10,7 @@ on:
       - 'lazy-lock.json'
       - 'lua/**'
       - 'docker/**'
+      - '!docker/**/*.md'
       - '.github/workflows/docker-publish.yml'
   workflow_dispatch:
 

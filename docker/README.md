@@ -44,6 +44,10 @@ sets up rootless Docker on Debian.
 | `tv2-docker --update`    | Pull the latest image, then exit               |
 | `tv2-docker --update .`  | Pull the latest image, then open nvim          |
 
+`--update` also deletes the image it replaces, so old versions don't use up
+disk. It keeps the old image if a container is using it or another tag points
+at it. To see what Docker is using: `docker system df`.
+
 Environment variables:
 
 | Variable               | Default                     | Purpose                                    |
@@ -119,7 +123,7 @@ pushes it to GHCR. There is no manual push.
 
 1. Push a commit to `master` or `tv2`. The build runs only if the commit
    touches `Dockerfile`, `.dockerignore`, `init.lua`, `lazy-lock.json`,
-   `lua/**`, `docker/**` or the workflow file.
+   `lua/**`, `docker/**` (except `.md` files) or the workflow file.
 2. To rebuild without a change (for example, to pick up a new nvim release):
 
    ```bash
