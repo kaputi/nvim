@@ -5,6 +5,10 @@ to be installed: nvim, plugins, LSPs and tools are baked into the image.
 
 Image: `ghcr.io/kaputi/tv2:latest` (public, `linux/amd64` only).
 
+Works with regular or rootless Docker; the wrapper detects rootless mode and
+sets the container user to match. No Docker yet? [ROOTLESS.md](ROOTLESS.md)
+sets up rootless Docker on Debian.
+
 ## Quick start
 
 1. Install the wrapper script:
@@ -107,6 +111,31 @@ cd tv2
 docker build -t tv2:local .
 TV2_DOCKER_IMAGE=tv2:local tv2-docker
 ```
+
+## Publishing a new version
+
+GitHub Actions (`.github/workflows/docker-publish.yml`) builds the image and
+pushes it to GHCR. There is no manual push.
+
+1. Push a commit to `master` or `tv2`. The build runs only if the commit
+   touches `Dockerfile`, `.dockerignore`, `init.lua`, `lazy-lock.json`,
+   `lua/**`, `docker/**` or the workflow file.
+2. To rebuild without a change (for example, to pick up a new nvim release):
+
+   ```bash
+   gh workflow run docker-publish.yml --ref tv2
+   gh run watch
+   ```
+
+   Or on GitHub: Actions → Publish tv2 Docker image → Run workflow.
+3. On each machine: `tv2-docker --update`.
+
+Each build pushes `latest` and `sha-<short commit>`. Both branches push to
+`latest`, so it holds whichever branch built last. To stay on a known build,
+set `TV2_DOCKER_IMAGE=ghcr.io/kaputi/tv2:sha-<commit>`.
+
+`tv2-docker` is not part of the image. After changing it, re-run the `curl`
+from Quick start on each machine.
 
 ## Files in this directory
 
