@@ -34,11 +34,19 @@ if [ -t 0 ] && [ -t 1 ]; then
   tty_flags+=(-t)
 fi
 
+# Rootless Docker maps container root to the host user. Running as the host
+# UID there would land on a subordinate UID that can't write to /work.
+user_flag="$(id -u):$(id -g)"
+security_opts=$(docker info --format '{{.SecurityOptions}}' 2>/dev/null || true)
+if [[ "$security_opts" == *rootless* ]]; then
+  user_flag="0:0"
+fi
+
 exec docker run --rm "${tty_flags[@]}" \
   -v "$PWD:/work" \
   -v "$STATE_DIR:/opt/tv2/state/tv2" \
   -w /work \
-  -u "$(id -u):$(id -g)" \
+  -u "$user_flag" \
   -e TERM \
   -e COLORTERM \
   "$IMAGE" ${nvim_args[@]+"${nvim_args[@]}"}
